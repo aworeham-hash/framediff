@@ -163,6 +163,8 @@ export function FrameworkPage({ frameworkId }) {
               changes={filteredChanges}
               filter={filter}
               searchQuery={searchQuery}
+              fromVersion={fromVersion}
+              toVersion={toVersion}
             />
 
             <div className="pt-4 border-t border-gray-100">

@@ -18,13 +18,9 @@ function parseControlId(id) {
     return { prefix: 'REQ', nums: [parts[0] || 0, parts[1] || 0, parts[2] || 0] }
   }
   const numMatch = first.match(/^(\d+)$/)
-  if (numMatch) {
-    return { prefix: 'NUM', nums: [parseInt(numMatch[1]), 0, 0] }
-  }
+  if (numMatch) return { prefix: 'NUM', nums: [parseInt(numMatch[1]), 0, 0] }
   const revMatch = first.match(/rev\.?\s*(\d+)/i)
-  if (revMatch) {
-    return { prefix: 'REV', nums: [parseInt(revMatch[1]), 0, 0] }
-  }
+  if (revMatch) return { prefix: 'REV', nums: [parseInt(revMatch[1]), 0, 0] }
   return { prefix: first.toUpperCase(), nums: [0, 0, 0] }
 }
 
@@ -55,62 +51,74 @@ function sortChanges(changes) {
   })
 }
 
-export function ChangeList({ changes, filter, searchQuery }) {
+// View mode toggle button
+function ViewToggle({ mode, onChange }) {
+  return (
+    <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-0.5">
+      <button
+        onClick={() => onChange('cards')}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+          mode === 'cards'
+            ? 'bg-white text-gray-900 shadow-sm'
+            : 'text-gray-500 hover:text-gray-700'
+        }`}
+      >
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+        </svg>
+        Cards
+      </button>
+      <button
+        onClick={() => onChange('document')}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+          mode === 'document'
+            ? 'bg-white text-gray-900 shadow-sm'
+            : 'text-gray-500 hover:text-gray-700'
+        }`}
+      >
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Document
+      </button>
+    </div>
+  )
+}
+
+export function ChangeList({ changes, filter, searchQuery, fromVersion, toVersion }) {
   const [allExpanded, setAllExpanded] = useState(false)
+  const [viewMode, setViewMode]       = useState('cards')
 
   if (changes.length === 0) {
     return <EmptyState searchQuery={searchQuery} filter={filter} />
   }
 
+  const isDocument = viewMode === 'document'
+
+  // Group by area
   const grouped = {}
   const areaOrder = []
   changes.forEach(change => {
     const area = change.area || 'Other'
-    if (!grouped[area]) {
-      grouped[area] = []
-      areaOrder.push(area)
-    }
+    if (!grouped[area]) { grouped[area] = []; areaOrder.push(area) }
     grouped[area].push(change)
   })
 
-  const sortedAreas = sortAreas(areaOrder)
-  const sortedGrouped = {}
-  sortedAreas.forEach(area => {
-    sortedGrouped[area] = sortChanges(grouped[area])
-  })
-
-  if (sortedAreas.length <= 1 || changes.length <= 4) {
-    const flat = sortChanges(changes)
-    return (
-      <div>
-        {flat.length > 3 && (
-          <div className="flex justify-end mb-3">
-            <button
-              onClick={() => setAllExpanded(e => !e)}
-              className="text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors"
-            >
-              {allExpanded ? 'Collapse all' : 'Expand all'}
-              <svg className={`w-3 h-3 transition-transform ${allExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-        )}
-        <div className="space-y-2">
-          {flat.map(change => (
-            <ChangeItem key={change.id} change={change} forceExpanded={allExpanded} />
-          ))}
-        </div>
-      </div>
-    )
-  }
+  const sortedAreas    = sortAreas(areaOrder)
+  const sortedGrouped  = {}
+  sortedAreas.forEach(area => { sortedGrouped[area] = sortChanges(grouped[area]) })
 
   const toAnchor = (area) => area.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
-  return (
-    <div>
-      <div className="flex items-start justify-between mb-6 gap-4">
-        <div className="flex flex-wrap gap-1.5">
+  // Flat sorted (used when 1 area or few items)
+  const flat = sortChanges(changes)
+  const singleGroup = sortedAreas.length <= 1 || changes.length <= 4
+
+  const toolbar = (
+    <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
+      {/* Jump links (only in card multi-group mode) */}
+      {!singleGroup && !isDocument && (
+        <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
           {sortedAreas.map(area => {
             const [familyCode] = area.split(' — ')
             return (
@@ -129,17 +137,48 @@ export function ChangeList({ changes, filter, searchQuery }) {
             )
           })}
         </div>
-        <button
-          onClick={() => setAllExpanded(e => !e)}
-          className="flex-shrink-0 text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors"
-        >
-          {allExpanded ? 'Collapse all' : 'Expand all'}
-          <svg className={`w-3 h-3 transition-transform ${allExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
+      )}
 
+      <div className="flex items-center gap-3 ml-auto flex-shrink-0">
+        <ViewToggle mode={viewMode} onChange={setViewMode} />
+        {!isDocument && changes.length > 3 && (
+          <button
+            onClick={() => setAllExpanded(e => !e)}
+            className="text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors"
+          >
+            {allExpanded ? 'Collapse all' : 'Expand all'}
+            <svg className={`w-3 h-3 transition-transform ${allExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        )}
+      </div>
+    </div>
+  )
+
+  if (singleGroup || isDocument) {
+    return (
+      <div>
+        {toolbar}
+        <div className={isDocument ? 'space-y-5' : 'space-y-2'}>
+          {flat.map(change => (
+            <ChangeItem
+              key={change.id}
+              change={change}
+              forceExpanded={allExpanded}
+              documentMode={isDocument}
+              fromVersion={fromVersion}
+              toVersion={toVersion}
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      {toolbar}
       <div className="space-y-8">
         {sortedAreas.map(area => {
           const areaChanges = sortedGrouped[area]
@@ -161,7 +200,14 @@ export function ChangeList({ changes, filter, searchQuery }) {
               </div>
               <div className="space-y-2">
                 {areaChanges.map(change => (
-                  <ChangeItem key={change.id} change={change} forceExpanded={allExpanded} />
+                  <ChangeItem
+                    key={change.id}
+                    change={change}
+                    forceExpanded={allExpanded}
+                    documentMode={false}
+                    fromVersion={fromVersion}
+                    toVersion={toVersion}
+                  />
                 ))}
               </div>
             </div>
