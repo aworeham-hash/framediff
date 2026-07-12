@@ -6,65 +6,66 @@ function FrameworkItem({ id, isActive, onClick }) {
   if (!fw) return null
 
   const isComingSoon = fw.comingSoon === true
-  const hasData = !isComingSoon && fw.transitions && Object.keys(fw.transitions).length > 0
 
   return (
     <button
-      onClick={() => onClick(id)}
+      onClick={() => !isComingSoon && onClick(id)}
       disabled={isComingSoon}
-      className={`w-full text-left px-3 py-2 rounded-lg flex items-center justify-between group transition-all ${
+      className={`w-full text-left px-3 py-2.5 rounded-md flex items-center justify-between transition-all ${
         isActive
-          ? 'bg-slate-700 text-white'
+          ? 'bg-blue-600 text-white'
           : isComingSoon
-            ? 'text-slate-500 cursor-default'
-            : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+            ? 'text-slate-600 cursor-default'
+            : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100'
       }`}
     >
       <div className="min-w-0">
-        <div className={`text-sm font-medium truncate ${isComingSoon ? 'text-slate-500' : ''}`}>
+        <div className={`text-sm font-medium truncate`}>
           {fw.shortName || fw.name}
         </div>
         {!isComingSoon && fw.latestVersion && (
-          <div className="text-xs text-slate-500 mt-0.5">
-            Latest: v{fw.latestVersion}
+          <div className={`text-xs mt-0.5 ${isActive ? 'text-blue-200' : 'text-slate-600'}`}>
+            {fw.latestVersion}
           </div>
         )}
       </div>
       {isComingSoon && (
-        <span className="ml-2 flex-shrink-0 text-xs bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded font-medium">
+        <span className="ml-2 flex-shrink-0 text-xs text-slate-600 font-medium">
           Soon
         </span>
-      )}
-      {isActive && !isComingSoon && (
-        <svg className="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
       )}
     </button>
   )
 }
 
-export function Sidebar({ selectedId, onSelect }) {
+export function Sidebar({ selectedId, onSelect, onHome }) {
   return (
-    <aside className="w-64 bg-slate-900 flex flex-col h-screen flex-shrink-0">
-      {/* Brand */}
-      <div className="px-5 py-5 border-b border-slate-800">
+    <aside className="w-60 bg-slate-950 flex flex-col h-screen flex-shrink-0 border-r border-slate-800">
+      {/* Brand — clickable home */}
+      <button
+        onClick={onHome}
+        className="px-5 py-5 border-b border-slate-800 text-left hover:bg-slate-900 transition-colors group"
+      >
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded bg-emerald-500 flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-sm font-mono">∆</span>
+          <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center flex-shrink-0">
+            <span className="text-white font-bold text-sm font-mono leading-none">∆</span>
           </div>
           <div>
-            <h1 className="text-white font-bold text-base leading-none">FrameDiff</h1>
-            <p className="text-slate-400 text-xs mt-0.5">Compliance changes tracker</p>
+            <div className="text-white font-semibold text-sm leading-tight tracking-tight group-hover:text-blue-300 transition-colors">
+              FrameDiff
+            </div>
+            <div className="text-slate-500 text-xs mt-0.5 font-normal">
+              Compliance changelog
+            </div>
           </div>
         </div>
-      </div>
+      </button>
 
       {/* Framework navigation */}
-      <nav className="flex-1 overflow-y-auto py-4 px-3 scrollbar-thin space-y-5">
+      <nav className="flex-1 overflow-y-auto py-3 px-2 scrollbar-thin">
         {FRAMEWORK_GROUPS.map(group => (
-          <div key={group.name}>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 mb-1.5">
+          <div key={group.name} className="mb-4">
+            <p className="text-xs font-semibold text-slate-600 uppercase tracking-widest px-3 mb-1">
               {group.name}
             </p>
             <div className="space-y-0.5">
@@ -82,10 +83,9 @@ export function Sidebar({ selectedId, onSelect }) {
       </nav>
 
       {/* Footer */}
-      <div className="px-5 py-4 border-t border-slate-800">
-        <p className="text-xs text-slate-500">
-          Data sourced from official framework publications.
-          Always verify with primary sources.
+      <div className="px-4 py-4 border-t border-slate-800">
+        <p className="text-xs text-slate-600 leading-relaxed">
+          Always verify changes against official framework publications.
         </p>
       </div>
     </aside>

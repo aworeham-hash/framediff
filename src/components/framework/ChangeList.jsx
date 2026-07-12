@@ -6,18 +6,20 @@ export function ChangeList({ changes, filter, searchQuery }) {
     return <EmptyState searchQuery={searchQuery} filter={filter} />
   }
 
-  // Group by area for cleaner reading
+  // Group by area (control family)
   const grouped = {}
+  const areaOrder = []
   changes.forEach(change => {
     const area = change.area || 'Other'
-    if (!grouped[area]) grouped[area] = []
+    if (!grouped[area]) {
+      grouped[area] = []
+      areaOrder.push(area)
+    }
     grouped[area].push(change)
   })
 
-  const areas = Object.keys(grouped)
-
-  // If all changes are in one area, or no meaningful grouping, render flat
-  if (areas.length <= 1 || changes.length <= 5) {
+  // Render flat if only one group or very few changes
+  if (areaOrder.length <= 1 || changes.length <= 4) {
     return (
       <div className="space-y-2">
         {changes.map(change => (
@@ -27,24 +29,39 @@ export function ChangeList({ changes, filter, searchQuery }) {
     )
   }
 
-  // Grouped view
+  // Grouped view with section headers
   return (
-    <div className="space-y-6">
-      {areas.map(area => (
-        <div key={area}>
-          <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{area}</h3>
-            <span className="text-xs bg-gray-100 text-gray-400 px-1.5 py-0.5 rounded font-medium">
-              {grouped[area].length}
-            </span>
+    <div className="space-y-8">
+      {areaOrder.map(area => {
+        const areaChanges = grouped[area]
+        // Extract short family code if present (e.g. "AC — Access Control" → "AC")
+        const [familyCode, ...rest] = area.split(' — ')
+        const familyName = rest.length > 0 ? rest.join(' — ') : null
+
+        return (
+          <div key={area}>
+            {/* Section header */}
+            <div className="flex items-baseline gap-2 mb-3 pb-2 border-b border-gray-100">
+              <span className="font-mono text-xs font-bold text-gray-900 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded">
+                {familyCode}
+              </span>
+              {familyName && (
+                <span className="text-sm font-semibold text-gray-700">{familyName}</span>
+              )}
+              <span className="text-xs text-gray-400 ml-auto">
+                {areaChanges.length} {areaChanges.length === 1 ? 'change' : 'changes'}
+              </span>
+            </div>
+
+            {/* Changes within this family */}
+            <div className="space-y-2">
+              {areaChanges.map(change => (
+                <ChangeItem key={change.id} change={change} />
+              ))}
+            </div>
           </div>
-          <div className="space-y-2">
-            {grouped[area].map(change => (
-              <ChangeItem key={change.id} change={change} />
-            ))}
-          </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

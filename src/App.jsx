@@ -11,12 +11,18 @@ export default function App() {
     window.scrollTo(0, 0)
   }
 
+  const handleHome = () => {
+    setSelectedFrameworkId(null)
+    window.scrollTo(0, 0)
+  }
+
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
+    <div className="flex h-screen overflow-hidden bg-white">
       {/* Sidebar */}
       <Sidebar
         selectedId={selectedFrameworkId}
         onSelect={handleSelectFramework}
+        onHome={handleHome}
       />
 
       {/* Main content */}

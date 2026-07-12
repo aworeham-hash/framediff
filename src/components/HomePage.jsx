@@ -1,54 +1,69 @@
 import { FRAMEWORK_GROUPS } from '../utils/constants'
 import { getFramework } from '../data/registry'
 
-function FrameworkCard({ id, onClick }) {
+const PUBLISHER_COLORS = {
+  'NIST': 'bg-blue-50 text-blue-700 border-blue-100',
+  'PCI SSC': 'bg-violet-50 text-violet-700 border-violet-100',
+  'ISO': 'bg-amber-50 text-amber-700 border-amber-100',
+  'AICPA': 'bg-teal-50 text-teal-700 border-teal-100',
+  'PCAOB': 'bg-orange-50 text-orange-700 border-orange-100',
+  'HHS': 'bg-rose-50 text-rose-700 border-rose-100',
+  'IRS': 'bg-slate-50 text-slate-700 border-slate-200',
+  'DISA': 'bg-indigo-50 text-indigo-700 border-indigo-100',
+}
+
+function FrameworkRow({ id, onClick }) {
   const fw = getFramework(id)
   if (!fw) return null
 
   const isComingSoon = fw.comingSoon === true
   const transitionCount = fw.transitions ? Object.keys(fw.transitions).length : 0
+  const publisherClass = PUBLISHER_COLORS[fw.publisher] || 'bg-gray-50 text-gray-600 border-gray-100'
 
   return (
     <button
       onClick={() => !isComingSoon && onClick(id)}
       disabled={isComingSoon}
-      className={`text-left p-4 rounded-xl border transition-all ${
+      className={`w-full text-left flex items-center gap-4 px-4 py-3.5 border-b border-gray-100 transition-all last:border-b-0 ${
         isComingSoon
-          ? 'bg-gray-50 border-gray-100 cursor-default opacity-60'
-          : 'bg-white border-gray-200 hover:border-slate-400 hover:shadow-md cursor-pointer'
+          ? 'cursor-default opacity-50'
+          : 'hover:bg-blue-50/50 cursor-pointer group'
       }`}
     >
-      <div className="flex items-start justify-between mb-2">
-        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-          {fw.publisher || 'Standards Body'}
+      {/* Publisher badge */}
+      <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold border w-16 justify-center flex-shrink-0 ${publisherClass}`}>
+        {fw.publisher}
+      </span>
+
+      {/* Name */}
+      <div className="flex-1 min-w-0">
+        <span className={`text-sm font-medium text-gray-900 group-hover:text-blue-700 transition-colors ${isComingSoon ? '' : ''}`}>
+          {fw.name}
         </span>
-        {isComingSoon && (
-          <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-medium">
-            Coming soon
-          </span>
-        )}
-        {!isComingSoon && (
-          <span className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium border border-emerald-100">
-            Available
-          </span>
-        )}
       </div>
-      <h3 className="font-semibold text-gray-900 text-sm leading-snug">{fw.name}</h3>
-      {fw.description && (
-        <p className="text-xs text-gray-500 mt-1.5 line-clamp-2">{fw.description}</p>
-      )}
-      <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-100">
-        {fw.latestVersion && (
+
+      {/* Latest version */}
+      <span className="text-xs text-gray-400 font-mono flex-shrink-0 w-28 text-right">
+        {fw.latestVersion || '—'}
+      </span>
+
+      {/* Transitions / status */}
+      <span className="flex-shrink-0 w-28 text-right">
+        {isComingSoon ? (
+          <span className="text-xs text-gray-400">Coming soon</span>
+        ) : (
           <span className="text-xs text-gray-500">
-            Latest: <span className="font-medium text-gray-700">v{fw.latestVersion}</span>
+            {transitionCount} {transitionCount === 1 ? 'version diff' : 'version diffs'}
           </span>
         )}
-        {transitionCount > 0 && (
-          <span className="text-xs text-gray-500">
-            {transitionCount} transition{transitionCount !== 1 ? 's' : ''}
-          </span>
-        )}
-      </div>
+      </span>
+
+      {/* Arrow */}
+      <span className={`flex-shrink-0 ${isComingSoon ? 'invisible' : 'text-gray-300 group-hover:text-blue-400 transition-colors'}`}>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+        </svg>
+      </span>
     </button>
   )
 }
@@ -61,57 +76,56 @@ export function HomePage({ onSelectFramework }) {
   })
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
-      {/* Hero */}
-      <div className="mb-10">
-        <h2 className="text-3xl font-bold text-gray-900 mb-3">
-          Track every compliance framework change,<br />
-          <span className="text-emerald-600">version by version.</span>
-        </h2>
-        <p className="text-gray-500 text-lg max-w-2xl">
-          No more hunting through 30-page PDFs. Select a framework on the left to see exactly what changed — with summary cards, filterable change lists, and the rationale behind every update.
-        </p>
-      </div>
-
-      {/* Stats */}
-      <div className="flex items-center gap-6 mb-10 pb-10 border-b border-gray-200">
-        <div>
-          <p className="text-2xl font-bold text-gray-900">{available.length}</p>
-          <p className="text-sm text-gray-500">frameworks available</p>
-        </div>
-        <div className="w-px h-10 bg-gray-200" />
-        <div>
-          <p className="text-2xl font-bold text-gray-900">{allFrameworks.length}</p>
-          <p className="text-sm text-gray-500">frameworks in roadmap</p>
-        </div>
-        <div className="w-px h-10 bg-gray-200" />
-        <div>
-          <p className="text-2xl font-bold text-gray-900">100%</p>
-          <p className="text-sm text-gray-500">from official sources</p>
-        </div>
-      </div>
-
-      {/* Framework grid */}
-      {FRAMEWORK_GROUPS.map(group => (
-        <div key={group.name} className="mb-8">
-          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-            {group.name}
-          </h3>
-          <div className="grid grid-cols-2 gap-3">
-            {group.frameworks.map(id => (
-              <FrameworkCard key={id} id={id} onClick={onSelectFramework} />
-            ))}
+    <div className="h-full overflow-y-auto">
+      {/* Top bar */}
+      <div className="border-b border-gray-100 px-10 py-4 flex items-center justify-between sticky top-0 bg-white z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded bg-blue-600 flex items-center justify-center">
+            <span className="text-white font-bold text-xs font-mono">∆</span>
           </div>
+          <span className="font-semibold text-gray-900 text-sm">FrameDiff</span>
         </div>
-      ))}
+        <span className="text-xs text-gray-400">
+          {available.length} frameworks available · {allFrameworks.length} in roadmap
+        </span>
+      </div>
 
-      {/* Disclaimer */}
-      <div className="mt-10 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <p className="text-xs text-gray-500">
-          <span className="font-semibold text-gray-700">Disclaimer:</span> FrameDiff provides informational summaries of compliance framework changes.
-          Always refer to official framework documentation for compliance decisions.
-          FrameDiff is not affiliated with NIST, PCI SSC, ISO, AICPA, DISA, IRS, or any framework publisher.
-        </p>
+      <div className="max-w-3xl mx-auto px-10 py-14">
+
+        {/* Hero */}
+        <div className="mb-12">
+          <h1 className="text-3xl font-bold text-gray-950 tracking-tight leading-tight mb-4">
+            The changelog for GRC teams.
+          </h1>
+          <p className="text-gray-500 text-base leading-relaxed max-w-xl">
+            See exactly what changed between framework versions — every control added, removed, or modified — with the rationale behind each update. No more hunting through 300-page PDFs.
+          </p>
+        </div>
+
+        {/* Framework table */}
+        {FRAMEWORK_GROUPS.map(group => (
+          <div key={group.name} className="mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+                {group.name}
+              </h2>
+              <div className="flex-1 h-px bg-gray-100" />
+            </div>
+            <div className="border border-gray-200 rounded-lg overflow-hidden">
+              {group.frameworks.map(id => (
+                <FrameworkRow key={id} id={id} onClick={onSelectFramework} />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        {/* Footer */}
+        <div className="mt-12 pt-6 border-t border-gray-100">
+          <p className="text-xs text-gray-400 leading-relaxed">
+            FrameDiff provides informational summaries of compliance framework changes. Always refer to official documentation for compliance decisions.
+            Not affiliated with NIST, PCI SSC, ISO, AICPA, DISA, IRS, or any framework publisher.
+          </p>
+        </div>
       </div>
     </div>
   )
