@@ -1,0 +1,15 @@
+{
+  "id": "hipaa",
+  "name": "Health Insurance Portability and Accountability Act",
+  "shortName": "HIPAA",
+  "description": "Federal law governing the privacy and security of protected health information (PHI). The 2024/2025 HIPAA Security Rule update is the first major overhaul since 2013, strengthening requirements for risk analysis, MFA, encryption, and asset inventories for covered entities and business associates.",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "comingSoon": true,
+  "publisher": "HHS OCR",
+  "source": "https://www.hhs.gov/hipaa/for-professionals/security/index.html",
+  "lastDataUpdate": null,
+  "versions": ["1996", "2003", "2009", "2013", "2024-2025"],
+  "latestVersion": "2024-2025",
+  "transitions": {}
+}

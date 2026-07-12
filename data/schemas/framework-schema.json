@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://framediff/framework-schema.json",
+  "title": "FrameDiff Framework Data Schema",
+  "description": "Schema for all compliance framework version comparison data files in FrameDiff",
+  "type": "object",
+  "required": ["id", "name", "shortName", "copyright", "showFullText", "source", "lastDataUpdate", "versions", "latestVersion", "transitions"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique framework identifier. Lowercase, hyphenated. Matches the folder name in data/frameworks/.",
+      "pattern": "^[a-z0-9-]+$",
+      "examples": ["nist-csf", "pci-dss", "iso-27001", "stigs"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Full official name of the framework",
+      "examples": ["NIST Cybersecurity Framework", "Payment Card Industry Data Security Standard"]
+    },
+    "shortName": {
+      "type": "string",
+      "description": "Abbreviated name used in the UI sidebar and headers",
+      "examples": ["NIST CSF", "PCI DSS", "ISO 27001"]
+    },
+    "description": {
+      "type": "string",
+      "description": "1-2 sentence description of the framework shown in the sidebar tooltip"
+    },
+    "copyright": {
+      "type": "string",
+      "enum": ["public-domain", "restricted-summary-only", "restricted-metadata-only"],
+      "description": "Copyright status. public-domain = full text OK. restricted-summary-only = show change summaries but not full control text. restricted-metadata-only = show only structural/count changes, link to official source."
+    },
+    "showFullText": {
+      "type": "boolean",
+      "description": "If false, the UI shows a restricted content banner and hides oldText/newText fields"
+    },
+    "source": {
+      "type": "string",
+      "format": "uri",
+      "description": "Official framework homepage or primary source URL"
+    },
+    "officialChangelogUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Direct URL to official change documentation (summary of changes PDF, GitHub repo, etc.)"
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Name of the publishing organization",
+      "examples": ["NIST", "PCI Security Standards Council", "ISO", "AICPA", "DISA"]
+    },
+    "lastDataUpdate": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO date (YYYY-MM-DD) when this JSON file was last updated"
+    },
+    "versions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All tracked versions in chronological order",
+      "examples": [["1.0", "1.1", "2.0"], ["Rev4", "Rev5"], ["v3.2.1", "v4.0", "v4.0.1"]]
+    },
+    "latestVersion": {
+      "type": "string",
+      "description": "The current/most recent version string. Must be present in the versions array."
+    },
+    "sunset": {
+      "type": "object",
+      "description": "Present only if this framework version has been officially retired or superseded",
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "replacedBy": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "transitions": {
+      "type": "object",
+      "description": "Keys are version-pair strings in format '{fromVersion}-to-{toVersion}'. Each value is a Transition object.",
+      "additionalProperties": {
+        "$ref": "#/definitions/Transition"
+      }
+    }
+  },
+
+  "definitions": {
+    "Transition": {
+      "type": "object",
+      "required": ["fromVersion", "toVersion", "fromReleaseDate", "toReleaseDate", "summary", "changes"],
+      "properties": {
+        "fromVersion": { "type": "string" },
+        "toVersion": { "type": "string" },
+        "fromReleaseDate": { "type": "string", "format": "date" },
+        "toReleaseDate": { "type": "string", "format": "date" },
+        "summary": {
+          "type": "object",
+          "required": ["added", "removed", "modified", "restructured", "highlights"],
+          "properties": {
+            "added": { "type": "integer", "minimum": 0 },
+            "removed": { "type": "integer", "minimum": 0 },
+            "modified": { "type": "integer", "minimum": 0 },
+            "restructured": { "type": "integer", "minimum": 0 },
+            "totalFrom": { "type": "integer", "minimum": 0, "description": "Total control/requirement count in source version" },
+            "totalTo": { "type": "integer", "minimum": 0, "description": "Total control/requirement count in destination version" },
+            "highlights": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 2,
+              "maxItems": 8,
+              "description": "3-6 plain-English bullets describing the most important changes in this transition"
+            }
+          }
+        },
+        "changes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Change" }
+        }
+      }
+    },
+
+    "Change": {
+      "type": "object",
+      "required": ["id", "type", "title", "area", "significance"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique change ID. Format: change-{framework-id}-{fromVersion}-{toVersion}-{###}",
+          "examples": ["change-nist-csf-1.1-2.0-001", "change-pci-dss-3.2.1-4.0-042"]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["added", "removed", "modified", "restructured", "renamed"],
+          "description": "Nature of the change. added=new control/requirement. removed=eliminated. modified=content changed. restructured=moved/renumbered, same content. renamed=ID or name changed, content same."
+        },
+        "category": {
+          "type": "string",
+          "description": "Freeform category for grouping related changes within a transition",
+          "examples": ["new-function", "clarification", "severity-change", "new-control", "merged", "mfa-requirement", "encryption", "supply-chain"]
+        },
+        "controlId": {
+          "type": "object",
+          "properties": {
+            "old": { "type": ["string", "null"], "description": "Control ID in the source version. null if new." },
+            "new": { "type": ["string", "null"], "description": "Control ID in the destination version. null if removed." }
+          }
+        },
+        "stigCheckId": {
+          "type": "string",
+          "description": "STIG-specific: the Rule ID (SV-######r######_rule format). Only present for STIG data."
+        },
+        "severity": {
+          "type": "object",
+          "description": "STIG-specific: severity level change",
+          "properties": {
+            "old": { "type": "string", "enum": ["CAT I", "CAT II", "CAT III"] },
+            "new": { "type": "string", "enum": ["CAT I", "CAT II", "CAT III"] }
+          }
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Short human-readable name for this change. Used in the compact list view."
+        },
+        "area": {
+          "type": "string",
+          "description": "The section/function/domain/clause this change belongs to. Framework-specific.",
+          "examples": ["GV — Govern", "Requirement 8 — Identify and Authenticate", "Annex A — Organizational Controls"]
+        },
+        "oldText": {
+          "type": ["string", "null"],
+          "description": "Full control/requirement text from source version. null if: new control, removed control, or copyright restricts display."
+        },
+        "newText": {
+          "type": ["string", "null"],
+          "description": "Full control/requirement text from destination version. null if: removed control, or copyright restricts display."
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Why this change was made — from official documentation or best interpretation. Helps users understand intent, not just the change itself."
+        },
+        "significance": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Impact level. high=meaningfully affects compliance posture or requires action. medium=notable but limited scope. low=clarification or minor edit."
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-form tags for filtering. Use consistent tag names across frameworks.",
+          "examples": [["mfa", "authentication"], ["encryption", "tls"], ["supply-chain", "third-party"], ["cloud", "new-control"]]
+        }
+      }
+    }
+  }
+}

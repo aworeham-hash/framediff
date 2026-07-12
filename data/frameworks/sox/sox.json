@@ -1,0 +1,15 @@
+{
+  "id": "sox",
+  "name": "Sarbanes-Oxley Act / PCAOB Standards",
+  "shortName": "SOX / PCAOB",
+  "description": "SOX Section 404 requires public companies to assess and report on the effectiveness of internal controls over financial reporting. The PCAOB standards that define how auditors test those controls — particularly AS 2201 (replacing AS 5) and the landmark 2024 QC 1000 quality control standard — are the primary focus.",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "comingSoon": true,
+  "publisher": "PCAOB",
+  "source": "https://pcaobus.org/Standards",
+  "lastDataUpdate": null,
+  "versions": ["AS 5 (2007)", "AS 2201 (2010)", "QC 1000 (2024)"],
+  "latestVersion": "QC 1000 (2024)",
+  "transitions": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "irs-4812",
+  "name": "IRS Publication 4812 — Contractor Security Controls",
+  "shortName": "IRS Pub. 4812",
+  "description": "IRS Publication 4812 defines the security requirements for contractors who access, process, or store Federal Tax Information (FTI). It maps tightly to NIST SP 800-53 and is required for state agencies, local governments, and federal contractors receiving FTI under IRC Section 6103.",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "comingSoon": true,
+  "publisher": "IRS",
+  "source": "https://www.irs.gov/privacy-disclosure/irs-publication-4812-contractor-security-safeguards",
+  "lastDataUpdate": null,
+  "versions": ["Rev. 7 (2016)", "Rev. 8 (2020)", "Rev. 9 (2023)"],
+  "latestVersion": "Rev. 9 (2023)",
+  "transitions": {}
+}

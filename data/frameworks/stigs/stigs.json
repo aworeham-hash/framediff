@@ -1,0 +1,15 @@
+{
+  "id": "stigs",
+  "name": "DISA Security Technical Implementation Guides",
+  "shortName": "DISA STIGs",
+  "description": "DISA Security Technical Implementation Guides (STIGs) provide prescriptive hardening guidance for specific technologies. FrameDiff covers the top 15 most-used STIGs including Windows Server, RHEL, SQL Server, Windows 10/11, and key network device STIGs — showing version-to-version changes in individual STIG checks (V-IDs).",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "comingSoon": true,
+  "publisher": "DISA",
+  "source": "https://public.cyber.mil/stigs/downloads/",
+  "lastDataUpdate": null,
+  "versions": ["See individual STIG documents"],
+  "latestVersion": "See individual STIG documents",
+  "transitions": {}
+}

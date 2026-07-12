@@ -1,0 +1,15 @@
+{
+  "id": "soc2",
+  "name": "SOC 2 — Trust Services Criteria",
+  "shortName": "SOC 2",
+  "description": "The AICPA's Trust Services Criteria used in SOC 2 examinations, covering Security, Availability, Processing Integrity, Confidentiality, and Privacy. The 2022 update added AI/ML controls and clarified cloud service provider requirements.",
+  "copyright": "restricted-metadata-only",
+  "showFullText": false,
+  "comingSoon": true,
+  "publisher": "AICPA",
+  "source": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+  "lastDataUpdate": null,
+  "versions": ["2016", "2017", "2022"],
+  "latestVersion": "2022",
+  "transitions": {}
+}
