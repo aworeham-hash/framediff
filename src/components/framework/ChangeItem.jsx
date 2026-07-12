@@ -165,8 +165,9 @@ function DiffPreview({ change }) {
   return null
 }
 
-export function ChangeItem({ change }) {
-  const [expanded, setExpanded] = useState(false)
+export function ChangeItem({ change, forceExpanded = false }) {
+  const [localExpanded, setLocalExpanded] = useState(false)
+  const expanded = forceExpanded || localExpanded
   const style = TYPE_STYLES[change.type] || TYPE_STYLES.modified
   const impact = IMPACT_STYLES[change.significance]
 
@@ -265,7 +266,7 @@ export function ChangeItem({ change }) {
           {/* Expand toggle */}
           {hasFullDetail && (
             <button
-              onClick={() => setExpanded(e => !e)}
+              onClick={() => setLocalExpanded(e => !e)}
               className="mt-3 text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors"
             >
               {expanded ? 'Show less' : 'Show full text & rationale'}
