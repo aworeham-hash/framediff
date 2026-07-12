@@ -1,167 +1,222 @@
-# FrameDiff — Project Roadmap
+# Product Roadmap
+
+> **Vision:** The compliance changelog used by a million GRC professionals worldwide.
+> Affordable, accurate, and faster than reading a PDF.
 
 ---
 
-## Phase 0 — Planning & Documentation ✅
-**Goal:** Clear plan before any code is written. All decisions documented so Claude can build with full context in future sessions.
+## Name Options
 
-**Deliverables:**
-- [x] Market research — confirmed no direct competitor exists
-- [x] Framework coverage plan with copyright analysis
-- [x] Technical architecture decision (React + JSON + Vercel)
-- [x] Project folder structure
-- [x] This roadmap
+The product needs a name that works for broad adoption — memorable, professional,
+not too technical, and brandable at scale. "FrameDiff" is fine for now but won't
+resonate with a non-technical audience.
 
-**Key Decisions Made:**
-- ISO 27001 and SOC 2 show metadata/structural changes only (copyright)
-- STIGs scoped to top 15 products (not all 500+)
-- Start personal use, monetize later
-- Data in JSON files, not a database (keeps it simple)
+| Name | Why It Works |
+|---|---|
+| **ControlShift** | Ctrl+Shift is a keyboard shortcut everyone knows. "Control" = compliance controls. "Shift" = something changed. Clever double meaning. ⭐ Top pick |
+| **PolicyPulse** | Professional and accessible. "Pulse" implies staying current — checking the heartbeat of your policies. Appeals beyond security teams. |
+| **ShiftLog** | Clean, minimal. Shift = change, Log = record. Easy to say, spell, and brand. |
+| **Driftlog** | "Compliance drift" is a real industry term. A log that tracks drift from standards. Unique and memorable. |
+| **DeltaLog** | Delta (Δ) = change. Already in the logo. Clean and professional. |
 
----
-
-## Phase 1 — MVP: First Framework Working in Browser
-**Goal:** A real, working web app with NIST CSF comparison fully functional. Deployed and usable.
-
-**Timeline:** 2–3 weeks
-
-**Deliverables:**
-- [ ] React app scaffolded (Vite + Tailwind CSS)
-- [ ] Framework sidebar component
-- [ ] Version picker (dropdown: compare v1.1 → v2.0)
-- [ ] Summary card row: # Added / # Removed / # Modified / # Restructured
-- [ ] Change list with filter tabs (All / Added / Removed / Modified / Structural)
-- [ ] Expandable detail panel for each change (old text vs. new text)
-- [ ] NIST CSF data: 1.0 → 1.1 changes (JSON file, manually curated)
-- [ ] NIST CSF data: 1.1 → 2.0 changes (JSON file, manually curated)
-- [ ] Deployed to Vercel at a real URL
-- [ ] Basic responsive layout (works on laptop and desktop)
-
-**Data Sources for This Phase:**
-- NIST CSF 1.0 → 1.1: https://www.nist.gov/system/files/documents/2018/04/16/csf-v1.1-ipd-redline-04-05-2018-final.pdf
-- NIST CSF 1.1 → 2.0: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf (official 2.0 publication includes change notes)
-
-**Done When:** Opening the Vercel URL shows NIST CSF, the 1.1 → 2.0 comparison loads with real data, and both summary and drill-down work.
+**Action:** Check domain availability (Namecheap or Cloudflare Registrar) and pick
+one before the public launch. Register .com and .io if possible.
 
 ---
 
-## Phase 2 — Core Framework Library
-**Goal:** The three highest-demand frameworks fully in the app. ISO metadata view established as the pattern for copyrighted standards.
+## Current Status
 
-**Timeline:** 3–4 weeks after Phase 1
+**Live at:** framediff.vercel.app
 
-**Deliverables:**
-- [ ] NIST SP 800-53 Rev 4 → Rev 5 data (auto-pull from NIST GitHub JSON)
-- [ ] PCI DSS v3.2.1 → v4.0 → v4.0.1 data (from PCI SSC Summary of Changes PDFs)
-- [ ] ISO 27001 2013 → 2022 (metadata only: control ID mapping, new/removed controls, structural changes)
-- [ ] "Metadata only" UI treatment for copyrighted frameworks (clear banner, link to official source)
-- [ ] Search bar within a framework's change list
-- [ ] Keyboard navigation (arrow keys through change list)
-- [ ] Copy-to-clipboard on individual changes
-- [ ] "Last updated" timestamp on each framework
+**Frameworks with full data:**
+- NIST CSF (1.0 → 1.1 → 2.0)
+- NIST SP 800-53 (Rev 4 → Rev 5)
+- PCI DSS (3.2.1 → 4.0 → 4.0.1)
+- ISO 27001 (2013 → 2022, metadata only)
+- SOX / PCAOB (AS5 → AS2201 → QC 1000)
+- IRS Publication 4812 (Rev 8 → Rev 9 → Rev 12)
 
-**Data Sources for This Phase:**
-- NIST SP 800-53: https://github.com/usnistgov/oscal-content (JSON format)
-- PCI DSS Summary of Changes: https://www.pcisecuritystandards.org/document_library/
-- ISO 27001 2022 vs 2013 analysis: https://www.iso.org/standard/75652.html (use publicly available structural comparison resources)
-
-**Done When:** 4 frameworks are selectable, all comparison data loads correctly, ISO shows metadata view cleanly.
+**Still coming soon:**
+- HIPAA (2013 → 2024 Security Rule update)
+- SOC 2 (2017 → 2022 TSC, metadata only)
+- STIGs (scoped to top ~15 products)
 
 ---
 
-## Phase 3 — Complete Framework Library
-**Goal:** All 9 framework families in the app. STIGs working with product-level navigation.
+## Phase 1 — Complete the Foundation
+**Goal:** All frameworks populated. Product is genuinely useful before any marketing.
 
-**Timeline:** 4–5 weeks after Phase 2
-
-**Deliverables:**
-- [ ] SOC 2 Trust Service Criteria 2016 → 2017 → 2022 updates (metadata only)
-- [ ] HIPAA: Security Rule 2003 → HITECH 2009 → Omnibus 2013 → 2024/2025 proposed updates
-- [ ] SOX / PCAOB: AS 5 → AS 2201 + key PCAOB standard updates
-- [ ] IRS Publication 4812: All available versions
-- [ ] STIGs: Top 15 products — Windows Server 2019, Windows Server 2022, RHEL 8, RHEL 9, Ubuntu 20.04, Ubuntu 22.04, Cisco IOS XE, SQL Server 2019, Apache 2.4, IIS 10, Windows 10, Windows 11, VMware ESXi, Oracle 19c, Docker
-- [ ] STIG navigation: product picker within the STIGs section
-- [ ] "Framework family" grouping in sidebar (NIST family, PCI, ISO family, etc.)
-- [ ] Export single comparison to PDF (browser print)
-- [ ] "What's new" landing section showing most recently updated frameworks
-
-**Done When:** All 9 framework families are in the sidebar, STIGs product picker works, PDF export works.
+- [ ] Write HIPAA 2013 → 2024 data
+- [ ] Write SOC 2 2017 → 2022 TSC data
+- [ ] Scope and write top STIGs (Windows Server, RHEL, SQL Server, Chrome, IIS)
+- [ ] Mobile responsive layout check
+- [ ] Add `<title>` and `<meta description>` to each framework page for SEO
+- [ ] Write Terms of Service and Privacy Policy (Termly.io — 30 min)
+- [ ] Register domain
+- [ ] Point domain to Vercel
 
 ---
 
-## Phase 4 — Automation & Maintenance
-**Goal:** The app stays current without manual checking. New framework versions are detected automatically.
+## Phase 2 — Make It Discoverable
+**Goal:** Organic search traffic before any paid spend.
+**Trigger:** Start this when all frameworks are populated.
 
-**Timeline:** 3–4 weeks after Phase 3
+### SEO Strategy
 
-**Deliverables:**
-- [ ] GitHub Actions workflow: weekly check for NIST SP 800-53 updates (GitHub API)
-- [ ] GitHub Actions workflow: weekly check for DISA STIG updates (public.cyber.mil)
-- [ ] GitHub Actions workflow: weekly check for PCI SSC document library changes
-- [ ] Email notification when a new version is detected (sends summary to your email before publishing)
-- [ ] Admin review page (password-protected): review pending changes, approve/reject before they go live
-- [ ] Version history log: track when each framework was last updated in the app
-- [ ] OSCAL format parser for NIST data (handles future NIST publications in OSCAL/JSON)
+Framework update searches are high-intent, permanent, and underserved. Someone
+Googling "what changed in NIST CSF 2.0" is exactly the target user. Current top
+results are dense PDFs and generic blog posts — a clean interactive tool ranks well.
 
-**Done When:** At least NIST and STIG updates are caught automatically. You receive an email when something new is detected. You can approve and publish without touching code.
+**Priority keywords:**
 
----
+| Keyword | Monthly Searches | Competition |
+|---|---|---|
+| "NIST CSF 2.0 changes" | ~2,400 | Low |
+| "PCI DSS v4 changes" | ~1,900 | Low |
+| "ISO 27001 2022 vs 2013" | ~1,600 | Low |
+| "NIST 800-53 Rev 5 changes" | ~880 | Very low |
+| "SOC 2 TSC 2022 changes" | ~590 | Very low |
+| "IRS 4812 Rev 12 changes" | Minimal | Zero |
 
-## Phase 5 — Monetization & Launch
-**Goal:** First paying user. Product accessible to others beyond personal use.
+**How to rank:**
 
-**Timeline:** When you decide you're ready (no rush — get Phase 3 fully working first)
+1. Each framework page gets a proper `<title>`: e.g. "NIST CSF 2.0 Changes — What's New vs 1.1 | ControlShift"
+2. Add a `/guides` section — one long-form article per major framework transition (1,200–1,500 words). Real content that earns the ranking and links naturally to the interactive tool.
+3. Submit sitemap.xml to Google Search Console on launch day
+4. Get 3–5 backlinks early. One Reddit post + one LinkedIn post is enough to start.
 
-**Deliverables:**
-- [ ] Authentication added (Clerk.com — easiest to integrate with React/Vercel)
-- [ ] Stripe integration: subscription ($15–25/month) or one-time ($99)
-- [ ] Free tier: NIST CSF and PCI DSS (most searched)
-- [ ] Paid tier: All frameworks + email alerts for new versions + PDF export
-- [ ] Landing page: clear value prop, "What changed in [framework]?" hero
-- [ ] Domain name (e.g., framediff.com or compliancediff.com)
-- [ ] SEO: framework-specific pages indexed by Google (e.g., /nist-csf-2-0-changes)
+**Do NOT do yet:** Paid ads, cold outreach, Product Hunt. Wait until a first-time visitor would naturally come back.
 
-**Marketing Plan (Low Cost):**
-- Post in r/sysadmin, r/netsec, r/compliance, r/soc2 with a genuine "I built this for myself" post
-- Share on LinkedIn GRC communities
-- Reach out to GRC newsletter authors (CISO Series, Compliance Weekly) for feature inclusion
-- List on Product Hunt
+### Organic Launch Posts
 
-**Done When:** Stripe is live, at least one non-you person has paid for access.
+Run these in order, spaced 1–2 weeks apart:
 
----
-
-## Parallel Tracks (Ongoing)
-
-**Content curation** — As frameworks update in the real world, add version data. Use the `add-framework-data` Claude skill to structure new data quickly.
-
-**UI polish** — Ongoing based on personal use. Keep a running list of friction points in a `FEEDBACK.md` file.
-
-**Legal review** — Before launching to paying customers, do a quick review of the ISO / SOC 2 "metadata only" approach with a lawyer or at minimum thorough research. This is the only real legal risk in the product.
+1. **Reddit** (r/netsec, r/sysadmin, r/compliance) — "I built a tool to track compliance framework changes so I didn't have to read 300-page PDFs anymore." Authentic, not promotional. Link in comments.
+2. **LinkedIn** — "I was spending hours every year manually diffing framework updates. I built something better." Tag 2–3 GRC contacts you know personally.
+3. **Hacker News Show HN** — Short, honest, technical. "Show HN: Interactive compliance framework changelog."
+4. **Product Hunt** — Launch on a Tuesday or Wednesday. Line up 5–10 genuine upvotes from real users before launch day for early momentum.
 
 ---
 
-## Risk Register
+## Phase 3 — Freemium Launch
+**Goal:** First paying customers, recurring revenue.
+**Trigger:** After Phase 2 brings consistent organic traffic (50+ daily visitors).
 
-| Risk | Likelihood | Impact | Mitigation |
+### Pricing — Built for a Million Users
+
+The goal is broad adoption, not high per-seat pricing. At $9/month, the decision
+is a no-brainer for anyone with a compliance role. No budget approval needed.
+
+| Tier | Price | Includes |
+|---|---|---|
+| **Free** | $0/mo | All 9 framework comparisons, full change detail, highlights |
+| **Pro** | **$9/mo** or $79/yr | + New version email alerts, PDF/Excel export, saved control notes |
+| **Team** | **$29/mo** (5 seats) | + Team shared notes, admin dashboard, Slack/Teams alerts |
+
+**Why $9 not $19:**
+At $9/month — 10,000 paying users = $90K MRR. 50,000 paying users = $450K MRR.
+Those numbers are reachable with 500K–1M free users and a 1–5% conversion rate.
+$19/month cuts the addressable user base in half for no product reason.
+
+### Pro Features to Build
+
+**Version alerts** ← highest retention value
+- User selects which frameworks to watch
+- Email when a new version publishes
+- Weekly digest option
+- Stack: cron job (Vercel) + Resend.com for email. ~2 days to build.
+
+**PDF/Excel export**
+- Export any transition's change list to formatted PDF or Excel
+- Zero backend needed — jsPDF + SheetJS run client-side
+- ~1 day to build
+
+**Saved notes**
+- Annotate specific controls: "This affects our AWS env — assigned to Sarah"
+- Mark controls as "relevant" or "N/A" for your org
+- Stack: Supabase (free tier is plenty). ~1–2 days to build.
+
+### Technical Implementation Order
+
+1. **Clerk.com** for auth — free up to 10K MAU, drop-in React components (~1 day)
+2. **Stripe** — Checkout for subscribing, Customer Portal for managing. Webhook updates Clerk user metadata. (~1 day)
+3. **Gate export** behind Pro check (~half day)
+4. **Build alerts** with Resend.com (~2 days)
+5. **Build notes** with Supabase (~2 days)
+
+Total: ~1 week of focused sessions.
+
+---
+
+## Phase 4 — Growth Features
+**Goal:** Increase retention, word-of-mouth, and team stickiness.
+**Trigger:** Consistent MRR, organic growth plateau.
+
+- **More frameworks:** GDPR, CCPA, FedRAMP, CMMC, COBIT, CIS Controls
+- **Control mapping:** User uploads their control library → tool shows which controls are affected by a given framework update
+- **Slack/Teams integration:** Alert a channel when a framework you're tracking updates
+- **API access** (Pro/Team tier): Programmatic access for compliance-as-code workflows
+- **RSS feeds:** Per-framework changelog feeds for tooling integration
+- **Side-by-side framework compare:** NIST CSF vs ISO 27001 control mapping
+- **CISA KEV cross-reference:** Flag control changes that relate to active exploited vulnerabilities
+
+---
+
+## Phase 5 — Scale
+**Goal:** Category-defining product, serious revenue.
+**Timeline:** 12–24 months post-launch.
+
+- **White-label for consulting firms** — GRC consultants brand the tool for their clients
+- **Enterprise tier** — SSO, audit logs, custom framework uploads, SLA, dedicated support
+- **Certification study mode** — CISSP, CISM, ISO Lead Auditor exam prep using framework diffs
+- **Compliance news feed** — Curated regulatory news alongside framework diffs
+- **Mobile app** — Lightweight version for staying current on the go
+
+---
+
+## Revenue Model at Scale
+
+| Stage | Free Users | Paid (1–5% conv.) | MRR |
 |---|---|---|---|
-| ISO / SOC 2 copyright claim | Low (if metadata only) | High | Show structural changes only, link to official source, add clear attribution |
-| Framework data goes stale | Medium | Medium | Phase 4 automation + manual quarterly review |
-| STIGs too complex to maintain | Medium | Low | Scope to top 15 only, add more by demand |
-| Build stalls without momentum | Medium | High | Complete Phase 1 first, use it personally — real feedback drives motivation |
-| Someone builds the same thing | Low | Medium | First-mover advantage; keep shipping |
+| Phase 3 launch | 5,000 | 50 | $450 |
+| 6 months live | 25,000 | 250–1,250 | $2K–$11K |
+| 12 months live | 100,000 | 1,000–5,000 | $9K–$45K |
+| 24 months live | 500,000 | 5,000–25,000 | $45K–$225K |
+| At scale | 1,000,000 | 10,000–50,000 | $90K–$450K |
+
+Organic growth only assumed. Any distribution push compresses these timelines.
 
 ---
 
-## Resource Requirements
+## Competitive Moat
 
-**To build (with Claude):** No special skills required beyond basic ability to run terminal commands, copy-paste code, and deploy to Vercel. Claude writes the code; you direct and deploy.
+What makes this defensible as competitors emerge:
 
-**Cost to run:**
-- Vercel hosting: Free (personal use), $20/month if adding team features
-- GitHub: Free
-- Domain name: ~$12/year when ready to launch
-- Clerk (auth, Phase 5): Free up to 10,000 MAU
-- Stripe: 2.9% + $0.30 per transaction, no monthly fee
+1. **Data depth** — Per-control diffs with rationale, not just summaries
+2. **Coverage breadth** — IRS 4812, STIGs, SOX — frameworks the big players ignore
+3. **Update speed** — First to publish when frameworks release new versions
+4. **Simplicity** — Not another bloated GRC platform. Just the changelog.
+5. **Price** — $9 is not a budget conversation. Enterprise tools charge $50K/year for worse data.
 
-**Total cost until monetization: ~$0**
+---
+
+## Legal Checklist Before Public Launch
+
+- [ ] Terms of Service (Termly.io — 30 min)
+- [ ] Privacy Policy (Termly.io — 30 min)
+- [ ] ISO 27001 and SOC 2 copyright compliance confirmed (metadata-only approach)
+- [ ] Attribution for PCI DSS content
+- [ ] Disclaimer on every page (already implemented)
+- [ ] Domain registered
+- [ ] LLC formed before first paying customer (LegalZoom or Stripe Atlas — ~$500)
+
+---
+
+## Immediate Next Steps
+
+1. `git push` the current redesign (diff/bullets fix)
+2. HIPAA data
+3. SOC 2 data
+4. STIGs scoping
+5. Pick name + register domain
+6. Add SEO meta tags to framework pages
