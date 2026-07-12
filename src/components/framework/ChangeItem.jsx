@@ -16,10 +16,9 @@ const IMPACT_STYLES = {
 
 function truncate(str, n) {
   if (!str || str.length <= n) return str
-  return str.slice(0, n).trimEnd() + '…'
+  return str.slice(0, n).trimEnd() + '...'
 }
 
-// Find the character index where two strings first diverge, backed up to a word boundary
 function findDivergence(a, b) {
   let i = 0
   const minLen = Math.min(a.length, b.length)
@@ -28,12 +27,9 @@ function findDivergence(a, b) {
   return i
 }
 
-// Extract { context, oldTail, newTail } — the part that actually differs, with a short shared context prefix
 function extractDiff(oldText, newText) {
   if (!oldText || !newText) return null
   const div = findDivergence(oldText, newText)
-
-  // Find the nearest sentence/clause break before the divergence point to use as context anchor
   const before = oldText.slice(0, div)
   const lastBreak = Math.max(
     before.lastIndexOf('. ') + 2,
@@ -42,31 +38,26 @@ function extractDiff(oldText, newText) {
   )
   const contextStart = lastBreak > 0 && div - lastBreak < 200 ? lastBreak : Math.max(0, div - 100)
   const hasContext = contextStart > 0
-
   return {
-    context:    hasContext ? '…' + oldText.slice(contextStart, div) : oldText.slice(0, div),
+    context:    hasContext ? '...' + oldText.slice(contextStart, div) : oldText.slice(0, div),
     oldTail:    oldText.slice(div),
     newTail:    newText.slice(div),
     hasContext,
   }
 }
 
-// Auto-generate bullet points from the portion that was added/changed
 function computeChangeBullets(oldText, newText) {
   if (!oldText || !newText) return []
   const div = findDivergence(oldText, newText)
-  const added = newText.slice(div).trim().replace(/^[;:,\s—–]+/, '')
+  const added = newText.slice(div).trim().replace(/^[;:,\s]+/, '')
   if (added.length < 15) return []
-
   const bullets = added
     .replace(/\.\s+(?=[A-Z])/g, '.|SPLIT|')
     .replace(/;\s*/g, '|SPLIT|')
-    .replace(/\s*—\s*/g, '|SPLIT|')
     .split('|SPLIT|')
-    .map(s => s.trim().replace(/^[-•→]\s*/, '').replace(/[;,.]$/, '').trim())
+    .map(s => s.trim().replace(/^[-]+\s*/, '').replace(/[;,.]$/, '').trim())
     .filter(s => s.length > 18)
     .slice(0, 5)
-
   return bullets
 }
 
@@ -76,43 +67,34 @@ function DiffPreview({ change }) {
   if (type === 'modified' && oldText && newText) {
     const diff = extractDiff(oldText, newText)
     const bullets = computeChangeBullets(oldText, newText)
-
     return (
       <div className="mt-3 space-y-2.5">
-
-        {/* What changed — bullet summary */}
         {bullets.length > 0 && (
           <div className="bg-slate-50 border border-slate-200 rounded-md px-3 py-2.5">
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-2">What changed</p>
             <ul className="space-y-1.5">
               {bullets.map((b, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                  <span className="text-blue-400 mt-0.5 flex-shrink-0 font-bold">→</span>
+                  <span className="text-blue-400 mt-0.5 flex-shrink-0 font-bold">-&gt;</span>
                   <span className="leading-relaxed">{b}</span>
                 </li>
               ))}
             </ul>
           </div>
         )}
-
-        {/* Context-anchored before / after — shows only the diverging portion */}
         {diff && (diff.oldTail || diff.newTail) && (
           <div className="grid grid-cols-2 gap-2">
             <div className="rounded-md border border-red-100 bg-red-50 px-3 py-2">
               <p className="text-xs font-semibold text-red-500 uppercase tracking-widest mb-1.5">Before</p>
               <p className="text-xs leading-relaxed text-red-900">
-                {diff.hasContext && (
-                  <span className="text-red-400 italic">{diff.context} </span>
-                )}
+                {diff.hasContext && <span className="text-red-400 italic">{diff.context} </span>}
                 <span className="line-through decoration-red-300">{truncate(diff.oldTail, 220)}</span>
               </p>
             </div>
             <div className="rounded-md border border-emerald-100 bg-emerald-50 px-3 py-2">
               <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-1.5">After</p>
               <p className="text-xs leading-relaxed text-emerald-900">
-                {diff.hasContext && (
-                  <span className="text-emerald-500 italic">{diff.context} </span>
-                )}
+                {diff.hasContext && <span className="text-emerald-500 italic">{diff.context} </span>}
                 <span className="font-medium">{truncate(diff.newTail, 220)}</span>
               </p>
             </div>
@@ -132,7 +114,6 @@ function DiffPreview({ change }) {
   }
 
   if (newText) {
-    // For "added" controls, break the requirement text into bullet points too
     const bullets = type === 'added' ? newText
       .replace(/\.\s+(?=[A-Z])/g, '.|SPLIT|')
       .replace(/;\s*/g, '|SPLIT|')
@@ -140,7 +121,6 @@ function DiffPreview({ change }) {
       .map(s => s.trim().replace(/[;,.]$/, '').trim())
       .filter(s => s.length > 20)
       .slice(0, 6) : []
-
     return (
       <div className="mt-3 rounded-md border border-emerald-100 bg-emerald-50 px-3 py-2.5">
         <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-1.5">
@@ -150,7 +130,7 @@ function DiffPreview({ change }) {
           <ul className="space-y-1.5">
             {bullets.map((b, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-emerald-800">
-                <span className="text-emerald-400 mt-0.5 flex-shrink-0">→</span>
+                <span className="text-emerald-400 mt-0.5 flex-shrink-0">-&gt;</span>
                 <span className="leading-relaxed">{b}</span>
               </li>
             ))}
@@ -173,17 +153,14 @@ export function ChangeItem({ change, forceExpanded = false }) {
 
   const controlId = change.controlId?.new || change.controlId?.old
   const hasIdChange = change.controlId?.old && change.controlId?.new && change.controlId.old !== change.controlId.new
-  const idDisplay = hasIdChange ? `${change.controlId.old} → ${change.controlId.new}` : controlId
+  const idDisplay = hasIdChange ? `${change.controlId.old} -> ${change.controlId.new}` : controlId
   const hasFullDetail = change.oldText || change.newText || change.rationale
 
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden bg-white hover:border-gray-300 transition-colors">
       <div className="flex">
         <div className={`w-1 flex-shrink-0 ${style.bar}`} />
-
         <div className="flex-1 min-w-0 px-4 py-3.5">
-
-          {/* Top row: type + control ID + impact */}
           <div className="flex items-center gap-2 flex-wrap mb-2">
             <span className={`text-xs font-semibold px-2 py-0.5 rounded border ${style.badge}`}>
               {style.label}
@@ -201,16 +178,13 @@ export function ChangeItem({ change, forceExpanded = false }) {
             )}
           </div>
 
-          {/* Title + area */}
           <p className="text-sm font-semibold text-gray-900 leading-snug">{change.title}</p>
           {change.area && (
             <p className="text-xs text-gray-400 mt-0.5">{change.area}</p>
           )}
 
-          {/* Inline diff with bullets */}
           <DiffPreview change={change} />
 
-          {/* Rationale preview */}
           {change.rationale && !expanded && (
             <p className="text-xs text-gray-500 mt-3 leading-relaxed">
               <span className="font-semibold text-gray-600">Why: </span>
@@ -218,7 +192,6 @@ export function ChangeItem({ change, forceExpanded = false }) {
             </p>
           )}
 
-          {/* Expanded: full text */}
           {expanded && (
             <div className="mt-4 pt-4 border-t border-gray-100 space-y-4">
               {change.type === 'modified' && change.oldText && change.newText && (
@@ -263,7 +236,6 @@ export function ChangeItem({ change, forceExpanded = false }) {
             </div>
           )}
 
-          {/* Expand toggle */}
           {hasFullDetail && (
             <button
               onClick={() => setLocalExpanded(e => !e)}
@@ -275,7 +247,6 @@ export function ChangeItem({ change, forceExpanded = false }) {
               </svg>
             </button>
           )}
-
         </div>
       </div>
     </div>

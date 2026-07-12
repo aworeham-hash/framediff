@@ -1,15 +1,320 @@
 {
   "id": "soc2",
-  "name": "SOC 2 — Trust Services Criteria",
+  "name": "SOC 2 - Trust Services Criteria",
   "shortName": "SOC 2",
-  "description": "The AICPA's Trust Services Criteria used in SOC 2 examinations, covering Security, Availability, Processing Integrity, Confidentiality, and Privacy. The 2022 update added AI/ML controls and clarified cloud service provider requirements.",
+  "description": "The AICPA's Trust Services Criteria (TSC) govern SOC 2 examinations covering Security, Availability, Processing Integrity, Confidentiality, and Privacy. The 2022 update added AI/ML governance points of focus, clarified third-party and vendor monitoring criteria, and updated technology considerations for cloud environments.",
   "copyright": "restricted-metadata-only",
   "showFullText": false,
-  "comingSoon": true,
+  "comingSoon": false,
   "publisher": "AICPA",
   "source": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
-  "lastDataUpdate": null,
-  "versions": ["2016", "2017", "2022"],
+  "officialChangelogUrl": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+  "lastDataUpdate": "2025-07-01",
+  "versions": [
+    "2016",
+    "2017",
+    "2022"
+  ],
   "latestVersion": "2022",
-  "transitions": {}
+  "transitions": {
+    "2017-to-2022": {
+      "fromVersion": "2017",
+      "toVersion": "2022",
+      "summary": {
+        "added": 3,
+        "removed": 0,
+        "modified": 9,
+        "restructured": 1,
+        "totalFrom": 61,
+        "totalTo": 64,
+        "highlights": [
+          "New Points of Focus added to CC7 and CC9 addressing AI/ML system monitoring and risk",
+          "CC9.2 expanded with additional third-party vendor monitoring requirements",
+          "Updated technology considerations throughout to address cloud-native architectures",
+          "P6 (Privacy) criteria updated to align with GDPR and CCPA requirements",
+          "Additional guidance on logical and physical access controls for cloud environments",
+          "New supplemental criteria for entities using subservice organizations extensively"
+        ]
+      },
+      "changes": [
+        {
+          "id": "soc2-2022-001",
+          "type": "modified",
+          "controlId": {
+            "old": "CC1.1",
+            "new": "CC1.1"
+          },
+          "title": "COSO Principle 1 - Board Independence: Expanded for Remote/Distributed Governance",
+          "area": "CC1 - Control Environment",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Points of focus updated to address board oversight in distributed governance models and virtual meeting environments. Additional focus on ensuring effective oversight when board members are geographically dispersed.",
+          "significance": "low",
+          "tags": [
+            "governance",
+            "board-oversight",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-002",
+          "type": "modified",
+          "controlId": {
+            "old": "CC2.1",
+            "new": "CC2.1"
+          },
+          "title": "COSO Principle 13 - Information from External Sources: AI/ML Data Pipeline Considerations Added",
+          "area": "CC2 - Communication and Information",
+          "oldText": null,
+          "newText": null,
+          "rationale": "New points of focus address information quality and integrity when data is sourced from automated AI/ML pipelines, APIs, or third-party data feeds. Auditors now look for controls validating data quality and provenance in automated data flows.",
+          "significance": "medium",
+          "tags": [
+            "AI-ML",
+            "data-quality",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-003",
+          "type": "modified",
+          "controlId": {
+            "old": "CC6.1",
+            "new": "CC6.1"
+          },
+          "title": "Logical and Physical Access Controls - Cloud IAM and Infrastructure-as-Code Addressed",
+          "area": "CC6 - Logical and Physical Access Controls",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Updated points of focus address access control in cloud environments including IAM role-based access, infrastructure-as-code deployment pipelines, and just-in-time (JIT) privileged access. The 2017 criteria were written primarily for on-premises environments.",
+          "significance": "medium",
+          "tags": [
+            "access-control",
+            "cloud-IAM",
+            "infrastructure-as-code",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-004",
+          "type": "modified",
+          "controlId": {
+            "old": "CC6.6",
+            "new": "CC6.6"
+          },
+          "title": "External Access Controls - Zero Trust and BYOD Considerations Added",
+          "area": "CC6 - Logical and Physical Access Controls",
+          "oldText": null,
+          "newText": null,
+          "rationale": "New points of focus address perimeter-less security models. Organizations using zero-trust architecture or allowing BYOD must demonstrate compensating controls for network access that does not rely on traditional perimeter controls.",
+          "significance": "medium",
+          "tags": [
+            "zero-trust",
+            "BYOD",
+            "external-access",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-005",
+          "type": "modified",
+          "controlId": {
+            "old": "CC7.2",
+            "new": "CC7.2"
+          },
+          "title": "System Monitoring - AI/ML Anomaly Detection and SIEM Integration Points Added",
+          "area": "CC7 - System Operations",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Updated points of focus acknowledge the use of AI/ML tools for anomaly detection and SIEM platforms for centralized log analysis. Organizations using automated threat detection must demonstrate that alerts are reviewed and actioned by qualified personnel.",
+          "significance": "medium",
+          "tags": [
+            "monitoring",
+            "AI-ML",
+            "SIEM",
+            "anomaly-detection",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-006",
+          "type": "modified",
+          "controlId": {
+            "old": "CC7.4",
+            "new": "CC7.4"
+          },
+          "title": "Incident Response - Ransomware Response and Recovery Procedures Addressed",
+          "area": "CC7 - System Operations",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Updated points of focus specifically address ransomware scenarios and encrypted-backup recovery. Recovery time objective (RTO) testing is now a key point of focus.",
+          "significance": "medium",
+          "tags": [
+            "incident-response",
+            "ransomware",
+            "recovery",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-007",
+          "type": "modified",
+          "controlId": {
+            "old": "CC9.1",
+            "new": "CC9.1"
+          },
+          "title": "Risk Mitigation - Business Continuity and Scenario-Based Risk Analysis",
+          "area": "CC9 - Risk Mitigation",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Points of focus updated to expect scenario-based risk analysis including supply chain disruption, cloud provider outages, and pandemic-level workforce disruption. BCP/DR plans must be tested against realistic scenarios.",
+          "significance": "medium",
+          "tags": [
+            "risk-mitigation",
+            "business-continuity",
+            "scenario-analysis",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-008",
+          "type": "modified",
+          "controlId": {
+            "old": "CC9.2",
+            "new": "CC9.2"
+          },
+          "title": "Vendor and Business Partner Risk - Significantly Expanded with 4th-Party Requirements",
+          "area": "CC9 - Risk Mitigation",
+          "oldText": null,
+          "newText": null,
+          "rationale": "CC9.2 saw the most significant expansion in the 2022 update. Organizations must now demonstrate vendor risk management programs that include annual vendor risk assessments, SOC report review for critical vendors, contract requirements for security controls, and awareness of material fourth-party sub-vendor relationships. The criteria now explicitly address concentration risk from critical cloud providers.",
+          "significance": "high",
+          "tags": [
+            "vendor-risk",
+            "third-party",
+            "fourth-party",
+            "supply-chain",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-009",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "CC9.9"
+          },
+          "title": "AI/ML Systems - New Supplemental Criteria for Entities Using Automated Decision-Making",
+          "area": "CC9 - Risk Mitigation",
+          "oldText": null,
+          "newText": null,
+          "rationale": "New supplemental criteria address entities that use AI or machine learning systems as part of their service delivery. Points of focus include model governance and documentation, training data quality, model drift monitoring, explainability requirements, and bias testing.",
+          "significance": "medium",
+          "tags": [
+            "AI-ML",
+            "automated-decision-making",
+            "model-governance",
+            "new-criteria",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-010",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "P3.2"
+          },
+          "title": "Privacy - Data Subject Rights Procedures Aligned with GDPR and CCPA",
+          "area": "P3 - Privacy Notice and Communication",
+          "oldText": null,
+          "newText": null,
+          "rationale": "New points of focus under P3 address data subject rights procedures required by GDPR, CCPA, and similar privacy laws. Organizations must demonstrate processes for handling access requests, deletion requests, and opt-out requests within required timeframes.",
+          "significance": "medium",
+          "tags": [
+            "privacy",
+            "GDPR",
+            "CCPA",
+            "data-subject-rights",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-011",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "P8.1"
+          },
+          "title": "Privacy - Breach Notification Timelines Aligned with Regulatory Requirements",
+          "area": "P8 - Quality of Information",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Updated points of focus address regulatory breach notification timelines. For GDPR-covered entities, the 72-hour notification clock is now a specific point of focus. US state-specific notification requirements must also be addressed in incident response procedures.",
+          "significance": "medium",
+          "tags": [
+            "privacy",
+            "breach-notification",
+            "GDPR-72-hours",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-012",
+          "type": "restructured",
+          "controlId": {
+            "old": "Availability Criteria",
+            "new": "A1.1, A1.2, A1.3"
+          },
+          "title": "Availability Criteria - Restructured with Cloud-Specific SLA and Multi-Region Considerations",
+          "area": "A1 - Availability",
+          "oldText": null,
+          "newText": null,
+          "rationale": "The Availability criteria were restructured to better address cloud-hosted services. Key changes include explicit recognition of cloud provider SLA dependencies, multi-region failover considerations, and the expectation that SLA commitments are backed by tested and documented failover procedures.",
+          "significance": "medium",
+          "tags": [
+            "availability",
+            "cloud",
+            "SLA",
+            "multi-region",
+            "2022-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2022-013",
+          "type": "modified",
+          "controlId": {
+            "old": "PI1.1",
+            "new": "PI1.1"
+          },
+          "title": "Processing Integrity - DevOps / CI-CD Pipeline Change Management Points Added",
+          "area": "PI1 - Processing Integrity",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Updated points of focus address change management in agile and DevOps environments where traditional change approval boards may not be used. Auditors now look for equivalent controls within CI/CD pipelines: automated testing gates, code review requirements, deployment approvals, and rollback capabilities.",
+          "significance": "medium",
+          "tags": [
+            "processing-integrity",
+            "DevOps",
+            "CI-CD",
+            "change-management",
+            "2022-update",
+            "metadata-only"
+          ]
+        }
+      ]
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { getFramework, getDefaultTransition } from '../../data/registry'
 import { useFilteredChanges } from '../../hooks/useFilteredChanges'
 import { VersionPicker } from './VersionPicker'
@@ -22,6 +22,13 @@ export function FrameworkPage({ frameworkId }) {
   const stableTransitionKey = (framework?.transitions && framework.transitions[selectedTransitionKey])
     ? selectedTransitionKey
     : defaultTransitionKey
+
+  useEffect(() => {
+    if (framework) {
+      document.title = `${framework.shortName || framework.name} Changelog - FrameDiff`
+    }
+    return () => { document.title = 'FrameDiff - Compliance Framework Version Tracker' }
+  }, [framework])
 
   if (!framework) {
     return (
@@ -55,8 +62,6 @@ export function FrameworkPage({ frameworkId }) {
 
   return (
     <div className="h-full overflow-y-auto">
-
-      {/* Sticky top bar */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-xs text-gray-400 font-medium">{framework.publisher}</span>
@@ -82,8 +87,6 @@ export function FrameworkPage({ frameworkId }) {
       </div>
 
       <div className="max-w-4xl mx-auto px-8 py-8 space-y-6">
-
-        {/* Framework title */}
         <div>
           <h1 className="text-2xl font-bold text-gray-950 tracking-tight">{framework.name}</h1>
           {framework.description && (
@@ -91,7 +94,6 @@ export function FrameworkPage({ frameworkId }) {
           )}
         </div>
 
-        {/* Copyright banner */}
         {framework.copyright !== 'public-domain' && (
           <MetadataOnlyBanner
             copyright={framework.copyright}
@@ -100,7 +102,6 @@ export function FrameworkPage({ frameworkId }) {
           />
         )}
 
-        {/* Version picker */}
         {framework.transitions && Object.keys(framework.transitions).length > 0 && (
           <VersionPicker
             transitions={framework.transitions}
@@ -111,19 +112,16 @@ export function FrameworkPage({ frameworkId }) {
 
         {transition ? (
           <>
-            {/* Summary stats */}
             <SummaryCards
               summary={transition.summary}
               activeFilter={filter}
               onFilterChange={setFilter}
             />
 
-            {/* Key highlights */}
             {transition.summary?.highlights?.length > 0 && (
               <Highlights highlights={transition.summary.highlights} />
             )}
 
-            {/* Filter + search */}
             <div className="space-y-2">
               <FilterTabs
                 activeFilter={filter}
@@ -133,7 +131,6 @@ export function FrameworkPage({ frameworkId }) {
               <SearchBar value={searchQuery} onChange={setSearchQuery} />
             </div>
 
-            {/* Result count + clear */}
             {(searchQuery || filter !== 'all') && (
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-500">
@@ -149,17 +146,15 @@ export function FrameworkPage({ frameworkId }) {
               </div>
             )}
 
-            {/* Changes */}
             <ChangeList
               changes={filteredChanges}
               filter={filter}
               searchQuery={searchQuery}
             />
 
-            {/* Footer */}
             <div className="pt-4 border-t border-gray-100">
               <p className="text-xs text-gray-400">
-                Last updated: {framework.lastDataUpdate} ·{' '}
+                Last updated: {framework.lastDataUpdate} {' '}
                 <a href={framework.source} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600 transition-colors">
                   {framework.publisher} official publication
                 </a>

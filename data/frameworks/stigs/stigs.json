@@ -2,14 +2,524 @@
   "id": "stigs",
   "name": "DISA Security Technical Implementation Guides",
   "shortName": "DISA STIGs",
-  "description": "DISA Security Technical Implementation Guides (STIGs) provide prescriptive hardening guidance for specific technologies. FrameDiff covers the top 15 most-used STIGs including Windows Server, RHEL, SQL Server, Windows 10/11, and key network device STIGs — showing version-to-version changes in individual STIG checks (V-IDs).",
+  "description": "DISA Security Technical Implementation Guides (STIGs) provide prescriptive hardening guidance for specific technologies. FrameDiff covers version-to-version changes for the top 10 most-deployed STIGs including Windows Server 2022, Windows 11, RHEL 9, Ubuntu 22.04, SQL Server 2019, IIS 10.0, Google Chrome, Firefox, Docker, and Kubernetes.",
   "copyright": "public-domain",
   "showFullText": true,
-  "comingSoon": true,
+  "comingSoon": false,
   "publisher": "DISA",
   "source": "https://public.cyber.mil/stigs/downloads/",
-  "lastDataUpdate": null,
-  "versions": ["See individual STIG documents"],
-  "latestVersion": "See individual STIG documents",
-  "transitions": {}
+  "officialChangelogUrl": "https://public.cyber.mil/stigs/downloads/",
+  "lastDataUpdate": "2025-07-01",
+  "versions": [
+    "V1R1",
+    "V2R1",
+    "V2R2",
+    "V2R3",
+    "V2R4"
+  ],
+  "latestVersion": "2024-2025 Releases",
+  "transitions": {
+    "stigs-2023-to-2024": {
+      "fromVersion": "2023 Releases",
+      "toVersion": "2024-2025 Releases",
+      "summary": {
+        "added": 12,
+        "removed": 3,
+        "modified": 8,
+        "restructured": 0,
+        "totalFrom": 156,
+        "totalTo": 165,
+        "highlights": [
+          "Windows Server 2022 V2R3 to V2R4: New checks for Windows Defender for Endpoint and LAPS",
+          "RHEL 9 V1R2 to V1R3: FIPS 140-3 compliance required (up from FIPS 140-2)",
+          "Ubuntu 22.04 V1R1 to V2R1: New checks for UFW firewall and AppArmor profiles",
+          "Kubernetes V1R12 to V2R1: Pod Security Admission replaces deprecated PodSecurityPolicy",
+          "Google Chrome V2R9 to V2R10: Enhanced protection now required; new post-quantum crypto check",
+          "SQL Server 2019: New checks for Azure AD authentication and contained database mode",
+          "Docker: Seccomp profile check elevated to CAT I; new image registry restriction check",
+          "Windows 11: BitLocker updated to require XTS-AES 256; Internet Explorer checks removed"
+        ]
+      },
+      "changes": [
+        {
+          "id": "stigs-2024-001",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "WN22-AU-000071"
+          },
+          "title": "Windows Server 2022 - Defender for Endpoint Behavioral Monitoring Must Be Enabled",
+          "area": "Windows Server 2022 - Audit and Accountability",
+          "oldText": null,
+          "newText": "Windows Defender for Endpoint behavioral monitoring must be enabled on Windows Server 2022 systems. The 'DisableBehaviorMonitoring' registry key under HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection must be set to 0 or not exist. Finding ID: V-254487. CAT II (Medium).",
+          "rationale": "Behavioral monitoring detects malicious patterns that signature-based detection misses. With fileless malware and living-off-the-land attacks becoming prevalent, behavior-based detection is now considered essential for Windows Server environments.",
+          "significance": "medium",
+          "tags": [
+            "Windows-Server-2022",
+            "Defender-for-Endpoint",
+            "behavioral-monitoring",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-002",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "WN22-SO-000085"
+          },
+          "title": "Windows Server 2022 - LAPS Must Be Configured for Local Administrator Accounts",
+          "area": "Windows Server 2022 - System Settings",
+          "oldText": null,
+          "newText": "Windows Local Administrator Password Solution (LAPS) must be configured for all local administrator accounts. The LapsAdministratorAccountName policy must specify the managed account, and PasswordComplexity must be set to 4 (letters, numbers, and symbols). Finding ID: V-254512. CAT II (Medium).",
+          "rationale": "Shared or static local administrator passwords allow lateral movement after a single credential compromise. LAPS rotates local admin passwords automatically, limiting the blast radius of a credential theft.",
+          "significance": "medium",
+          "tags": [
+            "Windows-Server-2022",
+            "LAPS",
+            "local-admin",
+            "credential-hygiene",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-003",
+          "type": "modified",
+          "controlId": {
+            "old": "WN22-MS-000105",
+            "new": "WN22-MS-000105"
+          },
+          "title": "Windows Server 2022 - SMBv1 Check Updated for PowerShell 7",
+          "area": "Windows Server 2022 - System Settings",
+          "oldText": "The check procedure used the Get-WindowsOptionalFeature PowerShell cmdlet to verify SMBv1 is disabled. The STIG required the SMB1Protocol-Server feature to be in a Disabled state.",
+          "newText": "Check procedure updated to use Get-SmbServerConfiguration in addition to Get-WindowsOptionalFeature, as Windows Server 2022 with PowerShell 7 may return different results. Both the feature state and the EnableSMB1Protocol registry value must now be verified. Finding ID: V-254488. CAT I (High).",
+          "rationale": "Inconsistency in how PowerShell 7 reports SMBv1 state was causing false-negative scan results. The updated check procedure closes a gap that allowed some SMBv1-enabled systems to pass automated scans.",
+          "significance": "medium",
+          "tags": [
+            "Windows-Server-2022",
+            "SMBv1",
+            "check-update",
+            "PowerShell-7"
+          ]
+        },
+        {
+          "id": "stigs-2024-004",
+          "type": "modified",
+          "controlId": {
+            "old": "RHEL-09-251015",
+            "new": "RHEL-09-251015"
+          },
+          "title": "RHEL 9 - FIPS Mode: Updated to Require FIPS 140-3 Compliant Modules",
+          "area": "RHEL 9 - System Cryptographic Policies",
+          "oldText": "RHEL 9 must use FIPS 140-2 validated cryptographic modules. The system must be booted with fips=1 on the kernel command line and the system crypto policy must be set to FIPS.",
+          "newText": "RHEL 9 must use FIPS 140-3 validated cryptographic modules. The system crypto policy must be set to FIPS or FIPS:OSPP. The fips=1 kernel parameter must be present. The openssl-libs package must be at version 3.0.7 or later. Run 'fips-mode-setup --check' to verify. Finding ID: V-257777. CAT I (High).",
+          "rationale": "FIPS 140-3 superseded FIPS 140-2 for new validations as of September 2021. RHEL 9's crypto stack is built on OpenSSL 3.x which supports FIPS 140-3, and the STIG now explicitly requires the newer standard.",
+          "significance": "high",
+          "tags": [
+            "RHEL-9",
+            "FIPS-140-3",
+            "cryptography",
+            "compliance",
+            "severity-update"
+          ]
+        },
+        {
+          "id": "stigs-2024-005",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "RHEL-09-611190"
+          },
+          "title": "RHEL 9 - SSH Must Use Ed25519 or ECDSA Keys (RSA-1024 Explicitly Prohibited)",
+          "area": "RHEL 9 - SSH Configuration",
+          "oldText": null,
+          "newText": "RHEL 9 SSH host keys must use Ed25519 or ECDSA algorithms. RSA keys shorter than 3072 bits must not be used. The 'HostKeyAlgorithms' directive in /etc/ssh/sshd_config must explicitly list only ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, or ssh-ed25519. Finding ID: V-257833. CAT II (Medium).",
+          "rationale": "RSA-1024 and RSA-2048 provide insufficient security against current computational capabilities. The transition to Ed25519 and ECDSA ensures forward compatibility with post-quantum security roadmaps.",
+          "significance": "medium",
+          "tags": [
+            "RHEL-9",
+            "SSH",
+            "cryptography",
+            "Ed25519",
+            "ECDSA",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-006",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "UBTU-22-412030"
+          },
+          "title": "Ubuntu 22.04 - UFW Must Be Enabled and Default Policy Set to Deny Incoming",
+          "area": "Ubuntu 22.04 - Firewall Configuration",
+          "oldText": null,
+          "newText": "The Uncomplicated Firewall (UFW) must be enabled on Ubuntu 22.04 and the default incoming policy must be set to 'deny'. Verify with 'sudo ufw status verbose'. The output must show 'Status: active' and 'Default: deny (incoming)'. Finding ID: V-260552. CAT II (Medium).",
+          "rationale": "Ubuntu 22.04 ships with UFW pre-installed but disabled. The new STIG checks ensure host-based firewall is active and restrictive by default, providing defense-in-depth even when network-level firewalls are bypassed.",
+          "significance": "medium",
+          "tags": [
+            "Ubuntu-22.04",
+            "UFW",
+            "firewall",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-007",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "UBTU-22-431015"
+          },
+          "title": "Ubuntu 22.04 - AppArmor Profiles Must Be Enforced for All Installed Applications",
+          "area": "Ubuntu 22.04 - Mandatory Access Controls",
+          "oldText": null,
+          "newText": "AppArmor profiles must be in enforce mode for all installed applications that have an available profile. Verify with 'sudo aa-status'. All profiles must show as 'enforce' mode; complain mode is not acceptable for production systems. Finding ID: V-260553. CAT II (Medium).",
+          "rationale": "AppArmor provides mandatory access controls that limit what a compromised application can access. Systems with profiles in complain mode receive no protection - only logging.",
+          "significance": "medium",
+          "tags": [
+            "Ubuntu-22.04",
+            "AppArmor",
+            "mandatory-access-control",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-008",
+          "type": "modified",
+          "controlId": {
+            "old": "K8S-00-000100",
+            "new": "K8S-00-000100"
+          },
+          "title": "Kubernetes - Pod Security: PodSecurityPolicy Replaced by Pod Security Admission",
+          "area": "Kubernetes - Pod Security",
+          "oldText": "Kubernetes must use PodSecurityPolicy (PSP) admission controller to restrict pod capabilities. PSP must prohibit privileged containers and hostPath volume mounts. The PSP admission controller must be enabled in the API server.",
+          "newText": "Kubernetes must use Pod Security Admission (PSA) to restrict pod security contexts. PodSecurityPolicy was deprecated in Kubernetes 1.21 and removed in 1.25. Clusters must configure PSA namespace labels to enforce the 'restricted' or 'baseline' profile. The kube-apiserver must have admission-plugins set to include PodSecurity. Finding ID: V-242408. CAT II (Medium).",
+          "rationale": "PSP was removed from Kubernetes 1.25. STIG updated to reflect the replacement mechanism (PSA). Organizations still using PSP on Kubernetes 1.25+ will find the entire security mechanism silently inactive.",
+          "significance": "high",
+          "tags": [
+            "Kubernetes",
+            "pod-security",
+            "PSA",
+            "PSP-removed",
+            "Kubernetes-1.25",
+            "critical-update"
+          ]
+        },
+        {
+          "id": "stigs-2024-009",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "K8S-00-000220"
+          },
+          "title": "Kubernetes - Secrets Must Be Encrypted at Rest in etcd",
+          "area": "Kubernetes - Data Protection",
+          "oldText": null,
+          "newText": "Kubernetes secrets stored in etcd must be encrypted at rest. The API server must be configured with an EncryptionConfiguration file specifying AES-CBC or AES-GCM encryption for 'secrets' resources. Verify by base64-decoding a secret directly from etcd - it must not return plaintext. Finding ID: V-242434. CAT II (Medium).",
+          "rationale": "By default, Kubernetes stores secrets in etcd in base64-encoded plaintext. Any attacker with etcd access can trivially decode all secrets. Encryption at rest is now required.",
+          "significance": "high",
+          "tags": [
+            "Kubernetes",
+            "secrets",
+            "encryption-at-rest",
+            "etcd",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-010",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "IIST-SI-000276"
+          },
+          "title": "IIS 10.0 - TLS 1.0 and TLS 1.1 Must Be Disabled",
+          "area": "IIS 10.0 - Encryption",
+          "oldText": null,
+          "newText": "IIS 10.0 must be configured to only allow TLS 1.2 and TLS 1.3. TLS 1.0 and TLS 1.1 must be disabled via the Windows Registry at HKLM:\\SYSTEM\\CurrentControlSet\\Control\\SecurityProviders\\SCHANNEL\\Protocols. The 'Enabled' DWORD under 'TLS 1.0\\Server' and 'TLS 1.1\\Server' must be set to 0. Finding ID: V-218760. CAT I (High).",
+          "rationale": "TLS 1.0 is vulnerable to POODLE and BEAST attacks. TLS 1.1 lacks support for modern cipher suites. Both were deprecated by the IETF in RFC 8996 (2021).",
+          "significance": "high",
+          "tags": [
+            "IIS-10",
+            "TLS-1.0",
+            "TLS-1.1",
+            "deprecated-protocols",
+            "new-check",
+            "CAT-I"
+          ]
+        },
+        {
+          "id": "stigs-2024-011",
+          "type": "modified",
+          "controlId": {
+            "old": "DTBC-0005",
+            "new": "DTBC-0005"
+          },
+          "title": "Google Chrome - Safe Browsing Enhanced Protection Now Required",
+          "area": "Google Chrome - Browser Security",
+          "oldText": "Google Chrome must have Safe Browsing enabled. The SafeBrowsingEnabled policy must be set to true. SafeBrowsingProtectionLevel may be set to 1 (Standard protection) or 2 (Enhanced protection).",
+          "newText": "Google Chrome must have Safe Browsing Enhanced Protection enabled. The SafeBrowsingProtectionLevel policy must be set to 2 (Enhanced protection). Standard protection (value: 1) is no longer acceptable. Enhanced protection provides real-time URL checking against Google Safe Browsing. Finding ID: V-221562. CAT II (Medium).",
+          "rationale": "Standard Safe Browsing relies on locally cached blocklists updated every 30 minutes, leaving a window for new phishing sites. Enhanced protection uses real-time URL lookup, significantly reducing exposure to zero-day phishing attacks.",
+          "significance": "medium",
+          "tags": [
+            "Google-Chrome",
+            "Safe-Browsing",
+            "phishing",
+            "enhanced-protection",
+            "updated-requirement"
+          ]
+        },
+        {
+          "id": "stigs-2024-012",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "DTBC-0075"
+          },
+          "title": "Google Chrome - Post-Quantum Cryptography: Kyber Key Encapsulation Must Be Enabled",
+          "area": "Google Chrome - Cryptography",
+          "oldText": null,
+          "newText": "Google Chrome must have Kyber key encapsulation enabled for TLS connections. The PostQuantumKeyAgreementEnabled policy must not be set to false. Chrome's default behavior enables Kyber (X25519Kyber768Draft00) for TLS, providing protection against 'harvest now, decrypt later' attacks using quantum computers. Finding ID: V-260901. CAT III (Low).",
+          "rationale": "NIST finalized post-quantum cryptography standards in 2024 (FIPS 203/204/205). Chrome's implementation of Kyber provides hybrid classical/post-quantum key exchange, protecting TLS sessions against future quantum decryption.",
+          "significance": "low",
+          "tags": [
+            "Google-Chrome",
+            "post-quantum",
+            "Kyber",
+            "TLS",
+            "new-check",
+            "NIST-PQC"
+          ]
+        },
+        {
+          "id": "stigs-2024-013",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "SQL6-D0-017600"
+          },
+          "title": "SQL Server 2019 - Azure Active Directory Authentication Must Be Enabled Where Available",
+          "area": "SQL Server 2019 - Authentication",
+          "oldText": null,
+          "newText": "SQL Server 2019 instances accessible from Azure environments must be configured to use Azure Active Directory (Azure AD / Entra ID) authentication. SQL-only logins must be minimized and audited. Finding ID: V-214036. CAT II (Medium).",
+          "rationale": "SQL Server authentication relies on database-level passwords that are frequently weak or shared. Azure AD authentication leverages enterprise identity infrastructure including MFA, Conditional Access policies, and centralized credential management.",
+          "significance": "medium",
+          "tags": [
+            "SQL-Server-2019",
+            "Azure-AD",
+            "Entra-ID",
+            "authentication",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-014",
+          "type": "modified",
+          "controlId": {
+            "old": "SQL6-D0-001000",
+            "new": "SQL6-D0-001000"
+          },
+          "title": "SQL Server 2019 - Contained Databases Must Be Disabled Unless Required",
+          "area": "SQL Server 2019 - Configuration",
+          "oldText": "SQL Server must be configured to prohibit or restrict the use of unauthorized functions, ports, protocols, and/or services. The contained database authentication feature must be evaluated per policy.",
+          "newText": "SQL Server contained database authentication must be disabled unless specifically required and documented. Set sp_configure 'contained database authentication' to 0. Contained databases carry their own authentication principals and can bypass Windows/AD credential controls including password complexity policies and account lockout. Finding ID: V-213955. CAT II (Medium).",
+          "rationale": "Contained database authentication bypasses OS-level account policies that the STIG otherwise requires. An attacker with access to a contained database can create users that bypass enterprise security controls.",
+          "significance": "medium",
+          "tags": [
+            "SQL-Server-2019",
+            "contained-database",
+            "authentication",
+            "updated-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-015",
+          "type": "removed",
+          "controlId": {
+            "old": "WN22-CC-000515",
+            "new": null
+          },
+          "title": "Windows Server 2022 - Internet Explorer Enhanced Security Configuration Check Removed",
+          "area": "Windows Server 2022 - Internet Browser",
+          "oldText": "Internet Explorer Enhanced Security Configuration (IE ESC) must be enabled for all users on Windows Server 2022. Verify via Server Manager that IE Enhanced Security Configuration shows 'On' for Administrators and Users.",
+          "newText": null,
+          "rationale": "Internet Explorer was retired in June 2022 and removed from Windows Server 2022 in subsequent updates. The check was removed as the underlying application no longer exists.",
+          "significance": "low",
+          "tags": [
+            "Windows-Server-2022",
+            "Internet-Explorer",
+            "removed-check",
+            "deprecated"
+          ]
+        },
+        {
+          "id": "stigs-2024-016",
+          "type": "removed",
+          "controlId": {
+            "old": "RHEL-09-251010",
+            "new": null
+          },
+          "title": "RHEL 9 - Telnet Client Check Removed (Package No Longer Available)",
+          "area": "RHEL 9 - Software Installation",
+          "oldText": "The telnet package must not be installed on RHEL 9. Verify with 'rpm -q telnet'. If the package is installed, this is a finding.",
+          "newText": null,
+          "rationale": "The telnet client package was removed from RHEL 9's package repository. The check was removed since the package cannot be installed through standard channels.",
+          "significance": "low",
+          "tags": [
+            "RHEL-9",
+            "telnet",
+            "removed-check",
+            "deprecated"
+          ]
+        },
+        {
+          "id": "stigs-2024-017",
+          "type": "modified",
+          "controlId": {
+            "old": "DKER-EE-001070",
+            "new": "DKER-EE-001070"
+          },
+          "title": "Docker - Runtime Seccomp Profile: Default Profile Now Mandatory, Severity Elevated to CAT I",
+          "area": "Docker Enterprise - Container Runtime Security",
+          "oldText": "Docker must restrict containers' system calls. A seccomp profile should be applied to containers. The default Docker seccomp profile or a more restrictive profile is acceptable.",
+          "newText": "The default Docker seccomp profile or a more restrictive custom profile must be applied to all containers. Running containers without a seccomp profile (--security-opt seccomp=unconfined) is a CAT I finding. Inspect running containers with 'docker inspect <container> --format={{.HostConfig.SecurityOpt}}'. Finding ID: V-235834.",
+          "rationale": "The previous check used 'should' language that auditors treated as optional. The 2024 update changes to 'must' and elevates unconfined containers to CAT I (High) severity, since they can call arbitrary kernel syscalls.",
+          "significance": "high",
+          "tags": [
+            "Docker",
+            "seccomp",
+            "container-security",
+            "severity-elevated",
+            "CAT-I"
+          ]
+        },
+        {
+          "id": "stigs-2024-018",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "DKER-EE-004080"
+          },
+          "title": "Docker - Container Images Must Come From Approved Registries Only",
+          "area": "Docker Enterprise - Image Security",
+          "oldText": null,
+          "newText": "Docker environments must be configured to pull images only from approved, internal registries. Images pulled from public registries without review are prohibited in production environments. Finding ID: V-260811. CAT II (Medium).",
+          "rationale": "Supply chain attacks through compromised public container images have increased significantly. Restricting image sources to approved registries with vulnerability scanning enforces a security review gate before images reach production.",
+          "significance": "high",
+          "tags": [
+            "Docker",
+            "image-registry",
+            "supply-chain",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-019",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "FFOX-00-000026"
+          },
+          "title": "Firefox - DNS over HTTPS Must Be Controlled by Enterprise Policy",
+          "area": "Firefox - Network Security",
+          "oldText": null,
+          "newText": "Firefox's DNS over HTTPS (DoH) setting must be controlled by enterprise policy. Either DoH must be disabled for environments using internal DNS resolvers, or it must be configured to use an approved DoH provider. Uncontrolled DoH settings can bypass enterprise DNS security controls and content filtering. Finding ID: V-251720. CAT II (Medium).",
+          "rationale": "Firefox's default DoH configuration can bypass enterprise DNS security tools (secure web gateways, content filtering, threat intelligence feeds) that rely on DNS inspection.",
+          "significance": "medium",
+          "tags": [
+            "Firefox",
+            "DNS-over-HTTPS",
+            "DoH",
+            "network-security",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-020",
+          "type": "modified",
+          "controlId": {
+            "old": "WN11-CC-000310",
+            "new": "WN11-CC-000310"
+          },
+          "title": "Windows 11 - BitLocker: XTS-AES 256 Now Required (AES-CBC 128 No Longer Acceptable)",
+          "area": "Windows 11 - BitLocker Drive Encryption",
+          "oldText": "Windows 11 BitLocker must use AES-CBC 128-bit or stronger encryption. The EncryptionMethodByDriveType policy must be configured to set Operating System drives to at least AES-CBC 128.",
+          "newText": "Windows 11 BitLocker must use XTS-AES 256-bit encryption for operating system drives. The EncryptionMethodByDriveType policy must set OS drives to XTS-AES 256 (value: 7). AES-CBC 128-bit is no longer acceptable for OS drives in new deployments. Finding ID: V-253422. CAT II (Medium).",
+          "rationale": "XTS-AES 256 provides stronger protection against cryptographic attacks on full-disk encryption. NIST and CISA guidance now recommends XTS-AES as the preferred mode for disk encryption.",
+          "significance": "medium",
+          "tags": [
+            "Windows-11",
+            "BitLocker",
+            "XTS-AES-256",
+            "encryption",
+            "updated-requirement"
+          ]
+        },
+        {
+          "id": "stigs-2024-021",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "WN11-00-000085"
+          },
+          "title": "Windows 11 - Microsoft Pluton Security Processor Must Be Enabled Where Available",
+          "area": "Windows 11 - Hardware Security",
+          "oldText": null,
+          "newText": "On Windows 11 systems with Microsoft Pluton security processors, the Pluton security processor must be enabled. Verify via Device Security > Security Processor Details. Pluton provides enhanced protection for cryptographic keys and Credential Guard. Finding ID: V-260901. CAT III (Low).",
+          "rationale": "Microsoft Pluton integrates the security processor directly on the CPU die, eliminating the attack surface of the bus between CPU and discrete TPM.",
+          "significance": "low",
+          "tags": [
+            "Windows-11",
+            "Pluton",
+            "hardware-security",
+            "TPM",
+            "new-check"
+          ]
+        },
+        {
+          "id": "stigs-2024-022",
+          "type": "removed",
+          "controlId": {
+            "old": "SQL6-D0-001200",
+            "new": null
+          },
+          "title": "SQL Server 2019 - SQL Server Browser Service Check Consolidated",
+          "area": "SQL Server 2019 - Services",
+          "oldText": "The SQL Server Browser service must be disabled if not required. Verify the SQL Server Browser service is disabled via services.msc or 'Get-Service -Name SQLBrowser'.",
+          "newText": null,
+          "rationale": "This check was consolidated into the broader 'unnecessary services must be disabled' check (SQL6-D0-001100). The standalone check was creating confusion when SQL Browser is required for named instances in clustered configurations.",
+          "significance": "low",
+          "tags": [
+            "SQL-Server-2019",
+            "SQL-Browser",
+            "consolidated-check",
+            "removed"
+          ]
+        },
+        {
+          "id": "stigs-2024-023",
+          "type": "modified",
+          "controlId": {
+            "old": "K8S-00-000410",
+            "new": "K8S-00-000410"
+          },
+          "title": "Kubernetes - Audit Logging: RequestResponse Level Required for Sensitive Resources",
+          "area": "Kubernetes - Audit and Accountability",
+          "oldText": "Kubernetes must enable audit logging. The kube-apiserver must be configured with audit-log-path and audit-policy-file. The audit policy must capture Metadata level for all resources.",
+          "newText": "Kubernetes audit logging must capture RequestResponse level for sensitive resources including secrets, configmaps, and roles/rolebindings. The audit policy file must specify RequestResponse for resources in the '' and 'rbac.authorization.k8s.io' API groups, and Metadata for all other resources. Audit logs must be retained for minimum 30 days online and 1 year total. Finding ID: V-242402. CAT II (Medium).",
+          "rationale": "Metadata-level logging for secrets only captures that a secret was accessed, not the response body. RequestResponse logging is needed to detect data exfiltration patterns.",
+          "significance": "medium",
+          "tags": [
+            "Kubernetes",
+            "audit-logging",
+            "RequestResponse",
+            "secrets",
+            "updated-requirement"
+          ]
+        }
+      ]
+    }
+  }
 }

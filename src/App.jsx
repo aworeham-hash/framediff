@@ -2,28 +2,34 @@ import { useState, useEffect, useCallback } from 'react'
 import { Sidebar } from './components/layout/Sidebar'
 import { FrameworkPage } from './components/framework/FrameworkPage'
 import { HomePage } from './components/HomePage'
+import { AboutPage } from './components/AboutPage'
 import { CommandPalette } from './components/ui/CommandPalette'
 
 export default function App() {
   const [selectedFrameworkId, setSelectedFrameworkId] = useState(null)
+  const [showAbout, setShowAbout] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() =>
     localStorage.getItem('sidebar-collapsed') === 'true'
   )
   const [recentlyViewed, setRecentlyViewed] = useState([])
   const [cmdKOpen, setCmdKOpen] = useState(false)
 
-  // Hash-based routing — framework pages are bookmarkable
   useEffect(() => {
     const syncFromHash = () => {
-      const id = window.location.hash.slice(1)
-      setSelectedFrameworkId(id || null)
+      const hash = window.location.hash.slice(1)
+      if (hash === 'about') {
+        setShowAbout(true)
+        setSelectedFrameworkId(null)
+      } else {
+        setShowAbout(false)
+        setSelectedFrameworkId(hash || null)
+      }
     }
     syncFromHash()
     window.addEventListener('hashchange', syncFromHash)
     return () => window.removeEventListener('hashchange', syncFromHash)
   }, [])
 
-  // Cmd+K / Ctrl+K opens command palette
   useEffect(() => {
     const handler = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -38,6 +44,7 @@ export default function App() {
 
   const handleSelectFramework = useCallback((id) => {
     setSelectedFrameworkId(id)
+    setShowAbout(false)
     window.location.hash = id
     setRecentlyViewed(prev => [id, ...prev.filter(x => x !== id)].slice(0, 5))
     window.scrollTo(0, 0)
@@ -46,7 +53,15 @@ export default function App() {
 
   const handleHome = useCallback(() => {
     setSelectedFrameworkId(null)
+    setShowAbout(false)
     window.location.hash = ''
+    window.scrollTo(0, 0)
+  }, [])
+
+  const handleAbout = useCallback(() => {
+    setSelectedFrameworkId(null)
+    setShowAbout(true)
+    window.location.hash = 'about'
     window.scrollTo(0, 0)
   }, [])
 
@@ -64,14 +79,16 @@ export default function App() {
         selectedId={selectedFrameworkId}
         onSelect={handleSelectFramework}
         onHome={handleHome}
+        onAbout={handleAbout}
         collapsed={sidebarCollapsed}
         onToggleCollapse={handleSidebarToggle}
         recentlyViewed={recentlyViewed}
         onOpenSearch={() => setCmdKOpen(true)}
       />
-
       <main className="flex-1 overflow-y-auto min-w-0">
-        {selectedFrameworkId ? (
+        {showAbout ? (
+          <AboutPage onHome={handleHome} />
+        ) : selectedFrameworkId ? (
           <FrameworkPage
             key={selectedFrameworkId}
             frameworkId={selectedFrameworkId}
@@ -80,7 +97,6 @@ export default function App() {
           <HomePage onSelectFramework={handleSelectFramework} />
         )}
       </main>
-
       {cmdKOpen && (
         <CommandPalette
           onSelect={handleSelectFramework}

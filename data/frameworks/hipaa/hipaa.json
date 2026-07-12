@@ -1,15 +1,375 @@
 {
   "id": "hipaa",
-  "name": "Health Insurance Portability and Accountability Act",
+  "name": "Health Insurance Portability and Accountability Act - Security Rule",
   "shortName": "HIPAA",
-  "description": "Federal law governing the privacy and security of protected health information (PHI). The 2024/2025 HIPAA Security Rule update is the first major overhaul since 2013, strengthening requirements for risk analysis, MFA, encryption, and asset inventories for covered entities and business associates.",
+  "description": "Federal law governing the privacy and security of protected health information (PHI). The January 2025 Final Rule is the first major overhaul of the HIPAA Security Rule since 2013, strengthening requirements for risk analysis, MFA, encryption at rest, technology asset inventories, vulnerability management, and business associate oversight.",
   "copyright": "public-domain",
   "showFullText": true,
-  "comingSoon": true,
+  "comingSoon": false,
   "publisher": "HHS OCR",
   "source": "https://www.hhs.gov/hipaa/for-professionals/security/index.html",
-  "lastDataUpdate": null,
-  "versions": ["1996", "2003", "2009", "2013", "2024-2025"],
-  "latestVersion": "2024-2025",
-  "transitions": {}
+  "officialChangelogUrl": "https://www.federalregister.gov/documents/2025/01/06/2024-28949/hipaa-security-rule",
+  "lastDataUpdate": "2025-07-01",
+  "versions": [
+    "1996",
+    "2003 (Privacy Rule)",
+    "2009 (HITECH)",
+    "2013 (Omnibus)",
+    "2025 (Final Rule)"
+  ],
+  "latestVersion": "2025 (Final Rule)",
+  "transitions": {
+    "2013-to-2025": {
+      "fromVersion": "2013 (Omnibus)",
+      "toVersion": "2025 (Final Rule)",
+      "summary": {
+        "added": 6,
+        "removed": 0,
+        "modified": 10,
+        "restructured": 1,
+        "totalFrom": 42,
+        "totalTo": 48,
+        "highlights": [
+          "Encryption of ePHI at rest is now required - the 'addressable' designation has been removed",
+          "Multi-factor authentication (MFA) required for all access to systems containing ePHI",
+          "Covered entities must maintain a written technology asset inventory and network map",
+          "Risk analysis now requires specific inputs including vulnerability scan results and asset inventories",
+          "Vulnerability scanning required every 6 months; penetration testing required annually",
+          "Business associates must now verify their own compliance annually and report to covered entities",
+          "Access to ePHI systems must be revoked within 24 hours of workforce termination",
+          "Audit logs must be retained for a minimum of 12 months"
+        ]
+      },
+      "changes": [
+        {
+          "id": "hipaa-2025-001",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.308(a)(1)(ii)(A)"
+          },
+          "title": "Technology Asset Inventory - New Required Implementation Specification",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": null,
+          "newText": "Covered entities and business associates must create and maintain a written inventory of all technology assets in their environment, including hardware, software, and electronic media that create, receive, maintain, or transmit ePHI. The inventory must be reviewed and updated at least annually and whenever a relevant change occurs.",
+          "rationale": "HHS found during audits that organizations frequently lacked awareness of all systems that touched ePHI, making it impossible to conduct an accurate risk analysis. A mandatory asset inventory is foundational to all other security controls.",
+          "significance": "high",
+          "tags": [
+            "asset-management",
+            "risk-analysis",
+            "new-requirement",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-002",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.308(a)(1)(ii)(B)"
+          },
+          "title": "Network Map - New Required Implementation Specification",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": null,
+          "newText": "Covered entities and business associates must create and maintain a written network map that illustrates the movement of ePHI throughout their electronic information systems. The network map must be reviewed and updated at least annually and whenever a relevant change occurs to the environment.",
+          "rationale": "A network map showing data flows is required to perform an accurate risk analysis of ePHI. Without understanding where ePHI travels, organizations cannot identify vulnerabilities in transmission paths.",
+          "significance": "high",
+          "tags": [
+            "network-security",
+            "data-flow",
+            "risk-analysis",
+            "new-requirement",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-003",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(a)(1)(ii)(A)",
+            "new": "164.308(a)(1)(ii)(C)"
+          },
+          "title": "Risk Analysis - Significantly Strengthened with Specific Required Inputs",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "Conduct an accurate and thorough assessment of the potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information held by the covered entity.",
+          "newText": "Conduct an accurate and thorough assessment of the potential risks and vulnerabilities to the confidentiality, integrity, and availability of ePHI held by the covered entity or business associate. The risk analysis must be based on the technology asset inventory, the network map, reasonably anticipated threats to ePHI, and the results of vulnerability scans. The risk analysis must be reviewed and updated at least once every 12 months, and whenever a relevant change occurs.",
+          "rationale": "Audits revealed that many covered entities performed incomplete or superficial risk analyses. The 2025 rule adds specific mandatory inputs (asset inventory, network map, vulnerability scan results) and requires annual reviews.",
+          "significance": "high",
+          "tags": [
+            "risk-analysis",
+            "vulnerability-management",
+            "annual-requirement",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-004",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.308(a)(7)(ii)(F)"
+          },
+          "title": "Contingency Plan - Annual Testing of Backup Restore Required",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": null,
+          "newText": "Covered entities and business associates must test the ability to restore ePHI from backup at least once every 12 months. Documentation of the test, including the date, scope, results, and any corrective actions taken, must be retained for 6 years.",
+          "rationale": "Organizations frequently maintained backups that had never been tested for restoration. The 2025 rule requires documented annual testing to ensure backup mechanisms will actually work during a ransomware attack or system failure.",
+          "significance": "high",
+          "tags": [
+            "contingency-plan",
+            "backup-recovery",
+            "annual-testing",
+            "ransomware",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-005",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.308(a)(8)"
+          },
+          "title": "Vulnerability Management - New Standard with 6-Month Scan Cycle and Annual Pen Testing",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": null,
+          "newText": "Covered entities and business associates must implement a vulnerability management process that includes: (1) vulnerability scanning of all relevant electronic information systems at least every 6 months and following significant environmental changes; (2) penetration testing of all relevant electronic information systems at least once every 12 months; (3) timely remediation of identified vulnerabilities based on risk; and (4) documentation of scan results and remediation actions retained for 6 years.",
+          "rationale": "The previous Security Rule had no explicit vulnerability scanning or penetration testing requirement. Given the surge in healthcare cyberattacks, HHS determined that proactive identification and remediation of vulnerabilities is now essential.",
+          "significance": "high",
+          "tags": [
+            "vulnerability-scanning",
+            "penetration-testing",
+            "new-requirement",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-006",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(a)(6)",
+            "new": "164.308(a)(6)"
+          },
+          "title": "Security Incident Procedures - Annual Incident Response Testing Added",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "Implement policies and procedures to address security incidents. Identify and respond to suspected or known security incidents; mitigate, to the extent practicable, harmful effects of security incidents that are known to the covered entity; and document security incidents and their outcomes.",
+          "newText": "Implement policies and procedures to address security incidents. Identify and respond to suspected or known security incidents; mitigate, to the extent practicable, harmful effects of security incidents that are known to the covered entity; and document security incidents and their outcomes. Covered entities and business associates must test their security incident response plan at least once every 12 months through a tabletop exercise, simulation, or equivalent activity.",
+          "rationale": "Untested incident response plans frequently fail during actual incidents. Annual tabletop exercises ensure staff understand their roles and that contact lists, escalation paths, and notification procedures are current.",
+          "significance": "medium",
+          "tags": [
+            "incident-response",
+            "tabletop-exercise",
+            "annual-testing",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-007",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(a)(3)(ii)(C)",
+            "new": "164.308(a)(3)(ii)(C)"
+          },
+          "title": "Termination Procedures - 24-Hour Access Revocation Requirement",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "Implement procedures for terminating access to electronic protected health information when the employment of, or other arrangement with, a workforce member ends or as required by determinations made as specified in paragraph (a)(3)(ii)(B) of this section.",
+          "newText": "Implement procedures for terminating access to ePHI when the employment of, or other arrangement with, a workforce member ends or as required by risk determinations. Access to all relevant electronic information systems must be revoked within 24 hours of termination. For high-privilege accounts (system administrators, security personnel), access must be revoked immediately upon notification of termination.",
+          "rationale": "Delays in revoking access after termination are a leading cause of insider-threat incidents and data breaches. The 24-hour requirement and immediate revocation for privileged accounts establish clear, enforceable timelines.",
+          "significance": "medium",
+          "tags": [
+            "access-control",
+            "termination",
+            "insider-threat",
+            "24-hour-requirement",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-008",
+          "type": "modified",
+          "controlId": {
+            "old": "164.312(a)(2)(iv)",
+            "new": "164.312(a)(2)(iv)"
+          },
+          "title": "Encryption - Now Required (Not Addressable) at Rest and in Transit",
+          "area": "164.312 - Technical Safeguards",
+          "oldText": "Implement a mechanism to encrypt and decrypt electronic protected health information. [Addressable - may use alternative equivalent measures]",
+          "newText": "Implement encryption to protect electronic protected health information at rest and in transit. Encryption of ePHI is a required implementation specification. Covered entities and business associates must use current valid encryption as defined by NIST - for data at rest, this means AES-128 or higher; for data in transit, TLS 1.2 or higher. The use of alternative equivalent measures in lieu of encryption is no longer permitted.",
+          "rationale": "The 'addressable' designation for encryption led many covered entities to forgo encryption entirely. Given that unencrypted ePHI on stolen devices is a leading breach category, HHS eliminated the alternative measures option and made encryption mandatory.",
+          "significance": "high",
+          "tags": [
+            "encryption",
+            "data-at-rest",
+            "data-in-transit",
+            "required-not-addressable",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-009",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.312(d)(2)"
+          },
+          "title": "Multi-Factor Authentication - New Required Implementation Specification",
+          "area": "164.312 - Technical Safeguards",
+          "oldText": null,
+          "newText": "Covered entities and business associates must implement multi-factor authentication (MFA) for all workforce members accessing relevant electronic information systems that contain ePHI. MFA must require at least two of the following authentication factors: something the user knows (e.g., password), something the user has (e.g., hardware token, authenticator app), or something the user is (e.g., biometric). Phishing-resistant MFA (e.g., FIDO2/WebAuthn) is strongly recommended for privileged accounts and remote access.",
+          "rationale": "Password-only authentication is insufficient against credential-based attacks, which account for the majority of healthcare data breaches. MFA is widely recognized as one of the highest-impact controls for preventing unauthorized access.",
+          "significance": "high",
+          "tags": [
+            "MFA",
+            "authentication",
+            "new-requirement",
+            "credential-security",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-010",
+          "type": "modified",
+          "controlId": {
+            "old": "164.312(b)",
+            "new": "164.312(b)"
+          },
+          "title": "Audit Controls - 12-Month Log Retention Now Required",
+          "area": "164.312 - Technical Safeguards",
+          "oldText": "Implement hardware, software, and/or procedural mechanisms that record and examine activity in information systems that contain or use electronic protected health information.",
+          "newText": "Implement hardware, software, and/or procedural mechanisms that record and examine activity in information systems that contain or use ePHI. Audit logs must capture at minimum: successful and failed login attempts, data access and modification events, and system configuration changes. Audit logs must be retained for a minimum of 12 months and protected from unauthorized modification or deletion.",
+          "rationale": "Without defined minimum retention periods and log scope requirements, many covered entities maintained insufficient audit trails to support breach investigations. The 12-month minimum retention aligns with breach notification and investigation timelines.",
+          "significance": "medium",
+          "tags": [
+            "audit-logging",
+            "log-retention",
+            "12-months",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-011",
+          "type": "modified",
+          "controlId": {
+            "old": "164.314(a)(2)(i)",
+            "new": "164.314(a)(2)(i)"
+          },
+          "title": "Business Associate Contracts - Annual Compliance Verification Now Required",
+          "area": "164.314 - Organizational Requirements",
+          "oldText": "The contract must provide that the business associate will report to the covered entity any security incident of which it becomes aware, including breaches of unsecured protected health information as required by section 164.410.",
+          "newText": "Business associate agreements must now include provisions requiring: (1) the business associate to implement the security requirements of 45 CFR Part 164 Subpart C; (2) the business associate to provide written attestation of compliance to the covered entity at least annually; (3) the business associate to notify the covered entity of any material changes to their security posture within 30 days; and (4) the covered entity to verify business associate compliance at least annually.",
+          "rationale": "Business associates are involved in the majority of large healthcare breaches. Requiring annual compliance attestation and active verification by covered entities strengthens oversight of the supply chain handling ePHI.",
+          "significance": "high",
+          "tags": [
+            "business-associates",
+            "third-party",
+            "annual-verification",
+            "supply-chain",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-012",
+          "type": "restructured",
+          "controlId": {
+            "old": "164.306(b)",
+            "new": "164.306(b)"
+          },
+          "title": "Addressable vs. Required Designation - Framework Restructured",
+          "area": "164.306 - Security Standards: General Rules",
+          "oldText": "Implementation specifications are either required or addressable. If an implementation specification is described as 'required,' the covered entity must implement the specification. If it is described as 'addressable,' the covered entity must assess whether the implementation specification is a reasonable and appropriate safeguard.",
+          "newText": "Implementation specifications are required. The 2025 Final Rule eliminates the 'addressable' category that allowed covered entities to substitute alternative measures for specific technical controls. All implementation specifications in 45 CFR Part 164 Subpart C are now required, and covered entities may not substitute alternative equivalent measures. Scalability is maintained through risk analysis: the specific technologies and methods used to implement required controls must be appropriate to the size, complexity, and capabilities of the covered entity.",
+          "rationale": "The 'addressable' framework was widely misunderstood and abused. Many organizations interpreted 'addressable' as optional, leading to inadequate security. The 2025 rule replaces addressable designations with a single required standard while preserving flexibility in implementation methods.",
+          "significance": "high",
+          "tags": [
+            "addressable-removed",
+            "required-only",
+            "framework-change",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-013",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.308(a)(5)(ii)(D)"
+          },
+          "title": "Security Awareness Training - Annual Phishing Simulation Required",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": null,
+          "newText": "Security awareness training programs must include anti-phishing training and testing. Covered entities and business associates must conduct simulated phishing exercises at least annually for all workforce members with access to ePHI systems. Workforce members who fail phishing simulations must receive targeted remedial training. Training completion must be documented and records retained for 6 years.",
+          "rationale": "Phishing remains the leading attack vector in healthcare breaches. Awareness training without practical testing is insufficient - simulated phishing exercises identify vulnerable individuals and reinforce learned behaviors.",
+          "significance": "medium",
+          "tags": [
+            "security-awareness",
+            "phishing",
+            "training",
+            "annual-requirement",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-014",
+          "type": "modified",
+          "controlId": {
+            "old": "164.316(b)(2)(i)",
+            "new": "164.316(b)(2)(i)"
+          },
+          "title": "Documentation Retention - Annual Policy Review Now Required",
+          "area": "164.316 - Policies and Procedures and Documentation Requirements",
+          "oldText": "Retain the documentation required by paragraph (b)(1) of this section for 6 years from the date of its creation or the date when it last was in effect, whichever is later.",
+          "newText": "Retain documentation required under this Subpart for 6 years from the date of creation or last effective date, whichever is later. Policies and procedures must be reviewed by the security official at least once every 12 months and updated as needed to reflect changes in the environment, threats, or workforce. Review must be documented with date, reviewer name, and summary of any changes made or rationale for no changes.",
+          "rationale": "Security policies that are not regularly reviewed become outdated and fail to reflect the current threat environment. Annual mandatory review ensures documentation stays current.",
+          "significance": "low",
+          "tags": [
+            "documentation",
+            "policy-review",
+            "annual-review",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-015",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(a)(2)",
+            "new": "164.308(a)(2)"
+          },
+          "title": "Assigned Security Responsibility - Security Officer Must Report to Senior Leadership",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "Identify the security official who is responsible for the development and implementation of the policies and procedures required by this subpart for the entity.",
+          "newText": "Identify and designate a security official who is responsible for the development, implementation, and oversight of the policies and procedures required by this subpart. The security official must have sufficient authority, resources, and expertise to carry out their responsibilities. For covered entities with 25 or more workforce members, the security official must report directly to senior leadership and provide a written security program status report at least annually.",
+          "rationale": "Security officials buried in IT departments without access to senior leadership cannot effectively drive security improvements. Requiring direct reporting lines ensures security receives appropriate organizational attention and resources.",
+          "significance": "medium",
+          "tags": [
+            "security-officer",
+            "governance",
+            "leadership",
+            "2025-final-rule"
+          ]
+        },
+        {
+          "id": "hipaa-2025-016",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(a)(4)(ii)(C)",
+            "new": "164.308(a)(4)(ii)(C)"
+          },
+          "title": "Access Establishment and Modification - Role-Based Access Control Required",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "Implement policies and procedures that, based upon the entity's access authorization policies, establish, document, review, and modify a user's right of access to a workstation, transaction, program, or process.",
+          "newText": "Implement role-based or attribute-based access control policies that grant workforce members access to ePHI systems based on minimum necessary principles. User access rights must be reviewed at least once every 12 months (quarterly for privileged accounts) and modified promptly when a workforce member's role changes. Access recertification reviews must be documented and records retained for 6 years.",
+          "rationale": "The principle of least privilege requires systematic access reviews. Many breach investigations revealed that users retained access to ePHI systems long after their need for that access had ended.",
+          "significance": "medium",
+          "tags": [
+            "access-control",
+            "least-privilege",
+            "role-based-access",
+            "access-review",
+            "2025-final-rule"
+          ]
+        }
+      ]
+    }
+  }
 }
