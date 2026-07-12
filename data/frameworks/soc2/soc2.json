@@ -9,7 +9,7 @@
   "publisher": "AICPA",
   "source": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
   "officialChangelogUrl": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
-  "lastDataUpdate": "2025-07-01",
+  "lastDataUpdate": "2025-07-12",
   "versions": [
     "2016",
     "2017",
@@ -17,6 +17,147 @@
   ],
   "latestVersion": "2022",
   "transitions": {
+    "2016-to-2017": {
+      "fromVersion": "2016",
+      "toVersion": "2017",
+      "summary": {
+        "added": 0,
+        "removed": 0,
+        "modified": 5,
+        "restructured": 1,
+        "highlights": [
+          "Trust Services Criteria renamed and renumbered from Trust Services Principles",
+          "CC criteria numbering scheme introduced (CC1-CC9, A1, C1, PI1, P1-P8)",
+          "Points of Focus concept formalized to guide implementation",
+          "Availability and Confidentiality criteria separated from Common Criteria",
+          "Vendor and third-party risk management criteria (CC9) significantly expanded"
+        ]
+      },
+      "changes": [
+        {
+          "id": "soc2-2017-001",
+          "type": "restructured",
+          "controlId": {
+            "old": "Principles and Criteria",
+            "new": "CC1-CC9, A1, C1, PI1, P1-P8"
+          },
+          "title": "Trust Services Criteria - Complete Renumbering from Principles to Criteria",
+          "area": "CC1 - Control Environment",
+          "oldText": null,
+          "newText": null,
+          "rationale": "The 2016 Trust Services Principles were reorganized into the 2017 Trust Services Criteria, aligning the numbering with COSO 2013 Internal Control framework. The five categories (Security, Availability, Confidentiality, Processing Integrity, Privacy) were retained but criteria were renumbered. Common Criteria (CC) now covers security controls shared across all categories.",
+          "significance": "high",
+          "tags": [
+            "restructure",
+            "renumbering",
+            "2017-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2017-002",
+          "type": "modified",
+          "controlId": {
+            "old": "CC1.x",
+            "new": "CC1.1-CC1.5"
+          },
+          "title": "Control Environment - COSO 2013 Alignment for Principles 1-5",
+          "area": "CC1 - Control Environment",
+          "oldText": null,
+          "newText": null,
+          "rationale": "The Control Environment criteria were updated to align with the COSO 2013 internal control framework's 17 principles. Each CC1 criterion maps to a COSO principle with updated points of focus reflecting modern governance expectations including ethics and compliance programs.",
+          "significance": "medium",
+          "tags": [
+            "control-environment",
+            "COSO-2013",
+            "2017-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2017-003",
+          "type": "modified",
+          "controlId": {
+            "old": "CC6.x",
+            "new": "CC6.1-CC6.8"
+          },
+          "title": "Logical and Physical Access - Expanded from 3 to 8 Criteria",
+          "area": "CC6 - Logical and Physical Access Controls",
+          "oldText": null,
+          "newText": null,
+          "rationale": "The access control section was significantly expanded from 3 criteria to 8 criteria in the 2017 version to address the increased importance of logical access management, including privileged access, multi-factor authentication, and physical security controls for technology assets.",
+          "significance": "high",
+          "tags": [
+            "access-control",
+            "MFA",
+            "privileged-access",
+            "2017-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2017-004",
+          "type": "modified",
+          "controlId": {
+            "old": "CC9.x",
+            "new": "CC9.1-CC9.2"
+          },
+          "title": "Risk Mitigation (CC9) - New Category for Vendor and Third-Party Risk",
+          "area": "CC9 - Risk Mitigation",
+          "oldText": null,
+          "newText": null,
+          "rationale": "A new CC9 category was introduced in 2017 to address risk mitigation activities including business continuity planning and vendor/third-party risk management. Previously these topics were embedded in other criteria without dedicated coverage.",
+          "significance": "high",
+          "tags": [
+            "vendor-risk",
+            "third-party",
+            "business-continuity",
+            "2017-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2017-005",
+          "type": "modified",
+          "controlId": {
+            "old": "Privacy Principles",
+            "new": "P1-P8"
+          },
+          "title": "Privacy - Expanded to 8 Criteria Aligned with GAPP",
+          "area": "P3 - Privacy Notice and Communication",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Privacy criteria were expanded from a single set of privacy principles to 8 numbered criteria (P1-P8) aligned with Generally Accepted Privacy Principles (GAPP). The expanded criteria provide more specific points of focus for privacy notice, consent, data collection, use, retention, access, disclosure, and monitoring.",
+          "significance": "medium",
+          "tags": [
+            "privacy",
+            "GAPP",
+            "2017-update",
+            "metadata-only"
+          ]
+        },
+        {
+          "id": "soc2-2017-006",
+          "type": "modified",
+          "controlId": {
+            "old": "General",
+            "new": "General"
+          },
+          "title": "Points of Focus - Formalized as Non-Mandatory Implementation Guidance",
+          "area": "CC1 - Control Environment",
+          "oldText": null,
+          "newText": null,
+          "rationale": "The 2017 revision formalized the 'Points of Focus' concept to provide implementation guidance for each criterion. Points of Focus are not requirements \u2014 they describe characteristics that may be present but are not necessary for meeting a criterion. This distinction was clarified to help service organizations and auditors understand flexibility in implementation.",
+          "significance": "medium",
+          "tags": [
+            "points-of-focus",
+            "implementation-guidance",
+            "2017-update",
+            "metadata-only"
+          ]
+        }
+      ]
+    },
     "2017-to-2022": {
       "fromVersion": "2017",
       "toVersion": "2022",

@@ -1,6 +1,6 @@
 {
   "id": "irs-4812",
-  "name": "IRS Publication 4812 — Contractor Security Controls",
+  "name": "IRS Publication 4812 \u2014 Contractor Security Controls",
   "shortName": "IRS Pub. 4812",
   "description": "IRS Publication 4812 defines mandatory security requirements for any agency or contractor that receives, processes, stores, or transmits Federal Tax Information (FTI) under IRC Section 6103. It maps directly to NIST SP 800-53 and is required for all state agencies, local governments, and federal contractors with FTI access.",
   "copyright": "public-domain",
@@ -9,12 +9,19 @@
   "source": "https://www.irs.gov/privacy-disclosure/irs-publication-4812-contractor-security-safeguards",
   "officialChangelogUrl": "https://www.irs.gov/privacy-disclosure/irs-publication-4812-contractor-security-safeguards",
   "lastDataUpdate": "2024-11-01",
-  "versions": ["Rev. 7-2016", "Rev. 8-2020", "Rev. 9-2023", "Rev. 10-2024", "Rev. 11-2024", "Rev. 12-2025"],
+  "versions": [
+    "Rev. 7-2016",
+    "Rev. 8-2020",
+    "Rev. 9-2023",
+    "Rev. 10-2024",
+    "Rev. 11-2024",
+    "Rev. 12-2025"
+  ],
   "latestVersion": "Rev. 12-2025",
   "transitions": {
     "Rev8-to-Rev9": {
-      "fromVersion": "Rev. 8 (2020)",
-      "toVersion": "Rev. 9 (2023)",
+      "fromVersion": "Rev. 8-2020",
+      "toVersion": "Rev. 9-2023",
       "fromReleaseDate": "2020-11-01",
       "toReleaseDate": "2023-09-01",
       "summary": {
@@ -25,12 +32,12 @@
         "totalFrom": 156,
         "totalTo": 170,
         "highlights": [
-          "Aligned to NIST SP 800-53 Revision 5 — all control references updated from Rev 4 to Rev 5, adding privacy controls and supply chain requirements to FTI protection obligations",
+          "Aligned to NIST SP 800-53 Revision 5 \u2014 all control references updated from Rev 4 to Rev 5, adding privacy controls and supply chain requirements to FTI protection obligations",
           "Encryption requirements strengthened: FIPS 140-2 references updated to FIPS 140-3, and encryption now required for FTI at rest in addition to FTI in transit",
-          "Multi-factor authentication (MFA) now required for ALL access to systems containing FTI — expanded from remote-access-only requirement in Rev. 8",
-          "New supply chain risk management requirements added — agencies must now assess and document risks from vendors with access to FTI systems",
+          "Multi-factor authentication (MFA) now required for ALL access to systems containing FTI \u2014 expanded from remote-access-only requirement in Rev. 8",
+          "New supply chain risk management requirements added \u2014 agencies must now assess and document risks from vendors with access to FTI systems",
           "Incident reporting timeline tightened: FTI breaches must now be reported to IRS within 24 hours of discovery (reduced from 48 hours in Rev. 8)",
-          "Cloud and virtual infrastructure guidance added — agencies using cloud services to process FTI must meet FedRAMP Moderate baseline at minimum"
+          "Cloud and virtual infrastructure guidance added \u2014 agencies using cloud services to process FTI must meet FedRAMP Moderate baseline at minimum"
         ]
       },
       "changes": [
@@ -38,235 +45,404 @@
           "id": "change-irs4812-rev8-rev9-001",
           "type": "modified",
           "category": "nist-alignment",
-          "controlId": { "old": "NIST SP 800-53 Rev 4", "new": "NIST SP 800-53 Rev 5" },
+          "controlId": {
+            "old": "NIST SP 800-53 Rev 4",
+            "new": "NIST SP 800-53 Rev 5"
+          },
           "title": "All control references updated from NIST SP 800-53 Rev 4 to Rev 5",
-          "area": "Framework — Control Baseline",
+          "area": "Framework \u2014 Control Baseline",
           "oldText": "Agencies must implement the security controls defined in NIST Special Publication 800-53, Revision 4, Security and Privacy Controls for Federal Information Systems and Organizations, at the Moderate baseline or higher for all systems processing FTI.",
           "newText": "Agencies must implement the security controls defined in NIST Special Publication 800-53, Revision 5, Security and Privacy Controls for Information Systems and Organizations, at the Moderate baseline (as defined in NIST SP 800-53B) or higher for all systems processing, storing, or transmitting FTI.",
-          "rationale": "NIST SP 800-53 Rev 5 was finalized in September 2020 and represents a significant update — integrating privacy controls, adding supply chain risk management, and expanding scope beyond federal systems. IRS Rev. 9 aligns FTI safeguarding requirements to Rev 5 to ensure agencies are implementing current security and privacy controls.",
+          "rationale": "NIST SP 800-53 Rev 5 was finalized in September 2020 and represents a significant update \u2014 integrating privacy controls, adding supply chain risk management, and expanding scope beyond federal systems. IRS Rev. 9 aligns FTI safeguarding requirements to Rev 5 to ensure agencies are implementing current security and privacy controls.",
           "significance": "high",
-          "tags": ["nist-sp800-53", "rev5", "baseline", "alignment"]
+          "tags": [
+            "nist-sp800-53",
+            "rev5",
+            "baseline",
+            "alignment"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-002",
           "type": "modified",
           "category": "encryption",
-          "controlId": { "old": "SC-8, SC-28", "new": "SC-8, SC-28" },
-          "title": "Encryption required for FTI at rest — not just in transit",
-          "area": "SC — System and Communications Protection",
+          "controlId": {
+            "old": "SC-8, SC-28",
+            "new": "SC-8, SC-28"
+          },
+          "title": "Encryption required for FTI at rest \u2014 not just in transit",
+          "area": "SC \u2014 System and Communications Protection",
           "oldText": "FTI transmitted over networks must be encrypted using FIPS 140-2 validated cryptographic modules. Agencies must protect FTI from unauthorized disclosure during transmission.",
           "newText": "FTI must be encrypted using FIPS 140-3 validated cryptographic modules both during transmission over networks and while at rest in storage systems, databases, backup media, and portable devices. Encryption of FTI at rest is required regardless of whether the storage medium is within a secure facility.",
-          "rationale": "Rev. 8 required encryption of FTI in transit but did not explicitly mandate encryption at rest. Rev. 9 closes this gap — a significant improvement given that most FTI breaches involve stored data (stolen laptops, improperly disposed storage media, database exposures). The update to FIPS 140-3 also reflects NIST's 2019 approval of the updated cryptographic module standard.",
+          "rationale": "Rev. 8 required encryption of FTI in transit but did not explicitly mandate encryption at rest. Rev. 9 closes this gap \u2014 a significant improvement given that most FTI breaches involve stored data (stolen laptops, improperly disposed storage media, database exposures). The update to FIPS 140-3 also reflects NIST's 2019 approval of the updated cryptographic module standard.",
           "significance": "high",
-          "tags": ["encryption", "fips-140-3", "at-rest", "in-transit", "sc-28"]
+          "tags": [
+            "encryption",
+            "fips-140-3",
+            "at-rest",
+            "in-transit",
+            "sc-28"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-003",
           "type": "modified",
           "category": "mfa-expansion",
-          "controlId": { "old": "IA-2(1)", "new": "IA-2(1), IA-2(2)" },
+          "controlId": {
+            "old": "IA-2(1)",
+            "new": "IA-2(1), IA-2(2)"
+          },
           "title": "MFA required for ALL FTI system access, not just remote access",
-          "area": "IA — Identification and Authentication",
+          "area": "IA \u2014 Identification and Authentication",
           "oldText": "Multi-factor authentication must be implemented for all remote access to information systems that access, process, store, or transmit FTI, including access by privileged and non-privileged users.",
-          "newText": "Multi-factor authentication must be implemented for all access to information systems that access, process, store, or transmit FTI — including local network access, privileged access, and non-privileged access. MFA is required regardless of whether the user is accessing the system remotely or from within the agency's internal network.",
-          "rationale": "Rev. 8 required MFA only for remote access, consistent with the Rev 4-era NIST guidance. Rev. 9 expands this to all access — including from inside the network — aligning with zero-trust principles and reflecting the reality that insider threats and compromised internal accounts are primary vectors for FTI exfiltration.",
+          "newText": "Multi-factor authentication must be implemented for all access to information systems that access, process, store, or transmit FTI \u2014 including local network access, privileged access, and non-privileged access. MFA is required regardless of whether the user is accessing the system remotely or from within the agency's internal network.",
+          "rationale": "Rev. 8 required MFA only for remote access, consistent with the Rev 4-era NIST guidance. Rev. 9 expands this to all access \u2014 including from inside the network \u2014 aligning with zero-trust principles and reflecting the reality that insider threats and compromised internal accounts are primary vectors for FTI exfiltration.",
           "significance": "high",
-          "tags": ["mfa", "authentication", "zero-trust", "ia-2", "access-control"]
+          "tags": [
+            "mfa",
+            "authentication",
+            "zero-trust",
+            "ia-2",
+            "access-control"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-004",
           "type": "modified",
           "category": "incident-reporting",
-          "controlId": { "old": "IR-6", "new": "IR-6" },
+          "controlId": {
+            "old": "IR-6",
+            "new": "IR-6"
+          },
           "title": "FTI breach reporting timeline reduced from 48 to 24 hours",
-          "area": "IR — Incident Response",
+          "area": "IR \u2014 Incident Response",
           "oldText": "Agencies must report suspected or confirmed FTI breaches to the IRS Office of Safeguards within 48 hours of discovery. The report must include a description of the incident, the types of FTI involved, the number of taxpayers affected, and the steps being taken to contain the breach.",
           "newText": "Agencies must report suspected or confirmed FTI breaches to the IRS Office of Safeguards within 24 hours of discovery. The initial report must include all known details about the incident at the time of reporting, with updates provided as additional information becomes available. Agencies must also notify affected individuals in accordance with applicable federal and state breach notification laws.",
-          "rationale": "The 48-hour reporting window was increasingly out of step with federal standards — the CISA and FBI joint guidance recommends immediate reporting, and many states now require breach notification within 24-72 hours. Rev. 9 tightens the IRS requirement to 24 hours and adds explicit requirements to notify affected taxpayers, aligning FTI breach response with current federal incident response expectations.",
+          "rationale": "The 48-hour reporting window was increasingly out of step with federal standards \u2014 the CISA and FBI joint guidance recommends immediate reporting, and many states now require breach notification within 24-72 hours. Rev. 9 tightens the IRS requirement to 24 hours and adds explicit requirements to notify affected taxpayers, aligning FTI breach response with current federal incident response expectations.",
           "significance": "high",
-          "tags": ["incident-response", "breach-notification", "reporting", "ir-6", "taxpayer-notification"]
+          "tags": [
+            "incident-response",
+            "breach-notification",
+            "reporting",
+            "ir-6",
+            "taxpayer-notification"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-005",
           "type": "added",
           "category": "supply-chain",
-          "controlId": { "old": null, "new": "SR-1, SR-2, SR-3" },
+          "controlId": {
+            "old": null,
+            "new": "SR-1, SR-2, SR-3"
+          },
           "title": "Supply chain risk management requirements added for FTI systems",
-          "area": "SR — Supply Chain Risk Management",
+          "area": "SR \u2014 Supply Chain Risk Management",
           "oldText": null,
           "newText": "Agencies must establish and implement a supply chain risk management (SCRM) plan for systems that process, store, or transmit FTI. The SCRM plan must: identify all third-party vendors and service providers with access to FTI systems; assess and document supply chain risks; establish contractual requirements for vendors to comply with applicable FTI safeguarding provisions; and include procedures for responding to supply chain compromises affecting FTI.",
           "rationale": "NIST SP 800-53 Rev 5 added the SR control family for supply chain risk management. Rev. 9 incorporates these requirements into FTI safeguarding, reflecting the SolarWinds and other supply chain attacks that demonstrated how vendor access can be weaponized to reach sensitive government data. Agencies can no longer limit their security perimeter to their own systems.",
           "significance": "high",
-          "tags": ["supply-chain", "scrm", "third-party", "vendor-management", "sr-family"]
+          "tags": [
+            "supply-chain",
+            "scrm",
+            "third-party",
+            "vendor-management",
+            "sr-family"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-006",
           "type": "added",
           "category": "cloud-requirements",
-          "controlId": { "old": null, "new": "SA-9, SC-7" },
-          "title": "Cloud service requirements added — FedRAMP Moderate minimum for FTI in cloud",
-          "area": "SA — System and Services Acquisition",
+          "controlId": {
+            "old": null,
+            "new": "SA-9, SC-7"
+          },
+          "title": "Cloud service requirements added \u2014 FedRAMP Moderate minimum for FTI in cloud",
+          "area": "SA \u2014 System and Services Acquisition",
           "oldText": null,
           "newText": "Agencies that process, store, or transmit FTI using cloud services must ensure that the cloud service provider (CSP) has achieved FedRAMP authorization at the Moderate impact level or higher. Agencies must obtain IRS Office of Safeguards approval before migrating FTI workloads to cloud environments. Cloud service agreements must include provisions requiring the CSP to comply with applicable FTI safeguarding requirements and to report security incidents involving FTI within the required timeframes.",
-          "rationale": "Rev. 8 provided no specific guidance for cloud environments — a significant gap as state agencies rapidly adopted cloud services for tax processing systems. Rev. 9 establishes a clear baseline: FedRAMP Moderate authorization, IRS pre-approval for FTI cloud migrations, and contractual flow-down of safeguarding requirements to CSPs.",
+          "rationale": "Rev. 8 provided no specific guidance for cloud environments \u2014 a significant gap as state agencies rapidly adopted cloud services for tax processing systems. Rev. 9 establishes a clear baseline: FedRAMP Moderate authorization, IRS pre-approval for FTI cloud migrations, and contractual flow-down of safeguarding requirements to CSPs.",
           "significance": "high",
-          "tags": ["cloud", "fedramp", "csp", "cloud-migration", "sa-9"]
+          "tags": [
+            "cloud",
+            "fedramp",
+            "csp",
+            "cloud-migration",
+            "sa-9"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-007",
           "type": "added",
           "category": "privacy-controls",
-          "controlId": { "old": null, "new": "PT-1, PT-2, PT-3" },
-          "title": "Privacy controls added — FTI now subject to explicit privacy requirements",
-          "area": "PT — Personally Identifiable Information Processing and Transparency",
+          "controlId": {
+            "old": null,
+            "new": "PT-1, PT-2, PT-3"
+          },
+          "title": "Privacy controls added \u2014 FTI now subject to explicit privacy requirements",
+          "area": "PT \u2014 Personally Identifiable Information Processing and Transparency",
           "oldText": null,
           "newText": "Agencies receiving FTI must implement privacy controls consistent with NIST SP 800-53 Rev 5 PT control family. Agencies must: document the legal authority for processing FTI under IRC Section 6103; limit processing of FTI to the purposes for which it was received; implement data minimization practices to reduce FTI to the minimum necessary for authorized purposes; and maintain records of FTI disclosures.",
-          "rationale": "NIST SP 800-53 Rev 5 integrated privacy controls into the main catalog for the first time. Rev. 9 extends these privacy requirements to FTI safeguarding — reinforcing that FTI is inherently PII and must be handled with the same privacy controls as other sensitive personal information. IRC Section 6103 already restricts FTI use to specific authorized purposes; these controls operationalize that restriction.",
+          "rationale": "NIST SP 800-53 Rev 5 integrated privacy controls into the main catalog for the first time. Rev. 9 extends these privacy requirements to FTI safeguarding \u2014 reinforcing that FTI is inherently PII and must be handled with the same privacy controls as other sensitive personal information. IRC Section 6103 already restricts FTI use to specific authorized purposes; these controls operationalize that restriction.",
           "significance": "high",
-          "tags": ["privacy", "pii", "pt-family", "data-minimization", "irc-6103"]
+          "tags": [
+            "privacy",
+            "pii",
+            "pt-family",
+            "data-minimization",
+            "irc-6103"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-008",
           "type": "modified",
           "category": "access-control",
-          "controlId": { "old": "AC-2", "new": "AC-2" },
-          "title": "Account management requirements strengthened — service accounts and privileged access",
-          "area": "AC — Access Control",
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
+          "title": "Account management requirements strengthened \u2014 service accounts and privileged access",
+          "area": "AC \u2014 Access Control",
           "oldText": "Agencies must manage information system accounts, including establishing, activating, modifying, reviewing, disabling, and removing accounts for all users with access to FTI systems. Account reviews must be conducted at least annually.",
           "newText": "Agencies must manage all system accounts with access to FTI systems, including individual user accounts, shared accounts, service accounts, system accounts, and privileged accounts. Account reviews must be conducted at least every 90 days for privileged accounts and at least annually for standard user accounts. Service accounts must be inventoried, assigned to an account owner, and reviewed for necessity at least annually. Shared accounts are prohibited for access to FTI except where technically necessary, and such use must be documented and approved.",
-          "rationale": "Rev. 8's account management requirements were based on NIST Rev 4, which did not specifically address service accounts or privileged account review frequency. Rev. 9 aligns to Rev 5's enhanced AC-2 requirements, adds explicit prohibition on shared accounts for FTI access, and establishes more frequent review cycles for privileged accounts — addressing a common audit finding in IRS safeguards reviews.",
+          "rationale": "Rev. 8's account management requirements were based on NIST Rev 4, which did not specifically address service accounts or privileged account review frequency. Rev. 9 aligns to Rev 5's enhanced AC-2 requirements, adds explicit prohibition on shared accounts for FTI access, and establishes more frequent review cycles for privileged accounts \u2014 addressing a common audit finding in IRS safeguards reviews.",
           "significance": "high",
-          "tags": ["account-management", "privileged-access", "service-accounts", "ac-2", "access-review"]
+          "tags": [
+            "account-management",
+            "privileged-access",
+            "service-accounts",
+            "ac-2",
+            "access-review"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-009",
           "type": "modified",
           "category": "audit-logging",
-          "controlId": { "old": "AU-2, AU-3", "new": "AU-2, AU-3, AU-12" },
-          "title": "Audit logging requirements expanded — FTI access events must be captured",
-          "area": "AU — Audit and Accountability",
+          "controlId": {
+            "old": "AU-2, AU-3",
+            "new": "AU-2, AU-3, AU-12"
+          },
+          "title": "Audit logging requirements expanded \u2014 FTI access events must be captured",
+          "area": "AU \u2014 Audit and Accountability",
           "oldText": "Agencies must enable audit logging on systems that process FTI and retain audit logs for a minimum of three years. Audit logs must capture login and logout events, privileged actions, and access to FTI records.",
           "newText": "Agencies must enable comprehensive audit logging on all systems that process, store, or transmit FTI. Audit logs must capture: all authentication events (successful and failed); all access to FTI records including the specific records accessed; privileged user actions; configuration changes; account management events; and system startup and shutdown. Audit logs must be protected from unauthorized modification and deletion. Log retention is a minimum of seven years for FTI-related audit logs, consistent with IRS record retention requirements. Logs must be reviewed at least weekly for anomalous access patterns.",
           "rationale": "Rev. 8 required three-year retention and basic event capture. Rev. 9 significantly expands required log content to include specific FTI record access (not just system login), extends retention to seven years to match IRS tax record retention requirements, and adds a weekly log review requirement. This reflects audit findings where FTI breaches were not detected for months or years due to inadequate logging.",
           "significance": "high",
-          "tags": ["audit-logging", "log-retention", "fti-access", "au-2", "au-12", "monitoring"]
+          "tags": [
+            "audit-logging",
+            "log-retention",
+            "fti-access",
+            "au-2",
+            "au-12",
+            "monitoring"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-010",
           "type": "modified",
           "category": "media-protection",
-          "controlId": { "old": "MP-6", "new": "MP-6" },
-          "title": "Media sanitization requirements updated — NIST 800-88 Rev 1 required",
-          "area": "MP — Media Protection",
+          "controlId": {
+            "old": "MP-6",
+            "new": "MP-6"
+          },
+          "title": "Media sanitization requirements updated \u2014 NIST 800-88 Rev 1 required",
+          "area": "MP \u2014 Media Protection",
           "oldText": "Agencies must sanitize media containing FTI before disposal or reuse using methods consistent with NIST Special Publication 800-88, Guidelines for Media Sanitization.",
           "newText": "Agencies must sanitize all media that has contained FTI before disposal or reuse using methods consistent with NIST Special Publication 800-88, Revision 1, Guidelines for Media Sanitization. For media that cannot be effectively sanitized (e.g., certain SSDs, optical media), agencies must destroy the media. Agencies must maintain records of media sanitization and destruction for all media that contained FTI, including the date, method used, and identity of the individual performing sanitization.",
-          "rationale": "NIST SP 800-88 Revision 1 was published in 2014 and introduced updated guidance for solid-state drives and other modern storage media. Rev. 9 explicitly references the updated standard and adds a documentation requirement for sanitization records — addressing a common gap where agencies could demonstrate a sanitization policy but not evidence of execution.",
+          "rationale": "NIST SP 800-88 Revision 1 was published in 2014 and introduced updated guidance for solid-state drives and other modern storage media. Rev. 9 explicitly references the updated standard and adds a documentation requirement for sanitization records \u2014 addressing a common gap where agencies could demonstrate a sanitization policy but not evidence of execution.",
           "significance": "medium",
-          "tags": ["media-sanitization", "disposal", "mp-6", "nist-800-88", "ssd"]
+          "tags": [
+            "media-sanitization",
+            "disposal",
+            "mp-6",
+            "nist-800-88",
+            "ssd"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-011",
           "type": "added",
           "category": "vulnerability-management",
-          "controlId": { "old": null, "new": "RA-5, SI-2" },
+          "controlId": {
+            "old": null,
+            "new": "RA-5, SI-2"
+          },
           "title": "Vulnerability scanning and patching timelines now specified",
-          "area": "RA — Risk Assessment / SI — System and Information Integrity",
+          "area": "RA \u2014 Risk Assessment / SI \u2014 System and Information Integrity",
           "oldText": null,
           "newText": "Agencies must conduct vulnerability scans of systems processing FTI at least monthly using an authenticated scanning configuration. Critical and high vulnerabilities (CVSS score 7.0 or higher) affecting FTI systems must be remediated within 30 days of discovery. Medium vulnerabilities must be remediated within 90 days. Agencies must document exceptions to patching timelines and obtain supervisory approval for any exception extending beyond the required remediation window.",
           "rationale": "Rev. 8 required vulnerability scanning and patch management but did not specify scan frequency or remediation timelines. This created inconsistency in how agencies interpreted the requirement. Rev. 9 establishes specific, measurable timelines aligned with federal vulnerability management benchmarks (CISA BOD 19-02 for internet-facing systems and CISA KEV requirements), making compliance verifiable during IRS safeguards reviews.",
           "significance": "high",
-          "tags": ["vulnerability-management", "patching", "ra-5", "si-2", "cvss", "remediation-timeline"]
+          "tags": [
+            "vulnerability-management",
+            "patching",
+            "ra-5",
+            "si-2",
+            "cvss",
+            "remediation-timeline"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-012",
           "type": "modified",
           "category": "remote-access",
-          "controlId": { "old": "AC-17", "new": "AC-17" },
-          "title": "Remote access controls updated — VPN and zero-trust requirements added",
-          "area": "AC — Access Control",
+          "controlId": {
+            "old": "AC-17",
+            "new": "AC-17"
+          },
+          "title": "Remote access controls updated \u2014 VPN and zero-trust requirements added",
+          "area": "AC \u2014 Access Control",
           "oldText": "Agencies must authorize, monitor, and control all remote access to FTI systems. Remote access sessions must use encrypted communications.",
           "newText": "Agencies must authorize, monitor, and control all remote access to FTI systems. Remote access must be implemented using encrypted VPN or equivalent zero-trust network access (ZTNA) solution. Remote access sessions must use FIPS 140-3 validated encryption. Agencies must implement session timeout for remote access sessions after no more than 15 minutes of inactivity. Remote access by vendors and contractors must be limited to specific systems and time windows and must be monitored in real time.",
           "rationale": "Rev. 8's remote access requirements were minimal. Rev. 9 adds specificity for VPN/ZTNA, session timeout requirements, and vendor remote access controls. The explicit mention of zero-trust network access reflects the federal government's zero-trust mandates (OMB M-22-09) and the reality that VPN alone is insufficient for high-risk remote access scenarios.",
           "significance": "high",
-          "tags": ["remote-access", "vpn", "zero-trust", "ztna", "ac-17", "session-timeout"]
+          "tags": [
+            "remote-access",
+            "vpn",
+            "zero-trust",
+            "ztna",
+            "ac-17",
+            "session-timeout"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-013",
           "type": "added",
           "category": "insider-threat",
-          "controlId": { "old": null, "new": "PM-12, AT-2" },
+          "controlId": {
+            "old": null,
+            "new": "PM-12, AT-2"
+          },
           "title": "Insider threat program requirements added",
-          "area": "PM — Program Management",
+          "area": "PM \u2014 Program Management",
           "oldText": null,
           "newText": "Agencies must implement an insider threat program that includes: procedures for detecting and responding to insider threat indicators related to FTI; training for all personnel with FTI access on insider threat awareness and reporting; technical controls to detect anomalous FTI access patterns; and a process for investigating potential insider threat incidents involving FTI. The insider threat program must be reviewed and updated at least annually.",
-          "rationale": "Insider threat — whether malicious or negligent — is consistently one of the top causes of FTI breaches identified in IRS safeguards reviews. Rev. 9 makes insider threat program requirements explicit, aligning with the National Insider Threat Policy (NSPD-59/HSPD-24) and NIST SP 800-53 Rev 5's PM-12 control. Agencies must now demonstrate active insider threat detection, not just general access controls.",
+          "rationale": "Insider threat \u2014 whether malicious or negligent \u2014 is consistently one of the top causes of FTI breaches identified in IRS safeguards reviews. Rev. 9 makes insider threat program requirements explicit, aligning with the National Insider Threat Policy (NSPD-59/HSPD-24) and NIST SP 800-53 Rev 5's PM-12 control. Agencies must now demonstrate active insider threat detection, not just general access controls.",
           "significance": "high",
-          "tags": ["insider-threat", "pm-12", "monitoring", "training", "anomalous-access"]
+          "tags": [
+            "insider-threat",
+            "pm-12",
+            "monitoring",
+            "training",
+            "anomalous-access"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-014",
           "type": "modified",
           "category": "training",
-          "controlId": { "old": "AT-2", "new": "AT-2" },
-          "title": "Security awareness training updated — FTI-specific training now required annually",
-          "area": "AT — Awareness and Training",
+          "controlId": {
+            "old": "AT-2",
+            "new": "AT-2"
+          },
+          "title": "Security awareness training updated \u2014 FTI-specific training now required annually",
+          "area": "AT \u2014 Awareness and Training",
           "oldText": "All personnel with access to FTI must receive security awareness training upon hiring and periodically thereafter. Training must cover the agency's information security policies and the requirements of IRC Section 6103.",
           "newText": "All personnel with access to FTI must receive security awareness training prior to being granted FTI access and annually thereafter. Training must specifically cover: the requirements of IRC Section 6103 and penalties for unauthorized disclosure; proper handling and safeguarding of FTI; how to recognize and report phishing, social engineering, and other attack vectors targeting FTI; insider threat awareness and reporting procedures; and the agency's incident response procedures for FTI breaches. Training completion must be documented and verified prior to granting or renewing FTI access.",
-          "rationale": "Rev. 8 required periodic training but did not specify annual frequency or required content. Rev. 9 mandates annual training with specific FTI-relevant content including phishing awareness and insider threat — reflecting the consistent finding in IRS safeguards audits that personnel handling FTI lacked awareness of their specific obligations and common attack vectors.",
+          "rationale": "Rev. 8 required periodic training but did not specify annual frequency or required content. Rev. 9 mandates annual training with specific FTI-relevant content including phishing awareness and insider threat \u2014 reflecting the consistent finding in IRS safeguards audits that personnel handling FTI lacked awareness of their specific obligations and common attack vectors.",
           "significance": "medium",
-          "tags": ["training", "security-awareness", "irc-6103", "phishing", "annual", "at-2"]
+          "tags": [
+            "training",
+            "security-awareness",
+            "irc-6103",
+            "phishing",
+            "annual",
+            "at-2"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-015",
           "type": "restructured",
           "category": "safeguards-review",
-          "controlId": { "old": "Safeguards Review (annual)", "new": "Safeguards Security Report (SSR)" },
+          "controlId": {
+            "old": "Safeguards Review (annual)",
+            "new": "Safeguards Security Report (SSR)"
+          },
           "title": "Annual safeguards review renamed to Safeguards Security Report (SSR) with updated format",
-          "area": "Program — Oversight and Reporting",
+          "area": "Program \u2014 Oversight and Reporting",
           "oldText": "Agencies must complete an annual safeguards review documenting their compliance with IRS Publication 4812 requirements and submit results to the IRS Office of Safeguards.",
           "newText": "Agencies must complete an annual Safeguards Security Report (SSR) documenting their compliance with IRS Publication 4812 Rev. 9 requirements. The SSR must be submitted to the IRS Office of Safeguards using the IRS-provided template. The SSR must include: system inventory for all systems processing FTI; results of required security control assessments; open findings and remediation plans with target dates; and certification by agency executive leadership that the information is accurate and complete.",
-          "rationale": "The annual safeguards review was renamed to Safeguards Security Report (SSR) and standardized with a required IRS template. The addition of executive certification creates accountability at the leadership level — similar to the SOX Section 302 CEO/CFO certification model. The new format also requires more specificity on open findings and remediation timelines, enabling IRS to track systemic issues across agencies.",
+          "rationale": "The annual safeguards review was renamed to Safeguards Security Report (SSR) and standardized with a required IRS template. The addition of executive certification creates accountability at the leadership level \u2014 similar to the SOX Section 302 CEO/CFO certification model. The new format also requires more specificity on open findings and remediation timelines, enabling IRS to track systemic issues across agencies.",
           "significance": "medium",
-          "tags": ["ssr", "safeguards-review", "reporting", "compliance", "executive-certification"]
+          "tags": [
+            "ssr",
+            "safeguards-review",
+            "reporting",
+            "compliance",
+            "executive-certification"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-016",
           "type": "modified",
           "category": "contingency-planning",
-          "controlId": { "old": "CP-2, CP-9", "new": "CP-2, CP-9" },
-          "title": "Contingency planning updated — RTO/RPO now required for FTI systems",
-          "area": "CP — Contingency Planning",
+          "controlId": {
+            "old": "CP-2, CP-9",
+            "new": "CP-2, CP-9"
+          },
+          "title": "Contingency planning updated \u2014 RTO/RPO now required for FTI systems",
+          "area": "CP \u2014 Contingency Planning",
           "oldText": "Agencies must develop and maintain contingency plans for systems processing FTI, including backup and recovery procedures. Contingency plans must be tested at least annually.",
           "newText": "Agencies must develop and maintain contingency plans for all systems processing FTI that include: defined Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) for FTI systems; backup procedures ensuring FTI can be recovered within the defined RPO; recovery procedures with step-by-step instructions for restoring FTI system functionality within the defined RTO; and supply chain contingency considerations for third-party systems supporting FTI processing. Contingency plans must be tested at least annually through a tabletop exercise or functional test, and test results must be documented.",
           "rationale": "Rev. 8 required contingency plans and annual testing but did not require specific RTO/RPO targets or supply chain contingency considerations. Rev. 9 adds these requirements, ensuring agencies have measurable recovery objectives and have considered what happens when a vendor supporting FTI processing becomes unavailable.",
           "significance": "medium",
-          "tags": ["contingency-planning", "rto", "rpo", "backup", "cp-2", "cp-9", "supply-chain"]
+          "tags": [
+            "contingency-planning",
+            "rto",
+            "rpo",
+            "backup",
+            "cp-2",
+            "cp-9",
+            "supply-chain"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-017",
           "type": "added",
           "category": "configuration-management",
-          "controlId": { "old": null, "new": "CM-6, CM-7, CM-8" },
+          "controlId": {
+            "old": null,
+            "new": "CM-6, CM-7, CM-8"
+          },
           "title": "Configuration management baseline required for all FTI systems",
-          "area": "CM — Configuration Management",
+          "area": "CM \u2014 Configuration Management",
           "oldText": null,
           "newText": "Agencies must establish and maintain secure configuration baselines for all systems processing FTI. Baselines must be based on industry-accepted hardening guidance (e.g., DISA STIGs, CIS Benchmarks) appropriate for each system type. Agencies must maintain an accurate inventory of all hardware and software components in FTI systems. Deviations from established baselines must be documented, approved, and monitored. Configuration management must include processes to detect and alert on unauthorized configuration changes.",
           "rationale": "Configuration management was implied in Rev. 8 through reference to NIST controls but not explicitly required with specific content. Rev. 9 makes configuration baselines, inventory, and deviation management explicit requirements, directly addressing a top finding in IRS safeguards reviews where agencies lacked documented baselines or allowed configuration drift without detection.",
           "significance": "high",
-          "tags": ["configuration-management", "hardening", "disa-stig", "cis-benchmarks", "cm-6", "cm-7", "cm-8"]
+          "tags": [
+            "configuration-management",
+            "hardening",
+            "disa-stig",
+            "cis-benchmarks",
+            "cm-6",
+            "cm-7",
+            "cm-8"
+          ]
         },
         {
           "id": "change-irs4812-rev8-rev9-018",
           "type": "modified",
           "category": "physical-security",
-          "controlId": { "old": "PE-3", "new": "PE-3" },
-          "title": "Physical access controls updated — visitor logs and escort requirements clarified",
-          "area": "PE — Physical and Environmental Protection",
+          "controlId": {
+            "old": "PE-3",
+            "new": "PE-3"
+          },
+          "title": "Physical access controls updated \u2014 visitor logs and escort requirements clarified",
+          "area": "PE \u2014 Physical and Environmental Protection",
           "oldText": "Agencies must control physical access to facilities and systems containing FTI. Access must be limited to authorized personnel.",
           "newText": "Agencies must control physical access to all areas where FTI is processed, stored, or transmitted. Physical access controls must include: access authorization records for all individuals with physical access; visitor logs maintained for a minimum of three years; escort requirements for all visitors in areas containing FTI systems; physical access reviews conducted at least quarterly to verify that access authorizations remain appropriate; and controls to prevent unauthorized removal of media or equipment containing FTI.",
-          "rationale": "Rev. 8's physical security requirements were minimal. Rev. 9 adds specific requirements for visitor logs, escort procedures, and quarterly access reviews — addressing physical security gaps identified in IRS safeguards reviews, particularly at smaller state agencies where physical security policies were informal.",
+          "rationale": "Rev. 8's physical security requirements were minimal. Rev. 9 adds specific requirements for visitor logs, escort procedures, and quarterly access reviews \u2014 addressing physical security gaps identified in IRS safeguards reviews, particularly at smaller state agencies where physical security policies were informal.",
           "significance": "medium",
-          "tags": ["physical-security", "visitor-log", "escort", "pe-3", "access-review"]
+          "tags": [
+            "physical-security",
+            "visitor-log",
+            "escort",
+            "pe-3",
+            "access-review"
+          ]
         }
       ]
     },
@@ -283,11 +459,11 @@
         "totalFrom": 170,
         "totalTo": 186,
         "highlights": [
-          "New Section 7.0 — Artificial Intelligence: contractors strictly prohibited from entering FTI or SBU data into public AI tools (ChatGPT, Google Gemini, Anthropic Claude, etc.); Contracting Officer approval required before implementing any AI system; covers GenAI, ML, LLMs, chatbots, and RPA",
-          "Publication renamed: 'Contractor Security Controls' → 'Contractor Security & Privacy Controls' — reflecting full integration of the NIST PT (Privacy) control family throughout all FTI safeguarding requirements",
+          "New Section 7.0 \u2014 Artificial Intelligence: contractors strictly prohibited from entering FTI or SBU data into public AI tools (ChatGPT, Google Gemini, Anthropic Claude, etc.); Contracting Officer approval required before implementing any AI system; covers GenAI, ML, LLMs, chatbots, and RPA",
+          "Publication renamed: 'Contractor Security Controls' \u2192 'Contractor Security & Privacy Controls' \u2014 reflecting full integration of the NIST PT (Privacy) control family throughout all FTI safeguarding requirements",
           "C-SCRM designation applied to four controls: AC-23 (Data Mining Protection), AU-13 (Monitoring for Information Disclosure), AU-14 (Session Audit), AU-16 (Cross-Organization Audit Logging)",
-          "Privacy controls (PT family) integrated throughout — agencies must now implement privacy-specific controls in addition to security controls for systems processing FTI",
-          "Consolidates changes from Rev. 10-2024, Rev. 11-2024, and Rev. 12-2025 — intermediate revisions added C-SCRM controls and clarified AI governance before the full AI section was formalized in Rev. 12"
+          "Privacy controls (PT family) integrated throughout \u2014 agencies must now implement privacy-specific controls in addition to security controls for systems processing FTI",
+          "Consolidates changes from Rev. 10-2024, Rev. 11-2024, and Rev. 12-2025 \u2014 intermediate revisions added C-SCRM controls and clarified AI governance before the full AI section was formalized in Rev. 12"
         ]
       },
       "changes": [
@@ -295,183 +471,349 @@
           "id": "change-irs4812-rev9-rev12-001",
           "type": "added",
           "category": "artificial-intelligence",
-          "controlId": { "old": null, "new": "Section 7.0" },
-          "title": "New Section 7.0 — Artificial Intelligence: prohibition on FTI/SBU in public AI tools",
-          "area": "Program — Artificial Intelligence Governance",
+          "controlId": {
+            "old": null,
+            "new": "Section 7.0"
+          },
+          "title": "New Section 7.0 \u2014 Artificial Intelligence: prohibition on FTI/SBU in public AI tools",
+          "area": "Program \u2014 Artificial Intelligence Governance",
           "oldText": null,
           "newText": "Contractors are strictly prohibited from entering, uploading, or otherwise disclosing Federal Tax Information (FTI), Sensitive But Unclassified (SBU) data, or any IRS-sensitive information into publicly available artificial intelligence (AI) tools, platforms, or services. This prohibition applies to all generative AI (GenAI), large language models (LLMs), chatbots, machine learning (ML) platforms, robotic process automation (RPA) tools, and any other AI system that is not owned, operated, or explicitly approved by the IRS. Examples of prohibited tools include but are not limited to: ChatGPT, Google Bard/Gemini, Anthropic Claude, Microsoft Copilot (consumer tier), and similar publicly accessible AI services. Contractors must not use FTI or IRS SBU data to train, fine-tune, or improve any AI model. Prior to implementing any AI system in connection with IRS work, contractors must obtain written approval from the Contracting Officer (CO) and document the AI system's data handling, retention, and security controls. Contractors must include AI governance requirements in subcontracts and ensure subcontractors comply with this section.",
-          "rationale": "The proliferation of publicly available AI tools created a novel FTI exfiltration risk not addressed in Rev. 9. Employees and contractors interacting with AI assistants risk inadvertently disclosing taxpayer data, contract details, or IRS internal information to commercial AI providers whose models may use that data for training. Rev. 12 formalizes the IRS's prohibition and requires Contracting Officer approval for any AI implementation, ensuring IRS oversight of how AI intersects with FTI-handling workflows. This is one of the most significant additions in the Rev. 9 → Rev. 12 cycle.",
+          "rationale": "The proliferation of publicly available AI tools created a novel FTI exfiltration risk not addressed in Rev. 9. Employees and contractors interacting with AI assistants risk inadvertently disclosing taxpayer data, contract details, or IRS internal information to commercial AI providers whose models may use that data for training. Rev. 12 formalizes the IRS's prohibition and requires Contracting Officer approval for any AI implementation, ensuring IRS oversight of how AI intersects with FTI-handling workflows. This is one of the most significant additions in the Rev. 9 \u2192 Rev. 12 cycle.",
           "significance": "high",
-          "tags": ["artificial-intelligence", "ai-governance", "fti-prohibition", "genai", "llm", "chatgpt", "claude", "gemini", "co-approval", "sbu"]
+          "tags": [
+            "artificial-intelligence",
+            "ai-governance",
+            "fti-prohibition",
+            "genai",
+            "llm",
+            "chatgpt",
+            "claude",
+            "gemini",
+            "co-approval",
+            "sbu"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-002",
           "type": "restructured",
           "category": "scope-and-title",
-          "controlId": { "old": "Publication Title", "new": "Publication Title" },
-          "title": "Publication renamed to include 'Privacy Controls' — full PT family integration",
-          "area": "Framework — Scope and Title",
-          "oldText": "IRS Publication 4812 — Contractor Security Controls",
-          "newText": "IRS Publication 4812 — Contractor Security & Privacy Controls",
-          "rationale": "The title change reflects substantive integration of NIST SP 800-53 Rev 5's PT (Privacy) control family throughout the publication. Rev. 9 referenced the PT family via the NIST Rev 5 baseline alignment, but Rev. 12 formally incorporates privacy-specific requirements as first-class obligations — not merely references — for contractors handling FTI. The renamed title signals to agencies that privacy is now equally weighted with security in FTI safeguarding.",
+          "controlId": {
+            "old": "Publication Title",
+            "new": "Publication Title"
+          },
+          "title": "Publication renamed to include 'Privacy Controls' \u2014 full PT family integration",
+          "area": "Framework \u2014 Scope and Title",
+          "oldText": "IRS Publication 4812 \u2014 Contractor Security Controls",
+          "newText": "IRS Publication 4812 \u2014 Contractor Security & Privacy Controls",
+          "rationale": "The title change reflects substantive integration of NIST SP 800-53 Rev 5's PT (Privacy) control family throughout the publication. Rev. 9 referenced the PT family via the NIST Rev 5 baseline alignment, but Rev. 12 formally incorporates privacy-specific requirements as first-class obligations \u2014 not merely references \u2014 for contractors handling FTI. The renamed title signals to agencies that privacy is now equally weighted with security in FTI safeguarding.",
           "significance": "high",
-          "tags": ["title-change", "privacy", "pt-family", "scope-expansion", "fti"]
+          "tags": [
+            "title-change",
+            "privacy",
+            "pt-family",
+            "scope-expansion",
+            "fti"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-003",
           "type": "added",
           "category": "c-scrm",
-          "controlId": { "old": null, "new": "AC-23" },
+          "controlId": {
+            "old": null,
+            "new": "AC-23"
+          },
           "title": "AC-23 Data Mining Protection added as C-SCRM control",
-          "area": "AC — Access Control",
+          "area": "AC \u2014 Access Control",
           "oldText": null,
           "newText": "Agencies must employ data mining prevention and detection techniques for FTI systems and databases. Controls must prevent, detect, and log attempts to extract FTI in bulk through automated queries, reporting tools, or APIs. Data mining protections must include rate limiting for database queries, alerts for bulk data extractions that exceed defined thresholds, and restrictions on exporting FTI to unapproved external systems. This control is designated as a Contractor Supply Chain Risk Management (C-SCRM) requirement and must be implemented in contracts with vendors having database or API access to FTI systems.",
-          "rationale": "Data mining attacks — bulk extraction of FTI through legitimate-looking queries — represent a growing threat vector, particularly as agencies expose FTI systems through APIs for modernization efforts. The C-SCRM designation reflects that vendor access (through APIs or database integrations) is a primary pathway for data mining attacks on FTI. Agencies must flow this requirement down to vendors contractually.",
+          "rationale": "Data mining attacks \u2014 bulk extraction of FTI through legitimate-looking queries \u2014 represent a growing threat vector, particularly as agencies expose FTI systems through APIs for modernization efforts. The C-SCRM designation reflects that vendor access (through APIs or database integrations) is a primary pathway for data mining attacks on FTI. Agencies must flow this requirement down to vendors contractually.",
           "significance": "high",
-          "tags": ["data-mining", "ac-23", "c-scrm", "supply-chain", "api-security", "database", "bulk-extraction"]
+          "tags": [
+            "data-mining",
+            "ac-23",
+            "c-scrm",
+            "supply-chain",
+            "api-security",
+            "database",
+            "bulk-extraction"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-004",
           "type": "added",
           "category": "c-scrm",
-          "controlId": { "old": null, "new": "AU-13" },
+          "controlId": {
+            "old": null,
+            "new": "AU-13"
+          },
           "title": "AU-13 Monitoring for Information Disclosure added as C-SCRM control",
-          "area": "AU — Audit and Accountability",
+          "area": "AU \u2014 Audit and Accountability",
           "oldText": null,
           "newText": "Agencies must monitor open-source information and public-facing channels for evidence that FTI or agency-sensitive information has been inadvertently or maliciously disclosed. Monitoring must include: periodic searches of public data repositories, paste sites, and dark web sources for FTI indicators; monitoring of agency-authorized public communications (press releases, websites, social media) for unintentional FTI disclosure; and monitoring of contractor and vendor public communications for disclosure of IRS-sensitive information. This control is designated as a Contractor Supply Chain Risk Management (C-SCRM) requirement. Contractors must promptly report any discovered FTI disclosures to the IRS Office of Safeguards.",
           "rationale": "Public disclosure of FTI through open-source channels (GitHub repositories, Pastebin, dark web forums) has become increasingly common as agencies adopt cloud services and code repositories. AU-13 formally requires agencies and their contractors to monitor for these disclosures rather than waiting to be notified by external parties. The C-SCRM designation ensures this requirement flows to contractors who may inadvertently include FTI in public code repositories or documentation.",
           "significance": "high",
-          "tags": ["au-13", "c-scrm", "information-disclosure", "open-source-monitoring", "dark-web", "supply-chain", "contractor"]
+          "tags": [
+            "au-13",
+            "c-scrm",
+            "information-disclosure",
+            "open-source-monitoring",
+            "dark-web",
+            "supply-chain",
+            "contractor"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-005",
           "type": "added",
           "category": "c-scrm",
-          "controlId": { "old": null, "new": "AU-14" },
+          "controlId": {
+            "old": null,
+            "new": "AU-14"
+          },
           "title": "AU-14 Session Audit added as C-SCRM control",
-          "area": "AU — Audit and Accountability",
+          "area": "AU \u2014 Audit and Accountability",
           "oldText": null,
-          "newText": "Agencies must implement session auditing capabilities for privileged and remote user sessions on systems that process, store, or transmit FTI. Session audit must capture sufficient information to reconstruct the session — including commands executed, screens viewed, files accessed, and data transferred — to support incident investigation and insider threat detection. Session recordings must be stored in a tamper-protected location separate from the monitored system. Session audit capabilities must be implemented for contractor and vendor remote access sessions. This control is designated as a Contractor Supply Chain Risk Management (C-SCRM) requirement and must be included in contracts for managed services and remote support that involve FTI systems.",
-          "rationale": "Traditional audit logging captures what happened but not how. Session audit (screen and keystroke recording for privileged sessions) provides the forensic detail needed to reconstruct insider threats, compromised vendor access, and sophisticated attacks. The C-SCRM designation specifically targets the managed service provider and remote support vendor risk — a category that has been the source of several major government data breaches.",
+          "newText": "Agencies must implement session auditing capabilities for privileged and remote user sessions on systems that process, store, or transmit FTI. Session audit must capture sufficient information to reconstruct the session \u2014 including commands executed, screens viewed, files accessed, and data transferred \u2014 to support incident investigation and insider threat detection. Session recordings must be stored in a tamper-protected location separate from the monitored system. Session audit capabilities must be implemented for contractor and vendor remote access sessions. This control is designated as a Contractor Supply Chain Risk Management (C-SCRM) requirement and must be included in contracts for managed services and remote support that involve FTI systems.",
+          "rationale": "Traditional audit logging captures what happened but not how. Session audit (screen and keystroke recording for privileged sessions) provides the forensic detail needed to reconstruct insider threats, compromised vendor access, and sophisticated attacks. The C-SCRM designation specifically targets the managed service provider and remote support vendor risk \u2014 a category that has been the source of several major government data breaches.",
           "significance": "high",
-          "tags": ["au-14", "c-scrm", "session-audit", "privileged-session", "vendor-access", "insider-threat", "forensics", "supply-chain"]
+          "tags": [
+            "au-14",
+            "c-scrm",
+            "session-audit",
+            "privileged-session",
+            "vendor-access",
+            "insider-threat",
+            "forensics",
+            "supply-chain"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-006",
           "type": "added",
           "category": "c-scrm",
-          "controlId": { "old": null, "new": "AU-16" },
+          "controlId": {
+            "old": null,
+            "new": "AU-16"
+          },
           "title": "AU-16 Cross-Organization Audit Logging added as C-SCRM control",
-          "area": "AU — Audit and Accountability",
+          "area": "AU \u2014 Audit and Accountability",
           "oldText": null,
           "newText": "Agencies must establish audit logging requirements that extend across organizational boundaries to cover third-party service providers and contractors with access to FTI systems. Cross-organization audit logging must ensure: contractors and vendors generate and retain audit logs meeting IRS Publication 4812 requirements for their FTI-connected systems; audit logs from contractor systems are accessible to the agency and IRS Office of Safeguards for incident investigation; agencies and contractors establish agreed-upon audit log formats and transfer mechanisms to support unified audit analysis; and audit log retention requirements (minimum seven years for FTI systems) apply equally to contractor-maintained logs. This control is designated as a Contractor Supply Chain Risk Management (C-SCRM) requirement and must be specified in all contracts involving FTI system access.",
-          "rationale": "A critical gap in FTI audit programs has been that contractors operate their own systems outside agency audit log collection — meaning that when FTI incidents originate in contractor environments, the agency lacks the logs needed to investigate. AU-16 directly addresses this by requiring contractual audit log sharing and ensuring FTI system audit coverage extends to every organization in the supply chain.",
+          "rationale": "A critical gap in FTI audit programs has been that contractors operate their own systems outside agency audit log collection \u2014 meaning that when FTI incidents originate in contractor environments, the agency lacks the logs needed to investigate. AU-16 directly addresses this by requiring contractual audit log sharing and ensuring FTI system audit coverage extends to every organization in the supply chain.",
           "significance": "high",
-          "tags": ["au-16", "c-scrm", "cross-organization", "audit-logging", "contractor", "supply-chain", "log-retention", "incident-investigation"]
+          "tags": [
+            "au-16",
+            "c-scrm",
+            "cross-organization",
+            "audit-logging",
+            "contractor",
+            "supply-chain",
+            "log-retention",
+            "incident-investigation"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-007",
           "type": "added",
           "category": "privacy",
-          "controlId": { "old": null, "new": "PT-1, PT-2, PT-3" },
-          "title": "PT (Privacy) family controls formally required — not just referenced",
-          "area": "PT — PII Processing and Transparency",
+          "controlId": {
+            "old": null,
+            "new": "PT-1, PT-2, PT-3"
+          },
+          "title": "PT (Privacy) family controls formally required \u2014 not just referenced",
+          "area": "PT \u2014 PII Processing and Transparency",
           "oldText": null,
-          "newText": "Agencies must implement NIST SP 800-53 Rev 5 PT (PII Processing and Transparency) controls as binding requirements for all systems processing FTI. Required controls include: PT-1 (Policy and Procedures for PII processing), PT-2 (Authority to Process PII — agencies must document the legal authority under which each FTI dataset is processed), PT-3 (Personally Identifiable Information Processing Purposes — limiting collection and use to statutory purposes under IRC Section 6103), PT-4 (Consent and Receipt), PT-5 (Privacy Notice), PT-6 (System of Records Notice), and PT-7 (Specific Categories of Personally Identifiable Information). Agencies must designate a Privacy Officer or privacy point of contact responsible for FTI privacy compliance and include PT control requirements in contracts with vendors processing FTI.",
-          "rationale": "While Rev. 9 aligned to NIST Rev 5 (which includes the PT family), it referenced privacy controls through the baseline rather than explicitly enumerating FTI-specific privacy requirements. The publication rename and this change elevate the PT family from implicit baseline controls to explicit FTI safeguarding requirements with named controls and a required Privacy Officer designation. This ensures agencies treat FTI privacy as a compliance obligation — not just a security byproduct.",
+          "newText": "Agencies must implement NIST SP 800-53 Rev 5 PT (PII Processing and Transparency) controls as binding requirements for all systems processing FTI. Required controls include: PT-1 (Policy and Procedures for PII processing), PT-2 (Authority to Process PII \u2014 agencies must document the legal authority under which each FTI dataset is processed), PT-3 (Personally Identifiable Information Processing Purposes \u2014 limiting collection and use to statutory purposes under IRC Section 6103), PT-4 (Consent and Receipt), PT-5 (Privacy Notice), PT-6 (System of Records Notice), and PT-7 (Specific Categories of Personally Identifiable Information). Agencies must designate a Privacy Officer or privacy point of contact responsible for FTI privacy compliance and include PT control requirements in contracts with vendors processing FTI.",
+          "rationale": "While Rev. 9 aligned to NIST Rev 5 (which includes the PT family), it referenced privacy controls through the baseline rather than explicitly enumerating FTI-specific privacy requirements. The publication rename and this change elevate the PT family from implicit baseline controls to explicit FTI safeguarding requirements with named controls and a required Privacy Officer designation. This ensures agencies treat FTI privacy as a compliance obligation \u2014 not just a security byproduct.",
           "significance": "high",
-          "tags": ["privacy", "pt-family", "pii", "irc-6103", "privacy-officer", "data-minimization", "consent", "nist-rev5"]
+          "tags": [
+            "privacy",
+            "pt-family",
+            "pii",
+            "irc-6103",
+            "privacy-officer",
+            "data-minimization",
+            "consent",
+            "nist-rev5"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-008",
           "type": "modified",
           "category": "ai-governance",
-          "controlId": { "old": "SA-11, SA-15", "new": "SA-11, SA-15, Section 7.0" },
+          "controlId": {
+            "old": "SA-11, SA-15",
+            "new": "SA-11, SA-15, Section 7.0"
+          },
           "title": "Software development and acquisition controls updated for AI components",
-          "area": "SA — System and Services Acquisition",
+          "area": "SA \u2014 System and Services Acquisition",
           "oldText": "Agencies must implement security controls throughout the software development lifecycle for systems processing FTI, including code reviews, security testing, and secure coding standards.",
           "newText": "Agencies must implement security controls throughout the software development lifecycle for systems processing FTI, including code reviews, security testing, and secure coding standards. For systems incorporating artificial intelligence (AI) components, agencies must additionally: perform AI-specific risk assessments prior to deployment; document training data sources and ensure no FTI or SBU data was used in model training; implement controls to detect and prevent AI model manipulation (prompt injection, adversarial inputs); test AI components for biased or discriminatory outputs that could affect taxpayer service; and obtain Contracting Officer approval before incorporating AI components into FTI-processing systems (reference Section 7.0).",
           "rationale": "As agencies modernize FTI-handling systems, AI components (chatbots, automated decision systems, ML-based fraud detection) are increasingly embedded in FTI workflows. Rev. 12 updates the SA control requirements to explicitly address AI component security, ensuring that the AI governance requirements in Section 7.0 are mirrored in the software acquisition and development lifecycle controls.",
           "significance": "high",
-          "tags": ["ai-governance", "sa-11", "sa-15", "software-development", "ai-risk-assessment", "prompt-injection", "training-data", "co-approval"]
+          "tags": [
+            "ai-governance",
+            "sa-11",
+            "sa-15",
+            "software-development",
+            "ai-risk-assessment",
+            "prompt-injection",
+            "training-data",
+            "co-approval"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-009",
           "type": "modified",
           "category": "supply-chain",
-          "controlId": { "old": "SR-1, SR-2, SR-3", "new": "SR-1 through SR-12" },
-          "title": "C-SCRM program requirements expanded — full SR family now required",
-          "area": "SR — Supply Chain Risk Management",
+          "controlId": {
+            "old": "SR-1, SR-2, SR-3",
+            "new": "SR-1 through SR-12"
+          },
+          "title": "C-SCRM program requirements expanded \u2014 full SR family now required",
+          "area": "SR \u2014 Supply Chain Risk Management",
           "oldText": "Agencies must establish and implement a supply chain risk management (SCRM) plan for systems that process, store, or transmit FTI. The SCRM plan must identify all third-party vendors and service providers with access to FTI systems; assess and document supply chain risks; establish contractual requirements for vendors to comply with applicable FTI safeguarding provisions; and include procedures for responding to supply chain compromises affecting FTI.",
-          "newText": "Agencies must establish and operate a comprehensive Contractor Supply Chain Risk Management (C-SCRM) program for all systems processing FTI. The C-SCRM program must implement the full NIST SP 800-53 Rev 5 SR control family including: SR-2 (Supply Chain Risk Management Plan); SR-3 (Supply Chain Controls and Processes); SR-5 (Acquisition Strategies and Tools); SR-6 (Supplier Assessments and Reviews — annual security assessments for vendors with FTI access); SR-8 (Notification Agreements — vendors must notify agencies of supply chain incidents within 24 hours); SR-10 (Inspection of Systems and Components — right to inspect vendor FTI systems); SR-11 (Component Authenticity — controls to detect counterfeit or tampered components in FTI systems); and SR-12 (Component Disposal — secure disposal requirements for components that processed FTI). C-SCRM designation controls (AC-23, AU-13, AU-14, AU-16) must be flowed down to all vendors with FTI system access.",
+          "newText": "Agencies must establish and operate a comprehensive Contractor Supply Chain Risk Management (C-SCRM) program for all systems processing FTI. The C-SCRM program must implement the full NIST SP 800-53 Rev 5 SR control family including: SR-2 (Supply Chain Risk Management Plan); SR-3 (Supply Chain Controls and Processes); SR-5 (Acquisition Strategies and Tools); SR-6 (Supplier Assessments and Reviews \u2014 annual security assessments for vendors with FTI access); SR-8 (Notification Agreements \u2014 vendors must notify agencies of supply chain incidents within 24 hours); SR-10 (Inspection of Systems and Components \u2014 right to inspect vendor FTI systems); SR-11 (Component Authenticity \u2014 controls to detect counterfeit or tampered components in FTI systems); and SR-12 (Component Disposal \u2014 secure disposal requirements for components that processed FTI). C-SCRM designation controls (AC-23, AU-13, AU-14, AU-16) must be flowed down to all vendors with FTI system access.",
           "rationale": "Rev. 9 introduced SR controls at a high level. The intermediate revisions (Rev. 10, Rev. 11) and Rev. 12 progressively expanded C-SCRM requirements to cover the full SR control family and introduced the 'C-SCRM designation' label on specific controls that must flow to contractors. This reflects the growing recognition that supply chain attacks (SolarWinds, MOVEit, XZ Utils) represent a primary pathway to FTI compromise and require a structured, comprehensive program rather than a compliance checklist.",
           "significance": "high",
-          "tags": ["c-scrm", "supply-chain", "sr-family", "vendor-assessment", "counterfeit", "component-disposal", "sr-6", "sr-8", "sr-11", "sr-12"]
+          "tags": [
+            "c-scrm",
+            "supply-chain",
+            "sr-family",
+            "vendor-assessment",
+            "counterfeit",
+            "component-disposal",
+            "sr-6",
+            "sr-8",
+            "sr-11",
+            "sr-12"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-010",
           "type": "modified",
           "category": "incident-response",
-          "controlId": { "old": "IR-6", "new": "IR-6" },
+          "controlId": {
+            "old": "IR-6",
+            "new": "IR-6"
+          },
           "title": "FTI breach notification updated to include AI-related incidents",
-          "area": "IR — Incident Response",
+          "area": "IR \u2014 Incident Response",
           "oldText": "Agencies must report suspected or confirmed FTI breaches to the IRS Office of Safeguards within 24 hours of discovery. The initial report must include all known details about the incident at the time of reporting, with updates provided as additional information becomes available.",
           "newText": "Agencies must report suspected or confirmed FTI breaches to the IRS Office of Safeguards within 24 hours of discovery. The initial report must include all known details about the incident at the time of reporting, with updates provided as additional information becomes available. Breach notification must specifically include incidents involving: unauthorized disclosure of FTI to AI tools or platforms (including accidental entry into public AI systems by employees); supply chain incidents affecting FTI system integrity; and incidents where AI or automated systems were involved in processing FTI without Contracting Officer authorization. Agencies must include AI incident categories in their incident response plans and train personnel on recognizing and reporting AI-related FTI disclosures.",
-          "rationale": "The proliferation of AI tools created a new incident category — accidental FTI disclosure to public AI platforms — that was not addressed in Rev. 9's breach notification requirements. Rev. 12 explicitly adds this category to ensure agencies treat AI-related FTI disclosures with the same urgency as traditional breaches and train personnel to recognize and report them.",
+          "rationale": "The proliferation of AI tools created a new incident category \u2014 accidental FTI disclosure to public AI platforms \u2014 that was not addressed in Rev. 9's breach notification requirements. Rev. 12 explicitly adds this category to ensure agencies treat AI-related FTI disclosures with the same urgency as traditional breaches and train personnel to recognize and report them.",
           "significance": "high",
-          "tags": ["incident-response", "ir-6", "ai-incident", "breach-notification", "fti-disclosure", "training", "supply-chain-incident"]
+          "tags": [
+            "incident-response",
+            "ir-6",
+            "ai-incident",
+            "breach-notification",
+            "fti-disclosure",
+            "training",
+            "supply-chain-incident"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-011",
           "type": "modified",
           "category": "training",
-          "controlId": { "old": "AT-2, AT-3", "new": "AT-2, AT-3" },
+          "controlId": {
+            "old": "AT-2, AT-3",
+            "new": "AT-2, AT-3"
+          },
           "title": "Security awareness training updated to include AI governance and C-SCRM",
-          "area": "AT — Awareness and Training",
+          "area": "AT \u2014 Awareness and Training",
           "oldText": "Agencies must provide annual FTI-specific security awareness training to all personnel with access to FTI. Training must cover the requirements of IRS Publication 4812, handling procedures for FTI, incident reporting requirements, and consequences of unauthorized disclosure.",
-          "newText": "Agencies must provide annual FTI-specific security awareness training to all personnel with access to FTI or FTI systems. Training must cover: requirements of IRS Publication 4812 (current revision); FTI handling procedures and authorized use cases; incident reporting requirements and procedures; consequences of unauthorized disclosure including criminal penalties under IRC Section 7213; AI governance requirements — specifically the prohibition on entering FTI or SBU data into public AI tools and the requirement for Contracting Officer approval for AI implementation; supply chain security awareness — recognizing and reporting suspicious vendor activity or supply chain anomalies; and social engineering and phishing recognition specific to FTI-handling environments. Training must be completed within 30 days of hire and annually thereafter. Completion records must be maintained and available for IRS review.",
-          "rationale": "Training requirements had not been substantially updated since before AI tools became ubiquitous workplace applications. Rev. 12 updates training to explicitly cover the Section 7.0 AI prohibition — the most likely point of failure, since employees may not realize that entering client information into a chat assistant constitutes an FTI disclosure — and adds supply chain security awareness reflecting C-SCRM program expansion.",
+          "newText": "Agencies must provide annual FTI-specific security awareness training to all personnel with access to FTI or FTI systems. Training must cover: requirements of IRS Publication 4812 (current revision); FTI handling procedures and authorized use cases; incident reporting requirements and procedures; consequences of unauthorized disclosure including criminal penalties under IRC Section 7213; AI governance requirements \u2014 specifically the prohibition on entering FTI or SBU data into public AI tools and the requirement for Contracting Officer approval for AI implementation; supply chain security awareness \u2014 recognizing and reporting suspicious vendor activity or supply chain anomalies; and social engineering and phishing recognition specific to FTI-handling environments. Training must be completed within 30 days of hire and annually thereafter. Completion records must be maintained and available for IRS review.",
+          "rationale": "Training requirements had not been substantially updated since before AI tools became ubiquitous workplace applications. Rev. 12 updates training to explicitly cover the Section 7.0 AI prohibition \u2014 the most likely point of failure, since employees may not realize that entering client information into a chat assistant constitutes an FTI disclosure \u2014 and adds supply chain security awareness reflecting C-SCRM program expansion.",
           "significance": "medium",
-          "tags": ["training", "awareness", "at-2", "at-3", "ai-governance", "c-scrm", "social-engineering", "phishing", "irc-7213"]
+          "tags": [
+            "training",
+            "awareness",
+            "at-2",
+            "at-3",
+            "ai-governance",
+            "c-scrm",
+            "social-engineering",
+            "phishing",
+            "irc-7213"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-012",
           "type": "modified",
           "category": "access-control",
-          "controlId": { "old": "AC-2", "new": "AC-2" },
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
           "title": "Account management updated for AI service accounts and automated processes",
-          "area": "AC — Access Control",
+          "area": "AC \u2014 Access Control",
           "oldText": "Agencies must manage accounts for FTI systems including creation, modification, disabling, and removal. Privileged accounts must be reviewed at least every 90 days.",
-          "newText": "Agencies must manage accounts for FTI systems including creation, modification, disabling, and removal. Privileged accounts must be reviewed at least every 90 days. Account management must now explicitly cover: service accounts used by automated processes and AI systems accessing FTI data — these must be inventoried, assigned to a responsible owner, have access limited to the minimum necessary, and be reviewed quarterly; API keys and tokens used by automated systems to access FTI — these must be rotated at least annually and revoked immediately upon personnel departure or contract termination; non-human identities in AI workflows must be treated equivalently to privileged accounts and receive the same level of oversight.",
-          "rationale": "Modern FTI systems increasingly use service accounts, API keys, and automated tokens — non-human identities that are often created by contractors and left active after project completion. The addition of AI workflows creates new categories of non-human identities. Rev. 12 updates AC-2 to explicitly require the same account lifecycle management for automated and AI-related identities as for human users.",
+          "newText": "Agencies must manage accounts for FTI systems including creation, modification, disabling, and removal. Privileged accounts must be reviewed at least every 90 days. Account management must now explicitly cover: service accounts used by automated processes and AI systems accessing FTI data \u2014 these must be inventoried, assigned to a responsible owner, have access limited to the minimum necessary, and be reviewed quarterly; API keys and tokens used by automated systems to access FTI \u2014 these must be rotated at least annually and revoked immediately upon personnel departure or contract termination; non-human identities in AI workflows must be treated equivalently to privileged accounts and receive the same level of oversight.",
+          "rationale": "Modern FTI systems increasingly use service accounts, API keys, and automated tokens \u2014 non-human identities that are often created by contractors and left active after project completion. The addition of AI workflows creates new categories of non-human identities. Rev. 12 updates AC-2 to explicitly require the same account lifecycle management for automated and AI-related identities as for human users.",
           "significance": "medium",
-          "tags": ["access-control", "ac-2", "service-accounts", "api-keys", "non-human-identity", "ai-access", "account-management", "privileged-access"]
+          "tags": [
+            "access-control",
+            "ac-2",
+            "service-accounts",
+            "api-keys",
+            "non-human-identity",
+            "ai-access",
+            "account-management",
+            "privileged-access"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-013",
           "type": "restructured",
           "category": "ssr-reporting",
-          "controlId": { "old": "SSR", "new": "SSR" },
-          "title": "Safeguards Security Report (SSR) updated — AI inventory and C-SCRM sections added",
-          "area": "Program — Oversight and Reporting",
+          "controlId": {
+            "old": "SSR",
+            "new": "SSR"
+          },
+          "title": "Safeguards Security Report (SSR) updated \u2014 AI inventory and C-SCRM sections added",
+          "area": "Program \u2014 Oversight and Reporting",
           "oldText": "Agencies must complete an annual Safeguards Security Report (SSR) documenting their compliance with IRS Publication 4812 Rev. 9 requirements. The SSR must include: system inventory for all systems processing FTI; results of required security control assessments; open findings and remediation plans with target dates; and certification by agency executive leadership.",
-          "newText": "Agencies must complete an annual Safeguards Security Report (SSR) documenting their compliance with IRS Publication 4812 requirements (current revision). The SSR template has been updated to include two new sections: (1) AI Inventory — agencies must disclose all AI systems used in connection with IRS work, document Contracting Officer approvals received, and certify that no FTI or SBU data has been entered into unauthorized AI tools; (2) C-SCRM Status — agencies must provide status of their Contractor Supply Chain Risk Management program including vendor assessments completed, C-SCRM control implementation status, and supply chain incidents reported during the year. The existing SSR sections (system inventory, control assessment results, open findings, executive certification) remain required. Agencies must use the IRS-provided SSR template for the applicable revision year.",
-          "rationale": "The SSR is the primary mechanism by which the IRS tracks FTI safeguarding compliance across thousands of agencies. Adding AI inventory and C-SCRM status sections to the SSR ensures agencies cannot simply ignore the new AI governance and supply chain requirements — they must formally certify compliance annually. The AI certification is particularly important as it creates accountability for the Section 7.0 prohibition.",
+          "newText": "Agencies must complete an annual Safeguards Security Report (SSR) documenting their compliance with IRS Publication 4812 requirements (current revision). The SSR template has been updated to include two new sections: (1) AI Inventory \u2014 agencies must disclose all AI systems used in connection with IRS work, document Contracting Officer approvals received, and certify that no FTI or SBU data has been entered into unauthorized AI tools; (2) C-SCRM Status \u2014 agencies must provide status of their Contractor Supply Chain Risk Management program including vendor assessments completed, C-SCRM control implementation status, and supply chain incidents reported during the year. The existing SSR sections (system inventory, control assessment results, open findings, executive certification) remain required. Agencies must use the IRS-provided SSR template for the applicable revision year.",
+          "rationale": "The SSR is the primary mechanism by which the IRS tracks FTI safeguarding compliance across thousands of agencies. Adding AI inventory and C-SCRM status sections to the SSR ensures agencies cannot simply ignore the new AI governance and supply chain requirements \u2014 they must formally certify compliance annually. The AI certification is particularly important as it creates accountability for the Section 7.0 prohibition.",
           "significance": "high",
-          "tags": ["ssr", "reporting", "ai-inventory", "c-scrm", "executive-certification", "compliance", "oversight"]
+          "tags": [
+            "ssr",
+            "reporting",
+            "ai-inventory",
+            "c-scrm",
+            "executive-certification",
+            "compliance",
+            "oversight"
+          ]
         },
         {
           "id": "change-irs4812-rev9-rev12-014",
           "type": "modified",
           "category": "cloud",
-          "controlId": { "old": "FedRAMP Moderate", "new": "FedRAMP Moderate + AI" },
-          "title": "Cloud guidance updated — AI cloud services require additional FedRAMP controls",
-          "area": "SA — System and Services Acquisition",
+          "controlId": {
+            "old": "FedRAMP Moderate",
+            "new": "FedRAMP Moderate + AI"
+          },
+          "title": "Cloud guidance updated \u2014 AI cloud services require additional FedRAMP controls",
+          "area": "SA \u2014 System and Services Acquisition",
           "oldText": "Agencies using cloud services to process FTI must use cloud service providers (CSPs) that hold a FedRAMP Moderate or High authorization applicable to the FTI workload. Agencies must obtain an Authority to Operate (ATO) or equivalent authorization before processing FTI in cloud environments.",
           "newText": "Agencies using cloud services to process FTI must use cloud service providers (CSPs) that hold a FedRAMP Moderate or High authorization applicable to the FTI workload. Agencies must obtain an Authority to Operate (ATO) or equivalent authorization before processing FTI in cloud environments. Cloud-based AI services (including AI APIs, ML platforms, and AI-assisted productivity tools offered through cloud providers) require additional review: the AI service must be part of the CSP's FedRAMP authorization boundary (not separately hosted); FTI must not be transmitted to AI model training endpoints; and agencies must verify that the CSP's AI services do not use customer data for model training without explicit opt-out. AI services offered by FedRAMP-authorized CSPs that do not include AI services in their authorization boundary are not authorized for FTI processing. Agencies must obtain Contracting Officer approval (per Section 7.0) before using any cloud-based AI service in connection with FTI.",
           "rationale": "The original FedRAMP requirement for cloud FTI processing did not contemplate AI services, which many FedRAMP-authorized providers now offer as add-ons. A CSP may be FedRAMP-authorized for infrastructure (IaaS) while offering AI services that are NOT within their authorization boundary. Rev. 12 closes this gap by requiring that AI services used with FTI be within the CSP's FedRAMP boundary and not use FTI for training.",
           "significance": "high",
-          "tags": ["cloud", "fedramp", "ai-cloud", "authorization-boundary", "csp", "model-training", "ato", "co-approval"]
+          "tags": [
+            "cloud",
+            "fedramp",
+            "ai-cloud",
+            "authorization-boundary",
+            "csp",
+            "model-training",
+            "ato",
+            "co-approval"
+          ]
         }
       ]
     }

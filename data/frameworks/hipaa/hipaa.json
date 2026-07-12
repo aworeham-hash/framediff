@@ -19,6 +19,462 @@
   ],
   "latestVersion": "2025 (Final Rule)",
   "transitions": {
+    "2003-to-2009": {
+      "fromVersion": "2003 (Privacy Rule)",
+      "toVersion": "2009 (HITECH)",
+      "summary": {
+        "added": 3,
+        "removed": 0,
+        "modified": 3,
+        "restructured": 0,
+        "highlights": [
+          "HITECH Act enacted: business associates made directly liable for Security Rule compliance",
+          "Breach Notification Rule introduced (interim final rule) with 60-day notification requirement",
+          "Enforcement significantly strengthened: tiered penalties up to $1.5M per violation category",
+          "Electronic health record (EHR) adoption incentives created meaningful use requirements",
+          "Business associates required to comply with Security Rule even without contractual obligation"
+        ]
+      },
+      "changes": [
+        {
+          "id": "hipaa-2009-001",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "HITECH Act \u00a7 13401"
+          },
+          "title": "HITECH Act \u2014 Business Associates Directly Subject to HIPAA Security Rule",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": null,
+          "newText": "Section 13401 of the HITECH Act (42 U.S.C. \u00a7 17931) made business associates directly subject to the HIPAA Security Rule requirements that apply to covered entities. Business associates must implement administrative, physical, and technical safeguards for ePHI they create, receive, maintain, or transmit. Business associates are directly liable to HHS OCR for Security Rule violations independent of any business associate agreement.",
+          "rationale": "Prior to HITECH, business associates were only obligated to protect PHI through contractual BAAs \u2014 there was no direct regulatory liability. HITECH fundamentally changed this by making BAs directly liable, enabling OCR to investigate and penalize BAs directly. This was enacted in response to data breaches at BA organizations that faced no regulatory consequences.",
+          "significance": "high",
+          "tags": [
+            "HITECH",
+            "business-associate",
+            "direct-liability",
+            "Security-Rule"
+          ]
+        },
+        {
+          "id": "hipaa-2009-002",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "HITECH Act \u00a7 13402"
+          },
+          "title": "HITECH Act \u2014 Breach Notification Requirement Established",
+          "area": "164.400 - Breach Notification",
+          "oldText": null,
+          "newText": "Section 13402 of the HITECH Act required covered entities to notify affected individuals, HHS, and (for breaches affecting 500+ individuals in a state) prominent media outlets of breaches of unsecured PHI. Notification must occur without unreasonable delay and within 60 calendar days of discovery. An interim final rule (45 CFR Parts 160 and 164) was issued in August 2009 implementing these requirements. The interim rule included a 'harm threshold' (notification only if breach poses significant risk of harm) that was later removed by the 2013 Omnibus Rule.",
+          "rationale": "Before HITECH, there was no statutory requirement to notify individuals or HHS of PHI breaches. Several high-profile data breaches at healthcare organizations and their business associates occurred without patient notification. HITECH created the first federal healthcare breach notification requirement.",
+          "significance": "high",
+          "tags": [
+            "HITECH",
+            "breach-notification",
+            "60-day",
+            "media-notification",
+            "harm-threshold"
+          ]
+        },
+        {
+          "id": "hipaa-2009-003",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "HITECH Act \u00a7 13410"
+          },
+          "title": "HITECH Act \u2014 Tiered Civil Money Penalties Established",
+          "area": "164.306 - Security Standards: General Rules",
+          "oldText": null,
+          "newText": "Section 13410 of the HITECH Act established tiered civil money penalties: (1) unknowing violations ($100-$50K per violation, max $25K per year pre-HITECH, now max $1.5M per category per year); (2) reasonable cause ($1K-$100K); (3) willful neglect corrected ($10K-$250K); (4) willful neglect not corrected ($50K-$1.5M). State attorneys general were also authorized to bring civil actions for HIPAA violations on behalf of state residents.",
+          "rationale": "Pre-HITECH HIPAA penalties maxed at $100 per violation with a $25,000 annual cap per violation category, which created insufficient deterrence. Multiple covered entities suffered large-scale breaches with minimal regulatory consequences. HITECH dramatically increased penalty authority to create meaningful deterrence.",
+          "significance": "high",
+          "tags": [
+            "HITECH",
+            "civil-money-penalties",
+            "enforcement",
+            "state-AG"
+          ]
+        },
+        {
+          "id": "hipaa-2009-004",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(a)(1)",
+            "new": "164.308(a)(1)"
+          },
+          "title": "Security Management \u2014 Risk Analysis Required for Meaningful Use EHR Attestation",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "A covered entity must implement policies and procedures to prevent, detect, contain, and correct security violations. Risk analysis: conduct an accurate and thorough assessment of potential risks and vulnerabilities to the confidentiality, integrity, and availability of ePHI.",
+          "newText": "A covered entity must implement policies and procedures to prevent, detect, contain, and correct security violations. Risk analysis is required, and in the context of HITECH meaningful use incentives, completion of a HIPAA Security Risk Assessment (SRA) became a required attestation for eligible providers seeking EHR incentive payments. The risk analysis must assess the potential risks and vulnerabilities to the confidentiality, integrity, and availability of all ePHI that the organization creates, receives, maintains, or transmits.",
+          "rationale": "The HITECH Act created financial incentives for EHR adoption under the Medicare and Medicaid EHR Incentive Programs (Meaningful Use). One mandatory attestation requirement was completion of a HIPAA Security Risk Assessment. This dramatically increased compliance with the risk analysis requirement as providers sought incentive payments.",
+          "significance": "medium",
+          "tags": [
+            "risk-analysis",
+            "meaningful-use",
+            "EHR",
+            "SRA",
+            "HITECH"
+          ]
+        },
+        {
+          "id": "hipaa-2009-005",
+          "type": "modified",
+          "controlId": {
+            "old": "164.530(e)",
+            "new": "164.530(e)"
+          },
+          "title": "Accounting of Disclosures \u2014 EHR Disclosure Accounting Expanded",
+          "area": "164.530 - Administrative Requirements",
+          "oldText": "An individual has a right to receive an accounting of disclosures of protected health information made by a covered entity for the six years prior to the date on which the accounting is requested.",
+          "newText": "An individual has a right to receive an accounting of disclosures. For covered entities using an EHR, HITECH extended the accounting of disclosures requirement to include disclosures for treatment, payment, and health care operations (previously excluded). For EHR-based disclosures, the accounting period extends back three years (rather than six). This requirement was controversial and full implementation was delayed pending rulemaking.",
+          "rationale": "HITECH required HHS to expand accounting of disclosures for EHR users to include treatment, payment, and health care operations disclosures \u2014 a significant expansion from prior HIPAA rules. This provision was intended to improve transparency for patients whose EHR data is widely shared in health information exchanges.",
+          "significance": "medium",
+          "tags": [
+            "accounting-of-disclosures",
+            "EHR",
+            "treatment-payment-operations",
+            "HITECH"
+          ]
+        },
+        {
+          "id": "hipaa-2009-006",
+          "type": "modified",
+          "controlId": {
+            "old": "164.530(d)",
+            "new": "164.530(d)"
+          },
+          "title": "Training \u2014 Security Awareness Training Made Explicit Best Practice for EHR Users",
+          "area": "164.530 - Administrative Requirements",
+          "oldText": "A covered entity must train all members of its workforce on the policies and procedures with respect to protected health information required by this subpart and subpart D, as necessary and appropriate for the members of the workforce to carry out their functions.",
+          "newText": "Workforce training requirements remain unchanged in statute, but HITECH-era guidance and meaningful use criteria made security awareness training a prominent focus. CMS and ONC guidance for meaningful use attestation emphasized security training for all workforce members accessing EHR systems. The Office of the National Coordinator (ONC) published guidance on EHR security training content requirements for meaningful use compliance.",
+          "rationale": "Meaningful use required covered entities to have implemented HIPAA security training. While the regulatory text did not change, HITECH-era policy guidance significantly elevated the practical expectations for training programs, particularly for workforce members accessing electronic health records.",
+          "significance": "low",
+          "tags": [
+            "training",
+            "meaningful-use",
+            "EHR",
+            "workforce",
+            "HITECH"
+          ]
+        }
+      ]
+    },
+    "2009-to-2013": {
+      "fromVersion": "2009 (HITECH)",
+      "toVersion": "2013 (Omnibus)",
+      "summary": {
+        "added": 5,
+        "removed": 0,
+        "modified": 9,
+        "restructured": 0,
+        "highlights": [
+          "Business Associate Agreements (BAAs) made mandatory by statute \u2014 BAs now directly liable under HIPAA Security Rule",
+          "Breach Notification Rule finalized: 60-day notification required, 'harm threshold' removed",
+          "Civil Money Penalties tiered into four categories with maximums up to $1.5M per violation category per year",
+          "Marketing and fundraising restrictions tightened: prior authorization required for most treatment/payment marketing using PHI",
+          "Minimum Necessary standard strengthened and applied to all disclosures including to BAs",
+          "Research: simplified authorization for future research use and combination authorizations allowed",
+          "Right of Access: individuals may request electronic copies of PHI in ePHI format",
+          "Sale of PHI prohibited without explicit authorization",
+          "Subcontractor BAs: BAs must enter BAAs with their own subcontractors handling PHI"
+        ]
+      },
+      "changes": [
+        {
+          "id": "hipaa-2013-001",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(b)(1)",
+            "new": "164.308(b)(1)"
+          },
+          "title": "Business Associate Contracts \u2014 BAs Directly Liable Under Security Rule",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "A covered entity may permit a business associate to create, receive, maintain, or transmit electronic protected health information on the covered entity's behalf only if the covered entity obtains satisfactory assurances, in accordance with 164.314(a), that the business associate will appropriately safeguard the information.",
+          "newText": "A covered entity may permit a business associate to create, receive, maintain, or transmit electronic protected health information on the covered entity's behalf only if the covered entity obtains satisfactory assurances, in accordance with 164.314(a), that the business associate will appropriately safeguard the information. Business associates are directly liable for compliance with the Security Rule requirements applicable to them, regardless of whether they have a signed BAA. Business associates of business associates (subcontractors) must also have BAAs in place.",
+          "rationale": "The HITECH Act (2009) made business associates directly liable for HIPAA compliance by statute. The 2013 Omnibus Rule finalized this change in regulations. Prior to 2013, BAs were only contractually obligated; now they face direct enforcement and civil penalties from HHS OCR.",
+          "significance": "high",
+          "tags": [
+            "business-associate",
+            "BAA",
+            "direct-liability",
+            "HITECH",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-002",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.400-414"
+          },
+          "title": "Breach Notification Rule \u2014 60-Day Notification, Harm Threshold Removed",
+          "area": "164.400 - Breach Notification",
+          "oldText": null,
+          "newText": "Following the discovery of a breach of unsecured protected health information, a covered entity must notify each individual whose unsecured PHI has been, or is reasonably believed to have been, accessed, acquired, used, or disclosed as a result of such breach. Notification must be provided without unreasonable delay and in no case later than 60 calendar days after discovery of the breach. The 2009 interim rule's 'harm threshold' (requiring breach notification only when the breach posed significant risk of financial, reputational, or other harm) is replaced by a presumption that all breaches require notification unless the covered entity demonstrates low probability that PHI was compromised under a four-factor risk assessment.",
+          "rationale": "The 2009 HITECH interim breach notification rule included a 'harm threshold' that was widely criticized for creating a loophole allowing covered entities to avoid notification for many breaches. The 2013 Omnibus Rule replaced this with a risk assessment approach where the default is notification, with non-notification only permitted when a four-factor analysis demonstrates low probability of compromise.",
+          "significance": "high",
+          "tags": [
+            "breach-notification",
+            "60-day",
+            "harm-threshold",
+            "risk-assessment",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-003",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.404-414"
+          },
+          "title": "Breach Notification \u2014 Tiered Civil Money Penalties ($100 to $1.5M per category)",
+          "area": "164.400 - Breach Notification",
+          "oldText": null,
+          "newText": "Civil Money Penalties (CMPs) for HIPAA violations are tiered into four categories based on culpability: (1) Unknowing violation: $100-$50,000 per violation; (2) Reasonable cause: $1,000-$100,000 per violation; (3) Willful neglect, corrected: $10,000-$250,000 per violation; (4) Willful neglect, not corrected: $50,000-$1,500,000 per violation. Maximum annual penalty per violation category is $1,500,000.",
+          "rationale": "Pre-HITECH HIPAA penalties were capped at $25,000 per violation category per year, which was criticized as insufficient deterrent for large covered entities. The tiered penalty structure was created by HITECH and finalized in the 2013 Omnibus Rule to scale penalties to the severity and culpability of violations.",
+          "significance": "high",
+          "tags": [
+            "civil-money-penalties",
+            "enforcement",
+            "tiered-penalties",
+            "HITECH",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-004",
+          "type": "modified",
+          "controlId": {
+            "old": "164.514(e)",
+            "new": "164.514(e)"
+          },
+          "title": "Marketing \u2014 Prior Authorization Required for Most PHI-Based Marketing",
+          "area": "164.514 - Other Requirements Relating to Uses and Disclosures",
+          "oldText": "A covered entity may use or disclose protected health information for marketing purposes if it obtains an authorization that complies with 164.508, except that no authorization is required for face-to-face marketing communications with an individual or for promotional gifts of nominal value.",
+          "newText": "A covered entity must obtain a valid authorization before using or disclosing PHI for marketing purposes. An authorization is required for all treatment and health care operations communications where a covered entity receives financial remuneration for making the communication. Subsidized treatment communications (where the third party pays for the communication promoting their products/services) now require authorization. Refill reminders and communications about currently prescribed drugs or biologics are exempt only when financial remuneration received is reasonably related to the cost of making the communication.",
+          "rationale": "Before the Omnibus Rule, covered entities could receive payment from pharmaceutical companies and others to send marketing materials to patients without obtaining authorization, as long as the communication was about treatment. The 2013 rule closed this loophole by requiring authorization for any subsidized marketing communication.",
+          "significance": "high",
+          "tags": [
+            "marketing",
+            "authorization",
+            "financial-remuneration",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-005",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.502(a)(5)(ii)"
+          },
+          "title": "Sale of PHI \u2014 Prohibited Without Individual Authorization",
+          "area": "164.502 - Uses and Disclosures of Protected Health Information",
+          "oldText": null,
+          "newText": "A covered entity or business associate may not sell protected health information (directly or indirectly receive remuneration in exchange for PHI) without obtaining a valid HIPAA authorization. The authorization must specifically state that the disclosure will result in remuneration to the covered entity. Exceptions include disclosures for public health, research (where remuneration covers costs of preparation only), treatment and payment, health care operations, sale of the covered entity's practice, required by law, and business associates receiving payment in exchange for services not constituting PHI sale.",
+          "rationale": "Congress determined in HITECH that existing HIPAA regulations did not sufficiently restrict the sale of PHI. The Omnibus Rule implemented HITECH's prohibition on PHI sale without patient authorization, addressing concerns about covered entities monetizing patient data through data brokers and health information exchanges without patients' knowledge.",
+          "significance": "high",
+          "tags": [
+            "sale-of-PHI",
+            "authorization",
+            "data-monetization",
+            "HITECH",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-006",
+          "type": "modified",
+          "controlId": {
+            "old": "164.502(b)",
+            "new": "164.502(b)"
+          },
+          "title": "Minimum Necessary \u2014 Strengthened and Applied to Business Associates",
+          "area": "164.502 - Uses and Disclosures of Protected Health Information",
+          "oldText": "When using or disclosing protected health information or when requesting protected health information from another covered entity or business associate, a covered entity or business associate must make reasonable efforts to limit protected health information to the minimum necessary to accomplish the intended purpose of the use, disclosure, or request.",
+          "newText": "When using, disclosing, or requesting protected health information, covered entities and business associates must make reasonable efforts to limit PHI to the minimum necessary. The minimum necessary standard now applies to all disclosures including to business associates (previously had broader exceptions). Covered entities must have policies identifying categories of persons who need access to PHI and limiting their access to the minimum necessary for their role. The 'minimum necessary' for de-identified data requests requires documenting why identifiers cannot be removed.",
+          "rationale": "The Omnibus Rule clarified that minimum necessary applies to all BA disclosures and strengthened requirements for policies defining access limitations. The 2009 HITECH Act had directed HHS to issue guidance on minimum necessary which was incorporated into the 2013 rule.",
+          "significance": "medium",
+          "tags": [
+            "minimum-necessary",
+            "business-associate",
+            "access-limitation",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-007",
+          "type": "modified",
+          "controlId": {
+            "old": "164.524(a)",
+            "new": "164.524(a)"
+          },
+          "title": "Right of Access \u2014 Individuals May Request Electronic PHI in Requested Format",
+          "area": "164.524 - Access of Individuals to Protected Health Information",
+          "oldText": "A covered entity must permit an individual to inspect and copy protected health information about the individual in a designated record set. The covered entity must provide the access as requested by the individual, including in the form and format requested by the individual if it is readily producible in such form and format.",
+          "newText": "A covered entity must provide individuals access to their PHI in designated record sets. If the PHI is maintained in an electronic health record or other electronic format, the individual has the right to obtain a copy in electronic format, and the covered entity must provide access in the electronic form and format requested if readily producible, or in a readable electronic form and format if not. Individuals have the right to direct the covered entity to transmit a copy of their PHI to a designated person or entity of their choice. The fee for providing PHI is limited to the reasonable cost-based fee including labor, supplies, and postage.",
+          "rationale": "The Omnibus Rule implemented HITECH's requirement that individuals be able to access their PHI in electronic format and have it transmitted to third parties (e.g., personal health record apps, other providers). This underpins health information exchange and patient engagement initiatives.",
+          "significance": "medium",
+          "tags": [
+            "right-of-access",
+            "electronic-PHI",
+            "patient-rights",
+            "HITECH",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-008",
+          "type": "modified",
+          "controlId": {
+            "old": "164.308(b)(1)",
+            "new": "164.308(b)(1)"
+          },
+          "title": "Subcontractor Business Associates \u2014 Must Have BAAs with Their Own Subcontractors",
+          "area": "164.308 - Administrative Safeguards",
+          "oldText": "A covered entity must have a business associate agreement with each business associate that creates, receives, maintains, or transmits ePHI on the covered entity's behalf.",
+          "newText": "A covered entity must have a business associate agreement with each business associate. Business associates must also obtain satisfactory assurances from their subcontractors (business associates of business associates) that they will safeguard PHI appropriately, and must enter into written agreements with their subcontractors that meet the same BAA requirements. The chain of accountability extends downstream to all entities handling PHI.",
+          "rationale": "Cloud computing and outsourcing created complex chains of PHI handling where direct BAs subcontracted work to other vendors who also handled PHI. The 2013 Omnibus Rule explicitly required BAAs through the entire subcontractor chain, addressing a gap that allowed PHI to flow to parties without any contractual security obligations.",
+          "significance": "high",
+          "tags": [
+            "subcontractor",
+            "BAA",
+            "business-associate",
+            "chain-of-custody",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-009",
+          "type": "modified",
+          "controlId": {
+            "old": "164.501",
+            "new": "164.501"
+          },
+          "title": "Research \u2014 Compound Authorizations and Future Research Use Permitted",
+          "area": "164.501 - Definitions",
+          "oldText": "Authorization for research must specifically identify the research for which PHI will be used or disclosed. Authorizations for different research studies or purposes must be separated into distinct authorization documents.",
+          "newText": "Authorization for use or disclosure of PHI for research may be combined with other research-related documents (consent, authorization for future research use). Covered entities may obtain compound authorizations combining authorization for current research with authorization for future unspecified research where the PHI will be maintained in a research database or biospecimen repository, provided the compound authorization clearly distinguishes the two. The authorization must specifically identify the research and describe the PHI to be used.",
+          "rationale": "Biobanks, genomic research repositories, and longitudinal studies require authorization for future use of samples and data that may not be specified at the time of collection. The 2013 rule relaxed the prior prohibition on compound authorizations to enable important research while maintaining authorization requirements.",
+          "significance": "medium",
+          "tags": [
+            "research",
+            "authorization",
+            "biobank",
+            "future-research",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-010",
+          "type": "modified",
+          "controlId": {
+            "old": "164.306",
+            "new": "164.306"
+          },
+          "title": "Security Standards \u2014 Genetic Information Protected as PHI, Not Health Information",
+          "area": "164.306 - Security Standards: General Rules",
+          "oldText": "The Security Rule applies to electronic protected health information, including demographic information collected from an individual, relating to past, present, or future physical or mental health or condition.",
+          "newText": "Genetic information is PHI and may not be used or disclosed for underwriting purposes by health plans (other than long-term care plans). The definition of PHI is clarified to explicitly include genetic information under GINA (Genetic Information Nondiscrimination Act) alignment. Health plans are prohibited from using or disclosing genetic information for eligibility determinations, premium computation, or any other underwriting purpose.",
+          "rationale": "The Genetic Information Nondiscrimination Act (GINA) of 2008 prohibited health plan discrimination based on genetic information. The 2013 Omnibus Rule aligned HIPAA regulations with GINA by explicitly prohibiting health plans from using genetic information as PHI for underwriting, closing a gap in patient protection.",
+          "significance": "medium",
+          "tags": [
+            "genetic-information",
+            "GINA",
+            "underwriting",
+            "PHI-definition",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-011",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.530(j)"
+          },
+          "title": "Decedent PHI \u2014 Protection Extended for 50 Years Post-Death",
+          "area": "164.530 - Administrative Requirements",
+          "oldText": null,
+          "newText": "A covered entity must comply with requirements of this subpart with respect to the protected health information of a deceased individual for a period of 50 years following the death of the individual. After this period, the HIPAA protections no longer apply to the individual's PHI. Prior to the Omnibus Rule, HIPAA protections for deceased individuals were undefined.",
+          "rationale": "The previous HIPAA regulations did not specify when protections for deceased individuals' PHI expired. The 2013 Omnibus Rule created a definitive 50-year post-death protection period, providing legal clarity for research and genealogy while limiting perpetual protection burdens on covered entities.",
+          "significance": "low",
+          "tags": [
+            "decedent-PHI",
+            "post-death-protection",
+            "50-years",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-012",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "164.514(b)"
+          },
+          "title": "De-identification \u2014 Expert Determination Method Formalized",
+          "area": "164.514 - Other Requirements Relating to Uses and Disclosures",
+          "oldText": null,
+          "newText": "Information is de-identified if: (1) Safe Harbor method: 18 specified identifiers are removed and the covered entity has no actual knowledge that the remaining information could be used to identify an individual; OR (2) Expert Determination method: a person with statistical expertise applies generally accepted statistical and scientific principles and methods and determines that the risk of identifying any individual is very small. The expert must document the methods applied and results. The 2013 rule provided additional guidance on re-identification risk assessment for the Expert Determination method.",
+          "rationale": "The Expert Determination method for de-identification existed in prior HIPAA regulations but lacked specificity on what 'very small' risk meant. The 2013 Omnibus Rule provided additional guidance and required documentation of the expert's analysis to enable OCR enforcement of the standard.",
+          "significance": "medium",
+          "tags": [
+            "de-identification",
+            "safe-harbor",
+            "expert-determination",
+            "18-identifiers",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-013",
+          "type": "modified",
+          "controlId": {
+            "old": "164.312(a)(1)",
+            "new": "164.312(a)(1)"
+          },
+          "title": "Encryption and Decryption \u2014 Guidance Clarified as Addressable Implementation Specification",
+          "area": "164.312 - Technical Safeguards",
+          "oldText": "Implement a mechanism to encrypt and decrypt electronic protected health information. [Addressable]",
+          "newText": "Implement a mechanism to encrypt and decrypt electronic protected health information. [Addressable] Guidance: Covered entities must assess whether encryption is a reasonable and appropriate safeguard for their environment. Encryption of ePHI at rest and in transit is strongly encouraged. ePHI that is encrypted using methods specified in HHS Guidance (NIST-approved algorithms) is considered 'unsecured PHI' only if the encryption key is not compromised. Encrypted ePHI is not subject to breach notification requirements. The 2013 Omnibus Rule added that covered entities and BAs must document their encryption decisions and must implement encryption unless they determine it is not reasonable and appropriate, documenting the alternative equivalent safeguards in place.",
+          "rationale": "Encryption remained 'addressable' (not mandatory) under the Omnibus Rule, but OCR issued supplementary guidance emphasizing that failure to encrypt without documented justification and alternative safeguards would be considered willful neglect. Practically, encrypted data is 'safe harbor' from breach notification, creating a strong incentive for encryption.",
+          "significance": "medium",
+          "tags": [
+            "encryption",
+            "addressable",
+            "breach-safe-harbor",
+            "ePHI",
+            "Omnibus"
+          ]
+        },
+        {
+          "id": "hipaa-2013-014",
+          "type": "modified",
+          "controlId": {
+            "old": "164.522(a)",
+            "new": "164.522(a)"
+          },
+          "title": "Right to Restrict PHI Disclosures to Health Plans for Self-Pay Services",
+          "area": "164.522 - Rights to Request Privacy Protection",
+          "oldText": "A covered entity must permit an individual to request that the covered entity restrict uses or disclosures of protected health information about the individual for treatment, payment, or health care operations, and must agree to restrictions requested by an individual to the extent that such restriction would bind the entity.",
+          "newText": "A covered entity must agree to an individual's request to restrict disclosure of PHI to a health plan where the PHI pertains solely to a health care item or service for which the individual or the individual's representative has paid the covered entity out of pocket in full. This restriction to health plans for self-pay items is mandatory (not discretionary). The covered entity may not override this restriction even if it believes disclosure would be beneficial to the individual's care.",
+          "rationale": "Patients sometimes pay out-of-pocket for sensitive health services (mental health, substance abuse, reproductive health) to avoid disclosure to their health plan or employer-sponsored insurance. The Omnibus Rule created a mandatory right to restrict disclosure to health plans for fully self-paid services, protecting patient privacy in these sensitive cases.",
+          "significance": "high",
+          "tags": [
+            "right-to-restrict",
+            "self-pay",
+            "health-plan",
+            "sensitive-services",
+            "Omnibus"
+          ]
+        }
+      ]
+    },
     "2013-to-2025": {
       "fromVersion": "2013 (Omnibus)",
       "toVersion": "2025 (Final Rule)",

@@ -11,17 +11,575 @@
   "officialChangelogUrl": "https://public.cyber.mil/stigs/downloads/",
   "lastDataUpdate": "2025-07-01",
   "versions": [
-    "V1R1",
-    "V2R1",
-    "V2R2",
-    "V2R3",
-    "V2R4"
+    "2021",
+    "2022",
+    "2023",
+    "2024-2025"
   ],
   "latestVersion": "2024-2025 Releases",
   "transitions": {
-    "stigs-2023-to-2024": {
-      "fromVersion": "2023 Releases",
-      "toVersion": "2024-2025 Releases",
+    "2021-to-2022": {
+      "fromVersion": "2021",
+      "toVersion": "2022",
+      "summary": {
+        "added": 2,
+        "removed": 2,
+        "modified": 10,
+        "restructured": 0,
+        "highlights": [
+          "Log4Shell (Log4j) vulnerability addressed in Java and application server STIGs",
+          "PrintNightmare mitigations added to Windows STIGs",
+          "Kubernetes STIGs updated for 1.23 release (NetworkPolicy enforcement)",
+          "macOS 12 Monterey STIG initial release",
+          "Microsoft Edge (Chromium) STIG replaced legacy Edge STIG",
+          "Supply chain risk management controls added to multiple platform STIGs"
+        ]
+      },
+      "changes": [
+        {
+          "id": "stigs-2022-001",
+          "type": "modified",
+          "controlId": {
+            "old": "WN19-MS-000010",
+            "new": "WN19-MS-000010"
+          },
+          "title": "Windows Server 2019 - Print Spooler Disabled on Non-Print Servers (PrintNightmare)",
+          "area": "Windows Server 2019",
+          "oldText": "The Print Spooler service must be configured to prevent downloading print drivers.",
+          "newText": "The Windows Print Spooler service (Spooler) must be disabled on systems not functioning as print servers. For print servers, the RestrictDriverInstallationToAdministrators registry key must be set to 1 and remote printing must be disabled. This addresses CVE-2021-34527 (PrintNightmare).",
+          "rationale": "PrintNightmare (CVE-2021-34527) was a critical vulnerability in the Windows Print Spooler that allowed remote code execution and local privilege escalation. The STIG response was to require Spooler disable on non-print servers rather than just patching, as multiple exploitation variants were discovered after initial patches.",
+          "significance": "high",
+          "tags": [
+            "windows-server-2019",
+            "PrintNightmare",
+            "CVE-2021-34527",
+            "print-spooler"
+          ]
+        },
+        {
+          "id": "stigs-2022-002",
+          "type": "modified",
+          "controlId": {
+            "old": "RHEL-08-040290",
+            "new": "RHEL-08-040290"
+          },
+          "title": "RHEL 8 - Log4j Mitigation: Java Logging Library Version Pinning",
+          "area": "Red Hat Enterprise Linux 8",
+          "oldText": "RHEL 8 must use approved software repositories and validated software packages.",
+          "newText": "RHEL 8 systems running Java applications must not use Log4j versions 2.0-beta9 through 2.14.1 (CVE-2021-44228) or 2.15.0 (CVE-2021-45046). Systems must run Log4j 2.17.1+ or 1.x (with JMSAppender disabled). Package inventories must be audited quarterly for vulnerable logging libraries.",
+          "rationale": "Log4Shell (CVE-2021-44228, CVSS 10.0) affected virtually all Java applications using Log4j 2.x. DISA issued emergency guidance and the STIGs were updated to codify the remediation requirements including explicit version requirements and scanning requirements.",
+          "significance": "high",
+          "tags": [
+            "RHEL-8",
+            "Log4Shell",
+            "CVE-2021-44228",
+            "Java",
+            "Log4j"
+          ]
+        },
+        {
+          "id": "stigs-2022-003",
+          "type": "modified",
+          "controlId": {
+            "old": "K8S-00-000150",
+            "new": "K8S-00-000150"
+          },
+          "title": "Kubernetes - NetworkPolicy Required for All Namespaces",
+          "area": "Kubernetes",
+          "oldText": "Kubernetes network policies should be used to restrict inter-pod communication.",
+          "newText": "Kubernetes must have NetworkPolicy resources defined for all non-system namespaces. A default-deny ingress and egress NetworkPolicy must exist in each namespace, with explicit allow policies for required communication paths. The CNI plugin must enforce NetworkPolicy.",
+          "rationale": "Kubernetes 1.21+ made NetworkPolicy enforcement more robust with improved CNI support. The STIG was updated to require a default-deny posture rather than ad-hoc network policies, reflecting zero-trust network segmentation principles.",
+          "significance": "medium",
+          "tags": [
+            "kubernetes",
+            "NetworkPolicy",
+            "zero-trust",
+            "CNI"
+          ]
+        },
+        {
+          "id": "stigs-2022-004",
+          "type": "modified",
+          "controlId": {
+            "old": "WN19-SO-000110",
+            "new": "WN19-SO-000110"
+          },
+          "title": "Windows Server 2019 - Windows Defender Credential Guard Required",
+          "area": "Windows Server 2019",
+          "oldText": "Windows Defender Credential Guard should be enabled on supported hardware.",
+          "newText": "Windows Defender Credential Guard must be enabled on all Windows Server 2019 systems with UEFI firmware and TPM 2.0. The Credential Guard configuration must be set to Enabled with UEFI lock to prevent disable via registry. This prevents NTLM hash extraction from LSASS.",
+          "rationale": "Pass-the-hash attacks targeting LSASS remain prevalent. Credential Guard virtualizes LSASS using Hyper-V to prevent credential extraction tools (Mimikatz) from reading hashed credentials. The STIG changed this from a SHOULD to a MUST requirement as hardware support became ubiquitous.",
+          "significance": "high",
+          "tags": [
+            "windows-server-2019",
+            "credential-guard",
+            "LSASS",
+            "pass-the-hash"
+          ]
+        },
+        {
+          "id": "stigs-2022-005",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "DTEDGE-000001"
+          },
+          "title": "Microsoft Edge (Chromium) STIG - Initial Release, Replaces Legacy Edge",
+          "area": "Microsoft Edge (Chromium)",
+          "oldText": null,
+          "newText": "Microsoft Edge (Chromium) STIG V1R1 published. Covers 90 checks including InPrivate mode restrictions, extension allowlisting, site isolation, Safe Browsing, and enterprise policy enforcement via Microsoft Intune or Group Policy.",
+          "rationale": "Microsoft retired legacy Edge (EdgeHTML) in March 2021 and replaced it with Edge Chromium. A new STIG was required as the policy structure, registry paths, and security controls differ completely between the legacy and Chromium-based versions.",
+          "significance": "high",
+          "tags": [
+            "edge-chromium",
+            "new-stig",
+            "browser",
+            "initial-release"
+          ]
+        },
+        {
+          "id": "stigs-2022-006",
+          "type": "modified",
+          "controlId": {
+            "old": "WN19-AU-000080",
+            "new": "WN19-AU-000080"
+          },
+          "title": "Windows Server 2019 - Advanced Audit Policy: Detailed Tracking Events",
+          "area": "Windows Server 2019",
+          "oldText": "Windows must be configured to audit Process Creation events.",
+          "newText": "Windows Server 2019 must be configured to audit Process Creation events with command line auditing enabled (HKLM:SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit\\ProcessCreationIncludeCmdLine_Enabled = 1). This provides command-line arguments for forensic investigation.",
+          "rationale": "Process creation logging without command line arguments is insufficient for detecting LOLBin (Living Off the Land Binary) abuse where attackers use trusted Windows binaries with malicious arguments. Command line inclusion was added as a required setting.",
+          "significance": "medium",
+          "tags": [
+            "windows-server-2019",
+            "auditing",
+            "process-creation",
+            "command-line"
+          ]
+        },
+        {
+          "id": "stigs-2022-007",
+          "type": "modified",
+          "controlId": {
+            "old": "RHEL-08-010020",
+            "new": "RHEL-08-010020"
+          },
+          "title": "RHEL 8 - AIDE File Integrity Monitoring: Weekly Scans Required",
+          "area": "Red Hat Enterprise Linux 8",
+          "oldText": "RHEL 8 must use AIDE for file integrity checking.",
+          "newText": "RHEL 8 must have AIDE installed and configured to run at minimum weekly integrity checks via cron or systemd timer. AIDE database must be initialized and stored offline (read-only media or separate system). Results must be reviewed and deviations investigated within 24 hours.",
+          "rationale": "Supply chain attacks (SolarWinds, Kaseya) demonstrated the importance of file integrity monitoring for detecting trojanized binaries. The STIG was strengthened to require scheduled automated scans rather than manual or ad-hoc checks.",
+          "significance": "medium",
+          "tags": [
+            "RHEL-8",
+            "AIDE",
+            "file-integrity",
+            "supply-chain"
+          ]
+        },
+        {
+          "id": "stigs-2022-008",
+          "type": "modified",
+          "controlId": {
+            "old": "DKER-EE-000010",
+            "new": "DKER-EE-000010"
+          },
+          "title": "Docker Enterprise - Image Signing with Docker Content Trust (DCT)",
+          "area": "Docker Enterprise",
+          "oldText": "Docker images must be pulled from approved registries only.",
+          "newText": "Docker Enterprise must have Docker Content Trust (DOCKER_CONTENT_TRUST=1) enforced at the daemon level, requiring all images to have valid Notary signatures before deployment. Images from internal registries must be signed with organizational keys stored in HSM or Docker secrets.",
+          "rationale": "Supply chain attacks targeting container images (typosquatting, compromised registries) require cryptographic image verification at pull time. Docker Content Trust enforces this by requiring Notary signatures, preventing unsigned or tampered images from being deployed.",
+          "significance": "high",
+          "tags": [
+            "docker",
+            "content-trust",
+            "image-signing",
+            "supply-chain"
+          ]
+        },
+        {
+          "id": "stigs-2022-009",
+          "type": "modified",
+          "controlId": {
+            "old": "SQL6-D0-015600",
+            "new": "SQL6-D0-015600"
+          },
+          "title": "SQL Server 2019 - Transparent Data Encryption (TDE) Required for All User Databases",
+          "area": "SQL Server 2019",
+          "oldText": "SQL Server databases containing sensitive data must use encryption.",
+          "newText": "All SQL Server 2019 user databases must have Transparent Data Encryption (TDE) enabled. TDE certificates must be backed up to a secure location separate from the data files. For databases containing CUI or PII, cell-level encryption must be applied for the most sensitive fields in addition to TDE.",
+          "rationale": "Data-at-rest encryption requirements were strengthened following FISMA Modernization Act updates. TDE protects against physical media theft but not against authorized database access. Cell-level encryption provides additional protection for highest-sensitivity data.",
+          "significance": "high",
+          "tags": [
+            "SQL-Server",
+            "TDE",
+            "encryption",
+            "data-at-rest"
+          ]
+        },
+        {
+          "id": "stigs-2022-010",
+          "type": "modified",
+          "controlId": {
+            "old": "FFOX-00-000025",
+            "new": "FFOX-00-000025"
+          },
+          "title": "Firefox - WebGL Restricted to Allowlisted Sites",
+          "area": "Firefox",
+          "oldText": "Firefox must disable WebGL or restrict its use.",
+          "newText": "Firefox WebGL must be disabled via the WebGL policy setting (webgl.disabled = true) in the Firefox policy template, with exceptions only for explicitly allowlisted internal sites requiring WebGL for legitimate functionality. This prevents WebGL-based fingerprinting and GPU-based side-channel attacks.",
+          "rationale": "WebGL has been exploited for browser fingerprinting, cryptomining, and GPU-based speculative execution attacks. The STIG moved from a recommendation to disable to a requirement, with a managed exception process for legitimate needs.",
+          "significance": "medium",
+          "tags": [
+            "firefox",
+            "WebGL",
+            "fingerprinting",
+            "GPU"
+          ]
+        },
+        {
+          "id": "stigs-2022-011",
+          "type": "removed",
+          "controlId": {
+            "old": "WN16-MS-000010",
+            "new": null
+          },
+          "title": "Windows Server 2016 - EMET Requirement Removed (End of Life)",
+          "area": "Windows Server 2016",
+          "oldText": "Windows Server 2016 must have the Enhanced Mitigation Experience Toolkit (EMET) installed and configured.",
+          "newText": null,
+          "rationale": "Microsoft EMET reached end of life on July 31, 2018. Windows 10/Server 2016+ include Windows Defender Exploit Guard (WDEG) which supersedes EMET functionality natively. The STIG check was removed and replaced with WDEG configuration requirements.",
+          "significance": "low",
+          "tags": [
+            "windows-server-2016",
+            "EMET",
+            "removed",
+            "end-of-life"
+          ]
+        },
+        {
+          "id": "stigs-2022-012",
+          "type": "removed",
+          "controlId": {
+            "old": "RHEL-08-040360",
+            "new": null
+          },
+          "title": "RHEL 8 - VSFTPD Disable Check Removed (FTP Universally Prohibited)",
+          "area": "Red Hat Enterprise Linux 8",
+          "oldText": "RHEL 8 must not have the VSFTPD service installed or enabled.",
+          "newText": null,
+          "rationale": "The specific VSFTPD check was removed and replaced with a broader requirement prohibiting all FTP services (vsftpd, proftpd, wu-ftpd). The scope of the control was expanded rather than being service-specific, making the individual VSFTPD check redundant.",
+          "significance": "low",
+          "tags": [
+            "RHEL-8",
+            "FTP",
+            "VSFTPD",
+            "removed"
+          ]
+        }
+      ]
+    },
+    "2022-to-2023": {
+      "fromVersion": "2022",
+      "toVersion": "2023",
+      "summary": {
+        "added": 4,
+        "removed": 1,
+        "modified": 14,
+        "restructured": 0,
+        "highlights": [
+          "Windows Server 2022 STIG V1R1 released (initial publication)",
+          "RHEL 9 STIG V1R1 released as RHEL 8 successor",
+          "Ubuntu 22.04 STIG V1R1 released",
+          "Kubernetes STIG updated to address Pod Security Admission (PSA) replacing deprecated PSPs",
+          "PCI DSS v4.0 alignment updates across web application STIGs",
+          "TLS 1.0 and 1.1 removal hardened across IIS and Apache STIGs"
+        ]
+      },
+      "changes": [
+        {
+          "id": "stigs-2023-001",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "WN22-AU-000001"
+          },
+          "title": "Windows Server 2022 STIG - Initial Release (V1R1)",
+          "area": "Windows Server 2022",
+          "oldText": null,
+          "newText": "Windows Server 2022 STIG published as the successor to Windows Server 2019 STIG. Initial release covers 319 checks across audit policy, security options, account policies, Windows Defender configuration, BitLocker, and network security.",
+          "rationale": "Windows Server 2022 introduced Secured-core server capabilities, hardware-enforced stack protection, and improved SMB encryption. A new STIG was required to address these new security features and replace Windows Server 2019 guidance.",
+          "significance": "high",
+          "tags": [
+            "windows-server-2022",
+            "new-stig",
+            "initial-release"
+          ]
+        },
+        {
+          "id": "stigs-2023-002",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "RHEL-09-000001"
+          },
+          "title": "RHEL 9 STIG - Initial Release (V1R1)",
+          "area": "Red Hat Enterprise Linux 9",
+          "oldText": null,
+          "newText": "RHEL 9 STIG published with 256 checks. RHEL 9 introduced significant changes including crypto-policy enforcement by default, removal of legacy hash algorithms (MD5, SHA-1), mandatory FIPS 140-2 capable packages, and nftables replacing iptables.",
+          "rationale": "Red Hat Enterprise Linux 9, released May 2022, made breaking changes to cryptographic policy enforcement and network filtering that required a ground-up STIG rather than an update to the RHEL 8 STIG.",
+          "significance": "high",
+          "tags": [
+            "RHEL-9",
+            "new-stig",
+            "initial-release",
+            "crypto-policy"
+          ]
+        },
+        {
+          "id": "stigs-2023-003",
+          "type": "added",
+          "controlId": {
+            "old": null,
+            "new": "UBTU-22-000001"
+          },
+          "title": "Ubuntu 22.04 LTS STIG - Initial Release (V1R1)",
+          "area": "Ubuntu 22.04 LTS",
+          "oldText": null,
+          "newText": "Ubuntu 22.04 LTS (Jammy Jellyfish) STIG published with 230 checks. Covers AppArmor mandatory access control, UFW firewall, systemd-resolved DNS security, AIDE file integrity monitoring, and auditd configuration.",
+          "rationale": "Ubuntu 22.04 LTS is a DoD-approved operating system with broad deployment. The 22.04 STIG supersedes Ubuntu 20.04 guidance for new deployments and updates package names and configuration paths changed in Jammy.",
+          "significance": "high",
+          "tags": [
+            "ubuntu-22.04",
+            "new-stig",
+            "initial-release",
+            "AppArmor"
+          ]
+        },
+        {
+          "id": "stigs-2023-004",
+          "type": "modified",
+          "controlId": {
+            "old": "K8S-00-000100",
+            "new": "K8S-00-000100"
+          },
+          "title": "Kubernetes STIG - Pod Security Admission Replaces Pod Security Policies",
+          "area": "Kubernetes",
+          "oldText": "Kubernetes clusters must use Pod Security Policies (PSPs) to enforce security controls at the pod level, preventing privileged containers and host namespace access.",
+          "newText": "Kubernetes clusters must use Pod Security Admission (PSA) or a policy enforcement webhook (OPA/Gatekeeper, Kyverno) to enforce pod security standards. PSPs were deprecated in Kubernetes 1.21 and removed in 1.25.",
+          "rationale": "Pod Security Policies were removed from Kubernetes in v1.25 (released September 2022). The STIG was updated to reference the replacement mechanism (Pod Security Admission built-in or third-party admission controllers) to remain applicable to current cluster versions.",
+          "significance": "high",
+          "tags": [
+            "kubernetes",
+            "PSP",
+            "PSA",
+            "pod-security",
+            "breaking-change"
+          ]
+        },
+        {
+          "id": "stigs-2023-005",
+          "type": "modified",
+          "controlId": {
+            "old": "IIST-SI-000200",
+            "new": "IIST-SI-000200"
+          },
+          "title": "IIS 10.0 STIG - TLS 1.0 and 1.1 Disabled, TLS 1.3 Added",
+          "area": "IIS 10.0 Web Server",
+          "oldText": "IIS 10.0 must be configured to use TLS 1.1 or higher for encrypted connections.",
+          "newText": "IIS 10.0 must be configured to use only TLS 1.2 and TLS 1.3. TLS 1.0 and TLS 1.1 must be explicitly disabled via the Windows registry or via IIS Crypto tool configuration.",
+          "rationale": "NIST SP 800-52 Rev 2 and PCI DSS 4.0 both require disabling TLS 1.0 and 1.1 as these protocols have known weaknesses (BEAST, POODLE). The STIG was updated to align with current federal and industry cryptographic standards.",
+          "significance": "high",
+          "tags": [
+            "IIS",
+            "TLS",
+            "cryptography",
+            "PCI-DSS-alignment"
+          ]
+        },
+        {
+          "id": "stigs-2023-006",
+          "type": "modified",
+          "controlId": {
+            "old": "DTBC-0001",
+            "new": "DTBC-0001"
+          },
+          "title": "Google Chrome STIG - Safe Browsing and Enhanced Protection Policy Updates",
+          "area": "Google Chrome",
+          "oldText": "Google Chrome must have Safe Browsing enabled to protect users from dangerous websites.",
+          "newText": "Google Chrome must have Safe Browsing configured to Enhanced Protection mode via policy. Standard protection is insufficient for government use environments. The SafeBrowsingProtectionLevel policy must be set to 2 (Enhanced).",
+          "rationale": "Google introduced Enhanced Safe Browsing in Chrome 91 which provides faster and more accurate phishing/malware detection using real-time URL checks. Standard Safe Browsing only checks URLs against a locally-downloaded list updated every 30 minutes.",
+          "significance": "medium",
+          "tags": [
+            "chrome",
+            "safe-browsing",
+            "enhanced-protection"
+          ]
+        },
+        {
+          "id": "stigs-2023-007",
+          "type": "modified",
+          "controlId": {
+            "old": "WN22-SO-000020",
+            "new": "WN22-SO-000020"
+          },
+          "title": "Windows Server 2022 - SMB Signing Required on All Connections",
+          "area": "Windows Server 2022",
+          "oldText": "Windows Server must be configured to require SMB packet signing on SMB server communications.",
+          "newText": "Windows Server 2022 must require SMB signing on both SMB server (receiving) and SMB client (outbound) connections. Both RequireSecuritySignature registry settings must be enabled. SMBv1 must be disabled.",
+          "rationale": "NTLM relay attacks using tools like Responder and ntlmrelayx can capture and relay SMB authentication tokens unless SMB signing is enforced end-to-end. Requiring signing on both client and server sides prevents these relay attacks.",
+          "significance": "high",
+          "tags": [
+            "windows-server-2022",
+            "SMB",
+            "signing",
+            "NTLM-relay"
+          ]
+        },
+        {
+          "id": "stigs-2023-008",
+          "type": "modified",
+          "controlId": {
+            "old": "RHEL-09-251015",
+            "new": "RHEL-09-251015"
+          },
+          "title": "RHEL 9 - FIPS 140-3 Mode Required (Updated from FIPS 140-2)",
+          "area": "Red Hat Enterprise Linux 9",
+          "oldText": "RHEL must have FIPS 140-2 validated cryptographic modules enabled.",
+          "newText": "RHEL 9 must operate in FIPS 140-3 mode. FIPS mode must be enabled at installation time via the fips=1 kernel parameter. FIPS 140-3 modules supersede FIPS 140-2 in RHEL 9.",
+          "rationale": "NIST deprecated FIPS 140-2 on September 21, 2021, with a transition to FIPS 140-3. RHEL 9 ships with FIPS 140-3 validated cryptographic modules. The STIG updated validation requirements to reflect the new standard.",
+          "significance": "high",
+          "tags": [
+            "RHEL-9",
+            "FIPS",
+            "FIPS-140-3",
+            "cryptography"
+          ]
+        },
+        {
+          "id": "stigs-2023-009",
+          "type": "modified",
+          "controlId": {
+            "old": "UBTU-22-412030",
+            "new": "UBTU-22-412030"
+          },
+          "title": "Ubuntu 22.04 - UFW Default Deny with Explicit Allow Rules",
+          "area": "Ubuntu 22.04 LTS",
+          "oldText": "Ubuntu 20.04 must configure the Uncomplicated Firewall (UFW) to allow only necessary traffic.",
+          "newText": "Ubuntu 22.04 must configure UFW with a default deny policy for incoming and forwarded traffic, with explicit allow rules for required services. UFW must be enabled and set to start on boot. IPv6 rules must also be configured.",
+          "rationale": "Ubuntu 22.04 changed the default UFW configuration and added IPv6 support by default. The STIG was updated to require explicit IPv6 rules and to mandate that UFW is configured at provisioning time, not as a post-install step.",
+          "significance": "medium",
+          "tags": [
+            "ubuntu-22.04",
+            "UFW",
+            "firewall",
+            "IPv6"
+          ]
+        },
+        {
+          "id": "stigs-2023-010",
+          "type": "modified",
+          "controlId": {
+            "old": "DKER-EE-001010",
+            "new": "DKER-EE-001010"
+          },
+          "title": "Docker Enterprise - Rootless Mode and User Namespace Remapping",
+          "area": "Docker Enterprise",
+          "oldText": "Docker containers must not run as root unless explicitly required and documented.",
+          "newText": "Docker Enterprise must be configured with user namespace remapping enabled, mapping container root to an unprivileged host user (subuid/subgid). Alternatively, rootless Docker mode must be used. Container USER directives must specify non-root users.",
+          "rationale": "User namespace remapping was added to Docker to provide defense-in-depth against container escapes. If a process escapes the container, it runs as an unprivileged user on the host rather than as root. This is now considered a required control rather than best practice.",
+          "significance": "high",
+          "tags": [
+            "docker",
+            "rootless",
+            "user-namespace",
+            "container-escape"
+          ]
+        },
+        {
+          "id": "stigs-2023-011",
+          "type": "modified",
+          "controlId": {
+            "old": "SQL6-D0-001000",
+            "new": "SQL6-D0-001000"
+          },
+          "title": "SQL Server 2019 - Contained Database Authentication Disabled",
+          "area": "SQL Server 2019",
+          "oldText": "SQL Server must disable contained databases unless specifically required.",
+          "newText": "SQL Server 2019 must have the 'contained database authentication' server-level option set to 0 (disabled) via sp_configure. If contained databases are required, individual database owners must be explicitly documented and approved. All contained database users must use Windows Authentication.",
+          "rationale": "Contained databases in SQL Server allow authentication at the database level, bypassing server-level login controls. This creates a risk of privilege escalation and authentication bypass if not properly controlled. The STIG was strengthened to require explicit configuration rather than just documentation.",
+          "significance": "medium",
+          "tags": [
+            "SQL-Server",
+            "contained-database",
+            "authentication"
+          ]
+        },
+        {
+          "id": "stigs-2023-012",
+          "type": "modified",
+          "controlId": {
+            "old": "FFOX-00-000001",
+            "new": "FFOX-00-000001"
+          },
+          "title": "Firefox STIG - Enhanced Tracking Protection and DNS-over-HTTPS Policy",
+          "area": "Firefox",
+          "oldText": "Firefox must have Enhanced Tracking Protection enabled.",
+          "newText": "Firefox must have Enhanced Tracking Protection set to Strict mode via policy. The NetworkPrediction (DNS prefetch) policy must be disabled. DNS-over-HTTPS must be disabled or configured to use agency-approved DoH resolvers only via the DNSOverHTTPS policy.",
+          "rationale": "DNS-over-HTTPS bypasses agency DNS filtering controls and can prevent security monitoring of DNS queries. Firefox enabled DoH by default in some configurations. The STIG was updated to explicitly address DoH governance and require Strict ETP which blocks fingerprinters in addition to trackers.",
+          "significance": "medium",
+          "tags": [
+            "firefox",
+            "DoH",
+            "tracking-protection",
+            "DNS"
+          ]
+        },
+        {
+          "id": "stigs-2023-013",
+          "type": "modified",
+          "controlId": {
+            "old": "WN22-MS-000105",
+            "new": "WN22-MS-000105"
+          },
+          "title": "Windows Server 2022 - PowerShell Script Block Logging Required",
+          "area": "Windows Server 2022",
+          "oldText": "Windows must be configured to audit PowerShell script execution.",
+          "newText": "Windows Server 2022 must enable PowerShell Script Block Logging (HKLM:SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging\\EnableScriptBlockLogging = 1) and PowerShell Transcription. Module logging must also be enabled for all modules. Logs must be forwarded to SIEM.",
+          "rationale": "PowerShell remains the primary attack tool for living-off-the-land (LOTL) attacks. Script block logging captures the deobfuscated PowerShell code executed, which is critical for forensic analysis and SIEM alerting. The previous STIG only required basic auditing.",
+          "significance": "high",
+          "tags": [
+            "windows-server-2022",
+            "PowerShell",
+            "logging",
+            "SIEM",
+            "LOTL"
+          ]
+        },
+        {
+          "id": "stigs-2023-014",
+          "type": "removed",
+          "controlId": {
+            "old": "WN22-DC-000010",
+            "new": null
+          },
+          "title": "Windows Server 2022 - NTLM v1 Check Removed (Superseded by Blanket NTLM Disable)",
+          "area": "Windows Server 2022",
+          "oldText": "Windows Server must be configured to prevent the use of NTLMv1 for authentication.",
+          "newText": null,
+          "rationale": "The specific NTLMv1 check was removed because a higher-severity control requiring complete NTLM disable (or restriction to trusted servers only) supersedes it. Checking only for NTLMv1 while allowing NTLMv2 provided insufficient assurance.",
+          "significance": "medium",
+          "tags": [
+            "windows-server-2022",
+            "NTLM",
+            "removed"
+          ]
+        }
+      ]
+    },
+    "2023-to-2024": {
+      "fromVersion": "2023",
+      "toVersion": "2024-2025",
       "summary": {
         "added": 12,
         "removed": 3,

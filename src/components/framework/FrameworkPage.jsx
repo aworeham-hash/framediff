@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
-import { getFramework, getDefaultTransition } from '../../data/registry'
+import { getFramework } from '../../data/registry'
+import { resolveTransition, getDefaultVersions } from '../../utils/transitions'
 import { useFilteredChanges } from '../../hooks/useFilteredChanges'
 import { VersionPicker } from './VersionPicker'
 import { SummaryCards } from './SummaryCards'
@@ -13,15 +14,23 @@ import { CopyrightBadge } from '../ui/Badge'
 
 export function FrameworkPage({ frameworkId }) {
   const framework = getFramework(frameworkId)
-  const [filter, setFilter] = useState('all')
+
+  const defaults = framework ? getDefaultVersions(framework) : { from: null, to: null }
+  const [fromVersion, setFromVersion] = useState(defaults.from)
+  const [toVersion, setToVersion]     = useState(defaults.to)
+  const [filter, setFilter]           = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const defaultTransitionKey = framework ? getDefaultTransition(framework) : null
-  const [selectedTransitionKey, setSelectedTransitionKey] = useState(defaultTransitionKey)
-
-  const stableTransitionKey = (framework?.transitions && framework.transitions[selectedTransitionKey])
-    ? selectedTransitionKey
-    : defaultTransitionKey
+  // Reset versions when framework changes
+  useEffect(() => {
+    if (framework) {
+      const d = getDefaultVersions(framework)
+      setFromVersion(d.from)
+      setToVersion(d.to)
+      setFilter('all')
+      setSearchQuery('')
+    }
+  }, [frameworkId])
 
   useEffect(() => {
     if (framework) {
@@ -42,26 +51,27 @@ export function FrameworkPage({ frameworkId }) {
     return <ComingSoonPage framework={framework} />
   }
 
-  const transition = framework.transitions?.[stableTransitionKey]
-  const allChanges = transition?.changes || []
+  const resolved    = resolveTransition(framework, fromVersion, toVersion)
+  const transition  = resolved?.transition || null
+  const allChanges  = transition?.changes || []
   const filteredChanges = useFilteredChanges(allChanges, filter, searchQuery)
 
   const changeCounts = useMemo(() => {
     const counts = {}
-    allChanges.forEach(c => {
-      counts[c.type] = (counts[c.type] || 0) + 1
-    })
+    allChanges.forEach(c => { counts[c.type] = (counts[c.type] || 0) + 1 })
     return counts
   }, [allChanges])
 
-  const handleTransitionChange = (key) => {
-    setSelectedTransitionKey(key)
+  const handleVersionChange = (newFrom, newTo) => {
+    setFromVersion(newFrom)
+    setToVersion(newTo)
     setFilter('all')
     setSearchQuery('')
   }
 
   return (
     <div className="h-full overflow-y-auto">
+      {/* Top bar */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-xs text-gray-400 font-medium">{framework.publisher}</span>
@@ -87,6 +97,7 @@ export function FrameworkPage({ frameworkId }) {
       </div>
 
       <div className="max-w-4xl mx-auto px-8 py-8 space-y-6">
+        {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-gray-950 tracking-tight">{framework.name}</h1>
           {framework.description && (
@@ -102,11 +113,13 @@ export function FrameworkPage({ frameworkId }) {
           />
         )}
 
-        {framework.transitions && Object.keys(framework.transitions).length > 0 && (
+        {/* Two-dropdown version picker */}
+        {framework.versions && framework.versions.length >= 2 && (
           <VersionPicker
-            transitions={framework.transitions}
-            selectedKey={stableTransitionKey}
-            onChange={handleTransitionChange}
+            framework={framework}
+            fromVersion={fromVersion}
+            toVersion={toVersion}
+            onChange={handleVersionChange}
           />
         )}
 
@@ -154,7 +167,7 @@ export function FrameworkPage({ frameworkId }) {
 
             <div className="pt-4 border-t border-gray-100">
               <p className="text-xs text-gray-400">
-                Last updated: {framework.lastDataUpdate} {' '}
+                Last updated: {framework.lastDataUpdate}{' '}
                 <a href={framework.source} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600 transition-colors">
                   {framework.publisher} official publication
                 </a>
@@ -162,9 +175,15 @@ export function FrameworkPage({ frameworkId }) {
             </div>
           </>
         ) : (
-          <div className="text-center py-16 text-gray-400 text-sm">
-            No transition data available yet.
-          </div>
+          fromVersion && toVersion && fromVersion !== toVersion ? (
+            <div className="text-center py-16 text-gray-400 text-sm">
+              No comparison data available for {fromVersion} &rarr; {toVersion}.
+            </div>
+          ) : (
+            <div className="text-center py-16 text-gray-400 text-sm">
+              Select two different versions above to compare.
+            </div>
+          )
         )}
       </div>
     </div>
