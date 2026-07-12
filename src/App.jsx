@@ -3,11 +3,34 @@ import { Sidebar } from './components/layout/Sidebar'
 import { FrameworkPage } from './components/framework/FrameworkPage'
 import { HomePage } from './components/HomePage'
 import { AboutPage } from './components/AboutPage'
+import { TermsPage } from './components/legal/TermsPage'
+import { PrivacyPage } from './components/legal/PrivacyPage'
 import { CommandPalette } from './components/ui/CommandPalette'
+import { frameworksData } from './data/registry'
+
+// Parse the current URL path into a route object
+function parseRoute() {
+  let path = window.location.pathname.replace(/\/+$/, '') || '/'
+
+  // Legacy hash URL support: /#nist-csf -> /nist-csf
+  const hash = window.location.hash.slice(1)
+  if (path === '/' && hash) {
+    path = '/' + hash
+    window.history.replaceState(null, '', path)
+  }
+
+  if (path === '/') return { page: 'home' }
+  if (path === '/about') return { page: 'about' }
+  if (path === '/terms') return { page: 'terms' }
+  if (path === '/privacy') return { page: 'privacy' }
+
+  const id = path.slice(1)
+  if (frameworksData[id]) return { page: 'framework', frameworkId: id }
+  return { page: 'home' }
+}
 
 export default function App() {
-  const [selectedFrameworkId, setSelectedFrameworkId] = useState(null)
-  const [showAbout, setShowAbout] = useState(false)
+  const [route, setRoute] = useState(parseRoute)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() =>
     localStorage.getItem('sidebar-collapsed') === 'true'
   )
@@ -15,19 +38,18 @@ export default function App() {
   const [cmdKOpen, setCmdKOpen] = useState(false)
 
   useEffect(() => {
-    const syncFromHash = () => {
-      const hash = window.location.hash.slice(1)
-      if (hash === 'about') {
-        setShowAbout(true)
-        setSelectedFrameworkId(null)
-      } else {
-        setShowAbout(false)
-        setSelectedFrameworkId(hash || null)
-      }
+    const onPopState = () => setRoute(parseRoute())
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+
+  const navigate = useCallback((path) => {
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, '', path)
     }
-    syncFromHash()
-    window.addEventListener('hashchange', syncFromHash)
-    return () => window.removeEventListener('hashchange', syncFromHash)
+    setRoute(parseRoute())
+    window.scrollTo(0, 0)
+    setCmdKOpen(false)
   }, [])
 
   useEffect(() => {
@@ -43,27 +65,12 @@ export default function App() {
   }, [])
 
   const handleSelectFramework = useCallback((id) => {
-    setSelectedFrameworkId(id)
-    setShowAbout(false)
-    window.location.hash = id
+    navigate('/' + id)
     setRecentlyViewed(prev => [id, ...prev.filter(x => x !== id)].slice(0, 5))
-    window.scrollTo(0, 0)
-    setCmdKOpen(false)
-  }, [])
+  }, [navigate])
 
-  const handleHome = useCallback(() => {
-    setSelectedFrameworkId(null)
-    setShowAbout(false)
-    window.location.hash = ''
-    window.scrollTo(0, 0)
-  }, [])
-
-  const handleAbout = useCallback(() => {
-    setSelectedFrameworkId(null)
-    setShowAbout(true)
-    window.location.hash = 'about'
-    window.scrollTo(0, 0)
-  }, [])
+  const handleHome = useCallback(() => navigate('/'), [navigate])
+  const handleAbout = useCallback(() => navigate('/about'), [navigate])
 
   const handleSidebarToggle = () => {
     setSidebarCollapsed(c => {
@@ -76,25 +83,30 @@ export default function App() {
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <Sidebar
-        selectedId={selectedFrameworkId}
+        selectedId={route.page === 'framework' ? route.frameworkId : null}
         onSelect={handleSelectFramework}
         onHome={handleHome}
         onAbout={handleAbout}
+        onNavigate={navigate}
         collapsed={sidebarCollapsed}
         onToggleCollapse={handleSidebarToggle}
         recentlyViewed={recentlyViewed}
         onOpenSearch={() => setCmdKOpen(true)}
       />
       <main className="flex-1 overflow-y-auto min-w-0">
-        {showAbout ? (
+        {route.page === 'about' ? (
           <AboutPage onHome={handleHome} />
-        ) : selectedFrameworkId ? (
+        ) : route.page === 'terms' ? (
+          <TermsPage onHome={handleHome} />
+        ) : route.page === 'privacy' ? (
+          <PrivacyPage onHome={handleHome} />
+        ) : route.page === 'framework' ? (
           <FrameworkPage
-            key={selectedFrameworkId}
-            frameworkId={selectedFrameworkId}
+            key={route.frameworkId}
+            frameworkId={route.frameworkId}
           />
         ) : (
-          <HomePage onSelectFramework={handleSelectFramework} />
+          <HomePage onSelectFramework={handleSelectFramework} onNavigate={navigate} />
         )}
       </main>
       {cmdKOpen && (

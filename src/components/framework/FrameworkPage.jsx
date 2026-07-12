@@ -8,6 +8,8 @@ import { Highlights } from './Highlights'
 import { ChangeList } from './ChangeList'
 import { MetadataOnlyBanner } from './MetadataOnlyBanner'
 import { ComingSoonPage } from './ComingSoonPage'
+import { ExportButtons } from './ExportButtons'
+import { AlertSignup } from '../AlertSignup'
 import { FilterTabs } from '../ui/FilterTabs'
 import { SearchBar } from '../ui/SearchBar'
 import { CopyrightBadge } from '../ui/Badge'
@@ -136,11 +138,19 @@ export function FrameworkPage({ frameworkId }) {
             )}
 
             <div className="space-y-2">
-              <FilterTabs
-                activeFilter={filter}
-                onChange={setFilter}
-                counts={changeCounts}
-              />
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <FilterTabs
+                  activeFilter={filter}
+                  onChange={setFilter}
+                  counts={changeCounts}
+                />
+                <ExportButtons
+                  framework={framework}
+                  changes={filteredChanges}
+                  fromVersion={fromVersion}
+                  toVersion={toVersion}
+                />
+              </div>
               <SearchBar value={searchQuery} onChange={setSearchQuery} />
             </div>
 
@@ -166,6 +176,8 @@ export function FrameworkPage({ frameworkId }) {
               fromVersion={fromVersion}
               toVersion={toVersion}
             />
+
+            <AlertSignup frameworkName={framework.shortName || framework.name} />
 
             <div className="pt-4 border-t border-gray-100">
               <p className="text-xs text-gray-400">

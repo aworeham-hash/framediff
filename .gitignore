@@ -34,3 +34,6 @@ pnpm-debug.log*
 
 # Phase 5 (when auth/payments are added)
 .clerk/
+
+# Vite temp config artifacts
+vite.config.js.timestamp-*.mjs

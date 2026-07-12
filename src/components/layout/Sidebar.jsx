@@ -90,7 +90,7 @@ function FrameworkItem({ id, isActive, onClick, collapsed }) {
   )
 }
 
-export function Sidebar({ selectedId, onSelect, onHome, onAbout, collapsed, onToggleCollapse, recentlyViewed, onOpenSearch }) {
+export function Sidebar({ selectedId, onSelect, onHome, onAbout, onNavigate, collapsed, onToggleCollapse, recentlyViewed, onOpenSearch }) {
   return (
     <aside className={`bg-slate-950 flex flex-col h-screen flex-shrink-0 border-r border-slate-800 transition-all duration-200 ${collapsed ? 'w-14' : 'w-60'}`}>
 
@@ -205,6 +205,13 @@ export function Sidebar({ selectedId, onSelect, onHome, onAbout, collapsed, onTo
             </svg>
             About &amp; Disclaimer
           </button>
+        )}
+
+        {!collapsed && (
+          <div className="px-1 mb-2 flex items-center gap-3 text-xs text-slate-700">
+            <button onClick={() => onNavigate && onNavigate('/terms')} className="hover:text-slate-400 transition-colors">Terms</button>
+            <button onClick={() => onNavigate && onNavigate('/privacy')} className="hover:text-slate-400 transition-colors">Privacy</button>
+          </div>
         )}
 
         <button
