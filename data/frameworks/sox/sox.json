@@ -8,8 +8,12 @@
   "publisher": "PCAOB",
   "source": "https://pcaobus.org/Standards",
   "officialChangelogUrl": "https://pcaobus.org/Standards/Auditing",
-  "lastDataUpdate": "2024-11-01",
-  "versions": ["AS 5 (2007)", "AS 2201 (2010)", "QC 1000 (2024)"],
+  "lastDataUpdate": "2026-07-12",
+  "versions": [
+    "AS 5 (2007)",
+    "AS 2201 (2010)",
+    "QC 1000 (2024)"
+  ],
   "latestVersion": "QC 1000 (2024)",
   "transitions": {
     "AS5-to-AS2201": {
@@ -38,105 +42,175 @@
           "id": "change-sox-as5-as2201-001",
           "type": "restructured",
           "category": "codification",
-          "controlId": { "old": "AS 5", "new": "AS 2201" },
+          "controlId": {
+            "old": "AS 5",
+            "new": "AS 2201"
+          },
           "title": "AS 5 renumbered to AS 2201 as part of PCAOB standards codification",
           "area": "Framework — Structure",
           "oldText": "Auditing Standard No. 5 — An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements.",
           "newText": "AS 2201 — An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements. Effective for audits of fiscal years ending on or after June 1, 2010.",
           "rationale": "PCAOB reorganized its entire standards library into a numbered codification system (AS 1000–3000 series) to improve navigation and consistency. AS 5 became AS 2201, placed in the 2000-series covering audit procedures. The content was substantively preserved but reorganized to fit the new structure and cross-reference system.",
           "significance": "medium",
-          "tags": ["codification", "renumbering", "restructured", "as-2201"]
+          "tags": [
+            "codification",
+            "renumbering",
+            "restructured",
+            "as-2201"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-002",
           "type": "modified",
           "category": "risk-based-approach",
-          "controlId": { "old": "AS 5 ¶20", "new": "AS 2201 ¶12" },
+          "controlId": {
+            "old": "AS 5 ¶20",
+            "new": "AS 2201 ¶12"
+          },
           "title": "Top-down risk-based approach requirements strengthened",
           "area": "AS 2201 — Audit Approach",
           "oldText": "The auditor should use a top-down approach to the audit of internal control over financial reporting to select the controls to test. The auditor begins at the financial statement level and with the auditor's understanding of the overall risks to internal control over financial reporting.",
           "newText": "The auditor must use a top-down approach to the audit of internal control over financial reporting. The auditor begins at the financial statement level and uses the understanding of overall risks to ICFR to identify significant accounts and disclosures and their relevant assertions. This approach directs the auditor's attention to those controls that most affect the risk of material misstatement in the financial statements and helps the auditor avoid excessive testing of controls that, even if deficient, would not present a reasonable possibility of material misstatement.",
           "rationale": "AS 2201 strengthened the language around the top-down risk-based approach from 'should' to 'must' and added explicit language about avoiding excessive testing. This responded to criticism that AS 5 audits were still too expansive and costly, particularly for smaller issuers. The clarification that the goal is to identify the controls most affecting material misstatement risk — not to test all controls — was significant for scoping efficiency.",
           "significance": "high",
-          "tags": ["risk-based", "top-down", "scoping", "material-misstatement", "efficiency"]
+          "tags": [
+            "risk-based",
+            "top-down",
+            "scoping",
+            "material-misstatement",
+            "efficiency"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-003",
           "type": "modified",
           "category": "entity-level-controls",
-          "controlId": { "old": "AS 5 ¶22-24", "new": "AS 2201 ¶14-17" },
+          "controlId": {
+            "old": "AS 5 ¶22-24",
+            "new": "AS 2201 ¶14-17"
+          },
           "title": "Entity-level controls given greater weight in reducing transaction-level testing",
           "area": "AS 2201 — Entity-Level Controls",
           "oldText": "The auditor should evaluate entity-level controls, which can have a pervasive effect on the company's internal control over financial reporting. Some entity-level controls might be designed to operate at a level of precision that would adequately address the risk that a misstatement of a relevant assertion would be prevented or detected on a timely basis.",
           "newText": "Entity-level controls that are precise enough to, by themselves, adequately address the risk that a material misstatement of a relevant assertion might occur allow the auditor to reduce or eliminate testing of other controls. The auditor must evaluate whether individual entity-level controls are sufficiently precise to address a given risk and, if so, may limit testing of other controls related to that risk.",
           "rationale": "AS 2201 made explicit what was only implied in AS 5: strong entity-level controls (particularly the control environment, risk assessment processes, and monitoring controls) can substitute for detailed transaction-level testing. This was a meaningful change for companies with mature control environments — allowing auditors to rely more on ELCs and reduce the overall scope of substantive transaction-level testing.",
           "significance": "high",
-          "tags": ["entity-level-controls", "elc", "testing-scope", "control-environment", "efficiency"]
+          "tags": [
+            "entity-level-controls",
+            "elc",
+            "testing-scope",
+            "control-environment",
+            "efficiency"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-004",
           "type": "modified",
           "category": "it-controls",
-          "controlId": { "old": "AS 5 ¶42-46", "new": "AS 2201 ¶26-28" },
+          "controlId": {
+            "old": "AS 5 ¶42-46",
+            "new": "AS 2201 ¶26-28"
+          },
           "title": "IT general controls and application controls guidance clarified",
           "area": "AS 2201 — IT Controls",
           "oldText": "The auditor should obtain an understanding of how IT affects the company's flow of transactions and the risks arising from IT. Automated controls may require testing of the ITGC environment to support reliance on those automated controls.",
           "newText": "When an automated control is effective and the IT general controls supporting that automated control are effective, the auditor may be able to reduce the extent of testing of the automated control based on its consistency and automated nature. The auditor must evaluate which IT general controls are relevant to the automated controls being tested and must test those ITGCs to support reliance on the automated controls. Highly automated processing environments with effective ITGCs may allow reduced transaction-level testing.",
           "rationale": "The relationship between ITGCs and automated application controls was a source of significant confusion under AS 5. AS 2201 clarified that effective ITGCs support reliance on automated controls (because automated controls execute consistently), which in turn can reduce manual transaction testing. This was significant for technology-intensive companies where automation is pervasive.",
           "significance": "high",
-          "tags": ["itgc", "it-controls", "automated-controls", "application-controls", "technology"]
+          "tags": [
+            "itgc",
+            "it-controls",
+            "automated-controls",
+            "application-controls",
+            "technology"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-005",
           "type": "modified",
           "category": "deficiency-evaluation",
-          "controlId": { "old": "AS 5 ¶62-70", "new": "AS 2201 ¶62-70" },
+          "controlId": {
+            "old": "AS 5 ¶62-70",
+            "new": "AS 2201 ¶62-70"
+          },
           "title": "Control deficiency evaluation framework — severity classification clarified",
           "area": "AS 2201 — Deficiency Evaluation",
           "oldText": "A deficiency in internal control over financial reporting exists when the design or operation of a control does not allow management or employees to prevent or detect misstatements on a timely basis. A significant deficiency is a deficiency, or a combination of deficiencies, in ICFR that is less severe than a material weakness, yet important enough to merit attention by those responsible for oversight of the company's financial reporting. A material weakness is a deficiency, or a combination of deficiencies, in ICFR such that there is a reasonable possibility that a material misstatement of the company's annual or interim financial statements will not be prevented or detected on a timely basis.",
           "newText": "A deficiency in internal control over financial reporting exists when the design or operation of a control does not allow management or employees, in the normal course of performing their assigned functions, to prevent or detect and correct misstatements on a timely basis. A significant deficiency is a deficiency, or a combination of deficiencies, in ICFR that is less severe than a material weakness, yet important enough to merit attention by those responsible for oversight of the company's financial reporting. A material weakness is a deficiency, or a combination of deficiencies, in ICFR, such that there is a reasonable possibility that a material misstatement of the company's annual or interim financial statements will not be prevented, or detected and corrected, on a timely basis.",
           "rationale": "AS 2201 added 'and correct' to the deficiency definitions, clarifying that the standard is prevention or detection AND correction — not just detection. A control that detects errors but doesn't correct them in a timely manner still represents a deficiency. This was an important clarification that aligned with how management assessment standards define deficiencies.",
           "significance": "medium",
-          "tags": ["deficiency", "material-weakness", "significant-deficiency", "control-evaluation", "correction"]
+          "tags": [
+            "deficiency",
+            "material-weakness",
+            "significant-deficiency",
+            "control-evaluation",
+            "correction"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-006",
           "type": "modified",
           "category": "fraud-risk",
-          "controlId": { "old": "AS 5 ¶14", "new": "AS 2201 ¶14" },
+          "controlId": {
+            "old": "AS 5 ¶14",
+            "new": "AS 2201 ¶14"
+          },
           "title": "Fraud risk assessment integrated into ICFR evaluation",
           "area": "AS 2201 — Risk Assessment",
           "oldText": "As part of identifying and testing entity-level controls, the auditor should evaluate controls specifically intended to address the risk of fraud that could lead to material misstatement of the financial statements.",
           "newText": "As part of identifying and testing entity-level controls, the auditor must evaluate controls specifically intended to address the risk of fraud that could lead to a material misstatement of the financial statements. When evaluating control deficiencies, the auditor must consider whether identified deficiencies — individually or in combination — increase the risk of fraud, and must communicate this assessment to the audit committee.",
           "rationale": "AS 2201 strengthened the fraud risk integration requirement and added an explicit obligation to communicate fraud risk implications of control deficiencies to the audit committee. This responded to post-financial-crisis concerns that ICFR audits were not sufficiently focused on fraud risk as a distinct risk category.",
           "significance": "medium",
-          "tags": ["fraud-risk", "audit-committee", "material-misstatement", "communication"]
+          "tags": [
+            "fraud-risk",
+            "audit-committee",
+            "material-misstatement",
+            "communication"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-007",
           "type": "modified",
           "category": "smaller-companies",
-          "controlId": { "old": "AS 5 ¶9-10", "new": "AS 2201 ¶9-10" },
+          "controlId": {
+            "old": "AS 5 ¶9-10",
+            "new": "AS 2201 ¶9-10"
+          },
           "title": "Scaling guidance for smaller, less complex issuers formalized",
           "area": "AS 2201 — Scaling the Audit",
           "oldText": "The nature and extent of testing required to express an opinion on internal control will vary significantly from company to company. The auditor must determine how the considerations applicable to large, complex companies apply to smaller, less complex companies.",
           "newText": "The size and complexity of the company, as well as the nature of the company's internal control over financial reporting, influence the nature, timing, and extent of the work needed to complete an integrated audit. For smaller, less complex companies, simpler, less formal controls may be appropriate. The auditor should tailor the audit procedures in a manner commensurate with the size and complexity of the company being audited. Smaller companies may have fewer controls that individually address specific risks, with a greater reliance on entity-level controls and the control environment.",
           "rationale": "One of the most significant criticisms of AS 5 was that it was designed for large, complex companies and created disproportionate compliance costs for smaller issuers. AS 2201 formalized the scaling guidance — explicitly acknowledging that smaller companies with simpler control environments should receive proportionately simpler audits. This was driven by SEC and Congress pressure following studies showing SOX compliance costs falling disproportionately on smaller public companies.",
           "significance": "high",
-          "tags": ["scaling", "smaller-companies", "proportionate", "complexity", "compliance-cost"]
+          "tags": [
+            "scaling",
+            "smaller-companies",
+            "proportionate",
+            "complexity",
+            "compliance-cost"
+          ]
         },
         {
           "id": "change-sox-as5-as2201-008",
           "type": "added",
           "category": "walkthrough",
-          "controlId": { "old": null, "new": "AS 2201 ¶34-37" },
+          "controlId": {
+            "old": null,
+            "new": "AS 2201 ¶34-37"
+          },
           "title": "Walkthrough requirements clarified — one walkthrough per significant class of transactions",
           "area": "AS 2201 — Walkthroughs",
           "oldText": null,
           "newText": "The auditor must perform walkthroughs for each major class of transactions identified as significant to the financial statements. A walkthrough traces a transaction from its origination through the company's processes, including information systems, until it is reflected in the company's financial records. Walkthroughs must include inquiry, observation, inspection of relevant documentation, and re-performance of controls. The auditor must perform walkthroughs personally and cannot use the work of others as a substitute for the walkthrough.",
           "rationale": "The walkthrough requirement was clarified to address inconsistency in practice — some auditors were performing cursory documentation reviews rather than true process walkthroughs. AS 2201 specifies that walkthroughs must include all four procedures (inquiry, observation, inspection, re-performance) and that the auditor must perform them directly — a significant anti-delegation rule that ensures the auditor personally understands the transaction flows being assessed.",
           "significance": "medium",
-          "tags": ["walkthrough", "transaction-flow", "auditor-procedures", "inquiry", "observation"]
+          "tags": [
+            "walkthrough",
+            "transaction-flow",
+            "auditor-procedures",
+            "inquiry",
+            "observation"
+          ]
         }
       ]
     },
@@ -153,6 +227,7 @@
         "totalFrom": 94,
         "totalTo": 116,
         "highlights": [
+          "STATUS UPDATE: The PCAOB postponed the QC 1000 effective date by one year to December 15, 2026, citing implementation challenges — particularly for smaller firms.",
           "QC 1000 is the most significant PCAOB rulemaking since SOX itself — the first comprehensive quality control standard for audit firms, replacing the patchwork of QC sections inherited from the AICPA",
           "Firm leadership and governance now have explicit, enforceable accountability for audit quality — QC 1000 makes engagement partner and managing partner personally responsible",
           "Annual evaluation of the firm's QC system now required and must be reported to the PCAOB — firms must assess whether their QC system provides reasonable assurance of audit quality",
@@ -166,144 +241,245 @@
           "id": "change-sox-as2201-qc1000-001",
           "type": "added",
           "category": "new-standard",
-          "controlId": { "old": null, "new": "QC 1000" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000"
+          },
           "title": "QC 1000: A Firm's System of Quality Control — new comprehensive QC standard",
           "area": "QC 1000 — Quality Control System",
           "oldText": null,
           "newText": "QC 1000 establishes requirements for registered public accounting firms' systems of quality control. A firm's QC system must provide reasonable assurance that the firm and its personnel fulfill their responsibilities in accordance with PCAOB standards and applicable legal and regulatory requirements, and that engagement reports issued by the firm are appropriate in the circumstances. The QC system must address: governance and leadership; relevant ethical requirements; acceptance and continuance of client relationships and engagements; engagement performance; resources; information and communication; and monitoring and remediation.",
           "rationale": "Prior to QC 1000, PCAOB audit firms operated under quality control standards inherited from the AICPA (QC 20, QC 25) that were designed for non-public company audits and were not tailored to the PCAOB environment. QC 1000 is the first PCAOB-native quality control standard and represents the most significant structural change to how audit firm quality is governed since SOX was enacted. It shifts from a 'policies and procedures' model to an outcomes-based system of quality control.",
           "significance": "high",
-          "tags": ["qc-1000", "quality-control", "new-standard", "audit-firm", "pcaob"]
+          "tags": [
+            "qc-1000",
+            "quality-control",
+            "new-standard",
+            "audit-firm",
+            "pcaob"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-002",
           "type": "added",
           "category": "leadership-accountability",
-          "controlId": { "old": null, "new": "QC 1000 §3" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §3"
+          },
           "title": "Firm leadership explicitly accountable for audit quality — CEO/managing partner responsibility",
           "area": "QC 1000 — Governance and Leadership",
           "oldText": null,
           "newText": "The firm's leadership must assume ultimate responsibility and accountability for the firm's QC system. The individual with ultimate responsibility for the firm's QC system must be a senior leader (e.g., CEO, managing partner, or equivalent) who has sufficient authority to establish the firm's culture, policies, and resources related to audit quality. The firm must designate a qualified individual responsible for the operational aspects of the QC system who must report directly to firm leadership and must have direct access to the engagement quality reviewer pool.",
           "rationale": "Under the prior AICPA-inherited QC standards, quality control was typically managed by a quality control partner without explicit leadership accountability. QC 1000 places ultimate accountability at the firm's highest leadership level — making audit quality a C-suite responsibility, not a compliance function. This mirrors the SOX Section 302 model of executive certification and responds to PCAOB inspection findings that quality control breakdowns often originated from leadership culture issues.",
           "significance": "high",
-          "tags": ["leadership", "accountability", "governance", "ceo", "managing-partner", "audit-quality"]
+          "tags": [
+            "leadership",
+            "accountability",
+            "governance",
+            "ceo",
+            "managing-partner",
+            "audit-quality"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-003",
           "type": "added",
           "category": "annual-evaluation",
-          "controlId": { "old": null, "new": "QC 1000 §8" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §8"
+          },
           "title": "Annual QC system evaluation required — results reported to PCAOB",
           "area": "QC 1000 — Monitoring and Remediation",
           "oldText": null,
           "newText": "Each registered firm must perform an annual evaluation of its QC system and report the results to the PCAOB using the PCAOB's prescribed form. The annual evaluation must assess whether the firm's QC system provides reasonable assurance that the firm and its personnel fulfill their responsibilities in accordance with PCAOB standards. The evaluation must identify any QC deficiencies, assess their severity, determine root causes, and establish remediation plans. The firm must report whether any identified deficiencies rise to the level of a QC material weakness.",
           "rationale": "This is the most operationally significant new requirement in QC 1000. Firms must now perform a formal annual self-assessment of their quality control system — analogous to management's assessment of ICFR under SOX Section 404(a) — and report results publicly to the PCAOB. The QC material weakness concept mirrors the ICFR material weakness concept, creating a parallel accountability framework for audit firm quality.",
           "significance": "high",
-          "tags": ["annual-evaluation", "qc-assessment", "pcaob-reporting", "qc-material-weakness", "self-assessment"]
+          "tags": [
+            "annual-evaluation",
+            "qc-assessment",
+            "pcaob-reporting",
+            "qc-material-weakness",
+            "self-assessment"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-004",
           "type": "added",
           "category": "technology-controls",
-          "controlId": { "old": null, "new": "QC 1000 §6" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §6"
+          },
           "title": "Technology and data analytics controls required in firm QC system",
           "area": "QC 1000 — Resources",
           "oldText": null,
           "newText": "A firm's QC system must include policies and procedures addressing the use of technology resources, including audit software, data analytics tools, automated workflow systems, and artificial intelligence tools used in the performance of audits. The firm must: assess the appropriateness of technology tools before deployment in audits; train personnel on the proper use and limitations of technology tools; establish controls over the integrity and security of data processed by technology tools; and monitor the performance of technology tools to detect errors or unexpected outputs.",
           "rationale": "The explosive adoption of data analytics, robotic process automation, and AI tools in audit practice was not addressed in any prior PCAOB standard. QC 1000 makes technology governance an explicit quality control requirement — firms must have policies covering AI and analytics tools before deploying them in audits. This was driven by PCAOB inspection findings of errors introduced by over-reliance on inadequately validated technology tools.",
           "significance": "high",
-          "tags": ["technology", "data-analytics", "ai", "audit-tools", "automation", "quality-control"]
+          "tags": [
+            "technology",
+            "data-analytics",
+            "ai",
+            "audit-tools",
+            "automation",
+            "quality-control"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-005",
           "type": "added",
           "category": "human-resources",
-          "controlId": { "old": null, "new": "QC 1000 §5" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §5"
+          },
           "title": "Competency assessment required at engagement level, not just firm-wide",
           "area": "QC 1000 — Human Resources",
           "oldText": null,
           "newText": "A firm's QC system must include policies and procedures to provide reasonable assurance that the firm has sufficient personnel with the competence, capabilities, and commitment to ethical principles necessary to perform engagements in accordance with PCAOB standards. The firm must assess competency at the individual engagement level — the engagement partner must evaluate whether the engagement team has the necessary competence and capabilities for the specific risks presented by each engagement. Firms must maintain records of competency assessments and must address identified competency gaps before or during the engagement.",
           "rationale": "Prior QC standards addressed firm-wide competency in general terms. QC 1000 requires engagement-level competency assessment — the engagement partner must affirmatively determine that their specific team has the skills needed for their specific client's risks. This responds to PCAOB inspection findings where audit failures were attributed to team members lacking industry-specific or technical accounting competence.",
           "significance": "high",
-          "tags": ["competency", "human-resources", "engagement-level", "training", "skills-assessment"]
+          "tags": [
+            "competency",
+            "human-resources",
+            "engagement-level",
+            "training",
+            "skills-assessment"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-006",
           "type": "added",
           "category": "root-cause-analysis",
-          "controlId": { "old": null, "new": "QC 1000 §8" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §8"
+          },
           "title": "Root cause analysis required for all QC deficiencies",
           "area": "QC 1000 — Monitoring and Remediation",
           "oldText": null,
           "newText": "When a firm identifies a QC deficiency through its monitoring activities, the firm must perform a root cause analysis to understand why the deficiency occurred. The root cause analysis must consider both proximate causes (the immediate failure) and systemic causes (the underlying conditions that allowed the failure to occur). The firm must use root cause analysis findings to design remediation that addresses systemic causes, not just proximate failures. Remediation plans must include specific actions, responsible parties, and target completion dates. The firm must track remediation to closure and verify effectiveness.",
           "rationale": "The prior QC approach focused on identifying deficiencies but did not require systematic root cause analysis. Firms would often remediate the immediate deficiency without addressing underlying systemic issues, resulting in recurring findings. QC 1000's root cause requirement borrows from quality management principles (e.g., ISO 9001) and is designed to break the cycle of recurring audit quality issues.",
           "significance": "high",
-          "tags": ["root-cause-analysis", "remediation", "systemic-causes", "quality-management", "monitoring"]
+          "tags": [
+            "root-cause-analysis",
+            "remediation",
+            "systemic-causes",
+            "quality-management",
+            "monitoring"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-007",
           "type": "added",
           "category": "engagement-quality-review",
-          "controlId": { "old": null, "new": "QC 1000 §7" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §7"
+          },
           "title": "Engagement quality review requirements expanded and independence strengthened",
           "area": "QC 1000 — Engagement Performance",
           "oldText": null,
           "newText": "A firm's QC system must include policies and procedures for engagement quality reviews of all audits of accelerated filers and large accelerated filers, and for other engagements where the firm determines a review is warranted. The engagement quality reviewer must be independent of the engagement team and must not have been a member of the engagement team during the period under audit. The EQR must evaluate: the significant judgments made by the engagement team; the appropriateness of the audit opinion; and whether the engagement was performed in accordance with PCAOB standards. The EQR must be completed before the audit report is issued.",
           "rationale": "EQR requirements existed under prior standards but were scattered and less prescriptive. QC 1000 consolidates and strengthens EQR requirements, adds explicit independence requirements (no prior involvement with the engagement), and specifies the content of the review. The mandatory EQR scope for accelerated and large accelerated filers reflects the PCAOB's view that these high-risk engagements require an additional layer of independent review.",
           "significance": "high",
-          "tags": ["engagement-quality-review", "eqr", "independence", "accelerated-filer", "audit-opinion"]
+          "tags": [
+            "engagement-quality-review",
+            "eqr",
+            "independence",
+            "accelerated-filer",
+            "audit-opinion"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-008",
           "type": "added",
           "category": "ethics",
-          "controlId": { "old": null, "new": "QC 1000 §4" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §4"
+          },
           "title": "Ethical requirements explicitly addressed in QC system",
           "area": "QC 1000 — Relevant Ethical Requirements",
           "oldText": null,
           "newText": "A firm's QC system must include policies and procedures to provide reasonable assurance that the firm and its personnel comply with relevant ethical requirements, including those related to independence. The firm must: communicate ethical requirements to all personnel; identify and evaluate threats to compliance with ethical requirements; apply safeguards to eliminate threats or reduce them to an acceptable level; and maintain documentation of independence evaluations for partners and other personnel in senior positions. The firm must have a process for personnel to report ethical concerns without fear of retaliation.",
           "rationale": "Ethical requirements — particularly auditor independence — were previously addressed through PCAOB Rule 3520 and SEC rules rather than through the QC system itself. QC 1000 integrates ethics and independence into the QC framework, making the firm's QC system the mechanism for ensuring ethical compliance. The whistleblower protection provision responds to cases where audit quality issues were not reported due to internal culture pressure.",
           "significance": "high",
-          "tags": ["ethics", "independence", "whistleblower", "safeguards", "ethical-requirements"]
+          "tags": [
+            "ethics",
+            "independence",
+            "whistleblower",
+            "safeguards",
+            "ethical-requirements"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-009",
           "type": "added",
           "category": "documentation",
-          "controlId": { "old": null, "new": "QC 1000 §9" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §9"
+          },
           "title": "QC system documentation requirements — policies, procedures, and evidence of operation",
           "area": "QC 1000 — Information and Communication",
           "oldText": null,
           "newText": "A firm must document its QC system, including the policies and procedures that constitute the system and the firm's process for evaluating the system's design and operational effectiveness. Documentation must include evidence that QC policies and procedures are operating effectively, including records of monitoring activities, identified deficiencies, root cause analyses, and remediation actions. QC documentation must be retained for a minimum of seven years. The firm must communicate QC policies and procedures to all personnel who need to understand and apply them.",
           "rationale": "Prior QC standards required documented policies but not systematic documentation of the QC system's operation. QC 1000 requires both design documentation (the policies and procedures) and operational documentation (evidence they are working). The seven-year retention requirement aligns with audit documentation retention under AS 1215 and enables PCAOB inspection of QC system effectiveness over time.",
           "significance": "medium",
-          "tags": ["documentation", "retention", "policies-procedures", "evidence", "seven-year"]
+          "tags": [
+            "documentation",
+            "retention",
+            "policies-procedures",
+            "evidence",
+            "seven-year"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-010",
           "type": "modified",
           "category": "as2201-update",
-          "controlId": { "old": "AS 2201 ¶56-57", "new": "AS 2201 ¶56-57 (amended)" },
+          "controlId": {
+            "old": "AS 2201 ¶56-57",
+            "new": "AS 2201 ¶56-57 (amended)"
+          },
           "title": "AS 2201 amended to cross-reference QC 1000 engagement quality review requirements",
           "area": "AS 2201 — Engagement Quality Review",
           "oldText": "The engagement quality reviewer must evaluate the significant judgments made during the engagement and the overall conclusions reached. The reviewer must be a partner or other person in an equivalent position.",
           "newText": "The engagement quality reviewer must evaluate the significant judgments made during the engagement and the overall conclusions reached, consistent with the requirements of QC 1000. The engagement quality reviewer must meet the independence, competency, and objectivity requirements established in QC 1000 §7.",
           "rationale": "AS 2201 was amended simultaneously with the adoption of QC 1000 to align the engagement-level EQR requirements (in AS 2201) with the firm-level QC requirements for EQR (in QC 1000). This eliminates potential inconsistency between the two standards on EQR requirements and establishes QC 1000 as the definitive source for EQR qualifications.",
           "significance": "medium",
-          "tags": ["as-2201-amendment", "eqr", "qc-1000", "cross-reference", "alignment"]
+          "tags": [
+            "as-2201-amendment",
+            "eqr",
+            "qc-1000",
+            "cross-reference",
+            "alignment"
+          ]
         },
         {
           "id": "change-sox-as2201-qc1000-011",
           "type": "added",
           "category": "effective-dates",
-          "controlId": { "old": null, "new": "QC 1000 §10" },
+          "controlId": {
+            "old": null,
+            "new": "QC 1000 §10"
+          },
           "title": "QC 1000 effective dates — phased implementation by firm size",
           "area": "QC 1000 — Effective Dates",
           "oldText": null,
-          "newText": "QC 1000 is effective as follows: for firms that audit one or more accelerated filers, the standard is effective for QC system evaluations covering periods beginning on or after December 15, 2025; for all other registered firms, the standard is effective for QC system evaluations covering periods beginning on or after December 15, 2026. Early implementation is permitted. Firms must complete their first annual QC system evaluation under QC 1000 within 60 days after the end of the first annual period to which the standard applies.",
+          "newText": "QC 1000 is effective as follows: for firms that audit one or more accelerated filers, the standard is effective for QC system evaluations covering periods beginning on or after December 15, 2026 (postponed by the PCAOB in 2025 from the original December 15, 2025 date; SEC approved QC 1000 on September 9, 2024); for all other registered firms, the standard is effective for QC system evaluations covering periods beginning on or after December 15, 2026. Early implementation is permitted. Firms must complete their first annual QC system evaluation under QC 1000 within 60 days after the end of the first annual period to which the standard applies.",
           "rationale": "PCAOB adopted a phased implementation approach, giving larger firms (who audit accelerated filers and face the most complex implementation challenges) a 2025 effective date, and smaller firms a 2026 effective date. The 60-day evaluation completion window is analogous to the Form 10-K filing deadline for the annual report — creating a parallel annual cycle for QC assessment and public financial reporting.",
           "significance": "high",
-          "tags": ["effective-date", "implementation", "phased-rollout", "accelerated-filer", "transition"]
+          "tags": [
+            "effective-date",
+            "implementation",
+            "phased-rollout",
+            "accelerated-filer",
+            "transition"
+          ]
         }
       ]
     }

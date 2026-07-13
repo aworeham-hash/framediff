@@ -2,22 +2,21 @@
   "id": "hipaa",
   "name": "Health Insurance Portability and Accountability Act - Security Rule",
   "shortName": "HIPAA",
-  "description": "Federal law governing the privacy and security of protected health information (PHI). The January 2025 Final Rule is the first major overhaul of the HIPAA Security Rule since 2013, strengthening requirements for risk analysis, MFA, encryption at rest, technology asset inventories, vulnerability management, and business associate oversight.",
+  "description": "Federal law governing the privacy and security of protected health information (PHI). The December 2024 NPRM (published January 6, 2025) proposes the first major overhaul of the HIPAA Security Rule since 2013. It is NOT yet final: the comment period closed March 7, 2025 with over 4,000 comments, and per the OMB regulatory agenda final action is expected around July 2027. Requirements shown for the 2025 comparison are proposals and may change.",
   "copyright": "public-domain",
   "showFullText": true,
   "comingSoon": false,
   "publisher": "HHS OCR",
   "source": "https://www.hhs.gov/hipaa/for-professionals/security/index.html",
   "officialChangelogUrl": "https://www.federalregister.gov/documents/2025/01/06/2024-28949/hipaa-security-rule",
-  "lastDataUpdate": "2025-07-01",
+  "lastDataUpdate": "2026-07-12",
   "versions": [
-    "1996",
     "2003 (Privacy Rule)",
     "2009 (HITECH)",
     "2013 (Omnibus)",
-    "2025 (Final Rule)"
+    "2025 (Proposed Rule)"
   ],
-  "latestVersion": "2025 (Final Rule)",
+  "latestVersion": "2025 update proposed",
   "transitions": {
     "2003-to-2009": {
       "fromVersion": "2003 (Privacy Rule)",
@@ -41,13 +40,13 @@
           "type": "added",
           "controlId": {
             "old": null,
-            "new": "HITECH Act \u00a7 13401"
+            "new": "HITECH Act § 13401"
           },
-          "title": "HITECH Act \u2014 Business Associates Directly Subject to HIPAA Security Rule",
+          "title": "HITECH Act — Business Associates Directly Subject to HIPAA Security Rule",
           "area": "164.308 - Administrative Safeguards",
           "oldText": null,
-          "newText": "Section 13401 of the HITECH Act (42 U.S.C. \u00a7 17931) made business associates directly subject to the HIPAA Security Rule requirements that apply to covered entities. Business associates must implement administrative, physical, and technical safeguards for ePHI they create, receive, maintain, or transmit. Business associates are directly liable to HHS OCR for Security Rule violations independent of any business associate agreement.",
-          "rationale": "Prior to HITECH, business associates were only obligated to protect PHI through contractual BAAs \u2014 there was no direct regulatory liability. HITECH fundamentally changed this by making BAs directly liable, enabling OCR to investigate and penalize BAs directly. This was enacted in response to data breaches at BA organizations that faced no regulatory consequences.",
+          "newText": "Section 13401 of the HITECH Act (42 U.S.C. § 17931) made business associates directly subject to the HIPAA Security Rule requirements that apply to covered entities. Business associates must implement administrative, physical, and technical safeguards for ePHI they create, receive, maintain, or transmit. Business associates are directly liable to HHS OCR for Security Rule violations independent of any business associate agreement.",
+          "rationale": "Prior to HITECH, business associates were only obligated to protect PHI through contractual BAAs — there was no direct regulatory liability. HITECH fundamentally changed this by making BAs directly liable, enabling OCR to investigate and penalize BAs directly. This was enacted in response to data breaches at BA organizations that faced no regulatory consequences.",
           "significance": "high",
           "tags": [
             "HITECH",
@@ -61,9 +60,9 @@
           "type": "added",
           "controlId": {
             "old": null,
-            "new": "HITECH Act \u00a7 13402"
+            "new": "HITECH Act § 13402"
           },
-          "title": "HITECH Act \u2014 Breach Notification Requirement Established",
+          "title": "HITECH Act — Breach Notification Requirement Established",
           "area": "164.400 - Breach Notification",
           "oldText": null,
           "newText": "Section 13402 of the HITECH Act required covered entities to notify affected individuals, HHS, and (for breaches affecting 500+ individuals in a state) prominent media outlets of breaches of unsecured PHI. Notification must occur without unreasonable delay and within 60 calendar days of discovery. An interim final rule (45 CFR Parts 160 and 164) was issued in August 2009 implementing these requirements. The interim rule included a 'harm threshold' (notification only if breach poses significant risk of harm) that was later removed by the 2013 Omnibus Rule.",
@@ -82,9 +81,9 @@
           "type": "added",
           "controlId": {
             "old": null,
-            "new": "HITECH Act \u00a7 13410"
+            "new": "HITECH Act § 13410"
           },
-          "title": "HITECH Act \u2014 Tiered Civil Money Penalties Established",
+          "title": "HITECH Act — Tiered Civil Money Penalties Established",
           "area": "164.306 - Security Standards: General Rules",
           "oldText": null,
           "newText": "Section 13410 of the HITECH Act established tiered civil money penalties: (1) unknowing violations ($100-$50K per violation, max $25K per year pre-HITECH, now max $1.5M per category per year); (2) reasonable cause ($1K-$100K); (3) willful neglect corrected ($10K-$250K); (4) willful neglect not corrected ($50K-$1.5M). State attorneys general were also authorized to bring civil actions for HIPAA violations on behalf of state residents.",
@@ -104,7 +103,7 @@
             "old": "164.308(a)(1)",
             "new": "164.308(a)(1)"
           },
-          "title": "Security Management \u2014 Risk Analysis Required for Meaningful Use EHR Attestation",
+          "title": "Security Management — Risk Analysis Required for Meaningful Use EHR Attestation",
           "area": "164.308 - Administrative Safeguards",
           "oldText": "A covered entity must implement policies and procedures to prevent, detect, contain, and correct security violations. Risk analysis: conduct an accurate and thorough assessment of potential risks and vulnerabilities to the confidentiality, integrity, and availability of ePHI.",
           "newText": "A covered entity must implement policies and procedures to prevent, detect, contain, and correct security violations. Risk analysis is required, and in the context of HITECH meaningful use incentives, completion of a HIPAA Security Risk Assessment (SRA) became a required attestation for eligible providers seeking EHR incentive payments. The risk analysis must assess the potential risks and vulnerabilities to the confidentiality, integrity, and availability of all ePHI that the organization creates, receives, maintains, or transmits.",
@@ -125,11 +124,11 @@
             "old": "164.530(e)",
             "new": "164.530(e)"
           },
-          "title": "Accounting of Disclosures \u2014 EHR Disclosure Accounting Expanded",
+          "title": "Accounting of Disclosures — EHR Disclosure Accounting Expanded",
           "area": "164.530 - Administrative Requirements",
           "oldText": "An individual has a right to receive an accounting of disclosures of protected health information made by a covered entity for the six years prior to the date on which the accounting is requested.",
           "newText": "An individual has a right to receive an accounting of disclosures. For covered entities using an EHR, HITECH extended the accounting of disclosures requirement to include disclosures for treatment, payment, and health care operations (previously excluded). For EHR-based disclosures, the accounting period extends back three years (rather than six). This requirement was controversial and full implementation was delayed pending rulemaking.",
-          "rationale": "HITECH required HHS to expand accounting of disclosures for EHR users to include treatment, payment, and health care operations disclosures \u2014 a significant expansion from prior HIPAA rules. This provision was intended to improve transparency for patients whose EHR data is widely shared in health information exchanges.",
+          "rationale": "HITECH required HHS to expand accounting of disclosures for EHR users to include treatment, payment, and health care operations disclosures — a significant expansion from prior HIPAA rules. This provision was intended to improve transparency for patients whose EHR data is widely shared in health information exchanges.",
           "significance": "medium",
           "tags": [
             "accounting-of-disclosures",
@@ -145,7 +144,7 @@
             "old": "164.530(d)",
             "new": "164.530(d)"
           },
-          "title": "Training \u2014 Security Awareness Training Made Explicit Best Practice for EHR Users",
+          "title": "Training — Security Awareness Training Made Explicit Best Practice for EHR Users",
           "area": "164.530 - Administrative Requirements",
           "oldText": "A covered entity must train all members of its workforce on the policies and procedures with respect to protected health information required by this subpart and subpart D, as necessary and appropriate for the members of the workforce to carry out their functions.",
           "newText": "Workforce training requirements remain unchanged in statute, but HITECH-era guidance and meaningful use criteria made security awareness training a prominent focus. CMS and ONC guidance for meaningful use attestation emphasized security training for all workforce members accessing EHR systems. The Office of the National Coordinator (ONC) published guidance on EHR security training content requirements for meaningful use compliance.",
@@ -159,7 +158,9 @@
             "HITECH"
           ]
         }
-      ]
+      ],
+      "fromReleaseDate": "2003-04-14",
+      "toReleaseDate": "2009-02-17"
     },
     "2009-to-2013": {
       "fromVersion": "2009 (HITECH)",
@@ -170,7 +171,7 @@
         "modified": 9,
         "restructured": 0,
         "highlights": [
-          "Business Associate Agreements (BAAs) made mandatory by statute \u2014 BAs now directly liable under HIPAA Security Rule",
+          "Business Associate Agreements (BAAs) made mandatory by statute — BAs now directly liable under HIPAA Security Rule",
           "Breach Notification Rule finalized: 60-day notification required, 'harm threshold' removed",
           "Civil Money Penalties tiered into four categories with maximums up to $1.5M per violation category per year",
           "Marketing and fundraising restrictions tightened: prior authorization required for most treatment/payment marketing using PHI",
@@ -189,7 +190,7 @@
             "old": "164.308(b)(1)",
             "new": "164.308(b)(1)"
           },
-          "title": "Business Associate Contracts \u2014 BAs Directly Liable Under Security Rule",
+          "title": "Business Associate Contracts — BAs Directly Liable Under Security Rule",
           "area": "164.308 - Administrative Safeguards",
           "oldText": "A covered entity may permit a business associate to create, receive, maintain, or transmit electronic protected health information on the covered entity's behalf only if the covered entity obtains satisfactory assurances, in accordance with 164.314(a), that the business associate will appropriately safeguard the information.",
           "newText": "A covered entity may permit a business associate to create, receive, maintain, or transmit electronic protected health information on the covered entity's behalf only if the covered entity obtains satisfactory assurances, in accordance with 164.314(a), that the business associate will appropriately safeguard the information. Business associates are directly liable for compliance with the Security Rule requirements applicable to them, regardless of whether they have a signed BAA. Business associates of business associates (subcontractors) must also have BAAs in place.",
@@ -210,7 +211,7 @@
             "old": null,
             "new": "164.400-414"
           },
-          "title": "Breach Notification Rule \u2014 60-Day Notification, Harm Threshold Removed",
+          "title": "Breach Notification Rule — 60-Day Notification, Harm Threshold Removed",
           "area": "164.400 - Breach Notification",
           "oldText": null,
           "newText": "Following the discovery of a breach of unsecured protected health information, a covered entity must notify each individual whose unsecured PHI has been, or is reasonably believed to have been, accessed, acquired, used, or disclosed as a result of such breach. Notification must be provided without unreasonable delay and in no case later than 60 calendar days after discovery of the breach. The 2009 interim rule's 'harm threshold' (requiring breach notification only when the breach posed significant risk of financial, reputational, or other harm) is replaced by a presumption that all breaches require notification unless the covered entity demonstrates low probability that PHI was compromised under a four-factor risk assessment.",
@@ -231,7 +232,7 @@
             "old": null,
             "new": "164.404-414"
           },
-          "title": "Breach Notification \u2014 Tiered Civil Money Penalties ($100 to $1.5M per category)",
+          "title": "Breach Notification — Tiered Civil Money Penalties ($100 to $1.5M per category)",
           "area": "164.400 - Breach Notification",
           "oldText": null,
           "newText": "Civil Money Penalties (CMPs) for HIPAA violations are tiered into four categories based on culpability: (1) Unknowing violation: $100-$50,000 per violation; (2) Reasonable cause: $1,000-$100,000 per violation; (3) Willful neglect, corrected: $10,000-$250,000 per violation; (4) Willful neglect, not corrected: $50,000-$1,500,000 per violation. Maximum annual penalty per violation category is $1,500,000.",
@@ -252,7 +253,7 @@
             "old": "164.514(e)",
             "new": "164.514(e)"
           },
-          "title": "Marketing \u2014 Prior Authorization Required for Most PHI-Based Marketing",
+          "title": "Marketing — Prior Authorization Required for Most PHI-Based Marketing",
           "area": "164.514 - Other Requirements Relating to Uses and Disclosures",
           "oldText": "A covered entity may use or disclose protected health information for marketing purposes if it obtains an authorization that complies with 164.508, except that no authorization is required for face-to-face marketing communications with an individual or for promotional gifts of nominal value.",
           "newText": "A covered entity must obtain a valid authorization before using or disclosing PHI for marketing purposes. An authorization is required for all treatment and health care operations communications where a covered entity receives financial remuneration for making the communication. Subsidized treatment communications (where the third party pays for the communication promoting their products/services) now require authorization. Refill reminders and communications about currently prescribed drugs or biologics are exempt only when financial remuneration received is reasonably related to the cost of making the communication.",
@@ -272,7 +273,7 @@
             "old": null,
             "new": "164.502(a)(5)(ii)"
           },
-          "title": "Sale of PHI \u2014 Prohibited Without Individual Authorization",
+          "title": "Sale of PHI — Prohibited Without Individual Authorization",
           "area": "164.502 - Uses and Disclosures of Protected Health Information",
           "oldText": null,
           "newText": "A covered entity or business associate may not sell protected health information (directly or indirectly receive remuneration in exchange for PHI) without obtaining a valid HIPAA authorization. The authorization must specifically state that the disclosure will result in remuneration to the covered entity. Exceptions include disclosures for public health, research (where remuneration covers costs of preparation only), treatment and payment, health care operations, sale of the covered entity's practice, required by law, and business associates receiving payment in exchange for services not constituting PHI sale.",
@@ -293,7 +294,7 @@
             "old": "164.502(b)",
             "new": "164.502(b)"
           },
-          "title": "Minimum Necessary \u2014 Strengthened and Applied to Business Associates",
+          "title": "Minimum Necessary — Strengthened and Applied to Business Associates",
           "area": "164.502 - Uses and Disclosures of Protected Health Information",
           "oldText": "When using or disclosing protected health information or when requesting protected health information from another covered entity or business associate, a covered entity or business associate must make reasonable efforts to limit protected health information to the minimum necessary to accomplish the intended purpose of the use, disclosure, or request.",
           "newText": "When using, disclosing, or requesting protected health information, covered entities and business associates must make reasonable efforts to limit PHI to the minimum necessary. The minimum necessary standard now applies to all disclosures including to business associates (previously had broader exceptions). Covered entities must have policies identifying categories of persons who need access to PHI and limiting their access to the minimum necessary for their role. The 'minimum necessary' for de-identified data requests requires documenting why identifiers cannot be removed.",
@@ -313,7 +314,7 @@
             "old": "164.524(a)",
             "new": "164.524(a)"
           },
-          "title": "Right of Access \u2014 Individuals May Request Electronic PHI in Requested Format",
+          "title": "Right of Access — Individuals May Request Electronic PHI in Requested Format",
           "area": "164.524 - Access of Individuals to Protected Health Information",
           "oldText": "A covered entity must permit an individual to inspect and copy protected health information about the individual in a designated record set. The covered entity must provide the access as requested by the individual, including in the form and format requested by the individual if it is readily producible in such form and format.",
           "newText": "A covered entity must provide individuals access to their PHI in designated record sets. If the PHI is maintained in an electronic health record or other electronic format, the individual has the right to obtain a copy in electronic format, and the covered entity must provide access in the electronic form and format requested if readily producible, or in a readable electronic form and format if not. Individuals have the right to direct the covered entity to transmit a copy of their PHI to a designated person or entity of their choice. The fee for providing PHI is limited to the reasonable cost-based fee including labor, supplies, and postage.",
@@ -334,7 +335,7 @@
             "old": "164.308(b)(1)",
             "new": "164.308(b)(1)"
           },
-          "title": "Subcontractor Business Associates \u2014 Must Have BAAs with Their Own Subcontractors",
+          "title": "Subcontractor Business Associates — Must Have BAAs with Their Own Subcontractors",
           "area": "164.308 - Administrative Safeguards",
           "oldText": "A covered entity must have a business associate agreement with each business associate that creates, receives, maintains, or transmits ePHI on the covered entity's behalf.",
           "newText": "A covered entity must have a business associate agreement with each business associate. Business associates must also obtain satisfactory assurances from their subcontractors (business associates of business associates) that they will safeguard PHI appropriately, and must enter into written agreements with their subcontractors that meet the same BAA requirements. The chain of accountability extends downstream to all entities handling PHI.",
@@ -355,7 +356,7 @@
             "old": "164.501",
             "new": "164.501"
           },
-          "title": "Research \u2014 Compound Authorizations and Future Research Use Permitted",
+          "title": "Research — Compound Authorizations and Future Research Use Permitted",
           "area": "164.501 - Definitions",
           "oldText": "Authorization for research must specifically identify the research for which PHI will be used or disclosed. Authorizations for different research studies or purposes must be separated into distinct authorization documents.",
           "newText": "Authorization for use or disclosure of PHI for research may be combined with other research-related documents (consent, authorization for future research use). Covered entities may obtain compound authorizations combining authorization for current research with authorization for future unspecified research where the PHI will be maintained in a research database or biospecimen repository, provided the compound authorization clearly distinguishes the two. The authorization must specifically identify the research and describe the PHI to be used.",
@@ -376,7 +377,7 @@
             "old": "164.306",
             "new": "164.306"
           },
-          "title": "Security Standards \u2014 Genetic Information Protected as PHI, Not Health Information",
+          "title": "Security Standards — Genetic Information Protected as PHI, Not Health Information",
           "area": "164.306 - Security Standards: General Rules",
           "oldText": "The Security Rule applies to electronic protected health information, including demographic information collected from an individual, relating to past, present, or future physical or mental health or condition.",
           "newText": "Genetic information is PHI and may not be used or disclosed for underwriting purposes by health plans (other than long-term care plans). The definition of PHI is clarified to explicitly include genetic information under GINA (Genetic Information Nondiscrimination Act) alignment. Health plans are prohibited from using or disclosing genetic information for eligibility determinations, premium computation, or any other underwriting purpose.",
@@ -397,7 +398,7 @@
             "old": null,
             "new": "164.530(j)"
           },
-          "title": "Decedent PHI \u2014 Protection Extended for 50 Years Post-Death",
+          "title": "Decedent PHI — Protection Extended for 50 Years Post-Death",
           "area": "164.530 - Administrative Requirements",
           "oldText": null,
           "newText": "A covered entity must comply with requirements of this subpart with respect to the protected health information of a deceased individual for a period of 50 years following the death of the individual. After this period, the HIPAA protections no longer apply to the individual's PHI. Prior to the Omnibus Rule, HIPAA protections for deceased individuals were undefined.",
@@ -417,7 +418,7 @@
             "old": null,
             "new": "164.514(b)"
           },
-          "title": "De-identification \u2014 Expert Determination Method Formalized",
+          "title": "De-identification — Expert Determination Method Formalized",
           "area": "164.514 - Other Requirements Relating to Uses and Disclosures",
           "oldText": null,
           "newText": "Information is de-identified if: (1) Safe Harbor method: 18 specified identifiers are removed and the covered entity has no actual knowledge that the remaining information could be used to identify an individual; OR (2) Expert Determination method: a person with statistical expertise applies generally accepted statistical and scientific principles and methods and determines that the risk of identifying any individual is very small. The expert must document the methods applied and results. The 2013 rule provided additional guidance on re-identification risk assessment for the Expert Determination method.",
@@ -438,7 +439,7 @@
             "old": "164.312(a)(1)",
             "new": "164.312(a)(1)"
           },
-          "title": "Encryption and Decryption \u2014 Guidance Clarified as Addressable Implementation Specification",
+          "title": "Encryption and Decryption — Guidance Clarified as Addressable Implementation Specification",
           "area": "164.312 - Technical Safeguards",
           "oldText": "Implement a mechanism to encrypt and decrypt electronic protected health information. [Addressable]",
           "newText": "Implement a mechanism to encrypt and decrypt electronic protected health information. [Addressable] Guidance: Covered entities must assess whether encryption is a reasonable and appropriate safeguard for their environment. Encryption of ePHI at rest and in transit is strongly encouraged. ePHI that is encrypted using methods specified in HHS Guidance (NIST-approved algorithms) is considered 'unsecured PHI' only if the encryption key is not compromised. Encrypted ePHI is not subject to breach notification requirements. The 2013 Omnibus Rule added that covered entities and BAs must document their encryption decisions and must implement encryption unless they determine it is not reasonable and appropriate, documenting the alternative equivalent safeguards in place.",
@@ -473,11 +474,13 @@
             "Omnibus"
           ]
         }
-      ]
+      ],
+      "fromReleaseDate": "2009-02-17",
+      "toReleaseDate": "2013-01-25"
     },
     "2013-to-2025": {
       "fromVersion": "2013 (Omnibus)",
-      "toVersion": "2025 (Final Rule)",
+      "toVersion": "2025 (Proposed Rule)",
       "summary": {
         "added": 6,
         "removed": 0,
@@ -486,12 +489,13 @@
         "totalFrom": 42,
         "totalTo": 48,
         "highlights": [
-          "Encryption of ePHI at rest is now required - the 'addressable' designation has been removed",
+          "STATUS: These are PROPOSED changes. NPRM published January 6, 2025; comment period closed March 7, 2025 (4,000+ comments); final rule not yet issued — OMB agenda shows final action expected July 2027.",
+          "Encryption of ePHI at rest would be required - the 'addressable' designation has been removed",
           "Multi-factor authentication (MFA) required for all access to systems containing ePHI",
           "Covered entities must maintain a written technology asset inventory and network map",
-          "Risk analysis now requires specific inputs including vulnerability scan results and asset inventories",
+          "Risk analyswould be requires specific inputs including vulnerability scan results and asset inventories",
           "Vulnerability scanning required every 6 months; penetration testing required annually",
-          "Business associates must now verify their own compliance annually and report to covered entities",
+          "Business associates would have to verify their own compliance annually and report to covered entities",
           "Access to ePHI systems must be revoked within 24 hours of workforce termination",
           "Audit logs must be retained for a minimum of 12 months"
         ]
@@ -504,7 +508,7 @@
             "old": null,
             "new": "164.308(a)(1)(ii)(A)"
           },
-          "title": "Technology Asset Inventory - New Required Implementation Specification",
+          "title": "Technology Asset Inventory - Proposed New Implementation Specification",
           "area": "164.308 - Administrative Safeguards",
           "oldText": null,
           "newText": "Covered entities and business associates must create and maintain a written inventory of all technology assets in their environment, including hardware, software, and electronic media that create, receive, maintain, or transmit ePHI. The inventory must be reviewed and updated at least annually and whenever a relevant change occurs.",
@@ -514,7 +518,8 @@
             "asset-management",
             "risk-analysis",
             "new-requirement",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -524,7 +529,7 @@
             "old": null,
             "new": "164.308(a)(1)(ii)(B)"
           },
-          "title": "Network Map - New Required Implementation Specification",
+          "title": "Network Map - Proposed New Implementation Specification",
           "area": "164.308 - Administrative Safeguards",
           "oldText": null,
           "newText": "Covered entities and business associates must create and maintain a written network map that illustrates the movement of ePHI throughout their electronic information systems. The network map must be reviewed and updated at least annually and whenever a relevant change occurs to the environment.",
@@ -535,7 +540,8 @@
             "data-flow",
             "risk-analysis",
             "new-requirement",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -555,7 +561,8 @@
             "risk-analysis",
             "vulnerability-management",
             "annual-requirement",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -576,7 +583,8 @@
             "backup-recovery",
             "annual-testing",
             "ransomware",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -586,17 +594,18 @@
             "old": null,
             "new": "164.308(a)(8)"
           },
-          "title": "Vulnerability Management - New Standard with 6-Month Scan Cycle and Annual Pen Testing",
+          "title": "Vulnerability Management - Proposed New Standard with 6-Month Scan Cycle and Annual Pen Testing",
           "area": "164.308 - Administrative Safeguards",
           "oldText": null,
           "newText": "Covered entities and business associates must implement a vulnerability management process that includes: (1) vulnerability scanning of all relevant electronic information systems at least every 6 months and following significant environmental changes; (2) penetration testing of all relevant electronic information systems at least once every 12 months; (3) timely remediation of identified vulnerabilities based on risk; and (4) documentation of scan results and remediation actions retained for 6 years.",
-          "rationale": "The previous Security Rule had no explicit vulnerability scanning or penetration testing requirement. Given the surge in healthcare cyberattacks, HHS determined that proactive identification and remediation of vulnerabilities is now essential.",
+          "rationale": "The previous Security Rule had no explicit vulnerability scanning or penetration testing requirement. Given the surge in healthcare cyberattacks, HHS determined that proactive identification and remediation of vulnerabilities would be essential.",
           "significance": "high",
           "tags": [
             "vulnerability-scanning",
             "penetration-testing",
             "new-requirement",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -616,7 +625,8 @@
             "incident-response",
             "tabletop-exercise",
             "annual-testing",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -637,7 +647,8 @@
             "termination",
             "insider-threat",
             "24-hour-requirement",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -658,7 +669,8 @@
             "data-at-rest",
             "data-in-transit",
             "required-not-addressable",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -668,7 +680,7 @@
             "old": null,
             "new": "164.312(d)(2)"
           },
-          "title": "Multi-Factor Authentication - New Required Implementation Specification",
+          "title": "Multi-Factor Authentication - Proposed New Implementation Specification",
           "area": "164.312 - Technical Safeguards",
           "oldText": null,
           "newText": "Covered entities and business associates must implement multi-factor authentication (MFA) for all workforce members accessing relevant electronic information systems that contain ePHI. MFA must require at least two of the following authentication factors: something the user knows (e.g., password), something the user has (e.g., hardware token, authenticator app), or something the user is (e.g., biometric). Phishing-resistant MFA (e.g., FIDO2/WebAuthn) is strongly recommended for privileged accounts and remote access.",
@@ -679,7 +691,8 @@
             "authentication",
             "new-requirement",
             "credential-security",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -699,7 +712,8 @@
             "audit-logging",
             "log-retention",
             "12-months",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -720,7 +734,8 @@
             "third-party",
             "annual-verification",
             "supply-chain",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -740,7 +755,8 @@
             "addressable-removed",
             "required-only",
             "framework-change",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -761,7 +777,8 @@
             "phishing",
             "training",
             "annual-requirement",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -781,7 +798,8 @@
             "documentation",
             "policy-review",
             "annual-review",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -801,7 +819,8 @@
             "security-officer",
             "governance",
             "leadership",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         },
         {
@@ -822,10 +841,13 @@
             "least-privilege",
             "role-based-access",
             "access-review",
-            "2025-final-rule"
+            "2025-final-rule",
+            "proposed-rule"
           ]
         }
-      ]
+      ],
+      "fromReleaseDate": "2013-01-25",
+      "toReleaseDate": "2025-01-06"
     }
   }
 }

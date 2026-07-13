@@ -2,14 +2,18 @@
   "id": "pci-dss",
   "name": "Payment Card Industry Data Security Standard",
   "shortName": "PCI DSS",
-  "description": "The security standard mandated for all organizations that store, process, or transmit cardholder data. Version 4.0 was the most significant update in PCI DSS history — restructuring all 12 requirements, introducing a Customized Approach, and adding 64 new requirements.",
+  "description": "The security standard mandated for all organizations that store, process, or transmit cardholder data. Version 4.0 was the most significant update in PCI DSS history — restructuring all 12 requirements, introducing a Customized Approach, and adding 64 new requirements. As of mid-2026, v4.0.1 remains the current version: all 51 future-dated v4.0 requirements became mandatory on March 31, 2025, and the PCI SSC opened a request-for-comments period on v4.0.1 (June 3 – July 20, 2026) ahead of any future revision.",
   "copyright": "restricted-summary-only",
   "showFullText": false,
   "publisher": "PCI SSC",
   "source": "https://www.pcisecuritystandards.org/document_library/",
   "officialChangelogUrl": "https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pcidss",
-  "lastDataUpdate": "2024-11-01",
-  "versions": ["3.2.1", "4.0", "4.0.1"],
+  "lastDataUpdate": "2026-07-12",
+  "versions": [
+    "3.2.1",
+    "4.0",
+    "4.0.1"
+  ],
   "latestVersion": "4.0.1",
   "transitions": {
     "3.2.1-to-4.0": {
@@ -38,261 +42,416 @@
           "id": "change-pci-3.2.1-4.0-001",
           "type": "added",
           "category": "new-approach",
-          "controlId": { "old": null, "new": "Customized Approach" },
+          "controlId": {
+            "old": null,
+            "new": "Customized Approach"
+          },
           "title": "Customized Approach introduced as alternative to Defined Approach",
           "area": "Framework — Assessment Methodology",
           "oldText": null,
           "newText": null,
           "rationale": "Previously, PCI DSS required organizations to implement specific controls exactly as written. The Customized Approach allows mature organizations to demonstrate they meet the objective of a requirement using their own controls — enabling innovation without waiting for PCI SSC to update prescriptive requirements.",
           "significance": "high",
-          "tags": ["customized-approach", "methodology", "flexibility", "maturity"]
+          "tags": [
+            "customized-approach",
+            "methodology",
+            "flexibility",
+            "maturity"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-002",
           "type": "modified",
           "category": "mfa-expansion",
-          "controlId": { "old": "8.3", "new": "8.4" },
+          "controlId": {
+            "old": "8.3",
+            "new": "8.4"
+          },
           "title": "MFA required for ALL CDE access, not just remote access",
           "area": "Requirement 8 — Identify Users and Authenticate Access",
           "oldText": null,
           "newText": null,
           "rationale": "PCI DSS 3.2.1 required MFA only for remote access into the CDE. Version 4.0 requires MFA for ALL administrative access into the CDE, all remote access (including from within the organization's own network), and all access by personnel with access to the cardholder data environment — regardless of whether access is remote or local.",
           "significance": "high",
-          "tags": ["mfa", "authentication", "cde", "access-control"]
+          "tags": [
+            "mfa",
+            "authentication",
+            "cde",
+            "access-control"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-003",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "6.4.2" },
+          "controlId": {
+            "old": null,
+            "new": "6.4.2"
+          },
           "title": "6.4.2: Automated technical solution for detecting web-based attacks (WAF)",
           "area": "Requirement 6 — Develop and Maintain Secure Systems",
           "oldText": null,
           "newText": null,
           "rationale": "Version 3.2.1 required a web application firewall OR code review as alternatives for internet-facing web applications. Version 4.0 requires an automated technical solution (such as a WAF) to be deployed to detect and prevent web-based attacks, with no option to substitute with code review alone.",
           "significance": "high",
-          "tags": ["waf", "web-application", "application-security"]
+          "tags": [
+            "waf",
+            "web-application",
+            "application-security"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-004",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "6.4.3" },
+          "controlId": {
+            "old": null,
+            "new": "6.4.3"
+          },
           "title": "6.4.3: All scripts on payment pages managed and authorized",
           "area": "Requirement 6 — Develop and Maintain Secure Systems",
           "oldText": null,
           "newText": null,
           "rationale": "Magecart and client-side skimming attacks — where malicious JavaScript is injected into payment pages — were not addressed in v3.2.1. Requirement 6.4.3 requires all scripts loaded into a consumer browser on the payment page to be managed, with a method to confirm integrity, a justification for each script, and a written inventory maintained.",
           "significance": "high",
-          "tags": ["magecart", "skimming", "javascript", "payment-page", "e-commerce"]
+          "tags": [
+            "magecart",
+            "skimming",
+            "javascript",
+            "payment-page",
+            "e-commerce"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-005",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "11.6.1" },
+          "controlId": {
+            "old": null,
+            "new": "11.6.1"
+          },
           "title": "11.6.1: Change and tamper detection mechanism for payment pages",
           "area": "Requirement 11 — Test Security of Systems and Networks Regularly",
           "oldText": null,
           "newText": null,
           "rationale": "Companion to 6.4.3 — organizations must now implement a mechanism to detect unauthorized modifications to HTTP headers and payment page content received by the consumer browser. This catches server-side injection that wouldn't be detected by examining the source files at rest.",
           "significance": "high",
-          "tags": ["tamper-detection", "payment-page", "skimming", "e-commerce"]
+          "tags": [
+            "tamper-detection",
+            "payment-page",
+            "skimming",
+            "e-commerce"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-006",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "5.4.1" },
+          "controlId": {
+            "old": null,
+            "new": "5.4.1"
+          },
           "title": "5.4.1: Phishing protection mechanisms implemented",
           "area": "Requirement 5 — Protect All Systems and Networks from Malicious Software",
           "oldText": null,
           "newText": null,
           "rationale": "Anti-phishing was not explicitly required in v3.2.1. Requirement 5.4.1 now requires processes and automated mechanisms to detect and protect personnel against phishing attacks. This reflects phishing as the #1 initial access vector for cardholder data breaches.",
           "significance": "high",
-          "tags": ["phishing", "anti-phishing", "email-security"]
+          "tags": [
+            "phishing",
+            "anti-phishing",
+            "email-security"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-007",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "12.3.1" },
+          "controlId": {
+            "old": null,
+            "new": "12.3.1"
+          },
           "title": "12.3.1: Targeted risk analysis required for each PCI DSS requirement",
           "area": "Requirement 12 — Support Information Security with Organizational Policies",
           "oldText": null,
           "newText": null,
           "rationale": "A formal targeted risk analysis is now required for each requirement where PCI DSS gives flexibility in implementation frequency (e.g., 'periodically'). Organizations must justify their chosen frequency based on a documented risk assessment — preventing the common practice of setting arbitrary 'annual' cycles regardless of actual risk.",
           "significance": "high",
-          "tags": ["risk-analysis", "targeted-risk", "documentation"]
+          "tags": [
+            "risk-analysis",
+            "targeted-risk",
+            "documentation"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-008",
           "type": "modified",
           "category": "password-requirements",
-          "controlId": { "old": "8.3.6", "new": "8.3.6" },
+          "controlId": {
+            "old": "8.3.6",
+            "new": "8.3.6"
+          },
           "title": "Password minimum length increased from 7 to 12 characters (or 8 with complexity)",
           "area": "Requirement 8 — Identify Users and Authenticate Access",
           "oldText": null,
           "newText": null,
           "rationale": "PCI DSS 3.2.1 required a minimum of 7 characters. Version 4.0 increases the minimum to 12 characters (if the system supports it), or 8 characters with a combination of numeric and alphabetic characters if 12 is not technically feasible. This aligns with NIST SP 800-63B guidance.",
           "significance": "medium",
-          "tags": ["passwords", "authentication", "credentials"]
+          "tags": [
+            "passwords",
+            "authentication",
+            "credentials"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-009",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "8.6.1" },
+          "controlId": {
+            "old": null,
+            "new": "8.6.1"
+          },
           "title": "8.6.1: System/application accounts and authentication factors managed",
           "area": "Requirement 8 — Identify Users and Authenticate Access",
           "oldText": null,
           "newText": null,
           "rationale": "Service accounts, application accounts, and machine credentials were not explicitly addressed in v3.2.1. New requirement 8.6.1 requires all system and application accounts to be assigned to an owner responsible for managing the credential, and for interactive use to be logged.",
           "significance": "high",
-          "tags": ["service-accounts", "machine-identity", "authentication", "accountability"]
+          "tags": [
+            "service-accounts",
+            "machine-identity",
+            "authentication",
+            "accountability"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-010",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "3.3.3" },
+          "controlId": {
+            "old": null,
+            "new": "3.3.3"
+          },
           "title": "3.3.3: SAD not retained after authorization — encryption required during authorization",
           "area": "Requirement 3 — Protect Stored Account Data",
           "oldText": null,
           "newText": null,
           "rationale": "Sensitive authentication data (SAD — the full magnetic stripe, CVV/CVC, PINs) must be encrypted during the authorization process. This closes a gap in 3.2.1 where the prohibition on SAD retention was clear but the requirement to encrypt it during the brief authorization window was not explicit.",
           "significance": "high",
-          "tags": ["sad", "sensitive-authentication-data", "encryption", "card-data"]
+          "tags": [
+            "sad",
+            "sensitive-authentication-data",
+            "encryption",
+            "card-data"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-011",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "10.7.2" },
+          "controlId": {
+            "old": null,
+            "new": "10.7.2"
+          },
           "title": "10.7.2: Failures of critical security controls detected and reported promptly",
           "area": "Requirement 10 — Log and Monitor All Access to System Components and Cardholder Data",
           "oldText": null,
           "newText": null,
           "rationale": "New requirement for detecting and alerting on the failure of critical security controls (firewalls, IDS/IPS, MFA, log controls, AV). Organizations must have automated alerting when these controls fail — not discover failures during periodic reviews.",
           "significance": "high",
-          "tags": ["monitoring", "alerting", "critical-controls", "logging"]
+          "tags": [
+            "monitoring",
+            "alerting",
+            "critical-controls",
+            "logging"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-012",
           "type": "modified",
           "category": "encryption-requirement",
-          "controlId": { "old": "4.1", "new": "4.2.1" },
+          "controlId": {
+            "old": "4.1",
+            "new": "4.2.1"
+          },
           "title": "4.2.1: Only trusted keys/certificates accepted for PAN transmission",
           "area": "Requirement 4 — Protect Cardholder Data with Strong Cryptography During Transmission",
           "oldText": null,
           "newText": null,
           "rationale": "Expanded to require that only trusted keys or certificates are accepted and that expiry dates are validated. This responds to certificate management failures that allowed expired or untrusted certificates to be accepted — a common misconfiguration.",
           "significance": "medium",
-          "tags": ["encryption", "tls", "certificates", "pan-transmission"]
+          "tags": [
+            "encryption",
+            "tls",
+            "certificates",
+            "pan-transmission"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-013",
           "type": "modified",
           "category": "scope-clarification",
-          "controlId": { "old": null, "new": null },
+          "controlId": {
+            "old": null,
+            "new": null
+          },
           "title": "Expanded guidance on scoping, segmentation, and account data flows",
           "area": "Requirement 12 — Support Information Security with Organizational Policies",
           "oldText": null,
           "newText": null,
           "rationale": "v4.0 significantly expanded the guidance on how to scope PCI DSS assessments. The new scoping guidance clarifies which system components are in-scope (connected to, or could impact security of, the CDE), how network segmentation reduces scope, and requires organizations to document all account data flows at least once every 12 months.",
           "significance": "high",
-          "tags": ["scoping", "segmentation", "account-data-flow", "cde"]
+          "tags": [
+            "scoping",
+            "segmentation",
+            "account-data-flow",
+            "cde"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-014",
           "type": "modified",
           "category": "roles-responsibilities",
-          "controlId": { "old": "12.4", "new": "12.4.1" },
+          "controlId": {
+            "old": "12.4",
+            "new": "12.4.1"
+          },
           "title": "12.4.1: Executive management accountability for PCI DSS formally defined",
           "area": "Requirement 12 — Support Information Security with Organizational Policies",
           "oldText": null,
           "newText": null,
           "rationale": "v4.0 now explicitly requires executive management to take responsibility for the protection of cardholder data and the PCI DSS compliance program. Executive must establish an information security charter and ensure all PCI DSS requirements are met. This was previously implied rather than explicit.",
           "significance": "high",
-          "tags": ["governance", "executive", "accountability", "leadership"]
+          "tags": [
+            "governance",
+            "executive",
+            "accountability",
+            "leadership"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-015",
           "type": "modified",
           "category": "penetration-testing",
-          "controlId": { "old": "11.3", "new": "11.4" },
+          "controlId": {
+            "old": "11.3",
+            "new": "11.4"
+          },
           "title": "11.4: Penetration testing requirements enhanced with methodology and scope",
           "area": "Requirement 11 — Test Security of Systems and Networks Regularly",
           "oldText": null,
           "newText": null,
           "rationale": "v4.0 expanded penetration testing requirements to explicitly include: a defined pen testing methodology, coverage of all CDE components including network segmentation, annual testing (or after significant changes), and remediation and re-testing of all exploitable vulnerabilities. Segmentation testing also moved here with more specific requirements.",
           "significance": "medium",
-          "tags": ["penetration-testing", "segmentation-testing", "vulnerability"]
+          "tags": [
+            "penetration-testing",
+            "segmentation-testing",
+            "vulnerability"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-016",
           "type": "modified",
           "category": "vulnerability-scanning",
-          "controlId": { "old": "11.2", "new": "11.3" },
+          "controlId": {
+            "old": "11.2",
+            "new": "11.3"
+          },
           "title": "11.3: Internal vulnerability scans now require authenticated scanning",
           "area": "Requirement 11 — Test Security of Systems and Networks Regularly",
           "oldText": null,
           "newText": null,
           "rationale": "v4.0 requires that internal vulnerability scans be performed using authenticated scanning — meaning the scanner logs into the target system to check for vulnerabilities that are only visible after authentication. Unauthenticated external scanning is still required for the quarterly ASV scan but authenticated scanning provides deeper coverage.",
           "significance": "medium",
-          "tags": ["vulnerability-scanning", "authenticated-scanning", "internal-scanning"]
+          "tags": [
+            "vulnerability-scanning",
+            "authenticated-scanning",
+            "internal-scanning"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-017",
           "type": "modified",
           "category": "security-awareness",
-          "controlId": { "old": "12.6", "new": "12.6.3" },
+          "controlId": {
+            "old": "12.6",
+            "new": "12.6.3"
+          },
           "title": "12.6.3: Security awareness training updated to include phishing; more frequent reviews",
           "area": "Requirement 12 — Support Information Security with Organizational Policies",
           "oldText": null,
           "newText": null,
           "rationale": "Security awareness training must now cover threats relevant to the CDE including phishing and social engineering. Personnel must acknowledge their awareness of security policies at least once every 12 months. The training program itself must be reviewed annually (or when significant changes occur).",
           "significance": "medium",
-          "tags": ["security-awareness", "training", "phishing", "social-engineering"]
+          "tags": [
+            "security-awareness",
+            "training",
+            "phishing",
+            "social-engineering"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-018",
           "type": "added",
           "category": "new-requirement",
-          "controlId": { "old": null, "new": "9.4.7" },
+          "controlId": {
+            "old": null,
+            "new": "9.4.7"
+          },
           "title": "9.4.7: POI devices protected from physical tampering (expanded)",
           "area": "Requirement 9 — Restrict Physical Access to Cardholder Data",
           "oldText": null,
           "newText": null,
           "rationale": "Point of interaction (POI) device security requirements were significantly enhanced. New requirements cover maintaining a list of POI devices, periodic inspections to detect tampering, and training personnel to be aware of attempted POI device substitution. This directly responds to card skimmer attacks on physical terminals.",
           "significance": "medium",
-          "tags": ["poi-devices", "physical-security", "skimming", "tampering"]
+          "tags": [
+            "poi-devices",
+            "physical-security",
+            "skimming",
+            "tampering"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-019",
           "type": "modified",
           "category": "third-party",
-          "controlId": { "old": "12.8", "new": "12.8 / 12.9" },
+          "controlId": {
+            "old": "12.8",
+            "new": "12.8 / 12.9"
+          },
           "title": "Third-party service provider (TPSP) management requirements expanded",
           "area": "Requirement 12 — Support Information Security with Organizational Policies",
           "oldText": null,
           "newText": null,
           "rationale": "Requirements for managing TPSPs were expanded. Entities must now document the PCI DSS requirements each TPSP is responsible for vs. what the entity is responsible for, and obtain written acknowledgment. TPSPs who provide services that could affect security must also support their customers' compliance.",
           "significance": "high",
-          "tags": ["third-party", "tpsp", "vendor-management", "responsibility-matrix"]
+          "tags": [
+            "third-party",
+            "tpsp",
+            "vendor-management",
+            "responsibility-matrix"
+          ]
         },
         {
           "id": "change-pci-3.2.1-4.0-020",
           "type": "added",
           "category": "future-dated-requirement",
-          "controlId": { "old": null, "new": "8.4.2" },
+          "controlId": {
+            "old": null,
+            "new": "8.4.2"
+          },
           "title": "8.4.2: MFA required for all access to cardholder data environment (effective March 2025)",
           "area": "Requirement 8 — Identify Users and Authenticate Access",
           "oldText": null,
           "newText": null,
           "rationale": "This requirement was 'future-dated' to give organizations time to implement MFA for all CDE access — including from internal networks — by March 31, 2025. Organizations that previously only had MFA for remote access needed to extend it to all personnel with CDE access, including on-premises administrative access.",
           "significance": "high",
-          "tags": ["mfa", "future-dated", "cde", "authentication"]
+          "tags": [
+            "mfa",
+            "future-dated",
+            "cde",
+            "authentication"
+          ]
         }
       ]
     },
@@ -321,92 +480,148 @@
           "id": "change-pci-4.0-4.0.1-001",
           "type": "modified",
           "category": "clarification",
-          "controlId": { "old": "12.3.2", "new": "12.3.2" },
+          "controlId": {
+            "old": "12.3.2",
+            "new": "12.3.2"
+          },
           "title": "12.3.2: Targeted risk analysis clarified for Customized Approach",
           "area": "Requirement 12 — Support Information Security with Organizational Policies",
           "oldText": null,
           "newText": null,
           "rationale": "Clarified that the targeted risk analysis for Customized Approach implementations must be performed before the organization uses the customized approach — not after. Also clarified what the risk analysis must document: the assets being protected, the threat being mitigated, and the frequency of the targeted analysis.",
           "significance": "medium",
-          "tags": ["customized-approach", "risk-analysis", "clarification"]
+          "tags": [
+            "customized-approach",
+            "risk-analysis",
+            "clarification"
+          ]
         },
         {
           "id": "change-pci-4.0-4.0.1-002",
           "type": "modified",
           "category": "clarification",
-          "controlId": { "old": "6.4.3", "new": "6.4.3" },
+          "controlId": {
+            "old": "6.4.3",
+            "new": "6.4.3"
+          },
           "title": "6.4.3: Payment page script management scope clarified",
           "area": "Requirement 6 — Develop and Maintain Secure Systems",
           "oldText": null,
           "newText": null,
           "rationale": "Clarified that 6.4.3 applies to scripts that are loaded and executed in the consumer's browser when they access the payment page — not all scripts on the server. This resolved debate about whether server-side scripts outside the browser's execution context were in scope.",
           "significance": "medium",
-          "tags": ["payment-page", "javascript", "scope", "clarification"]
+          "tags": [
+            "payment-page",
+            "javascript",
+            "scope",
+            "clarification"
+          ]
         },
         {
           "id": "change-pci-4.0-4.0.1-003",
           "type": "modified",
           "category": "clarification",
-          "controlId": { "old": "3.3.1", "new": "3.3.1" },
+          "controlId": {
+            "old": "3.3.1",
+            "new": "3.3.1"
+          },
           "title": "3.3.1: Sensitive authentication data retention clarified for issuers",
           "area": "Requirement 3 — Protect Stored Account Data",
           "oldText": null,
           "newText": null,
           "rationale": "Clarified the scope of the issuer exception for retaining SAD for legitimate issuer business needs. The clarification limits what data can be retained and under what conditions, resolving questions about what 'legitimate issuer business need' permits.",
           "significance": "low",
-          "tags": ["sad", "issuers", "clarification", "retention"]
+          "tags": [
+            "sad",
+            "issuers",
+            "clarification",
+            "retention"
+          ]
         },
         {
           "id": "change-pci-4.0-4.0.1-004",
           "type": "modified",
           "category": "clarification",
-          "controlId": { "old": "8.3.6", "new": "8.3.6" },
+          "controlId": {
+            "old": "8.3.6",
+            "new": "8.3.6"
+          },
           "title": "8.3.6: Password requirements clarified for 'not technically feasible' exception",
           "area": "Requirement 8 — Identify Users and Authenticate Access",
           "oldText": null,
           "newText": null,
           "rationale": "Clarified the conditions under which the 8-character password with complexity may be used instead of the 12-character minimum — specifically, this exception applies to legacy systems that cannot technically support 12-character passwords, and entities must document the technical constraint.",
           "significance": "low",
-          "tags": ["passwords", "authentication", "legacy-systems", "clarification"]
+          "tags": [
+            "passwords",
+            "authentication",
+            "legacy-systems",
+            "clarification"
+          ]
         },
         {
           "id": "change-pci-4.0-4.0.1-005",
           "type": "modified",
           "category": "clarification",
-          "controlId": { "old": "11.6.1", "new": "11.6.1" },
+          "controlId": {
+            "old": "11.6.1",
+            "new": "11.6.1"
+          },
           "title": "11.6.1: Change/tamper detection — weekly review requirement clarified",
           "area": "Requirement 11 — Test Security of Systems and Networks Regularly",
           "oldText": null,
           "newText": null,
           "rationale": "Clarified that the mechanism for detecting unauthorized modifications to HTTP headers and payment page content must generate alerts at least weekly — resolving questions about whether a weekly batch review satisfies the requirement vs. real-time detection.",
           "significance": "medium",
-          "tags": ["tamper-detection", "payment-page", "monitoring", "clarification"]
+          "tags": [
+            "tamper-detection",
+            "payment-page",
+            "monitoring",
+            "clarification"
+          ]
         },
         {
           "id": "change-pci-4.0-4.0.1-006",
           "type": "modified",
           "category": "clarification",
-          "controlId": { "old": "2.2.7", "new": "2.2.7" },
+          "controlId": {
+            "old": "2.2.7",
+            "new": "2.2.7"
+          },
           "title": "2.2.7: All non-console administrative access encrypted — scope clarified",
           "area": "Requirement 2 — Apply Secure Configurations to All System Components",
           "oldText": null,
           "newText": null,
           "rationale": "Clarified that 'non-console administrative access' includes all administrative access not done via direct physical connection to the console port — including SSH, RDP, HTTPS admin panels, and similar. This resolved inconsistency in how QSAs were testing this requirement.",
           "significance": "low",
-          "tags": ["encryption", "administrative-access", "remote-access", "clarification"]
+          "tags": [
+            "encryption",
+            "administrative-access",
+            "remote-access",
+            "clarification"
+          ]
         },
         {
           "id": "change-pci-4.0-4.0.1-007",
           "type": "modified",
           "category": "reporting-template",
-          "controlId": { "old": null, "new": null },
+          "controlId": {
+            "old": null,
+            "new": null
+          },
           "title": "Report on Compliance (ROC) and SAQ templates updated",
           "area": "Assessment Templates",
           "oldText": null,
           "newText": null,
           "rationale": "The ROC reporting template and all Self-Assessment Questionnaire (SAQ) types (A, A-EP, B, B-IP, C, C-VT, D, P2PE) were updated to incorporate the v4.0.1 clarifications. QSAs must use the v4.0.1 templates for assessments conducted after June 2024.",
           "significance": "medium",
-          "tags": ["reporting", "roc", "saq", "assessment", "qsa"]
+          "tags": [
+            "reporting",
+            "roc",
+            "saq",
+            "assessment",
+            "qsa"
+          ]
         }
       ]
     }

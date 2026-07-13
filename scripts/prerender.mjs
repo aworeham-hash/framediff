@@ -37,11 +37,11 @@ function changeStats(fw) {
 // Keyword-targeted titles per framework (falls back to generated)
 const TITLES = {
   'nist-csf': 'NIST CSF 2.0 Changes — What Changed vs 1.1 and 1.0',
-  'nist-sp800-53': 'NIST SP 800-53 Rev 5 Changes vs Rev 4 — Control-Level Diff',
+  'nist-sp800-53': 'NIST SP 800-53 Changes — Rev 4 to Rev 5 to Release 5.2.0',
   'pci-dss': 'PCI DSS v4.0 & v4.0.1 Changes vs 3.2.1 — Requirement Diff',
   'iso-27001': 'ISO 27001:2022 vs 2013 — What Changed (Annex A Restructure)',
   'soc2': 'SOC 2 Trust Services Criteria 2022 Changes vs 2017',
-  'hipaa': 'HIPAA Security Rule Changes — 2013 Omnibus to 2025 Update',
+  'hipaa': 'HIPAA Security Rule Changes — 2013 Omnibus & Proposed 2025 Update',
   'sox': 'SOX / PCAOB Standard Changes — AS5 to AS 2201 to QC 1000',
   'irs-4812': 'IRS Publication 4812 Changes — 2013 Original to Rev. 12-2025',
   'stigs': 'DISA STIG Changes by Year — Windows, RHEL, SQL Server & More',
@@ -49,11 +49,11 @@ const TITLES = {
 
 const DESCRIPTIONS = {
   'nist-csf': (s) => `Interactive changelog of the NIST Cybersecurity Framework: every control added, removed, or modified from CSF 1.0 to 1.1 to 2.0, including the new Govern function. ${s.total} tracked changes.`,
-  'nist-sp800-53': (s) => `Every control change from NIST SP 800-53 Rev 4 to Rev 5: new privacy controls, supply chain risk management family, and consolidations. ${s.total} tracked changes.`,
+  'nist-sp800-53': (s) => `Every control change from NIST SP 800-53 Rev 4 to Rev 5 and the August 2025 Release 5.2.0 patch (SA-24, software update security per EO 14306). ${s.total} tracked changes.`,
   'pci-dss': (s) => `What changed in PCI DSS v4.0 and v4.0.1 vs 3.2.1: new requirements, customized approach, future-dated controls. Based on official PCI SSC summaries. ${s.total} tracked changes.`,
-  'iso-27001': (s) => `ISO 27001:2022 vs 2013 structural comparison: Annex A reduced from 114 to 93 controls across 4 themes, 11 new controls, merges and renumbering. ${s.total} tracked changes.`,
+  'iso-27001': (s) => `ISO 27001:2022 vs 2013 structural comparison: Annex A reduced from 114 to 93 controls, 11 new controls, merges and renumbering — plus Amendment 1:2024 climate action changes. ${s.total} tracked changes.`,
   'soc2': (s) => `SOC 2 Trust Services Criteria changes from 2016 to 2017 to the 2022 revision: category and points-of-focus updates for audit readiness. ${s.total} tracked changes.`,
-  'hipaa': (s) => `HIPAA Security Rule evolution: HITECH, 2013 Omnibus Rule, and the proposed 2025 Security Rule update — every safeguard change tracked. ${s.total} tracked changes.`,
+  'hipaa': (s) => `HIPAA Security Rule evolution: HITECH, 2013 Omnibus Rule, and the proposed 2025 Security Rule NPRM (not yet final; final action expected 2027) — every safeguard change tracked. ${s.total} tracked changes.`,
   'sox': (s) => `PCAOB auditing standard changes for SOX compliance: AS5 to AS 2201 reorganization and the new QC 1000 quality control standard. ${s.total} tracked changes.`,
   'irs-4812': (s) => `IRS Publication 4812 contractor security control changes from the original 2013 publication through Rev. 8, Rev. 9, and Rev. 12-2025 — the only interactive changelog for IRS contractor compliance. ${s.total} tracked changes.`,
   'stigs': (s) => `DISA STIG year-over-year changes for common products: Windows Server, RHEL, Ubuntu, SQL Server, IIS, Cisco IOS, and more. ${s.total} tracked changes.`,

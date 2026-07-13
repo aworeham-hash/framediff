@@ -8,9 +8,13 @@
   "publisher": "NIST",
   "source": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
   "officialChangelogUrl": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
-  "lastDataUpdate": "2024-11-01",
-  "versions": ["Rev. 4", "Rev. 5"],
-  "latestVersion": "Rev. 5",
+  "lastDataUpdate": "2026-07-12",
+  "versions": [
+    "Rev. 4",
+    "Rev. 5",
+    "Release 5.2.0"
+  ],
+  "latestVersion": "Release 5.2.0",
   "transitions": {
     "Rev4-to-Rev5": {
       "fromVersion": "Rev. 4",
@@ -38,326 +42,663 @@
           "id": "change-sp80053-rev4-rev5-001",
           "type": "added",
           "category": "new-family",
-          "controlId": { "old": null, "new": "PT" },
+          "controlId": {
+            "old": null,
+            "new": "PT"
+          },
           "title": "New PT family: Personally Identifiable Information Processing and Transparency",
           "area": "PT — Personally Identifiable Information Processing and Transparency",
           "oldText": null,
           "newText": "PT — Personally Identifiable Information Processing and Transparency. This family contains controls for the privacy program, identifying the types of personally identifiable information (PII) processed, establishing purposes for processing PII, ensuring consent is obtained where required, managing privacy notices, and implementing individual participation rights.",
           "rationale": "Privacy controls were in Appendix J in Rev 4 and not integrated with the security controls. Rev 5 creates a dedicated PT family making privacy a first-class requirement alongside security. This enables integrated security and privacy engineering rather than treating them as separate disciplines.",
           "significance": "high",
-          "tags": ["privacy", "pii", "new-family", "gdpr-alignment"]
+          "tags": [
+            "privacy",
+            "pii",
+            "new-family",
+            "gdpr-alignment"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-002",
           "type": "added",
           "category": "new-family",
-          "controlId": { "old": null, "new": "SR" },
+          "controlId": {
+            "old": null,
+            "new": "SR"
+          },
           "title": "New SR family: Supply Chain Risk Management",
           "area": "SR — Supply Chain Risk Management",
           "oldText": null,
           "newText": "SR — Supply Chain Risk Management. This family includes controls for establishing supply chain risk management programs, assessing supply chain risks, verifying the integrity and provenance of components, and protecting against counterfeit and maliciously tainted products.",
           "rationale": "Supply chain attacks (SolarWinds, XZ Utils, etc.) have made SCRM critical. Rev 5 created a dedicated 12-control family for supply chain risk management, far exceeding the limited supply chain coverage scattered across SA, PE, and other families in Rev 4.",
           "significance": "high",
-          "tags": ["supply-chain", "scrm", "new-family", "third-party"]
+          "tags": [
+            "supply-chain",
+            "scrm",
+            "new-family",
+            "third-party"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-003",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "SR-2" },
+          "controlId": {
+            "old": null,
+            "new": "SR-2"
+          },
           "title": "SR-2: Supply Chain Risk Management Plan",
           "area": "SR — Supply Chain Risk Management",
           "oldText": null,
           "newText": "Develop a plan for managing supply chain risks associated with the research and development, design, manufacturing, acquisition, delivery, integration, operations and maintenance, and disposal of the following systems, system components, or system services: [Assignment: organization-defined systems, system components, or system services]; Review and update the supply chain risk management plan [Assignment: organization-defined frequency] or as required, to address threat and technology changes; Protect the supply chain risk management plan from unauthorized disclosure and modification.",
           "rationale": "A formal, documented SCRM plan is the foundation for all supply chain security activities. SR-2 requires organizations to develop and maintain a comprehensive plan covering the full system lifecycle — from design and acquisition through disposal.",
           "significance": "high",
-          "tags": ["supply-chain", "scrm", "planning", "documentation"]
+          "tags": [
+            "supply-chain",
+            "scrm",
+            "planning",
+            "documentation"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-004",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "SR-4" },
+          "controlId": {
+            "old": null,
+            "new": "SR-4"
+          },
           "title": "SR-4: Provenance",
           "area": "SR — Supply Chain Risk Management",
           "oldText": null,
           "newText": "Document, monitor, and maintain valid provenance of the following systems, system components, and associated data: [Assignment: organization-defined systems, system components, and associated data]; Employ the following controls to validate the provenance of systems, system components, and associated data: [Assignment: organization-defined controls].",
           "rationale": "Knowing where software and hardware components come from — and maintaining a chain of custody — is fundamental to detecting tampering and counterfeit components. SR-4 makes provenance tracking an explicit control requirement.",
           "significance": "high",
-          "tags": ["supply-chain", "provenance", "sbom", "component-authenticity"]
+          "tags": [
+            "supply-chain",
+            "provenance",
+            "sbom",
+            "component-authenticity"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-005",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "SR-11" },
+          "controlId": {
+            "old": null,
+            "new": "SR-11"
+          },
           "title": "SR-11: Component Authenticity",
           "area": "SR — Supply Chain Risk Management",
           "oldText": null,
           "newText": "Implement the following controls to detect counterfeit system components [Assignment: organization-defined controls to detect counterfeit system components]; Report counterfeit system components to [Selection (one or more): source of counterfeit component; [Assignment: organization-defined external reporting organizations]; [Assignment: organization-defined personnel or roles]]; Quarantine or dispose of counterfeit system components in [Assignment: organization-defined manner]; Train the following personnel or roles to detect counterfeit system components: [Assignment: organization-defined personnel or roles].",
           "rationale": "Counterfeit hardware and malicious firmware are active attack vectors. SR-11 requires organizations to actively detect, report, quarantine, and train against counterfeit components — a requirement absent from Rev 4.",
           "significance": "high",
-          "tags": ["supply-chain", "counterfeit", "component-authenticity", "hardware"]
+          "tags": [
+            "supply-chain",
+            "counterfeit",
+            "component-authenticity",
+            "hardware"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-006",
           "type": "modified",
           "category": "scope-expansion",
-          "controlId": { "old": null, "new": null },
+          "controlId": {
+            "old": null,
+            "new": null
+          },
           "title": "Scope changed from 'federal' to 'all organizations'",
           "area": "Framework — Scope",
           "oldText": "These guidelines apply to all components of federal information systems that process, store, or transmit federal information.",
           "newText": "The controls in this publication are applicable to all organizations and can be used to develop and implement a comprehensive security and privacy program. The controls are not limited to federal information systems.",
           "rationale": "Rev 5 explicitly removed the federal-agency-only scope. The catalog is now presented as a universal control set applicable to any organization. This enables broader adoption — particularly organizations that want a rigorous baseline or need to comply with federal requirements (FISMA, FedRAMP, CMMC) or want to integrate with NIST CSF.",
           "significance": "high",
-          "tags": ["scope", "all-organizations", "applicability", "fisma"]
+          "tags": [
+            "scope",
+            "all-organizations",
+            "applicability",
+            "fisma"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-007",
           "type": "restructured",
           "category": "baselines-separated",
-          "controlId": { "old": "Appendix D — Security Control Baselines", "new": "SP 800-53B (separate publication)" },
+          "controlId": {
+            "old": "Appendix D — Security Control Baselines",
+            "new": "SP 800-53B (separate publication)"
+          },
           "title": "Control baselines moved to SP 800-53B",
           "area": "Framework — Structure",
           "oldText": "Control baselines (Low, Moderate, High, Privacy) are defined in Appendix D of SP 800-53 Rev 4.",
           "newText": null,
           "rationale": "In Rev 4, the control baselines (Low, Moderate, High, Privacy) were embedded in SP 800-53 itself. Rev 5 separates the catalog from the baselines — baselines are now in the companion publication SP 800-53B. This allows NIST to update baselines more frequently without revising the full control catalog.",
           "significance": "high",
-          "tags": ["baselines", "sp-800-53b", "restructured", "low-moderate-high"]
+          "tags": [
+            "baselines",
+            "sp-800-53b",
+            "restructured",
+            "low-moderate-high"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-008",
           "type": "added",
           "category": "privacy-control",
-          "controlId": { "old": null, "new": "PT-2" },
+          "controlId": {
+            "old": null,
+            "new": "PT-2"
+          },
           "title": "PT-2: Authority to Process Personally Identifiable Information",
           "area": "PT — PII Processing and Transparency",
           "oldText": null,
           "newText": "Determine and document the [Assignment: organization-defined authority] that permits the [Assignment: organization-defined processing] of personally identifiable information; Restrict the [Assignment: organization-defined processing] of personally identifiable information to only that processing authorized by the [Assignment: organization-defined authority].",
           "rationale": "Organizations must have legal authority to process PII. PT-2 requires explicit documentation of that authority — whether it's law, regulation, executive order, or user consent — and restricts processing to only what is authorized. This implements the core Privacy Act and GDPR requirement for a lawful basis for processing.",
           "significance": "high",
-          "tags": ["privacy", "pii", "authority", "lawful-basis", "gdpr"]
+          "tags": [
+            "privacy",
+            "pii",
+            "authority",
+            "lawful-basis",
+            "gdpr"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-009",
           "type": "added",
           "category": "privacy-control",
-          "controlId": { "old": null, "new": "PT-5" },
+          "controlId": {
+            "old": null,
+            "new": "PT-5"
+          },
           "title": "PT-5: Privacy Notice",
           "area": "PT — PII Processing and Transparency",
           "oldText": null,
           "newText": "Provide notice to individuals about the processing of personally identifiable information that: Is available to individuals upon first interacting with an organization, and subsequently as necessary; Is clear and easy-to-understand language; Identifies the authority that authorizes the processing of PII; Identifies the purposes for which PII is to be processed; Includes the types of PII to be processed; Identifies how to contact the privacy officer of the organization.",
           "rationale": "Privacy notices are a fundamental transparency requirement under GDPR, CCPA, the Privacy Act, and virtually all global privacy regimes. PT-5 makes privacy notice an explicit federal security control, ensuring that systems collecting PII must tell individuals what they're collecting, why, and under what authority.",
           "significance": "high",
-          "tags": ["privacy", "privacy-notice", "transparency", "pii", "gdpr", "ccpa"]
+          "tags": [
+            "privacy",
+            "privacy-notice",
+            "transparency",
+            "pii",
+            "gdpr",
+            "ccpa"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-010",
           "type": "modified",
           "category": "control-enhancement",
-          "controlId": { "old": "AC-2", "new": "AC-2" },
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
           "title": "AC-2: Account Management — 8 new control enhancements added",
           "area": "AC — Access Control",
           "oldText": "The organization manages information system accounts, including establishing, activating, modifying, reviewing, disabling, and removing accounts.",
           "newText": "The organization manages system accounts, including establishing, activating, modifying, reviewing, disabling, and removing accounts. Accounts include individual, shared, group, system, guest, anonymous, emergency, developer, temporary, and service accounts.",
           "rationale": "Rev 5 AC-2 explicitly adds service accounts, developer accounts, and temporary accounts to the types requiring management. Eight new enhancements were added including automated account management notifications (AC-2(12)), account monitoring for atypical usage (AC-2(13)), disable accounts for inactivity (AC-2(14)), and disable accounts upon termination (AC-2(15)).",
           "significance": "high",
-          "tags": ["access-control", "account-management", "service-accounts", "lifecycle"]
+          "tags": [
+            "access-control",
+            "account-management",
+            "service-accounts",
+            "lifecycle"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-011",
           "type": "modified",
           "category": "control-enhancement",
-          "controlId": { "old": "IA-5", "new": "IA-5" },
+          "controlId": {
+            "old": "IA-5",
+            "new": "IA-5"
+          },
           "title": "IA-5: Authenticator Management — password complexity requirements aligned with SP 800-63B",
           "area": "IA — Identification and Authentication",
           "oldText": "The organization, for password-based authentication: Enforces minimum password complexity of [Assignment: organization-defined requirements for case sensitivity, number of characters, mix of upper-case letters, lower-case letters, numbers, and special characters, including minimum requirements for each type].",
           "newText": "The organization, for password-based authentication: Enforces the following password complexity and quality requirements: [Assignment: organization-defined requirements]. For memorized secrets, organizations are now encouraged to NOT enforce complexity rules, periodic rotation, and to instead focus on password length (minimum 8 characters for user-selected, 6 for verifier-generated) and checking against compromised password lists — per SP 800-63B guidance.",
           "rationale": "SP 800-63B (2017) fundamentally changed NIST's password guidance — dropping mandatory complexity, removing forced rotation, and instead prioritizing length and checking against breach lists. Rev 5 aligns IA-5 with this updated guidance, which is a major shift from Rev 4's prescriptive complexity requirements.",
           "significance": "high",
-          "tags": ["authentication", "passwords", "sp-800-63b", "complexity", "nist-guidance"]
+          "tags": [
+            "authentication",
+            "passwords",
+            "sp-800-63b",
+            "complexity",
+            "nist-guidance"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-012",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "RA-3", "new": "RA-3" },
+          "controlId": {
+            "old": "RA-3",
+            "new": "RA-3"
+          },
           "title": "RA-3: Risk Assessment — extended to include supply chain and privacy risks",
           "area": "RA — Risk Assessment",
           "oldText": "The organization: Conducts an assessment of risk, including the likelihood and magnitude of harm, from the unauthorized access, use, disclosure, disruption, modification, or destruction of the information system and the information it processes, stores, or transmits.",
           "newText": "The organization: Conducts an assessment of risk, including the likelihood and magnitude of harm, from the unauthorized access, use, disclosure, disruption, modification, or destruction of the system, the information it processes, stores, or transmits, and any related personally identifiable information. Risk assessment also considers threats and vulnerabilities to the supply chain.",
           "rationale": "Rev 5 explicitly extends risk assessment to include both privacy risks (PII impacts) and supply chain risks. These were either implied or completely absent in Rev 4. Organizations can no longer limit risk assessments to their own systems — they must consider the full ecosystem.",
           "significance": "high",
-          "tags": ["risk-assessment", "privacy", "supply-chain", "pii"]
+          "tags": [
+            "risk-assessment",
+            "privacy",
+            "supply-chain",
+            "pii"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-013",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "RA-9" },
+          "controlId": {
+            "old": null,
+            "new": "RA-9"
+          },
           "title": "RA-9: Criticality Analysis",
           "area": "RA — Risk Assessment",
           "oldText": null,
           "newText": "Identify critical system components and functions by performing a criticality analysis for [Assignment: organization-defined systems, system components, or system services] at [Assignment: organization-defined decision points in the system development life cycle].",
           "rationale": "New control requiring formal identification of the most critical components and functions of systems — particularly for supply chain risk purposes. Critical components receive enhanced scrutiny and protections. This supports the SR family and SCRM plans.",
           "significance": "high",
-          "tags": ["criticality-analysis", "risk-assessment", "supply-chain", "sdlc"]
+          "tags": [
+            "criticality-analysis",
+            "risk-assessment",
+            "supply-chain",
+            "sdlc"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-014",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "SA-12", "new": "SR-1 through SR-12" },
+          "controlId": {
+            "old": "SA-12",
+            "new": "SR-1 through SR-12"
+          },
           "title": "SA-12 (Supply Chain Protection) → expanded into entire SR family",
           "area": "SA — System and Services Acquisition",
           "oldText": "SA-12: The organization protects against supply chain threats to the information system, system component, or information system service by employing [Assignment: organization-defined security safeguards] as part of a comprehensive, defense-in-breadth information security strategy.",
           "newText": null,
           "rationale": "The single Rev 4 control SA-12 was entirely inadequate for the supply chain threat landscape. Rev 5 replaced it with an entire 12-control family (SR) dedicated to SCRM. SR-1 (Policy), SR-2 (SCRM Plan), SR-3 (SCRM Controls), SR-4 (Provenance), SR-5 (Acquisition Strategies), SR-6 (Supplier Assessments), SR-7 (Supply Chain Operations Security), SR-8 (Notification Agreements), SR-9 (Tamper Resistance), SR-10 (Inspection of Systems/Components), SR-11 (Component Authenticity), SR-12 (Component Disposal).",
           "significance": "high",
-          "tags": ["supply-chain", "sa-12", "sr-family", "restructured"]
+          "tags": [
+            "supply-chain",
+            "sa-12",
+            "sr-family",
+            "restructured"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-015",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "PM-1 to PM-16", "new": "PM-1 to PM-33" },
+          "controlId": {
+            "old": "PM-1 to PM-16",
+            "new": "PM-1 to PM-33"
+          },
           "title": "PM family expanded from 16 to 33 controls",
           "area": "PM — Program Management",
           "oldText": "PM family covers information security program plan, senior information security officer, resource planning, plan of action and milestones, information system inventory, enterprise architecture, information security resources, authorization process, mission/business process definition, enterprise-wide risk management, authorization decisions, insider threat program, and information security workforce.",
           "newText": "PM family now includes all Rev 4 controls plus: PM-17 (Protecting Controlled Unclassified Information), PM-18 (Privacy Program Plan), PM-19 (Privacy Program Leadership), PM-20 (Dissemination of Privacy Program Information), PM-21 (Accounting of Disclosures), PM-22 (Personally Identifiable Information Quality Management), PM-23 (Data Governance Body), PM-24 (Data Integrity Board), PM-25 (Minimization of Personally Identifiable Information Used in Testing/Training), PM-26 (Complaint Management), PM-27 (Privacy Reporting), PM-28 (Risk Framing), PM-29 (Enterprise Risk Management), PM-30 (Supply Chain Risk Management Strategy), PM-31 (Continuous Monitoring Strategy), PM-32 (Purposing), PM-33 (Enterprise Asset Management).",
           "rationale": "The PM family was significantly expanded to cover enterprise-wide risk management, privacy program governance, supply chain strategy, and continuous monitoring strategy. These are board-level and CISO-level activities that must be explicitly controlled at the enterprise level.",
           "significance": "high",
-          "tags": ["program-management", "enterprise-risk", "privacy-governance", "scrm"]
+          "tags": [
+            "program-management",
+            "enterprise-risk",
+            "privacy-governance",
+            "scrm"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-016",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "SI-12", "new": "SI-12" },
+          "controlId": {
+            "old": "SI-12",
+            "new": "SI-12"
+          },
           "title": "SI-12: Information Management and Retention — extended to PII",
           "area": "SI — System and Information Integrity",
           "oldText": "The organization manages and retains information within the information system and information output from the system in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and operational requirements.",
           "newText": "The organization manages and retains information within the information system and information output from the system in accordance with applicable laws, Executive Orders, directives, policies, regulations, standards, and operational requirements. For PII, the organization retains PII only for as long as necessary to fulfill the specified purpose(s) and in accordance with applicable laws, regulations, policies, and any applicable retention schedules.",
           "rationale": "Rev 5 adds explicit PII retention requirements to SI-12, aligning with GDPR's data minimization and storage limitation principles. Organizations must now have documented retention schedules for PII and must dispose of it when no longer needed for its stated purpose.",
           "significance": "medium",
-          "tags": ["data-retention", "pii", "privacy", "data-minimization"]
+          "tags": [
+            "data-retention",
+            "pii",
+            "privacy",
+            "data-minimization"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-017",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "CM-14" },
+          "controlId": {
+            "old": null,
+            "new": "CM-14"
+          },
           "title": "CM-14: Signed Components",
           "area": "CM — Configuration Management",
           "oldText": null,
           "newText": "Prevent the installation of [Assignment: organization-defined software and firmware components] without verification that the component has been digitally signed using a certificate that is recognized and approved by the organization.",
           "rationale": "Code signing verification prevents installation of tampered or counterfeit software. CM-14 is a direct response to supply chain attacks where legitimate software is replaced with malicious versions — requiring organizations to verify digital signatures before allowing component installation.",
           "significance": "high",
-          "tags": ["code-signing", "supply-chain", "software-integrity", "configuration-management"]
+          "tags": [
+            "code-signing",
+            "supply-chain",
+            "software-integrity",
+            "configuration-management"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-018",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "PL-11" },
+          "controlId": {
+            "old": null,
+            "new": "PL-11"
+          },
           "title": "PL-11: Baseline Selection",
           "area": "PL — Planning",
           "oldText": null,
           "newText": "Select a control baseline for the system. This control directs organizations to select an appropriate control baseline from NIST SP 800-53B based on the system's security categorization.",
           "rationale": "New control created to provide a formal hook for the baseline selection process — pointing to SP 800-53B. This separates the act of selecting a baseline (PL-11) from the act of tailoring it (PL-10), creating a cleaner workflow.",
           "significance": "low",
-          "tags": ["baselines", "planning", "sp-800-53b", "categorization"]
+          "tags": [
+            "baselines",
+            "planning",
+            "sp-800-53b",
+            "categorization"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-019",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "CP-2", "new": "CP-2" },
+          "controlId": {
+            "old": "CP-2",
+            "new": "CP-2"
+          },
           "title": "CP-2: Contingency Plan — supply chain dependencies added",
           "area": "CP — Contingency Planning",
           "oldText": "The organization develops a contingency plan for the information system that identifies essential missions and business functions and associated contingency requirements.",
           "newText": "The organization develops a contingency plan for the system that addresses contingency roles, responsibilities, assigned individuals with contact information; essential missions and business functions and associated contingency requirements; recovery objectives, restoration priorities, and metrics; address contingency plan requirements for supply chain dependencies.",
           "rationale": "Rev 5 explicitly requires contingency plans to address supply chain dependencies — what happens if a critical vendor or component supplier cannot deliver? This was not explicit in Rev 4 and was a major gap exposed by COVID-19 supply chain disruptions.",
           "significance": "medium",
-          "tags": ["contingency-planning", "business-continuity", "supply-chain", "recovery"]
+          "tags": [
+            "contingency-planning",
+            "business-continuity",
+            "supply-chain",
+            "recovery"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-020",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "AC-25" },
+          "controlId": {
+            "old": null,
+            "new": "AC-25"
+          },
           "title": "AC-25: Reference Monitor",
           "area": "AC — Access Control",
           "oldText": null,
           "newText": "Implement a reference monitor policy for [Assignment: organization-defined access control policies] that is tamper-proof, always invoked (i.e., with no alternative path through system access), and small enough to be subjected to analysis and testing, the completeness of which can be assured.",
           "rationale": "New high-watermark control derived from formal security principles. The reference monitor concept — a small, tamper-proof, always-invoked access control kernel — is fundamental to high-assurance systems and aligns with the growing demand for verified security properties in critical infrastructure systems.",
           "significance": "medium",
-          "tags": ["access-control", "reference-monitor", "high-assurance", "formal-methods"]
+          "tags": [
+            "access-control",
+            "reference-monitor",
+            "high-assurance",
+            "formal-methods"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-021",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "SA-15", "new": "SA-15" },
+          "controlId": {
+            "old": "SA-15",
+            "new": "SA-15"
+          },
           "title": "SA-15: Development Process, Standards, and Tools — secure coding standards added",
           "area": "SA — System and Services Acquisition",
           "oldText": "The organization requires the developer of the information system, system component, or information system service to: Follow a documented development process that explicitly addresses security requirements.",
           "newText": "The organization requires the developer of the system, system component, or system service to follow a documented development process that explicitly addresses security requirements; identifies the standards and tools used in the development process; documents the specific tool options and tool configurations used in the development process; documents, manages, and ensures the integrity of changes to the process and tools used in development, as well as the security implications of such changes.",
           "rationale": "Rev 5 strengthened SA-15 to require not just a documented process but specific identification of standards, tools, and tool configurations — and documentation of changes to those tools and their security implications. This directly addresses the risk of toolchain compromise in software supply chains.",
           "significance": "high",
-          "tags": ["secure-development", "sdlc", "supply-chain", "toolchain", "build-security"]
+          "tags": [
+            "secure-development",
+            "sdlc",
+            "supply-chain",
+            "toolchain",
+            "build-security"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-022",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "IR-4", "new": "IR-4" },
+          "controlId": {
+            "old": "IR-4",
+            "new": "IR-4"
+          },
           "title": "IR-4: Incident Handling — supply chain incidents explicitly included",
           "area": "IR — Incident Response",
           "oldText": "The organization implements an incident handling capability for security incidents that includes preparation, detection and analysis, containment, eradication, and recovery.",
           "newText": "The organization implements an incident handling capability for security incidents that includes: preparation, detection and analysis, containment, eradication, and recovery; coordination with organizational elements responsible for contingency planning; tracking of incidents; evidence preservation; supply chain events and incidents are included in the incident handling process.",
           "rationale": "Supply chain incidents (malicious updates, compromised components) require the same structured response as traditional security incidents — but weren't explicitly included in IR-4. Rev 5 makes supply chain events a first-class incident type requiring formal handling procedures.",
           "significance": "medium",
-          "tags": ["incident-response", "supply-chain", "incident-handling"]
+          "tags": [
+            "incident-response",
+            "supply-chain",
+            "incident-handling"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-023",
           "type": "modified",
           "category": "control-update",
-          "controlId": { "old": "AT-2", "new": "AT-2" },
+          "controlId": {
+            "old": "AT-2",
+            "new": "AT-2"
+          },
           "title": "AT-2: Literacy Training and Awareness — insider threat and supply chain added",
           "area": "AT — Awareness and Training",
           "oldText": "The organization provides basic security awareness training to information system users (including managers, senior executives, and contractors) as part of initial training for new users and when required by information system changes.",
           "newText": "The organization provides literacy training and awareness on recognizing and responding to threats including social engineering attacks, advanced persistent threats, insider threats, fraud, and supply chain threats; involves personnel in information security awareness activities; updates literacy training and awareness content [Assignment: frequency]; incorporates lessons learned from internal/external security incidents/breaches into awareness training.",
           "rationale": "Rev 5 significantly expanded the required content of security awareness training. The explicit addition of insider threat, social engineering, advanced persistent threats, and supply chain threats — plus the requirement to incorporate lessons learned — reflects the maturation of security awareness as a discipline.",
           "significance": "medium",
-          "tags": ["security-awareness", "training", "insider-threat", "social-engineering", "supply-chain"]
+          "tags": [
+            "security-awareness",
+            "training",
+            "insider-threat",
+            "social-engineering",
+            "supply-chain"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-024",
           "type": "added",
           "category": "new-control",
-          "controlId": { "old": null, "new": "IA-13" },
+          "controlId": {
+            "old": null,
+            "new": "IA-13"
+          },
           "title": "IA-13: Identity Provider Authentication",
           "area": "IA — Identification and Authentication",
           "oldText": null,
           "newText": "The organization employs [Assignment: organization-defined identity providers] for authentication services to implement [Assignment: organization-defined authentication policies] including: identity proofing, authentication strength, and credential management. This control supports federation and single sign-on scenarios with third-party identity providers.",
           "rationale": "Federated identity and third-party IdPs (Okta, Azure AD, Google Identity) are now common authentication approaches but were not explicitly addressed in Rev 4. IA-13 provides explicit controls for using identity providers, ensuring that the organization's authentication policies are implemented through federation.",
           "significance": "high",
-          "tags": ["identity", "authentication", "federation", "sso", "identity-provider"]
+          "tags": [
+            "identity",
+            "authentication",
+            "federation",
+            "sso",
+            "identity-provider"
+          ]
         },
         {
           "id": "change-sp80053-rev4-rev5-025",
           "type": "modified",
           "category": "outcome-based",
-          "controlId": { "old": null, "new": null },
+          "controlId": {
+            "old": null,
+            "new": null
+          },
           "title": "Controls rewritten in outcome-based language rather than process-based",
           "area": "Framework — Writing Style",
           "oldText": "The organization [performs action X to achieve Y].",
           "newText": "The organization [achieves outcome Z]. The control statement focuses on the security outcome, with implementation flexibility left to the organization.",
           "rationale": "Rev 5 shifted the control writing style from process-prescriptive ('the organization must do X') to outcome-focused ('the organization achieves Y'). This aligns with the Customized Approach philosophy in PCI DSS v4.0 and the broader industry shift away from checkbox compliance toward outcome-based security.",
           "significance": "high",
-          "tags": ["outcome-based", "control-language", "flexibility", "compliance"]
+          "tags": [
+            "outcome-based",
+            "control-language",
+            "flexibility",
+            "compliance"
+          ]
+        }
+      ]
+    },
+    "Rev5-to-5.2.0": {
+      "fromVersion": "Rev. 5",
+      "toVersion": "Release 5.2.0",
+      "fromReleaseDate": "2020-09-23",
+      "toReleaseDate": "2025-08-27",
+      "summary": {
+        "added": 3,
+        "removed": 0,
+        "modified": 3,
+        "restructured": 0,
+        "highlights": [
+          "Patch release driven by Executive Order 14306: focused on the security and reliability of software updates and patches",
+          "Three additions: SA-24 Design for Cyber Resiliency (new control), SA-15(13) Logging Syntax and SI-02(07) Root Cause Analysis (new enhancements) — none added to 800-53B baselines",
+          "SI-07(12) broadened from user software to all organization-defined software",
+          "Discussion-only updates to SA-04, SA-05, SA-08(14), SI-02, SI-02(05); SP 800-53A updated with matching assessment procedures; SP 800-53B unchanged"
+        ]
+      },
+      "changes": [
+        {
+          "id": "change-sp80053-r52-001",
+          "type": "added",
+          "category": "patch-release",
+          "controlId": {
+            "old": null,
+            "new": "SA-24"
+          },
+          "title": "SA-24 Design for Cyber Resiliency — new control",
+          "area": "Software update & patch security (EO 14306)",
+          "oldText": null,
+          "newText": "New control addressing cyber resiliency by design: the ability of systems to anticipate, withstand, respond to, and recover from attacks while maintaining critical functions. Not included in any SP 800-53B baseline.",
+          "rationale": "Added in the final Release 5.2.0 based on stakeholder feedback, elevating resiliency-by-design from guidance to an explicit catalog control.",
+          "significance": "medium",
+          "tags": [
+            "new-control",
+            "resiliency"
+          ]
+        },
+        {
+          "id": "change-sp80053-r52-002",
+          "type": "added",
+          "category": "patch-release",
+          "controlId": {
+            "old": null,
+            "new": "SA-15(13)"
+          },
+          "title": "SA-15(13) Development Process, Standards, and Tools — Logging Syntax (new enhancement)",
+          "area": "Software update & patch security (EO 14306)",
+          "oldText": null,
+          "newText": "New control enhancement establishing clearer requirements for logging syntax, defining electronic formats for recording security-relevant events. Not included in any SP 800-53B baseline.",
+          "rationale": "Defined log formats facilitate automation and help teams reconstruct security incidents faster.",
+          "significance": "medium",
+          "tags": [
+            "new-enhancement",
+            "logging"
+          ]
+        },
+        {
+          "id": "change-sp80053-r52-003",
+          "type": "added",
+          "category": "patch-release",
+          "controlId": {
+            "old": null,
+            "new": "SI-02(07)"
+          },
+          "title": "SI-02(07) Flaw Remediation — Root Cause Analysis (new enhancement)",
+          "area": "Software update & patch security (EO 14306)",
+          "oldText": null,
+          "newText": "New control enhancement requiring root cause analysis when a software update or flaw remediation fails, with an action plan and implementation. Not included in any SP 800-53B baseline.",
+          "rationale": "Identified as a gap from NIST analysis of the Secure Software Development Framework (SSDF).",
+          "significance": "medium",
+          "tags": [
+            "new-enhancement",
+            "flaw-remediation"
+          ]
+        },
+        {
+          "id": "change-sp80053-r52-004",
+          "type": "modified",
+          "category": "patch-release",
+          "controlId": {
+            "old": "SI-07(12)",
+            "new": "SI-07(12)"
+          },
+          "title": "SI-07(12) revised: scope broadened to all organization-defined software",
+          "area": "Software update & patch security (EO 14306)",
+          "oldText": null,
+          "newText": "Existing enhancement revised to address all organization-defined software instead of only organization-defined user software.",
+          "rationale": "Closes a scoping gap: integrity verification applies to system software, not just user-facing software.",
+          "significance": "medium",
+          "tags": [
+            "scope-change"
+          ]
+        },
+        {
+          "id": "change-sp80053-r52-005",
+          "type": "modified",
+          "category": "patch-release",
+          "controlId": {
+            "old": "SA-04 / SA-05 / SA-08(14) / SI-02 / SI-02(05)",
+            "new": "SA-04 / SA-05 / SA-08(14) / SI-02 / SI-02(05)"
+          },
+          "title": "Discussion sections updated on five controls (no requirement changes)",
+          "area": "Software update & patch security (EO 14306)",
+          "oldText": null,
+          "newText": "SA-04: customer agreements, notification, and coordination of updates. SA-05: additional considerations for developer artifacts and documentation. SA-08(14): limiting functions with elevated privileges. SI-02: flaw remediation testing. SI-02(05): implementation example added.",
+          "rationale": "Discussion updates provide additional scoping and implementation examples without changing control requirements.",
+          "significance": "low",
+          "tags": [
+            "discussion-only"
+          ]
+        },
+        {
+          "id": "change-sp80053-r52-006",
+          "type": "modified",
+          "category": "patch-release",
+          "controlId": {
+            "old": "AU-02 / AU-03 / CA-07 / IR-04 / IR-06 / IR-08 / MA-03 / SR-08 / SA-15",
+            "new": "AU-02 / AU-03 / CA-07 / IR-04 / IR-06 / IR-08 / MA-03 / SR-08 / SA-15"
+          },
+          "title": "Related-control links and references updated",
+          "area": "Software update & patch security (EO 14306)",
+          "oldText": null,
+          "newText": "Related-control references added connecting existing controls to the new SA-15(13) and SI-02(07) enhancements; new references added to SA-08 and SI-02. SP 800-53B baselines are unchanged; SP 800-53A Release 5.2.0 adds corresponding assessment procedures.",
+          "rationale": "Keeps catalog cross-references coherent after the additions. Baselines were not modified, so existing baseline-scoped programs are unaffected unless they adopt the new controls.",
+          "significance": "low",
+          "tags": [
+            "references"
+          ]
         }
       ]
     }
