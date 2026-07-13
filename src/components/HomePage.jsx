@@ -11,6 +11,8 @@ const GROUP_ACCENT = {
   'Trust & Audit': { bg: 'bg-teal-500', light: 'bg-teal-50 text-teal-700 border-teal-100' },
   'Healthcare & Federal': { bg: 'bg-rose-500', light: 'bg-rose-50 text-rose-700 border-rose-100' },
   'Technical Hardening': { bg: 'bg-indigo-500', light: 'bg-indigo-50 text-indigo-700 border-indigo-100' },
+  'Defense Industrial Base': { bg: 'bg-emerald-500', light: 'bg-emerald-50 text-emerald-700 border-emerald-100' },
+  'Financial Services': { bg: 'bg-cyan-500', light: 'bg-cyan-50 text-cyan-700 border-cyan-100' },
 }
 
 const PUBLISHER_LIGHT = {
@@ -22,6 +24,8 @@ const PUBLISHER_LIGHT = {
   'HHS OCR': 'bg-rose-50 text-rose-700 border-rose-100',
   'IRS': 'bg-slate-50 text-slate-700 border-slate-200',
   'DISA': 'bg-indigo-50 text-indigo-700 border-indigo-100',
+  'US DoD': 'bg-emerald-50 text-emerald-700 border-emerald-100',
+  'NY DFS': 'bg-cyan-50 text-cyan-700 border-cyan-100',
 }
 
 function FrameworkCard({ id, onClick }) {

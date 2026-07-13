@@ -81,7 +81,7 @@ export const FILTER_OPTIONS = [
 export const FRAMEWORK_GROUPS = [
   {
     name: 'NIST',
-    frameworks: ['nist-csf', 'nist-sp800-53'],
+    frameworks: ['nist-csf', 'nist-sp800-53', 'nist-sp800-171'],
   },
   {
     name: 'Payment Security',
@@ -98,6 +98,14 @@ export const FRAMEWORK_GROUPS = [
   {
     name: 'Healthcare & Federal',
     frameworks: ['hipaa', 'irs-4812'],
+  },
+  {
+    name: 'Defense Industrial Base',
+    frameworks: ['cmmc'],
+  },
+  {
+    name: 'Financial Services',
+    frameworks: ['nydfs-500'],
   },
   {
     name: 'Technical Hardening',

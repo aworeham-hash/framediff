@@ -45,6 +45,9 @@ const TITLES = {
   'sox': 'SOX / PCAOB Standard Changes — AS5 to AS 2201 to QC 1000',
   'irs-4812': 'IRS Publication 4812 Changes — 2013 Original to Rev. 12-2025',
   'stigs': 'DISA STIG Changes by Year — Windows, RHEL, SQL Server & More',
+  'nist-sp800-171': 'NIST SP 800-171 Rev 3 vs Rev 2 — What Changed for CUI & CMMC',
+  'cmmc': 'CMMC 1.0 vs 2.0 — What Changed in the Final Rule (32 CFR 170)',
+  'nydfs-500': 'NYDFS Part 500 Second Amendment — 2023 Changes vs 2017',
 }
 
 const DESCRIPTIONS = {
@@ -57,6 +60,9 @@ const DESCRIPTIONS = {
   'sox': (s) => `PCAOB auditing standard changes for SOX compliance: AS5 to AS 2201 reorganization and the new QC 1000 quality control standard. ${s.total} tracked changes.`,
   'irs-4812': (s) => `IRS Publication 4812 contractor security control changes from the original 2013 publication through Rev. 8, Rev. 9, and Rev. 12-2025 — the only interactive changelog for IRS contractor compliance. ${s.total} tracked changes.`,
   'stigs': (s) => `DISA STIG year-over-year changes for common products: Windows Server, RHEL, Ubuntu, SQL Server, IIS, Cisco IOS, and more. ${s.total} tracked changes.`,
+  'nist-sp800-171': (s) => `NIST SP 800-171 Revision 3 vs Revision 2: requirements 110 to 97, three new families (PL, SA, SR), ODPs, and the DoD/CMMC Rev 2 assessment status. ${s.total} tracked changes.`,
+  'cmmc': (s) => `CMMC 2.0 vs 1.0: five levels to three, process maturity eliminated, POA&Ms, SPRS affirmations, and the 32 CFR Part 170 final rule effective December 16, 2024. ${s.total} tracked changes.`,
+  'nydfs-500': (s) => `NYDFS 23 NYCRR Part 500 Second Amendment (November 2023) vs the 2017 original: Class A companies, universal MFA, 24-hour ransom payment reporting, dual-signature certifications. ${s.total} tracked changes.`,
 }
 
 // ---- Routes -----------------------------------------------------------------
@@ -64,7 +70,7 @@ const routes = [
   {
     path: '/',
     title: 'FrameDiff — Compliance Framework Version Tracker',
-    description: 'Track exactly what changed between versions of NIST CSF, NIST SP 800-53, PCI DSS, ISO 27001, HIPAA, SOC 2, SOX, IRS 4812, and DISA STIGs. Control-level diffs for GRC teams, auditors, and security professionals.',
+    description: 'Track exactly what changed between versions of NIST CSF, SP 800-53, SP 800-171, CMMC, PCI DSS, ISO 27001, HIPAA, SOC 2, SOX, NYDFS Part 500, IRS 4812, and DISA STIGs. Control-level diffs for GRC teams, auditors, and security professionals.',
     priority: '1.0',
   },
   {

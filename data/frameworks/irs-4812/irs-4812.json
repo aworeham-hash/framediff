@@ -23,10 +23,10 @@
       "fromReleaseDate": "2013-03-01",
       "toReleaseDate": "2025-12-01",
       "summary": {
-        "added": 8,
+        "added": 9,
         "removed": 2,
-        "modified": 2,
-        "restructured": 7,
+        "modified": 6,
+        "restructured": 9,
         "highlights": [
           "Publication renamed 'Contractor Security Controls' → 'Contractor Security & Privacy Controls', reflecting full privacy integration",
           "Control baseline moved from NIST SP 800-53 Revision 3 to Revision 5, adding the PT (PII Processing and Transparency) and SR (Supply Chain Risk Management) families",
@@ -389,6 +389,136 @@
           "tags": [
             "csa",
             "documentation"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-020",
+          "type": "modified",
+          "category": "document-evolution",
+          "controlId": {
+            "old": "8.2.5",
+            "new": "9.3.3"
+          },
+          "title": "Training: generic Security Awareness Training → catalog of eight mandatory briefings",
+          "area": "Contractor training",
+          "oldText": "Ensure all contractor employees who require staff-like access to IRS information or information systems, regardless of their physical location, complete the required Security Awareness Training.",
+          "newText": "As of July 2025, IRS assigns mandatory briefings to all individuals supporting IRS contracts: Annual Cybersecurity Awareness; Privacy, Information Protection & Disclosure (PIPD); Records Management; Insider Threat Awareness; FMSS Physical Security; IRS Cybersecurity Awareness; Inadvertent Sensitive Information Access; CUI General Awareness; and UNAX. SAT must be completed before access to SBU data is granted.",
+          "rationale": "Training evolved from a single generic requirement into a defined curriculum, with completion now a precondition for SBU access rather than a parallel obligation.",
+          "significance": "high",
+          "tags": [
+            "training"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-021",
+          "type": "modified",
+          "category": "document-evolution",
+          "controlId": {
+            "old": "8.2.4",
+            "new": "9.3.2"
+          },
+          "title": "Personnel vetting: 'background investigation' reframed as 'security screening' with defined roles",
+          "area": "Personnel security",
+          "oldText": "All contractors, subcontractors, experts, consultants, and paid/unpaid interns... are subject to a background investigation... Contractors shall ensure all contractor and subcontractor employees... are identified to the IRS at time of award.",
+          "newText": "Personnel are subject to a security screening comparable to federal employees in the same position sensitivity. The Vendor POC, in collaboration with the COR, must identify all performing personnel (including anyone meeting the staff-like access definition) at award; the Vendor POC, COR, and CO jointly ensure unfavorably adjudicated personnel are immediately removed.",
+          "rationale": "Same substance, but responsibility is now assigned to named roles (Vendor POC / COR / CO) instead of \"the contractor\" generally — typical of Rev. 12's precision about who does what.",
+          "significance": "medium",
+          "tags": [
+            "personnel"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-022",
+          "type": "modified",
+          "category": "document-evolution",
+          "controlId": {
+            "old": "§6",
+            "new": "8.0"
+          },
+          "title": "UNAX section spells out the statutory framework and subcontractor authorization",
+          "area": "Disclosure & UNAX",
+          "oldText": "Brief \"Disclosure of Information\" section.",
+          "newText": "Section 8.0 details IRC §7213 (criminal penalties for unauthorized disclosure), §7213A (unauthorized inspection as a misdemeanor), §7431 (civil damages and taxpayer notification), and §6103(n) authority. Before releasing any returns or return information to a subcontractor, the contractor must have WRITTEN authorization from the IRS. Documented employee/subcontractor notification of restrictions and sanctions is required.",
+          "rationale": "Elevates taxpayer-data misuse from a passing reference to a fully articulated legal exposure section — including the often-missed written-authorization prerequisite for subcontractor data sharing.",
+          "significance": "high",
+          "tags": [
+            "unax",
+            "disclosure",
+            "subcontractors"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-023",
+          "type": "added",
+          "category": "document-evolution",
+          "controlId": {
+            "old": null,
+            "new": "12.0"
+          },
+          "title": "'Dash-one' policy flexibility: existing corporate policies can satisfy XX-1 requirements",
+          "area": "Policy requirements",
+          "oldText": null,
+          "newText": "A contractor does not have to develop a plan specific to each control family if existing formal documents (e.g., HR policies satisfying PS-1) address the material elements of that family's dash-one control, to the satisfaction of the IRS.",
+          "rationale": "A pragmatic clarification absent in 2013: mature organizations can map existing policies rather than produce IRS-specific paperwork for all 20 families.",
+          "significance": "medium",
+          "tags": [
+            "policy",
+            "flexibility"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-024",
+          "type": "renamed",
+          "category": "document-evolution",
+          "controlId": {
+            "old": "8.2.3",
+            "new": "9.2.1"
+          },
+          "title": "Contractor Security Representative → Contractor Point of Contact (POC)",
+          "area": "Roles",
+          "oldText": "8.2.3 Contractor Security Representative",
+          "newText": "9.2.1 Contractor Point of Contact (POC) — the named vendor role that coordinates security screening, personnel identification, and assessment logistics with the COR and CSA team.",
+          "rationale": "Role consolidation matching the CSA program structure.",
+          "significance": "low",
+          "tags": [
+            "roles"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-025",
+          "type": "modified",
+          "category": "document-evolution",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Explicit flow-down of security and privacy requirements to subcontractors at any tier",
+          "area": "Scope",
+          "oldText": "Requirements applied to contractors and subcontractors supporting the primary contract.",
+          "newText": "Requirements defined at the contractor level explicitly flow down to subcontractor information systems and personnel; IRS IT Security/FISMA language must be included in solicitations, contracts, and orders directly or through flow-down provisions.",
+          "rationale": "Closes the gap where lower-tier subcontractors handling SBU escaped contractual security obligations.",
+          "significance": "medium",
+          "tags": [
+            "flow-down",
+            "subcontractors"
+          ]
+        },
+        {
+          "id": "change-irs4812-2013-rev12-026",
+          "type": "restructured",
+          "category": "document-evolution",
+          "controlId": {
+            "old": "§9",
+            "new": "11.0"
+          },
+          "title": "'Security Categorization' expanded into 'Privacy and Information Protection'",
+          "area": "Document structure",
+          "oldText": "9 Security Categorization",
+          "newText": "11.0 Privacy and Information Protection, with security categorization as a subsection (11.1).",
+          "rationale": "Categorization is now framed within a broader privacy-and-protection context, consistent with the publication's privacy integration.",
+          "significance": "low",
+          "tags": [
+            "structure"
           ]
         }
       ]

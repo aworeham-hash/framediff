@@ -1,0 +1,260 @@
+{
+  "id": "nydfs-500",
+  "name": "NYDFS Cybersecurity Regulation (23 NYCRR Part 500)",
+  "shortName": "NYDFS Part 500",
+  "description": "New York's cybersecurity regulation for banks, insurers, and other DFS-licensed financial services companies — the de facto template for US state financial cybersecurity rules. The Second Amendment (adopted November 1, 2023) is the largest overhaul since the original 2017 regulation, phasing in through November 2025.",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "publisher": "NY DFS",
+  "source": "https://www.dfs.ny.gov/industry_guidance/cybersecurity",
+  "officialChangelogUrl": "https://www.dfs.ny.gov/industry_guidance/cybersecurity",
+  "versions": [
+    "2017 (original)",
+    "2023 (Second Amendment)"
+  ],
+  "latestVersion": "2023 Second Amendment",
+  "lastDataUpdate": "2026-07-12",
+  "transitions": {
+    "2017-to-2023": {
+      "fromVersion": "2017 (original)",
+      "toVersion": "2023 (Second Amendment)",
+      "fromReleaseDate": "2017-03-01",
+      "toReleaseDate": "2023-11-01",
+      "summary": {
+        "added": 3,
+        "removed": 0,
+        "modified": 9,
+        "restructured": 0,
+        "highlights": [
+          "New 'Class A Company' tier (large institutions): independent audits, privileged access management, and EDR with centralized logging",
+          "MFA expanded from remote access to ANY individual accessing ANY information system (full compliance by November 1, 2025)",
+          "First-in-the-nation ransomware rule: 24-hour notice of extortion payments plus a 30-day written justification including sanctions diligence",
+          "Annual certification now signed by the highest-ranking executive AND the CISO — with a formal acknowledgment-of-noncompliance alternative",
+          "Board-level oversight duties, annual pentest by an independent qualified party, asset inventory, and tested BCDR plans all added",
+          "Requirements phased in from December 2023 through November 1, 2025"
+        ]
+      },
+      "changes": [
+        {
+          "id": "change-nydfs-001",
+          "type": "added",
+          "category": "second-amendment",
+          "controlId": {
+            "old": null,
+            "new": "§500.1"
+          },
+          "title": "New 'Class A Company' tier with heightened requirements",
+          "area": "Scope & definitions",
+          "oldText": "One set of requirements for all covered entities, with limited exemptions for small companies.",
+          "newText": "Class A Companies — at least $20M gross annual revenue from NY operations AND (over 2,000 employees OR over $1B global gross revenue) — face additional obligations: annual independent audits of the cybersecurity program, privileged access management solutions, and endpoint detection and response with centralized logging.",
+          "rationale": "DFS concluded the largest institutions warrant more rigorous, independently verified controls. Class A determinations include affiliates, so groups near the thresholds need careful analysis.",
+          "significance": "high",
+          "tags": [
+            "class-a"
+          ]
+        },
+        {
+          "id": "change-nydfs-002",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.12",
+            "new": "§500.12"
+          },
+          "title": "MFA required for any individual accessing information systems",
+          "area": "Access control",
+          "oldText": "MFA required for remote access to internal networks (with CISO-approved equivalent or compensating controls).",
+          "newText": "MFA required for ANY individual accessing ANY information system of the covered entity — remote or not — unless a limited exemption applies. CISO-approved compensating controls must be reviewed at least annually.",
+          "rationale": "The single biggest technical expansion in the amendment: on-premises access, privileged accounts, and third-party access all now require MFA. Full compliance deadline: November 1, 2025.",
+          "significance": "high",
+          "tags": [
+            "mfa"
+          ]
+        },
+        {
+          "id": "change-nydfs-003",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.4",
+            "new": "§500.4"
+          },
+          "title": "Governance overhaul: CISO independence and board oversight",
+          "area": "Governance",
+          "oldText": "CISO required; annual report to the board on the cybersecurity program and material risks.",
+          "newText": "CISO must have adequate independence and authority; must timely report material cybersecurity issues to the board; the board (or equivalent) must exercise oversight and have sufficient understanding of cybersecurity risk; annual reporting expanded to include remediation plans for material inadequacies.",
+          "rationale": "Moves cybersecurity accountability squarely into the boardroom, mirroring the SEC and FTC direction of travel.",
+          "significance": "high",
+          "tags": [
+            "governance"
+          ]
+        },
+        {
+          "id": "change-nydfs-004",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.17",
+            "new": "§500.17"
+          },
+          "title": "New extortion-payment notifications: 24 hours to report, 30 days to explain",
+          "area": "Incident reporting",
+          "oldText": "72-hour notice to the superintendent of certain cybersecurity events.",
+          "newText": "72-hour event notice retained and clarified (including events at third-party service providers). NEW: notice to DFS within 24 hours of any extortion payment, and within 30 days a written description of why payment was necessary, alternatives considered, and sanctions diligence performed.",
+          "rationale": "First-in-the-nation ransomware payment reporting obligation for financial services companies.",
+          "significance": "high",
+          "tags": [
+            "reporting",
+            "ransomware"
+          ]
+        },
+        {
+          "id": "change-nydfs-005",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.17(b)",
+            "new": "§500.17(b)"
+          },
+          "title": "Annual certification: material compliance or written acknowledgment of noncompliance",
+          "area": "Certification",
+          "oldText": "Annual certification of compliance signed by a senior officer.",
+          "newText": "Annual filing signed by the highest-ranking executive AND the CISO: either a certification of MATERIAL COMPLIANCE or a written acknowledgment of noncompliance identifying the sections not complied with and a remediation timeline.",
+          "rationale": "The dual-signature requirement personalizes accountability; the acknowledgment path removes the excuse of silence but documents exposure.",
+          "significance": "high",
+          "tags": [
+            "certification"
+          ]
+        },
+        {
+          "id": "change-nydfs-006",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.5",
+            "new": "§500.5"
+          },
+          "title": "Annual penetration testing and automated vulnerability scanning",
+          "area": "Vulnerability management",
+          "oldText": "Penetration testing annually and bi-annual vulnerability assessments (or continuous monitoring).",
+          "newText": "Annual penetration testing by a qualified internal or external independent party from inside and outside network boundaries; automated vulnerability scans (and manual review of systems not covered) at a risk-based frequency; timely remediation prioritized by risk.",
+          "rationale": "Codifies a modern vulnerability management lifecycle instead of point-in-time assessments.",
+          "significance": "medium",
+          "tags": [
+            "vuln-management"
+          ]
+        },
+        {
+          "id": "change-nydfs-007",
+          "type": "added",
+          "category": "second-amendment",
+          "controlId": {
+            "old": null,
+            "new": "§500.13(a)"
+          },
+          "title": "Asset inventory now explicitly required",
+          "area": "Asset management",
+          "oldText": "Section 500.13 addressed only data retention/disposal.",
+          "newText": "Written policies and procedures for a complete, accurate, documented asset inventory — including owner, location, classification or sensitivity, support expiration date, and recovery time objectives — with defined update frequency.",
+          "rationale": "You cannot protect what you have not inventoried; DFS made the prerequisite explicit.",
+          "significance": "medium",
+          "tags": [
+            "asset-inventory"
+          ]
+        },
+        {
+          "id": "change-nydfs-008",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.7",
+            "new": "§500.7"
+          },
+          "title": "Access privilege reviews and privileged account restrictions",
+          "area": "Access control",
+          "oldText": "Limit access privileges to nonpublic information; periodic review.",
+          "newText": "Least privilege required; privileged accounts limited in number and use; access reviews at least annually; prompt termination of departed users' access; protocols for password complexity where passwords are used. Class A: privileged access management solution and automated blocking of common passwords.",
+          "rationale": "Turns generic access hygiene into specific, assessable obligations.",
+          "significance": "medium",
+          "tags": [
+            "access"
+          ]
+        },
+        {
+          "id": "change-nydfs-009",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.16",
+            "new": "§500.16"
+          },
+          "title": "Incident response and BCDR plans expanded with mandatory testing",
+          "area": "Resilience",
+          "oldText": "Written incident response plan required.",
+          "newText": "Incident response AND business continuity/disaster recovery plans required, covering backup integrity, communications, and root-cause processes; plans must be tested at least annually with participation of senior management; backups must be maintained and protected against unauthorized alteration.",
+          "rationale": "The BCDR additions respond directly to ransomware: recovery capability is now a regulatory requirement, not just good practice.",
+          "significance": "medium",
+          "tags": [
+            "resilience",
+            "bcdr"
+          ]
+        },
+        {
+          "id": "change-nydfs-010",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.14",
+            "new": "§500.14"
+          },
+          "title": "Training and monitoring: annual social-engineering training; Class A EDR",
+          "area": "Training & monitoring",
+          "oldText": "Regular cybersecurity awareness training; monitoring of authorized user activity.",
+          "newText": "Annual cybersecurity awareness training must include social engineering; controls to protect against malicious code including web/email filtering. Class A: endpoint detection and response plus centralized logging and security event alerting.",
+          "rationale": "Phishing remains the dominant initial access vector in DFS enforcement actions.",
+          "significance": "medium",
+          "tags": [
+            "training",
+            "edr"
+          ]
+        },
+        {
+          "id": "change-nydfs-011",
+          "type": "modified",
+          "category": "second-amendment",
+          "controlId": {
+            "old": "§500.19",
+            "new": "§500.19"
+          },
+          "title": "Exemption thresholds raised for small companies",
+          "area": "Exemptions",
+          "oldText": "Limited exemptions for entities with fewer than 10 employees, under $5M gross annual NY revenue, or under $10M total assets.",
+          "newText": "Thresholds raised: fewer than 20 employees, under $7.5M gross annual NY revenue (from covered operations), or under $15M in total assets.",
+          "rationale": "Expands relief for the smallest licensees while the amendment tightens everything else.",
+          "significance": "low",
+          "tags": [
+            "exemptions"
+          ]
+        },
+        {
+          "id": "change-nydfs-012",
+          "type": "added",
+          "category": "second-amendment",
+          "controlId": {
+            "old": null,
+            "new": "§500.20"
+          },
+          "title": "Enforcement: violations defined",
+          "area": "Enforcement",
+          "oldText": null,
+          "newText": "The amendment defines what constitutes a violation — including the failure to secure or prevent unauthorized access to nonpublic information due to noncompliance, or any 24-hour failure to comply with a requirement — and lists mitigating factors DFS will consider.",
+          "rationale": "Gives DFS an explicit per-violation enforcement hook; DFS has already used Part 500 in multi-million-dollar consent orders.",
+          "significance": "medium",
+          "tags": [
+            "enforcement"
+          ]
+        }
+      ]
+    }
+  }
+}

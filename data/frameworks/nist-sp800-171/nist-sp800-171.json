@@ -1,0 +1,334 @@
+{
+  "id": "nist-sp800-171",
+  "name": "NIST Special Publication 800-171",
+  "shortName": "NIST SP 800-171",
+  "description": "Security requirements for protecting Controlled Unclassified Information (CUI) in nonfederal systems — the foundation of DFARS 252.204-7012 and CMMC for defense contractors. Revision 3 (May 2024) restructures the catalog around SP 800-53r5. Note: DoD continues to assess against Revision 2 until it announces the Rev 3 transition.",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "publisher": "NIST",
+  "source": "https://csrc.nist.gov/pubs/sp/800/171/r3/final",
+  "officialChangelogUrl": "https://csrc.nist.gov/files/pubs/sp/800/171/r3/final/docs/sp800-171r2-to-r3-analysis.xlsx",
+  "versions": [
+    "Rev. 2",
+    "Rev. 3"
+  ],
+  "latestVersion": "Rev. 3",
+  "lastDataUpdate": "2026-07-12",
+  "transitions": {
+    "Rev2-to-Rev3": {
+      "fromVersion": "Rev. 2",
+      "toVersion": "Rev. 3",
+      "fromReleaseDate": "2020-02-21",
+      "toReleaseDate": "2024-05-14",
+      "summary": {
+        "added": 6,
+        "removed": 3,
+        "modified": 6,
+        "restructured": 1,
+        "totalFrom": 110,
+        "totalTo": 97,
+        "highlights": [
+          "Requirements reduced 110 → 97, but assessment objectives grew 320 → 390 — Rev 3 is more specific and more rigorous, not lighter",
+          "Three new families: Planning (PL), System and Services Acquisition (SA), and Supply Chain Risk Management (SR); Security Assessment renamed Security Assessment and Monitoring",
+          "SP 800-53r5 becomes the single authoritative source — the basic/derived split and FIPS 200 lineage are gone",
+          "88 organization-defined parameters (ODPs) replace vague terms like \"periodically\"; NFO tailoring category eliminated",
+          "New numbering (03.01.01 style) with per-requirement titles; NIST publishes official transition mapping tables",
+          "IMPORTANT: DoD continues to assess DFARS 252.204-7012 / CMMC against Revision 2 until it announces otherwise"
+        ]
+      },
+      "changes": [
+        {
+          "id": "change-171-r2r3-001",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Security requirements reduced from 110 to 97",
+          "area": "Catalog structure",
+          "oldText": "110 security requirements across 14 families, split into basic requirements (from FIPS 200) and derived requirements (from SP 800-53).",
+          "newText": "97 security requirements across 17 families, all derived from SP 800-53r5 as the single authoritative source.",
+          "rationale": "NIST removed outdated and redundant requirements and merged closely related ones into multi-part requirements. Fewer line items does not mean less work: the requirements are more specific, and assessment objectives grew from 320 to 390.",
+          "significance": "high",
+          "tags": [
+            "structure"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-002",
+          "type": "removed",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Basic vs. derived requirement distinction eliminated",
+          "area": "Catalog structure",
+          "oldText": "Basic security requirements were drawn from FIPS 200; derived requirements were drawn from NIST SP 800-53.",
+          "newText": null,
+          "rationale": "Per the official NIST FAQ: recasting the requirements using only SP 800-53 as the single authoritative source significantly increased specificity and clarity. FIPS 200 is no longer a source.",
+          "significance": "medium",
+          "tags": [
+            "structure"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-003",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": "PL"
+          },
+          "title": "New family: Planning (PL)",
+          "area": "New families",
+          "oldText": null,
+          "newText": "Planning (PL) family added, consistent with the SP 800-53B moderate baseline.",
+          "rationale": "One of three new families added to maintain consistency with the SP 800-53B moderate control baseline. Covers system security plans and rules of behavior.",
+          "significance": "high",
+          "tags": [
+            "new-family"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-004",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": "SA"
+          },
+          "title": "New family: System and Services Acquisition (SA)",
+          "area": "New families",
+          "oldText": null,
+          "newText": "System and Services Acquisition (SA) family added.",
+          "rationale": "Brings acquisition-time security (external system services, development requirements) into the CUI protection scope.",
+          "significance": "high",
+          "tags": [
+            "new-family"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-005",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": "SR"
+          },
+          "title": "New family: Supply Chain Risk Management (SR)",
+          "area": "New families",
+          "oldText": null,
+          "newText": "Supply Chain Risk Management (SR) family added.",
+          "rationale": "Reflects the SR family introduced in SP 800-53r5. Defense contractors must now address supply chain risk management plans and controls for CUI environments.",
+          "significance": "high",
+          "tags": [
+            "new-family",
+            "supply-chain"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-006",
+          "type": "renamed",
+          "category": "revision",
+          "controlId": {
+            "old": "CA",
+            "new": "CA"
+          },
+          "title": "Security Assessment family renamed 'Security Assessment and Monitoring'",
+          "area": "Families",
+          "oldText": "Security Assessment (CA)",
+          "newText": "Security Assessment and Monitoring (CA)",
+          "rationale": "Rename reflects the inclusion of continuous monitoring within the family, consistent with SP 800-53r5.",
+          "significance": "low",
+          "tags": [
+            "rename"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-007",
+          "type": "removed",
+          "category": "revision",
+          "controlId": {
+            "old": "NFO",
+            "new": null
+          },
+          "title": "NFO tailoring category eliminated",
+          "area": "Tailoring",
+          "oldText": "Controls marked NFO ('expected to be routinely satisfied by nonfederal organizations without specification') were excluded from the requirements.",
+          "newText": null,
+          "rationale": "Per the NIST FAQ, feedback showed NFO controls — including foundational XX-1 policy-and-procedure controls — were simply not being implemented or assessed. Eliminating NFO moved several of those controls into the requirement set, increasing CUI, NCO, and FED assignments.",
+          "significance": "high",
+          "tags": [
+            "tailoring"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-008",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Organization-defined parameters (ODPs) introduced — 88 parameters",
+          "area": "Requirements language",
+          "oldText": null,
+          "newText": "Selected requirements now contain organization-defined parameters consistent with SP 800-53r5 (e.g., time periods, frequencies, thresholds). A new appendix consolidates all ODPs.",
+          "rationale": "Federal agencies can specify ODP values, provide guidance, or leave selection to the nonfederal organization; once set, ODP values become part of the assessable requirement. This replaces vague terms like \"periodically.\"",
+          "significance": "high",
+          "tags": [
+            "odp"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-009",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "New tailoring criteria: Not Applicable (NA) and Other Related Control (ORC)",
+          "area": "Tailoring",
+          "oldText": null,
+          "newText": "NA applies to the Program Management (PM) and PII Processing and Transparency (PT) families, which are not allocated to any 800-53B baseline. ORC marks controls whose protection capability is provided by another control.",
+          "rationale": "ORC eliminates redundancy in the requirement set without reducing protection; NA makes the tailoring analysis of the moderate baseline complete and transparent.",
+          "significance": "medium",
+          "tags": [
+            "tailoring"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-010",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Requirement specificity significantly increased",
+          "area": "Requirements language",
+          "oldText": "Requirements stated at a high level of abstraction, leaving detailed specification to implementers and assessors.",
+          "newText": "Requirement language aligned with SP 800-53 control language, with discussion sections resequenced to match requirement parts.",
+          "rationale": "Per the NIST FAQ, the old abstraction made assessments inconsistent — assessors had different interpretations of what satisfied a requirement. Increased specificity narrows the interpretation gap.",
+          "significance": "high",
+          "tags": [
+            "language"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-011",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Numbering scheme changed: leading zeros and requirement titles",
+          "area": "Usability",
+          "oldText": "Requirements numbered 3.1.1, 3.1.2, … without individual titles.",
+          "newText": "Requirements numbered 03.01.01, 03.01.02, … with a title for each requirement, hyperlinked references to SP 800-53 source controls, and CPRT dataset availability (spreadsheet and JSON).",
+          "rationale": "Supports automated tooling and aligns numbering with SP 800-171Ar3. Compliance tooling and SSP templates keyed to old numbering need remapping — NIST publishes transition mapping tables.",
+          "significance": "medium",
+          "tags": [
+            "usability"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-012",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Withdrawn requirements incorporated into multi-part requirements",
+          "area": "Catalog structure",
+          "oldText": null,
+          "newText": null,
+          "rationale": "Closely related requirements were merged where a direct relationship exists, producing multi-part requirements consistent with SP 800-53 control structure. The change analysis and transition mapping tables published by NIST document each disposition.",
+          "significance": "medium",
+          "tags": [
+            "structure"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-013",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Assessment objectives increased from 320 to 390 (SP 800-171Ar3)",
+          "area": "Assessment",
+          "oldText": "320 assessment objectives in SP 800-171A.",
+          "newText": "390 assessment objectives in SP 800-171Ar3, restructured to align with SP 800-53A syntax, with source references added.",
+          "rationale": "Despite fewer requirements, there is more to assess — a practical signal that Rev 3 is a net increase in rigor, not a reduction.",
+          "significance": "high",
+          "tags": [
+            "assessment"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-014",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "CUI overlay published",
+          "area": "Supplemental material",
+          "oldText": null,
+          "newText": "A CUI overlay shows how each control and control item in the SP 800-53B moderate baseline is tailored to produce the SP 800-171 requirements.",
+          "rationale": "Makes the derivation from the moderate baseline fully transparent for the first time — useful for organizations that run both 800-53 and 800-171 programs.",
+          "significance": "medium",
+          "tags": [
+            "supplemental"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-015",
+          "type": "removed",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "ISO/IEC 27001 mapping table removed",
+          "area": "Mappings",
+          "oldText": "SP 800-171r2 included a mapping of security requirements to ISO/IEC 27001 controls.",
+          "newText": "Mapping tables focus exclusively on SP 800-53 source controls; NIST separately maintains the SP 800-53r5 to ISO/IEC 27001:2022 mapping.",
+          "rationale": "Organizations that relied on the in-document ISO crosswalk must now use the separate NIST mapping resources.",
+          "significance": "low",
+          "tags": [
+            "mappings"
+          ]
+        },
+        {
+          "id": "change-171-r2r3-016",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "STATUS — DoD/CMMC still assess against Rev 2",
+          "area": "Adoption status",
+          "oldText": null,
+          "newText": null,
+          "rationale": "The Department of Defense has stated that Revision 2 remains the compliance standard for contractors subject to DFARS 252.204-7012 (and CMMC assessments) until DoD announces otherwise. Track DFARS rulemaking for the Rev 3 transition timeline.",
+          "significance": "high",
+          "tags": [
+            "status",
+            "cmmc",
+            "dfars"
+          ]
+        }
+      ]
+    }
+  }
+}

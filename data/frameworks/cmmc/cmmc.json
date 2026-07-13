@@ -1,0 +1,223 @@
+{
+  "id": "cmmc",
+  "name": "Cybersecurity Maturity Model Certification (CMMC)",
+  "shortName": "CMMC",
+  "description": "The DoD program that verifies defense contractors actually implement the cybersecurity requirements protecting FCI and CUI (FAR 52.204-21, NIST SP 800-171, NIST SP 800-172). CMMC 2.0 — codified at 32 CFR Part 170, effective December 16, 2024 — replaced the five-level 1.0 model with three levels tied directly to existing federal requirement sets.",
+  "copyright": "public-domain",
+  "showFullText": true,
+  "publisher": "US DoD",
+  "source": "https://www.ecfr.gov/current/title-32/subtitle-A/chapter-I/subchapter-G/part-170",
+  "officialChangelogUrl": "https://www.federalregister.gov/documents/2024/10/15/2024-22905/cybersecurity-maturity-model-certification-cmmc-program",
+  "versions": [
+    "1.0 (2020)",
+    "2.0 (32 CFR, 2024)"
+  ],
+  "latestVersion": "2.0",
+  "lastDataUpdate": "2026-07-12",
+  "transitions": {
+    "1.0-to-2.0": {
+      "fromVersion": "1.0 (2020)",
+      "toVersion": "2.0 (32 CFR, 2024)",
+      "fromReleaseDate": "2020-01-31",
+      "toReleaseDate": "2024-12-16",
+      "summary": {
+        "added": 4,
+        "removed": 2,
+        "modified": 3,
+        "restructured": 1,
+        "highlights": [
+          "Five maturity levels collapsed to three: L1 = 15 FAR 52.204-21 requirements (self-assessed), L2 = the 110 NIST SP 800-171 R2 requirements, L3 = +24 selected NIST SP 800-172 requirements (DIBCAC-assessed)",
+          "All CMMC-unique practices and the process-maturity dimension eliminated — CMMC is now purely a verification program for existing federal requirements",
+          "Self-assessment allowed at Level 1 and for select Level 2 programs; limited 180-day POA&Ms permitted",
+          "Annual senior-official affirmations in SPRS create direct False Claims Act exposure",
+          "Codified at 32 CFR Part 170 (effective Dec 16, 2024) with a phased contract rollout via the 48 CFR DFARS rule",
+          "Assessments verify against 800-171 Revision 2 — the Rev 3 transition timeline is a key watch item"
+        ]
+      },
+      "changes": [
+        {
+          "id": "change-cmmc-001",
+          "type": "restructured",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Maturity levels reduced from 5 to 3",
+          "area": "Program structure",
+          "oldText": "Five maturity levels: L1 Basic Cyber Hygiene, L2 Intermediate (transitional), L3 Good Cyber Hygiene, L4 Proactive (transitional), L5 Advanced/Progressive.",
+          "newText": "Three levels: Level 1 (Foundational), Level 2 (Advanced), Level 3 (Expert). The transitional levels 2 and 4 were eliminated.",
+          "rationale": "The 1.0 transitional levels were never intended to appear in contracts. Collapsing to three levels maps each level to an existing federal requirement set instead of CMMC-unique baselines.",
+          "significance": "high",
+          "tags": [
+            "levels"
+          ]
+        },
+        {
+          "id": "change-cmmc-002",
+          "type": "removed",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Maturity process requirements eliminated",
+          "area": "Program structure",
+          "oldText": "Each level required documented process maturity (e.g., ML.2.999 documented policies, ML.3.997 resourced plans) in addition to practices.",
+          "newText": null,
+          "rationale": "CMMC 2.0 assesses practices only. The separate process-maturity dimension — a major source of 1.0 assessment complexity — was dropped entirely.",
+          "significance": "high",
+          "tags": [
+            "processes"
+          ]
+        },
+        {
+          "id": "change-cmmc-003",
+          "type": "removed",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "CMMC-unique practices and domains removed (17 → 14 domains)",
+          "area": "Practices",
+          "oldText": "CMMC 1.0 included 20 practices beyond NIST SP 800-171 at Level 3 (130 total) and 171 practices at Level 5, organized in 17 domains.",
+          "newText": "All requirements now trace directly to FAR 52.204-21, NIST SP 800-171 R2, or NIST SP 800-172 — no CMMC-unique practices. Domains align to 800-171 families (14).",
+          "rationale": "Contractors repeatedly objected that the delta-20 practices created a parallel standard. 2.0 makes CMMC purely a verification program for existing federal requirements.",
+          "significance": "high",
+          "tags": [
+            "practices"
+          ]
+        },
+        {
+          "id": "change-cmmc-004",
+          "type": "modified",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": "L1",
+            "new": "Level 1"
+          },
+          "title": "Level 1: self-assessment against the 15 FAR 52.204-21 safeguarding requirements",
+          "area": "Level 1",
+          "oldText": "Level 1 certification required a third-party assessment of 17 basic practices.",
+          "newText": "Level 1 requires an annual self-assessment of the 15 basic safeguarding requirements of FAR 52.204-21, plus an annual affirmation by a senior official in SPRS.",
+          "rationale": "Removes third-party assessment cost for the large population of contractors that handle only Federal Contract Information (FCI), not CUI.",
+          "significance": "high",
+          "tags": [
+            "level-1"
+          ]
+        },
+        {
+          "id": "change-cmmc-005",
+          "type": "modified",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": "L3",
+            "new": "Level 2"
+          },
+          "title": "Level 2 = exactly the 110 requirements of NIST SP 800-171 R2",
+          "area": "Level 2",
+          "oldText": "Old Level 3 required 130 practices (110 from 800-171 plus 20 CMMC-unique).",
+          "newText": "Level 2 requires the 110 NIST SP 800-171 R2 requirements — nothing more. Assessment is either a C3PAO certification or, for select non-critical CUI programs, a self-assessment; both on a 3-year cycle with annual affirmations.",
+          "rationale": "Aligning exactly to 800-171 R2 lets contractors leverage existing DFARS 252.204-7012 work. Note: the program currently verifies against 800-171 Revision 2, not the newer Revision 3.",
+          "significance": "high",
+          "tags": [
+            "level-2"
+          ]
+        },
+        {
+          "id": "change-cmmc-006",
+          "type": "modified",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": "L5",
+            "new": "Level 3"
+          },
+          "title": "Level 3 = 110 + 24 selected NIST SP 800-172 requirements, assessed by DIBCAC",
+          "area": "Level 3",
+          "oldText": "Old Levels 4–5 added 61 CMMC-unique advanced practices (171 total at L5).",
+          "newText": "Level 3 requires Level 2 certification plus 24 selected requirements from NIST SP 800-172, assessed by the DoD Industrial Base Cybersecurity Assessment Center (DIBCAC). POA&Ms are not permitted for the 24 enhanced requirements.",
+          "rationale": "Reserved for contractors supporting the most critical programs, with the government itself as assessor.",
+          "significance": "high",
+          "tags": [
+            "level-3"
+          ]
+        },
+        {
+          "id": "change-cmmc-007",
+          "type": "added",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "POA&Ms conditionally allowed",
+          "area": "Assessment flexibility",
+          "oldText": "CMMC 1.0 required full compliance at the time of assessment — no Plans of Action and Milestones.",
+          "newText": "Limited POA&Ms are allowed: minimum assessment score required, only lower-weighted requirements eligible, and closure required within 180 days.",
+          "rationale": "A pragmatic concession — but the highest-weighted requirements (e.g., MFA-related) can never be on a POA&M.",
+          "significance": "medium",
+          "tags": [
+            "poams"
+          ]
+        },
+        {
+          "id": "change-cmmc-008",
+          "type": "added",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Waivers possible in limited circumstances",
+          "area": "Assessment flexibility",
+          "oldText": null,
+          "newText": "DoD may waive CMMC requirements on select mission-critical procurements, on a time-limited basis with senior DoD approval.",
+          "rationale": "Narrow by design; contractors should not plan around waivers.",
+          "significance": "low",
+          "tags": [
+            "waivers"
+          ]
+        },
+        {
+          "id": "change-cmmc-009",
+          "type": "added",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Annual affirmations in SPRS by a senior official",
+          "area": "Accountability",
+          "oldText": null,
+          "newText": "Every level requires an annual affirmation of continuing compliance by a senior company official, recorded in the Supplier Performance Risk System (SPRS).",
+          "rationale": "Creates direct False Claims Act exposure for false affirmations — arguably the sharpest enforcement tooth in the program.",
+          "significance": "high",
+          "tags": [
+            "affirmation",
+            "enforcement"
+          ]
+        },
+        {
+          "id": "change-cmmc-010",
+          "type": "added",
+          "category": "program-overhaul",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Program codified: 32 CFR Part 170 effective December 16, 2024",
+          "area": "Rulemaking",
+          "oldText": "CMMC 1.0 operated under interim DFARS rules (2020) without a codified program regulation.",
+          "newText": "The CMMC Program rule (32 CFR Part 170) was published October 15, 2024 and took effect December 16, 2024. The companion DFARS acquisition rule (48 CFR, clause 252.204-7021) triggers a phased rollout of CMMC requirements in contracts over roughly three years.",
+          "rationale": "Codification ended years of uncertainty. Requirements appear in solicitations in phases — starting with self-assessments and adding C3PAO certification and Level 3 requirements in later phases.",
+          "significance": "high",
+          "tags": [
+            "rulemaking",
+            "timeline"
+          ]
+        }
+      ]
+    }
+  }
+}

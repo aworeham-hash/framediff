@@ -22,13 +22,14 @@
       "fromReleaseDate": "2013-04-30",
       "toReleaseDate": "2020-09-23",
       "summary": {
-        "added": 102,
+        "added": 15,
         "removed": 0,
-        "modified": 143,
+        "modified": 14,
         "restructured": 18,
         "totalFrom": 212,
         "totalTo": 314,
         "highlights": [
+          "269 total additions vs Rev 4: 65 new base controls and 204 new enhancements (per the official NIST comparison workbook)",
           "Privacy controls fully integrated into the main catalog for the first time — no longer a separate appendix (Appendix J), now woven throughout all 20 control families",
           "Two new control families added: PT (Personally Identifiable Information Processing and Transparency) and SR (Supply Chain Risk Management)",
           "Scope expanded from federal information systems to ALL organizations — language changed from 'federal' to 'organization' throughout",
@@ -567,6 +568,98 @@
             "control-language",
             "flexibility",
             "compliance"
+          ]
+        },
+        {
+          "id": "change-sp80053-deep-026",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": "PT-1 … PT-8"
+          },
+          "title": "PT family: 8 base controls for PII Processing and Transparency",
+          "area": "PT — PII Processing and Transparency",
+          "oldText": null,
+          "newText": "Eight base controls covering PII processing purposes, authority to process, consent, privacy notices, and system-of-records notices.",
+          "rationale": "Privacy controls moved from an appendix (Rev 4 Appendix J) into the integrated catalog as a first-class family — the structural core of Rev 5's \"security AND privacy\" consolidation.",
+          "significance": "high",
+          "tags": [
+            "new-family",
+            "privacy"
+          ]
+        },
+        {
+          "id": "change-sp80053-deep-027",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": "SR-1 … SR-12"
+          },
+          "title": "SR family: 12 base controls for Supply Chain Risk Management",
+          "area": "SR — Supply Chain Risk Management",
+          "oldText": null,
+          "newText": "Twelve base controls: SCRM policy and plan, controls and processes, provenance, acquisition strategies, supplier assessments, notification agreements, tamper resistance, component authenticity, and component disposal.",
+          "rationale": "Elevated supply chain risk from scattered SA-12/SA-19 controls in Rev 4 into a dedicated family — published weeks before SolarWinds proved the point.",
+          "significance": "high",
+          "tags": [
+            "new-family",
+            "supply-chain"
+          ]
+        },
+        {
+          "id": "change-sp80053-deep-028",
+          "type": "added",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "269 total additions: 65 new base controls and 204 new control enhancements",
+          "area": "Catalog statistics",
+          "oldText": null,
+          "newText": "The Rev 4 → Rev 5 transition added 65 new base controls and 204 new enhancements; 42 of the new controls are privacy-specific.",
+          "rationale": "The official comparison workbook published by NIST documents each addition and every Rev 4 control disposition (incorporated, withdrawn, renumbered).",
+          "significance": "high",
+          "tags": [
+            "statistics"
+          ]
+        },
+        {
+          "id": "change-sp80053-deep-029",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Controls made outcome-based: \"the organization\" removed from control statements",
+          "area": "Control language",
+          "oldText": null,
+          "newText": "Control statements were rewritten to describe the outcome to be achieved rather than assigning the action to \"the organization,\" making the catalog usable by systems, organizations, and any party (including non-federal and international adopters).",
+          "rationale": "Enables the same catalog to serve enterprises, agencies, and engineered systems — part of removing the federal-only framing from the title and scope.",
+          "significance": "medium",
+          "tags": [
+            "language"
+          ]
+        },
+        {
+          "id": "change-sp80053-deep-030",
+          "type": "modified",
+          "category": "revision",
+          "controlId": {
+            "old": null,
+            "new": null
+          },
+          "title": "Control baselines separated into SP 800-53B",
+          "area": "Publication structure",
+          "oldText": null,
+          "newText": "The low/moderate/high baselines (and the new privacy baseline) were removed from SP 800-53 itself and published separately as SP 800-53B, Control Baselines for Information Systems and Organizations.",
+          "rationale": "Decouples the catalog release cycle from baseline decisions, letting NIST patch the catalog (as in Release 5.1.1 and 5.2.0) without re-litigating baselines.",
+          "significance": "medium",
+          "tags": [
+            "structure"
           ]
         }
       ]

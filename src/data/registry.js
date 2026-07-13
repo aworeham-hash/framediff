@@ -7,6 +7,9 @@ import hipaa from '../../data/frameworks/hipaa/hipaa.json'
 import sox from '../../data/frameworks/sox/sox.json'
 import irs4812 from '../../data/frameworks/irs-4812/irs-4812.json'
 import stigs from '../../data/frameworks/stigs/stigs.json'
+import nistSp800171 from '../../data/frameworks/nist-sp800-171/nist-sp800-171.json'
+import cmmc from '../../data/frameworks/cmmc/cmmc.json'
+import nydfs500 from '../../data/frameworks/nydfs-500/nydfs-500.json'
 
 export const frameworksData = {
   'nist-csf': nistCsf,
@@ -18,6 +21,9 @@ export const frameworksData = {
   'sox': sox,
   'irs-4812': irs4812,
   'stigs': stigs,
+  'nist-sp800-171': nistSp800171,
+  'cmmc': cmmc,
+  'nydfs-500': nydfs500,
 }
 
 export function getFramework(id) {

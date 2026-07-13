@@ -17,6 +17,8 @@ const GROUP_COLORS = {
   'Trust & Audit': 'bg-teal-500',
   'Healthcare & Federal': 'bg-rose-500',
   'Technical Hardening': 'bg-indigo-500',
+  'Defense Industrial Base': 'bg-emerald-500',
+  'Financial Services': 'bg-cyan-500',
 }
 
 function getGroupColor(frameworkId) {
