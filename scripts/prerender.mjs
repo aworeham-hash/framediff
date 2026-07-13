@@ -43,7 +43,7 @@ const TITLES = {
   'soc2': 'SOC 2 Trust Services Criteria 2022 Changes vs 2017',
   'hipaa': 'HIPAA Security Rule Changes — 2013 Omnibus to 2025 Update',
   'sox': 'SOX / PCAOB Standard Changes — AS5 to AS 2201 to QC 1000',
-  'irs-4812': 'IRS Publication 4812 Changes — Rev 8, Rev 9, Rev 12 Compared',
+  'irs-4812': 'IRS Publication 4812 Changes — 2013 Original to Rev. 12-2025',
   'stigs': 'DISA STIG Changes by Year — Windows, RHEL, SQL Server & More',
 }
 
@@ -55,7 +55,7 @@ const DESCRIPTIONS = {
   'soc2': (s) => `SOC 2 Trust Services Criteria changes from 2016 to 2017 to the 2022 revision: category and points-of-focus updates for audit readiness. ${s.total} tracked changes.`,
   'hipaa': (s) => `HIPAA Security Rule evolution: HITECH, 2013 Omnibus Rule, and the proposed 2025 Security Rule update — every safeguard change tracked. ${s.total} tracked changes.`,
   'sox': (s) => `PCAOB auditing standard changes for SOX compliance: AS5 to AS 2201 reorganization and the new QC 1000 quality control standard. ${s.total} tracked changes.`,
-  'irs-4812': (s) => `IRS Publication 4812 contractor security control changes across Rev 8, Rev 9, and Rev 12 — the only interactive changelog for IRS contractor compliance. ${s.total} tracked changes.`,
+  'irs-4812': (s) => `IRS Publication 4812 contractor security control changes from the original 2013 publication through Rev. 8, Rev. 9, and Rev. 12-2025 — the only interactive changelog for IRS contractor compliance. ${s.total} tracked changes.`,
   'stigs': (s) => `DISA STIG year-over-year changes for common products: Windows Server, RHEL, Ubuntu, SQL Server, IIS, Cisco IOS, and more. ${s.total} tracked changes.`,
 }
 
@@ -195,14 +195,14 @@ function latestTransition(fw) {
 }
 
 function renderFrameworkBody(fw, stats) {
-  const t = latestTransition(fw)
+  const allTransitions = Object.values(fw.transitions || {}).reverse() // latest first
   const parts = []
   parts.push(`<header><p><a href="/">FrameDiff \u2014 the changelog for compliance frameworks</a></p></header>`)
   parts.push(`<h1>${esc(fw.name)}: what changed between versions</h1>`)
   if (fw.description) parts.push(`<p>${esc(fw.description)}</p>`)
   parts.push(`<p>${stats.total} tracked changes across ${stats.transitionCount} version transition${stats.transitionCount === 1 ? '' : 's'}. Published by ${esc(fw.publisher || '')}.</p>`)
 
-  if (t) {
+  for (const t of allTransitions) {
     parts.push(`<h2>${esc(fw.shortName || fw.name)} ${esc(t.fromVersion)} \u2192 ${esc(t.toVersion)}</h2>`)
     const sm = t.summary || {}
     const counts = ['added', 'removed', 'modified', 'restructured', 'renamed']
