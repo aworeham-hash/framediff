@@ -19,7 +19,7 @@ export function PrivacyPage({ onHome }) {
       </section>
       <section>
         <h2>4. Data Processing</h2>
-        <p>Alert signups are processed via a form-forwarding service and delivered to our operator inbox. Emails are retained only as long as needed to operate the alert list. To request deletion of your email from the list, contact aworeham@gmail.com.</p>
+        <p>Alert signups are processed via a form-forwarding service and delivered to our operator inbox. Emails are retained only as long as needed to operate the alert list. To request deletion of your email from the list, reply "unsubscribe" to any alert email or open an issue on GitHub.</p>
       </section>
       <section>
         <h2>5. Children's Privacy</h2>
@@ -31,7 +31,7 @@ export function PrivacyPage({ onHome }) {
       </section>
       <section>
         <h2>7. Contact</h2>
-        <p>Privacy questions or deletion requests: aworeham@gmail.com</p>
+        <p>Privacy questions or deletion requests can be raised by <a href="https://github.com/aworeham-hash/framediff/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-800">opening an issue on GitHub</a>, or by replying to any alert email.</p>
       </section>
     </LegalLayout>
   )

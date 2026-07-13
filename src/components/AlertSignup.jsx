@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
-// Version-alert email capture via formsubmit.co (no backend required).
+// Version-alert email capture, relayed through /api/subscribe so the
+// destination inbox never appears in the client bundle.
 // - Subscriber receives a branded auto-response confirmation
 // - Owner receives a structured notification with context fields
 // - Honeypot field filters bots; localStorage prevents duplicate signups
-const ENDPOINT = 'https://formsubmit.co/ajax/aworeham@gmail.com'
+const ENDPOINT = '/api/subscribe'
 
 const AUTORESPONSE = `You're subscribed to FrameDiff version alerts.
 

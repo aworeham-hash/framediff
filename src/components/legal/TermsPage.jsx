@@ -37,7 +37,7 @@ export function TermsPage({ onHome }) {
       </section>
       <section>
         <h2>9. Contact</h2>
-        <p>Questions about these Terms: aworeham@gmail.com</p>
+        <p>Questions about these Terms can be raised by <a href="https://github.com/aworeham-hash/framediff/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-800">opening an issue on GitHub</a>.</p>
       </section>
     </LegalLayout>
   )
