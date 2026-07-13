@@ -80,6 +80,12 @@ const routes = [
     priority: '0.3',
   },
   {
+    path: '/updates',
+    title: 'Compliance Framework Updates & Deadlines 2026\u20132027 | FrameDiff',
+    description: 'Upcoming compliance dates in one place: PCAOB QC 1000 effective December 15, 2026; HIPAA Security Rule final rule expected 2027; DISA STIG quarterly releases; PCI DSS post-RFC revision watch. Plus recent framework releases.',
+    priority: '0.8',
+  },
+  {
     path: '/privacy',
     title: 'Privacy Policy — FrameDiff',
     description: 'Privacy policy for FrameDiff. We collect almost nothing and sell nothing.',

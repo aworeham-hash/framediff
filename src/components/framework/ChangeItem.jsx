@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { TriageControl } from './TriageControl'
 
 function TypeBadge({ type }) {
   const styles = {
@@ -28,7 +29,7 @@ function SignificanceDot({ significance }) {
 }
 
 // ── Card / collapsible view ────────────────────────────────────────────────
-function ChangeItemCard({ change, forceExpanded }) {
+function ChangeItemCard({ change, forceExpanded, triageValue, onTriageChange }) {
   const [expanded, setExpanded] = useState(false)
   const isOpen = forceExpanded || expanded
   const controlId = change.controlId || {}
@@ -49,6 +50,9 @@ function ChangeItemCard({ change, forceExpanded }) {
           <span className="text-xs text-gray-400 flex-shrink-0">← was {controlId.old}</span>
         )}
         <span className="text-sm text-gray-700 font-medium flex-1 truncate">{change.title}</span>
+        {onTriageChange && (
+          <TriageControl compact value={triageValue} onChange={v => onTriageChange(change.id, v)} />
+        )}
         <SignificanceDot significance={change.significance} />
         {change._viaTransition && (
           <span className="text-xs text-blue-400 flex-shrink-0">{change._viaTransition}</span>
@@ -95,7 +99,7 @@ function ChangeItemCard({ change, forceExpanded }) {
 }
 
 // ── Document / always-expanded view ───────────────────────────────────────
-function ChangeItemDocument({ change, fromVersion, toVersion }) {
+function ChangeItemDocument({ change, fromVersion, toVersion, triageValue, onTriageChange }) {
   const controlId = change.controlId || {}
   const displayId = controlId.new || controlId.old || '—'
   const idChanged  = controlId.old && controlId.new && controlId.old !== controlId.new
@@ -121,6 +125,9 @@ function ChangeItemDocument({ change, fromVersion, toVersion }) {
           <span className="text-xs text-gray-400 flex-shrink-0">← was {controlId.old}</span>
         )}
         <span className="text-sm font-semibold text-gray-700 flex-1 min-w-0 truncate">{change.title}</span>
+        {onTriageChange && (
+          <TriageControl value={triageValue} onChange={v => onTriageChange(change.id, v)} />
+        )}
         <SignificanceDot significance={change.significance} />
       </div>
 
@@ -175,9 +182,9 @@ function ChangeItemDocument({ change, fromVersion, toVersion }) {
 }
 
 // ── Public export ──────────────────────────────────────────────────────────
-export function ChangeItem({ change, forceExpanded, documentMode, fromVersion, toVersion }) {
+export function ChangeItem({ change, forceExpanded, documentMode, fromVersion, toVersion, triageValue, onTriageChange }) {
   if (documentMode) {
-    return <ChangeItemDocument change={change} fromVersion={fromVersion} toVersion={toVersion} />
+    return <ChangeItemDocument change={change} fromVersion={fromVersion} toVersion={toVersion} triageValue={triageValue} onTriageChange={onTriageChange} />
   }
-  return <ChangeItemCard change={change} forceExpanded={forceExpanded} />
+  return <ChangeItemCard change={change} forceExpanded={forceExpanded} triageValue={triageValue} onTriageChange={onTriageChange} />
 }

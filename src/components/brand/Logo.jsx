@@ -1,16 +1,32 @@
-// Unified FrameDiff brand mark — matches favicon.svg and og.png.
+// FrameDiff brand mark — shield + diff. Matches favicon.svg and og.png.
 export function LogoMark({ size = 28, className = '' }) {
   return (
-    <div
-      className={`rounded-lg bg-gradient-to-br from-blue-700 to-blue-500 flex items-center justify-center flex-shrink-0 shadow-sm ${className}`}
-      style={{ width: size, height: size }}
+    <svg
+      width={size} height={size} viewBox="0 0 56 58"
+      className={`flex-shrink-0 ${className}`} aria-hidden="true"
     >
-      <svg width={size * 0.62} height={size * 0.62} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="6" y="9" width="13" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)" />
-        <line x1="6" y1="10.25" x2="19" y2="10.25" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
-        <path d="M7 16 L18 16 M15 13.5 L18 16 L15 18.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="6" y="20" width="18" height="2.5" rx="1.25" fill="white" />
-      </svg>
-    </div>
+      <defs>
+        <linearGradient id="fd-shield" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#1e40af" />
+          <stop offset="100%" stopColor="#3b82f6" />
+        </linearGradient>
+      </defs>
+      <path d="M28 2 L50 10 V28 C50 42 40 51 28 56 C16 51 6 42 6 28 V10 Z" fill="url(#fd-shield)" />
+      <rect x="17" y="17" width="17" height="4" rx="2" fill="#ffffff" opacity="0.45" />
+      <line x1="15" y1="19" x2="36" y2="19" stroke="#bfdbfe" strokeWidth="1.6" />
+      <path d="M17 29 H33 M28 24.5 L33 29 L28 33.5" stroke="#ffffff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <rect x="17" y="38" width="22" height="4" rx="2" fill="#ffffff" />
+    </svg>
+  )
+}
+
+export function LogoWordmark({ size = 30, dark = false }) {
+  return (
+    <span className="inline-flex items-center gap-2.5">
+      <LogoMark size={size} />
+      <span className={`font-bold tracking-tight ${dark ? 'text-white' : 'text-gray-900'}`} style={{ fontSize: size * 0.62 }}>
+        FrameDiff
+      </span>
+    </span>
   )
 }

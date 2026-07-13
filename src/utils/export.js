@@ -15,8 +15,8 @@ function formatControlId(controlId) {
   return newId || oldId || ''
 }
 
-export function exportCSV(framework, changes, fromVersion, toVersion) {
-  const header = ['Change Type', 'Control ID', 'Title', 'Area', 'Old Text', 'New Text', 'Rationale', 'Significance']
+export function exportCSV(framework, changes, fromVersion, toVersion, triage = {}) {
+  const header = ['Change Type', 'Control ID', 'Title', 'Area', 'Old Text', 'New Text', 'Rationale', 'Significance', 'Triage Status']
   const rows = changes.map(c => [
     c.type || '',
     formatControlId(c.controlId),
@@ -26,6 +26,7 @@ export function exportCSV(framework, changes, fromVersion, toVersion) {
     c.newText || '',
     c.rationale || '',
     c.significance || '',
+    ({ relevant: 'Relevant', na: 'Not applicable', done: 'Done' })[triage[c.id]] || '',
   ])
   const meta = [
     [`${framework.name} — ${fromVersion} to ${toVersion}`],

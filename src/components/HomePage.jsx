@@ -1,6 +1,7 @@
 import { FRAMEWORK_GROUPS } from '../utils/constants'
 import { getFramework } from '../data/registry'
 import { LogoMark } from './brand/Logo'
+import { DEADLINES } from '../data/deadlines'
 import { AlertSignup } from './AlertSignup'
 
 const GROUP_ACCENT = {
@@ -106,14 +107,28 @@ export function HomePage({ onSelectFramework, onNavigate }) {
     <div className="h-full overflow-y-auto bg-white">
 
       {/* Top nav bar */}
-      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 px-4 sm:px-8 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <LogoMark size={28} />
-          <span className="font-bold text-gray-900 text-sm tracking-tight">FrameDiff</span>
-          <span className="hidden sm:inline text-gray-300 text-sm">|</span>
-          <span className="hidden sm:inline text-xs text-gray-400">Compliance framework changelog</span>
+      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <LogoMark size={36} />
+          <div>
+            <div className="font-bold text-gray-900 text-base tracking-tight leading-none">FrameDiff</div>
+            <div className="hidden sm:block text-[11px] text-gray-400 mt-0.5">The compliance framework changelog</div>
+          </div>
         </div>
         <div className="flex items-center gap-4">
+          <button onClick={() => onNavigate && onNavigate('/updates')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
+            Updates & deadlines
+          </button>
+          <button onClick={() => onNavigate && onNavigate('/about')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
+            About
+          </button>
+          <a
+            href="#alerts"
+            onClick={e => { e.preventDefault(); document.getElementById('alerts')?.scrollIntoView({ behavior: 'smooth' }) }}
+            className="text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-3.5 py-2 transition-colors"
+          >
+            Get alerts
+          </a>
           <a
             href="https://github.com/aworeham-hash/framediff"
             target="_blank"
@@ -155,6 +170,35 @@ export function HomePage({ onSelectFramework, onNavigate }) {
                 <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                 <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Upcoming compliance dates */}
+      <div className="border-b border-gray-100 bg-amber-50/30 px-5 sm:px-8 py-5">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+              <svg className="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Upcoming compliance dates
+            </h2>
+            <button onClick={() => onNavigate && onNavigate('/updates')} className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors">
+              View all →
+            </button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {DEADLINES.filter(d => d.date).slice(0, 3).map(d => (
+              <button
+                key={d.title}
+                onClick={() => onSelectFramework(d.frameworkId)}
+                className="text-left bg-white border border-gray-200 hover:border-blue-200 rounded-lg px-3.5 py-3 transition-colors"
+              >
+                <div className="text-xs font-bold text-gray-900">{d.dateLabel}</div>
+                <div className="text-xs text-gray-500 mt-1 leading-snug">{d.title}</div>
+              </button>
             ))}
           </div>
         </div>
@@ -234,7 +278,7 @@ export function HomePage({ onSelectFramework, onNavigate }) {
                 </svg>
               ),
               title: 'Verified sources',
-              desc: 'All data sourced directly from official framework publications.',
+              desc: 'All data sourced directly from official framework publications and re-verified against publisher sources (last audit: July 2026).',
             },
             {
               icon: (
@@ -268,7 +312,7 @@ export function HomePage({ onSelectFramework, onNavigate }) {
         </div>
 
         {/* Alert signup */}
-        <div className="mt-12">
+        <div className="mt-12 scroll-mt-20" id="alerts">
           <AlertSignup />
         </div>
 

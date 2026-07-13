@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect } from 'react'
 import { getFramework } from '../../data/registry'
 import { resolveTransition, getDefaultVersions } from '../../utils/transitions'
 import { useFilteredChanges } from '../../hooks/useFilteredChanges'
+import { useTriage } from '../../hooks/useTriage'
+import { TriageProgress } from './TriageControl'
 import { VersionPicker } from './VersionPicker'
 import { SummaryCards } from './SummaryCards'
 import { Highlights } from './Highlights'
@@ -28,6 +30,7 @@ export function FrameworkPage({ frameworkId }) {
   )
   const [filter, setFilter]           = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const { triage, setTriage, clearTriage } = useTriage(frameworkId)
 
   // Reset versions when framework changes
   useEffect(() => {
@@ -160,6 +163,7 @@ export function FrameworkPage({ frameworkId }) {
                   changes={filteredChanges}
                   fromVersion={fromVersion}
                   toVersion={toVersion}
+                  triage={triage}
                 />
               </div>
               <SearchBar value={searchQuery} onChange={setSearchQuery} />
@@ -180,12 +184,16 @@ export function FrameworkPage({ frameworkId }) {
               </div>
             )}
 
+            <TriageProgress changes={allChanges} triage={triage} onClear={clearTriage} />
+
             <ChangeList
               changes={filteredChanges}
               filter={filter}
               searchQuery={searchQuery}
               fromVersion={fromVersion}
               toVersion={toVersion}
+              triage={triage}
+              onTriageChange={setTriage}
             />
 
             <AlertSignup frameworkName={framework.shortName || framework.name} />

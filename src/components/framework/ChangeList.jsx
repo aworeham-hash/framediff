@@ -85,7 +85,7 @@ function ViewToggle({ mode, onChange }) {
   )
 }
 
-export function ChangeList({ changes, filter, searchQuery, fromVersion, toVersion }) {
+export function ChangeList({ changes, filter, searchQuery, fromVersion, toVersion, triage = {}, onTriageChange }) {
   const [allExpanded, setAllExpanded] = useState(false)
   const [viewMode, setViewMode]       = useState('cards')
 
@@ -169,6 +169,8 @@ export function ChangeList({ changes, filter, searchQuery, fromVersion, toVersio
               documentMode={isDocument}
               fromVersion={fromVersion}
               toVersion={toVersion}
+              triageValue={triage[change.id]}
+              onTriageChange={onTriageChange}
             />
           ))}
         </div>
@@ -207,6 +209,8 @@ export function ChangeList({ changes, filter, searchQuery, fromVersion, toVersio
                     documentMode={false}
                     fromVersion={fromVersion}
                     toVersion={toVersion}
+                    triageValue={triage[change.id]}
+                    onTriageChange={onTriageChange}
                   />
                 ))}
               </div>

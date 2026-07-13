@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { exportCSV, exportPDF } from '../../utils/export'
 
-export function ExportButtons({ framework, changes, fromVersion, toVersion }) {
+export function ExportButtons({ framework, changes, fromVersion, toVersion, triage }) {
   if (!changes?.length) return null
 
   const btnClass = 'inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-blue-600 border border-gray-200 hover:border-blue-200 rounded-md px-2.5 py-1.5 transition-colors'
@@ -10,7 +10,7 @@ export function ExportButtons({ framework, changes, fromVersion, toVersion }) {
     <div className="flex items-center gap-2">
       <CopyLinkButton btnClass={btnClass} />
       <button
-        onClick={() => exportCSV(framework, changes, fromVersion, toVersion)}
+        onClick={() => exportCSV(framework, changes, fromVersion, toVersion, triage)}
         className={btnClass}
         title="Download as CSV (opens in Excel)"
       >

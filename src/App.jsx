@@ -6,6 +6,7 @@ import { AboutPage } from './components/AboutPage'
 import { TermsPage } from './components/legal/TermsPage'
 import { PrivacyPage } from './components/legal/PrivacyPage'
 import { NotFoundPage } from './components/NotFoundPage'
+import { UpdatesPage } from './components/UpdatesPage'
 import { CommandPalette } from './components/ui/CommandPalette'
 import { LogoMark } from './components/brand/Logo'
 import { frameworksData } from './data/registry'
@@ -25,6 +26,7 @@ function parseRoute() {
   if (path === '/about') return { page: 'about' }
   if (path === '/terms') return { page: 'terms' }
   if (path === '/privacy') return { page: 'privacy' }
+  if (path === '/updates') return { page: 'updates' }
 
   const id = path.slice(1)
   if (frameworksData[id]) return { page: 'framework', frameworkId: id }
@@ -93,6 +95,8 @@ export default function App() {
     <TermsPage onHome={handleHome} />
   ) : route.page === 'privacy' ? (
     <PrivacyPage onHome={handleHome} />
+  ) : route.page === 'updates' ? (
+    <UpdatesPage onSelectFramework={handleSelectFramework} onHome={handleHome} />
   ) : route.page === 'notfound' ? (
     <NotFoundPage onHome={handleHome} onSelectFramework={handleSelectFramework} />
   ) : route.page === 'framework' ? (
