@@ -1,5 +1,7 @@
 import { FRAMEWORK_GROUPS } from '../utils/constants'
 import { getFramework } from '../data/registry'
+import { LogoMark } from './brand/Logo'
+import { AlertSignup } from './AlertSignup'
 
 const GROUP_ACCENT = {
   'NIST': { bg: 'bg-blue-500', light: 'bg-blue-50 text-blue-700 border-blue-100' },
@@ -35,14 +37,14 @@ function FrameworkCard({ id, onClick }) {
     <button
       onClick={() => !isComingSoon && onClick(id)}
       disabled={isComingSoon}
-      className={`group w-full text-left flex items-center gap-4 px-5 py-4 border-b border-gray-100 transition-all last:border-b-0 ${
+      className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-4 border-b border-gray-100 transition-all last:border-b-0 ${
         isComingSoon
           ? 'cursor-default opacity-40 bg-white'
           : 'cursor-pointer hover:bg-blue-50/40'
       }`}
     >
       {/* Publisher badge */}
-      <div className="flex-shrink-0 w-[72px]">
+      <div className="hidden sm:block flex-shrink-0 w-[72px]">
         <span className={`inline-flex items-center justify-center px-2 py-0.5 rounded-md text-xs font-semibold border w-full ${publisherClass}`}>
           {fw.publisher}
         </span>
@@ -88,7 +90,7 @@ function FrameworkCard({ id, onClick }) {
   )
 }
 
-export function HomePage({ onSelectFramework }) {
+export function HomePage({ onSelectFramework, onNavigate }) {
   const allFrameworks = FRAMEWORK_GROUPS.flatMap(g => g.frameworks)
   const available = allFrameworks.filter(id => {
     const fw = getFramework(id)
@@ -104,16 +106,9 @@ export function HomePage({ onSelectFramework }) {
     <div className="h-full overflow-y-auto bg-white">
 
       {/* Top nav bar */}
-      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 px-8 py-3 flex items-center justify-between">
+      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 px-4 sm:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shadow-sm">
-            <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-              <rect x="6" y="9" width="13" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)"/>
-              <line x1="6" y1="10.25" x2="19" y2="10.25" stroke="rgba(255,255,255,0.5)" strokeWidth="1"/>
-              <path d="M7 16 L18 16 M15 13.5 L18 16 L15 18.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-              <rect x="6" y="20" width="18" height="2.5" rx="1.25" fill="white"/>
-            </svg>
-          </div>
+          <LogoMark size={28} />
           <span className="font-bold text-gray-900 text-sm tracking-tight">FrameDiff</span>
           <span className="hidden sm:inline text-gray-300 text-sm">|</span>
           <span className="hidden sm:inline text-xs text-gray-400">Compliance framework changelog</span>
@@ -134,13 +129,13 @@ export function HomePage({ onSelectFramework }) {
       </div>
 
       {/* Hero section */}
-      <div className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 px-8 py-16">
+      <div className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 px-5 sm:px-8 py-12 sm:py-16">
         <div className="max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full border border-blue-100 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
             Free for GRC teams, auditors, and security professionals
           </div>
-          <h1 className="text-4xl font-bold text-gray-950 tracking-tight leading-tight mb-5">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-950 tracking-tight leading-tight mb-5">
             The changelog for<br />compliance frameworks.
           </h1>
           <p className="text-gray-500 text-lg leading-relaxed max-w-xl mb-8">
@@ -166,9 +161,9 @@ export function HomePage({ onSelectFramework }) {
       </div>
 
       {/* How it works strip */}
-      <div className="border-b border-gray-100 bg-white px-8 py-8">
+      <div className="border-b border-gray-100 bg-white px-5 sm:px-8 py-8">
         <div className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
             {[
               {
                 step: '01',
@@ -199,7 +194,7 @@ export function HomePage({ onSelectFramework }) {
       </div>
 
       {/* Frameworks list */}
-      <div className="max-w-3xl mx-auto px-8 py-10">
+      <div className="max-w-3xl mx-auto px-5 sm:px-8 py-10">
         <div className="space-y-8">
           {FRAMEWORK_GROUPS.map(group => {
             const accent = GROUP_ACCENT[group.name] || { bg: 'bg-gray-400', light: 'bg-gray-50 text-gray-600' }
@@ -230,7 +225,7 @@ export function HomePage({ onSelectFramework }) {
         </div>
 
         {/* Trust signals */}
-        <div className="mt-12 pt-8 border-t border-gray-100 grid grid-cols-3 gap-6">
+        <div className="mt-12 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
           {[
             {
               icon: (
@@ -272,8 +267,13 @@ export function HomePage({ onSelectFramework }) {
           ))}
         </div>
 
+        {/* Alert signup */}
+        <div className="mt-12">
+          <AlertSignup />
+        </div>
+
         {/* Footer */}
-        <div className="mt-10 pt-6 border-t border-gray-100 flex items-start justify-between gap-4">
+        <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-start justify-between gap-4">
           <p className="text-xs text-gray-400 leading-relaxed max-w-lg">
             FrameDiff is an independent reference tool. Not affiliated with NIST, PCI SSC, ISO, AICPA, DISA, IRS, HHS OCR, or any framework publisher.
             Always verify requirements against official publications.
@@ -287,11 +287,14 @@ export function HomePage({ onSelectFramework }) {
             >
               GitHub
             </a>
-            <button
-              onClick={() => window.location.hash = 'about'}
-              className="hover:text-gray-600 transition-colors"
-            >
+            <button onClick={() => onNavigate && onNavigate('/about')} className="hover:text-gray-600 transition-colors">
               About
+            </button>
+            <button onClick={() => onNavigate && onNavigate('/terms')} className="hover:text-gray-600 transition-colors">
+              Terms
+            </button>
+            <button onClick={() => onNavigate && onNavigate('/privacy')} className="hover:text-gray-600 transition-colors">
+              Privacy
             </button>
           </div>
         </div>

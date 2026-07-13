@@ -18,8 +18,14 @@ export function FrameworkPage({ frameworkId }) {
   const framework = getFramework(frameworkId)
 
   const defaults = framework ? getDefaultVersions(framework) : { from: null, to: null }
-  const [fromVersion, setFromVersion] = useState(defaults.from)
-  const [toVersion, setToVersion]     = useState(defaults.to)
+  const urlParams = new URLSearchParams(window.location.search)
+  const isValidVersion = (v) => v && framework?.versions?.includes(v)
+  const [fromVersion, setFromVersion] = useState(
+    isValidVersion(urlParams.get('from')) ? urlParams.get('from') : defaults.from
+  )
+  const [toVersion, setToVersion] = useState(
+    isValidVersion(urlParams.get('to')) ? urlParams.get('to') : defaults.to
+  )
   const [filter, setFilter]           = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -69,12 +75,17 @@ export function FrameworkPage({ frameworkId }) {
     setToVersion(newTo)
     setFilter('all')
     setSearchQuery('')
+    // Make the comparison shareable via URL
+    const q = new URLSearchParams()
+    if (newFrom) q.set('from', newFrom)
+    if (newTo) q.set('to', newTo)
+    window.history.replaceState(null, '', window.location.pathname + '?' + q.toString())
   }
 
   return (
     <div className="h-full overflow-y-auto">
       {/* Top bar */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-8 py-3 flex items-center justify-between">
+      <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-4 sm:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-xs text-gray-400 font-medium">{framework.publisher}</span>
           <span className="text-gray-200">/</span>
@@ -98,7 +109,7 @@ export function FrameworkPage({ frameworkId }) {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-8 py-8 space-y-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 space-y-6">
         {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-gray-950 tracking-tight">{framework.name}</h1>

@@ -1,5 +1,6 @@
 import { FRAMEWORK_GROUPS } from '../../utils/constants'
 import { getFramework } from '../../data/registry'
+import { LogoMark } from '../brand/Logo'
 
 function getInitials(fw) {
   if (!fw) return '??'
@@ -90,18 +91,16 @@ function FrameworkItem({ id, isActive, onClick, collapsed }) {
   )
 }
 
-export function Sidebar({ selectedId, onSelect, onHome, onAbout, onNavigate, collapsed, onToggleCollapse, recentlyViewed, onOpenSearch }) {
+export function Sidebar({ selectedId, onSelect, onHome, onAbout, onNavigate, collapsed, onToggleCollapse, recentlyViewed, onOpenSearch, isMobileDrawer = false }) {
   return (
-    <aside className={`bg-slate-950 flex flex-col h-screen flex-shrink-0 border-r border-slate-800 transition-all duration-200 ${collapsed ? 'w-14' : 'w-60'}`}>
+    <aside className={`bg-slate-950 flex flex-col h-full flex-shrink-0 border-r border-slate-800 transition-all duration-200 ${collapsed ? 'w-14' : isMobileDrawer ? 'w-full' : 'w-60'}`}>
 
       <button
         onClick={onHome}
         className={`border-b border-slate-800 hover:bg-slate-900 transition-colors group flex-shrink-0 ${collapsed ? 'px-0 py-4 flex justify-center' : 'px-4 py-4 text-left'}`}
       >
         <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-2.5'}`}>
-          <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
-            <span className="text-white font-bold text-sm font-mono leading-none">&#916;</span>
-          </div>
+          <LogoMark size={28} />
           {!collapsed && (
             <div>
               <div className="text-white font-semibold text-sm leading-tight tracking-tight">
@@ -216,7 +215,7 @@ export function Sidebar({ selectedId, onSelect, onHome, onAbout, onNavigate, col
 
         <button
           onClick={onToggleCollapse}
-          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={isMobileDrawer ? 'Close menu' : collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           className={`flex items-center justify-center rounded-md bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors ${
             collapsed ? 'w-9 h-9' : 'w-full py-2 gap-2 text-xs font-medium'
           }`}
@@ -227,7 +226,7 @@ export function Sidebar({ selectedId, onSelect, onHome, onAbout, onNavigate, col
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
           </svg>
-          {!collapsed && <span>Collapse</span>}
+          {!collapsed && <span>{isMobileDrawer ? 'Close' : 'Collapse'}</span>}
         </button>
       </div>
     </aside>

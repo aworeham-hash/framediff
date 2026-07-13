@@ -154,7 +154,94 @@ function renderRoute(route) {
     html = html.replace('</head>', `    ${scripts}\n  </head>`)
   }
 
+  // Inject crawlable static content into #root (replaced when the app mounts)
+  let body = ''
+  if (route.path === '/') body = renderHomeBody()
+  else if (route.framework) body = renderFrameworkBody(route.framework, route.stats)
+  if (body) {
+    html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`)
+  }
+
   return html
+}
+
+
+// ---- Static body content (crawlable pre-JS content injected into #root) ----
+const TYPE_LABEL = { added: 'Added', removed: 'Removed', modified: 'Modified', restructured: 'Restructured', renamed: 'Renamed' }
+
+function fmtControlId(cid) {
+  if (!cid) return ''
+  if (typeof cid === 'string') return cid
+  if (cid.old && cid.new && cid.old !== cid.new) return `${cid.old} \u2192 ${cid.new}`
+  return cid.new || cid.old || ''
+}
+
+function frameworkNav(currentId) {
+  const links = Object.values(frameworks)
+    .filter(fw => fw.id !== currentId)
+    .map(fw => `<a href="/${fw.id}">${esc(fw.shortName || fw.name)}</a>`)
+    .join(' · ')
+  return `<nav aria-label="Frameworks"><p><strong>All frameworks:</strong> ${links}</p></nav>`
+}
+
+function staticFooter() {
+  return `<footer><p>FrameDiff is an independent reference tool, not affiliated with any framework publisher. Always verify against official publications. <a href="/about">About</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a></p></footer>`
+}
+
+function latestTransition(fw) {
+  const entries = Object.entries(fw.transitions || {})
+  if (!entries.length) return null
+  return entries[entries.length - 1][1]
+}
+
+function renderFrameworkBody(fw, stats) {
+  const t = latestTransition(fw)
+  const parts = []
+  parts.push(`<header><p><a href="/">FrameDiff \u2014 the changelog for compliance frameworks</a></p></header>`)
+  parts.push(`<h1>${esc(fw.name)}: what changed between versions</h1>`)
+  if (fw.description) parts.push(`<p>${esc(fw.description)}</p>`)
+  parts.push(`<p>${stats.total} tracked changes across ${stats.transitionCount} version transition${stats.transitionCount === 1 ? '' : 's'}. Published by ${esc(fw.publisher || '')}.</p>`)
+
+  if (t) {
+    parts.push(`<h2>${esc(fw.shortName || fw.name)} ${esc(t.fromVersion)} \u2192 ${esc(t.toVersion)}</h2>`)
+    const sm = t.summary || {}
+    const counts = ['added', 'removed', 'modified', 'restructured', 'renamed']
+      .filter(k => sm[k]).map(k => `${sm[k]} ${k}`).join(', ')
+    if (counts) parts.push(`<p><strong>Summary:</strong> ${counts}.</p>`)
+    if (Array.isArray(sm.highlights) && sm.highlights.length) {
+      parts.push('<h3>Key changes</h3><ul>' + sm.highlights.map(h => `<li>${esc(h)}</li>`).join('') + '</ul>')
+    }
+    if (Array.isArray(t.changes) && t.changes.length) {
+      parts.push('<h3>All changes in this transition</h3><dl>')
+      for (const c of t.changes) {
+        const cid = fmtControlId(c.controlId)
+        parts.push(`<dt>[${TYPE_LABEL[c.type] || esc(c.type || '')}]${cid ? ' ' + esc(cid) + ' \u2014' : ''} ${esc(c.title || '')}</dt>`)
+        const dd = []
+        if (c.oldText) dd.push(`Before (${esc(t.fromVersion)}): ${esc(c.oldText)}`)
+        if (c.newText) dd.push(`After (${esc(t.toVersion)}): ${esc(c.newText)}`)
+        if (c.rationale) dd.push(`Why: ${esc(c.rationale)}`)
+        if (dd.length) parts.push(`<dd>${dd.join('<br>')}</dd>`)
+      }
+      parts.push('</dl>')
+    }
+  }
+  parts.push(frameworkNav(fw.id))
+  parts.push(staticFooter())
+  return parts.join('\n')
+}
+
+function renderHomeBody() {
+  const parts = []
+  parts.push('<h1>FrameDiff \u2014 the changelog for compliance frameworks</h1>')
+  parts.push('<p>See exactly which controls were added, removed, or modified between framework versions \u2014 with the rationale behind each update. Free for GRC teams, auditors, and security professionals.</p>')
+  parts.push('<h2>Tracked frameworks</h2><ul>')
+  for (const fw of Object.values(frameworks)) {
+    const st = changeStats(fw)
+    parts.push(`<li><a href="/${fw.id}">${esc(fw.name)}</a> \u2014 ${st.total} tracked changes across ${st.transitionCount} version transition${st.transitionCount === 1 ? '' : 's'}</li>`)
+  }
+  parts.push('</ul>')
+  parts.push(staticFooter())
+  return parts.join('\n')
 }
 
 let generated = 0
@@ -184,4 +271,37 @@ ${routes.map(r => `  <url>
 `
 writeFileSync(join(dist, 'sitemap.xml'), sitemap)
 
-console.log(`Prerendered ${generated} routes + sitemap.xml`)
+
+// ---- feed.xml (RSS) ----------------------------------------------------------
+const rssItems = Object.values(frameworks).map(fw => {
+  const t = latestTransition(fw)
+  if (!t) return ''
+  const title = `${fw.shortName || fw.name}: ${t.fromVersion} \u2192 ${t.toVersion}`
+  const sm = t.summary || {}
+  const counts = ['added', 'removed', 'modified', 'restructured', 'renamed']
+    .filter(k => sm[k]).map(k => `${sm[k]} ${k}`).join(', ')
+  const desc = `${counts}. ${(sm.highlights || []).slice(0, 3).join(' ')}`
+  const date = new Date(t.toReleaseDate || fw.lastDataUpdate || Date.now()).toUTCString()
+  return `  <item>
+    <title>${esc(title)}</title>
+    <link>${SITE}/${fw.id}</link>
+    <guid isPermaLink="true">${SITE}/${fw.id}</guid>
+    <pubDate>${date}</pubDate>
+    <description>${esc(desc)}</description>
+  </item>`
+}).filter(Boolean).join('\n')
+
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>FrameDiff \u2014 Compliance Framework Updates</title>
+  <link>${SITE}</link>
+  <description>Version-to-version changes across NIST, PCI DSS, ISO 27001, HIPAA, SOC 2, SOX, IRS 4812, and DISA STIGs.</description>
+  <language>en-us</language>
+${rssItems}
+</channel>
+</rss>
+`
+writeFileSync(join(dist, 'feed.xml'), rss)
+
+console.log(`Prerendered ${generated} routes + sitemap.xml + feed.xml`)

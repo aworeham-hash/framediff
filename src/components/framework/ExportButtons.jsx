@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { exportCSV, exportPDF } from '../../utils/export'
 
 export function ExportButtons({ framework, changes, fromVersion, toVersion }) {
@@ -7,6 +8,7 @@ export function ExportButtons({ framework, changes, fromVersion, toVersion }) {
 
   return (
     <div className="flex items-center gap-2">
+      <CopyLinkButton btnClass={btnClass} />
       <button
         onClick={() => exportCSV(framework, changes, fromVersion, toVersion)}
         className={btnClass}
@@ -28,5 +30,24 @@ export function ExportButtons({ framework, changes, fromVersion, toVersion }) {
         PDF
       </button>
     </div>
+  )
+}
+
+function CopyLinkButton({ btnClass }) {
+  const [copied, setCopied] = useState(false)
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch { /* clipboard unavailable */ }
+  }
+  return (
+    <button onClick={copy} className={btnClass} title="Copy a shareable link to this comparison">
+      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+      </svg>
+      {copied ? 'Copied!' : 'Share'}
+    </button>
   )
 }
