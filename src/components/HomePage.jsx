@@ -123,6 +123,9 @@ export function HomePage({ onSelectFramework, onNavigate }) {
           <button onClick={() => onNavigate && onNavigate('/updates')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
             Updates & deadlines
           </button>
+          <button onClick={() => onNavigate && onNavigate('/evidence')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
+            Evidence guide
+          </button>
           <button onClick={() => onNavigate && onNavigate('/about')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
             About
           </button>

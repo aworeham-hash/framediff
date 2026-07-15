@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { DOMAINS, FRAMEWORK_EVIDENCE } from '../src/data/evidence.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -92,6 +93,12 @@ const routes = [
     priority: '0.8',
   },
   {
+    path: '/evidence',
+    title: 'Compliance Evidence Collection Guide \u2014 What to Screenshot for Each Control | FrameDiff',
+    description: 'Audit evidence examples for SOC 2, NIST 800-171, CMMC, PCI DSS, ISO 27001, HIPAA, NYDFS 500 and more: what auditors want to see per control family, with concrete screenshot examples for access reviews, MFA, logging, backups, and vendor risk.',
+    priority: '0.9',
+  },
+  {
     path: '/privacy',
     title: 'Privacy Policy — FrameDiff',
     description: 'Privacy policy for FrameDiff. We collect almost nothing and sell nothing.',
@@ -169,6 +176,7 @@ function renderRoute(route) {
   // Inject crawlable static content into #root (replaced when the app mounts)
   let body = ''
   if (route.path === '/') body = renderHomeBody()
+  else if (route.path === '/evidence') body = renderEvidenceBody()
   else if (route.framework) body = renderFrameworkBody(route.framework, route.stats)
   if (body) {
     html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`)
@@ -238,6 +246,28 @@ function renderFrameworkBody(fw, stats) {
     }
   }
   parts.push(frameworkNav(fw.id))
+  parts.push(staticFooter())
+  return parts.join('\n')
+}
+
+function renderEvidenceBody() {
+  const parts = []
+  parts.push(`<header><p><a href="/">FrameDiff \u2014 the changelog for compliance frameworks</a></p></header>`)
+  parts.push('<h1>Compliance evidence collection guide: what to screenshot for each control</h1>')
+  parts.push('<p>What auditors actually want to see, control area by control area, with a concrete example of a screenshot that works as audit evidence. Capture screenshots with the date visible, include the system name, and note the scope alongside each one. Examples are illustrative \u2014 your auditor determines sufficiency.</p>')
+  for (const [fid, entries] of Object.entries(FRAMEWORK_EVIDENCE)) {
+    const fw = frameworks[fid]
+    parts.push(`<h2>${esc(fw ? fw.name : fid)} evidence examples</h2>`)
+    parts.push('<dl>')
+    for (const e of entries) {
+      const d = DOMAINS[e.domain]
+      if (!d) continue
+      parts.push(`<dt>${esc(e.code)} \u2014 ${esc(e.name)}</dt>`)
+      parts.push(`<dd>${esc(d.what)}<br><strong>Example screenshot evidence:</strong> ${esc(d.screenshot)}</dd>`)
+    }
+    parts.push('</dl>')
+    if (fw) parts.push(`<p><a href="/${fid}">See what changed in recent ${esc(fw.shortName || fw.name)} versions</a></p>`)
+  }
   parts.push(staticFooter())
   return parts.join('\n')
 }

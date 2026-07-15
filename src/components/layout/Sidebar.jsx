@@ -211,6 +211,7 @@ export function Sidebar({ selectedId, onSelect, onHome, onAbout, onNavigate, col
         {!collapsed && (
           <div className="px-1 mb-2 flex items-center gap-3 text-xs text-slate-700">
             <button onClick={() => onNavigate && onNavigate('/updates')} className="hover:text-slate-400 transition-colors">Updates</button>
+            <button onClick={() => onNavigate && onNavigate('/evidence')} className="hover:text-slate-400 transition-colors">Evidence</button>
             <button onClick={() => onNavigate && onNavigate('/terms')} className="hover:text-slate-400 transition-colors">Terms</button>
             <button onClick={() => onNavigate && onNavigate('/privacy')} className="hover:text-slate-400 transition-colors">Privacy</button>
           </div>
