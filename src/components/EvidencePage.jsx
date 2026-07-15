@@ -12,12 +12,52 @@ function CameraIcon() {
   )
 }
 
+function ControlCard({ control, forceOpen }) {
+  const [open, setOpen] = useState(false)
+  const isOpen = forceOpen || open
+  return (
+    <div className={`border rounded-lg overflow-hidden transition-all ${isOpen ? 'border-blue-200' : 'border-gray-200'}`}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left hover:bg-gray-50/70 transition-colors"
+      >
+        <code className="text-xs font-bold text-gray-800 font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded flex-shrink-0">
+          {control.id}
+        </code>
+        <span className="text-sm font-medium text-gray-800 flex-1 min-w-0 truncate">{control.name}</span>
+        <svg className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="border-t border-gray-100 px-4 py-3 space-y-3">
+          <p className="text-sm text-gray-700 leading-relaxed">
+            <span className="font-semibold text-gray-900">Evidence must show: </span>{control.what}
+          </p>
+          <div className="space-y-2">
+            {control.examples.map((ex, i) => (
+              <div key={i} className="flex items-start gap-2.5 bg-blue-50/40 border border-blue-100 rounded-md px-3 py-2.5">
+                <span className="mt-0.5 text-blue-500 flex-shrink-0"><CameraIcon /></span>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400 block mb-0.5">Example {i + 1}</span>
+                  {ex}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
   const ids = Object.keys(FRAMEWORK_EVIDENCE)
   const [active, setActive] = useState(
-    initialFramework && FRAMEWORK_EVIDENCE[initialFramework] ? initialFramework : 'soc2'
+    initialFramework && FRAMEWORK_EVIDENCE[initialFramework] ? initialFramework : 'nist-sp800-53'
   )
   const [query, setQuery] = useState('')
+  const [expandAll, setExpandAll] = useState(false)
 
   useEffect(() => {
     document.title = 'Compliance Evidence Collection Guide — What to Screenshot | FrameDiff'
@@ -77,36 +117,38 @@ export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
           <div className="mb-6 space-y-3">
             <div className="rounded-lg border border-blue-100 bg-blue-50/50 px-4 py-3">
               <p className="text-xs text-blue-900 leading-relaxed">
-                <strong>Control-level guidance:</strong> evidence examples for all {SP80053_EVIDENCE.length} SP 800-53
-                Rev 5 base controls across 20 families. Control enhancements — e.g. AC-6(1), AC-6(2) — inherit
-                the base control's guidance scoped to the enhancement's specific condition.
+                <strong>Control-level guidance:</strong> what the evidence must demonstrate plus 2–3 concrete
+                screenshot examples for each of the {SP80053_EVIDENCE.length} SP 800-53 Rev 5 base controls —
+                across common stacks (Group Policy, Intune/Jamf, Entra/Okta, AWS/Azure, EDR, ticketing) so at
+                least one should match your environment. Enhancements — e.g. AC-6(1) — inherit the base
+                control's guidance scoped to the enhancement's condition.
               </p>
             </div>
-            <input
-              type="search"
-              value={query}
-              onChange={e => setQuery(e.target.value)}
-              placeholder="Filter controls — try AC-6, encryption, backup…"
-              className="w-full text-sm border border-gray-200 rounded-lg px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <input
+                type="search"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                placeholder="Filter controls — try AC-6, group policy, backup…"
+                className="flex-1 text-sm border border-gray-200 rounded-lg px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <button
+                onClick={() => setExpandAll(x => !x)}
+                className="text-xs text-blue-600 hover:text-blue-800 font-medium flex-shrink-0 transition-colors"
+              >
+                {expandAll ? 'Collapse all' : 'Expand all'}
+              </button>
+            </div>
+            <div className="space-y-1.5">
               {SP80053_EVIDENCE
                 .filter(c => {
                   if (!query) return true
                   const q = query.toLowerCase()
-                  return c.id.toLowerCase().includes(q) || c.name.toLowerCase().includes(q) || c.ev.toLowerCase().includes(q)
+                  return c.id.toLowerCase().includes(q) || c.name.toLowerCase().includes(q) ||
+                    c.what.toLowerCase().includes(q) || c.examples.some(x => x.toLowerCase().includes(q))
                 })
                 .map(c => (
-                  <div key={c.id} className="border border-gray-200 rounded-lg px-4 py-3">
-                    <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
-                      <code className="text-xs font-bold text-gray-800 font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded">{c.id}</code>
-                      <span className="text-sm font-semibold text-gray-800">{c.name}</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <span className="mt-0.5 text-blue-500 flex-shrink-0"><CameraIcon /></span>
-                      <p className="text-sm text-gray-600 leading-relaxed">{c.ev}</p>
-                    </div>
-                  </div>
+                  <ControlCard key={c.id} control={c} forceOpen={expandAll || (query.length > 1)} />
                 ))}
             </div>
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest pt-4">Family-level summary</h3>

@@ -260,7 +260,8 @@ function renderEvidenceBody() {
   parts.push(`<p>Control-level evidence examples for all ${SP80053_EVIDENCE.length} SP 800-53 Rev 5 base controls. Enhancements (e.g., AC-6(1)) inherit the base control's guidance scoped to the enhancement's condition.</p>`)
   parts.push('<dl>')
   for (const c of SP80053_EVIDENCE) {
-    parts.push(`<dt>${esc(c.id)} \u2014 ${esc(c.name)}</dt><dd>${esc(c.ev)}</dd>`)
+    const exs = c.examples.map((x, i) => `<br><strong>Example ${i + 1}:</strong> ${esc(x)}`).join('')
+    parts.push(`<dt>${esc(c.id)} \u2014 ${esc(c.name)}</dt><dd><em>Evidence must show:</em> ${esc(c.what)}${exs}</dd>`)
   }
   parts.push('</dl>')
   for (const [fid, entries] of Object.entries(FRAMEWORK_EVIDENCE)) {
