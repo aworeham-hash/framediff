@@ -1109,14 +1109,17 @@
       "toReleaseDate": "2025-12-01",
       "summary": {
         "added": 1,
-        "removed": 0,
-        "modified": 3,
+        "removed": 2,
+        "modified": 13,
         "restructured": 0,
         "highlights": [
-          "AI section expanded from a one-page approval gate into a full policy regime: AI policy required for any AI use, with GenAI/ML/LLM/chatbot/RPA examples enumerated",
-          "Public AI tools named and prohibited for SBU/PII/FTI (ChatGPT, Google Bard/Gemini, Anthropic Claude) — improper sharing is treated as an intentional unauthorized disclosure and data breach",
-          "New FedRAMP mandate: FTI only in FedRAMP Authorized environments at Moderate or High impact level (FedRAMP appears nowhere in the December 2024 text)",
-          "Section structure unchanged between the two revisions — this is a targeted content update, built from a direct comparison of both primary texts"
+          "CONTROL-LEVEL DIFF: every AC-family control compared word-by-word between the December 2024 and December 2025 texts — keyword, phrasing, and requirement changes denoted per control with procedure-impact flags",
+          "AC-2 tightened hard: all user accounts disabled after 60 days inactivity (was 120), high-risk users disabled within ONE HOUR (was one day), expired accounts within 3 business days (was undefined)",
+          "AC-3: the explicit \"Role-Based Access Control (RBAC) shall be implemented\" mandate was REMOVED — access enforcement is now model-agnostic",
+          "AC-6: partitioning scope extended to PII, new workstation restriction sentence, and separate privileged accounts hardened from \"can be implemented\" to \"shall be implemented\"",
+          "Publication-wide keyword change: \"shall\" → \"must\" and subcontractors now covered via flow-down clauses instead of direct naming",
+          "AI section expanded into a full policy regime (ChatGPT/Gemini/Claude named and prohibited) and NEW FedRAMP Moderate/High mandate for FTI in the cloud",
+          "Coverage note: control-level comparison verified for the AC family and general sections; remaining families (AT through SR) pending a complete copy of the December 2025 publication"
         ]
       },
       "changes": [
@@ -1192,6 +1195,230 @@
           "tags": [
             "ai",
             "risk"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-001",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "ALL",
+            "new": "ALL"
+          },
+          "title": "Publication-wide keyword change: 'shall' → 'must'; 'contractors and subcontractors' → 'Contractors'",
+          "area": "ALL — control-level change",
+          "oldText": "Requirements phrased as \"The contractor and subcontractor shall...\" throughout the control catalog.",
+          "newText": "Requirements phrased as \"The Contractor must...\" throughout; subcontractor obligations are carried by the flow-down requirement in each control (\"Contractors must require their prime contractors to implement this control and flow down this requirement to relevant sub-tier contractors\").",
+          "rationale": "PROCEDURE IMPACT — LOW but broad: policy documents that quote 4812 control language verbatim should be updated to the new must-phrasing. The binding effect is unchanged; subcontractor coverage now runs through flow-down clauses rather than direct naming in each control statement.",
+          "significance": "medium",
+          "tags": [
+            "keyword-change",
+            "phrasing"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-002",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
+          "title": "AC-2 Account Management — inactivity disablement tightened: 120 days → 60 days for all user accounts",
+          "area": "AC — control-level change",
+          "oldText": "The information system shall automatically disable user accounts after 120 days of inactivity and shall automatically disable administrator accounts after 60 days. Contractors using a CSP shall ensure that they, or the CSP will review privileged accounts semi-annually and automatically disable inactive privileged accounts after 60 days; user accounts annually and automatically disable inactive user accounts after 90 days.",
+          "newText": "The Contractor or CSP must automatically disable all user accounts after 60 days of inactivity.",
+          "rationale": "PROCEDURE IMPACT — HIGH: the standard-user inactivity threshold is cut in half (120 → 60 days) and the separate CSP review scheme (60/90-day split) is consolidated to a single 60-day rule for all accounts. Update account lifecycle procedures and automated disablement jobs.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-003",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
+          "title": "AC-2 Account Management — high-risk user disablement: one day → one hour",
+          "area": "AC — control-level change",
+          "oldText": "Accounts of users identified as posing a high-risk shall have their accounts disabled within one day of discovery of the risk.",
+          "newText": "The Contractor must disable any account within one hour if the user poses a serious security or privacy risk, either by planning to misuse access or by being vulnerable to compromise.",
+          "rationale": "PROCEDURE IMPACT — HIGH: a 24x tightening of the response window. Incident response and HR-security coordination procedures must support one-hour account disablement, which effectively requires an on-call path and pre-authorized disable authority.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-004",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
+          "title": "AC-2 Account Management — expired/orphaned accounts: defined 3-business-day deadline",
+          "area": "AC — control-level change",
+          "oldText": "The contractor shall disable accounts within the information system when the accounts have expired or are no longer associated with a user (no timeframe stated).",
+          "newText": "The Contractor must disable accounts within 3 business days when the accounts have expired or are no longer associated with a user.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: an undefined obligation became a testable deadline. Joiner-mover-leaver procedures need a measurable 3-business-day SLA.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-005",
+          "type": "removed",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
+          "title": "AC-2 Account Management — explicit dual-account requirement for privileged users no longer stated",
+          "area": "AC — control-level change",
+          "oldText": "Contractor personnel who perform privileged roles such as System Administrators (SA) shall have two user accounts: one for privileged duties and one for general user activity. Each account shall be independent of the other, be limited in use, and shall be used solely for its defined purpose.",
+          "newText": "The explicit dual-account paragraph does not appear in the December 2025 AC-2 text. (Note: AC-6 still requires separate accounts for privileged users — the substance survives there, now phrased as \"shall be implemented\".)",
+          "rationale": "PROCEDURE IMPACT — LOW: keep dual accounts; the requirement moved rather than disappeared. Cross-reference AC-6 in your control mapping.",
+          "significance": "medium",
+          "tags": [
+            "requirement-moved",
+            "phrasing"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-006",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-2",
+            "new": "AC-2"
+          },
+          "title": "AC-2 Account Management — unique account per user and account manager made explicit",
+          "area": "AC — control-level change",
+          "oldText": "Whenever there is more than one contractor using an IT asset, such as a server, network, or information system, the contractor shall assign an account manager (context-dependent phrasing).",
+          "newText": "The Contractor or CSP shall create a unique account for each user who accesses the information system. The Contractor or CSP shall assign an account manager to manage accounts and employ automated mechanisms to support the management of accounts.",
+          "rationale": "PROCEDURE IMPACT — LOW/MEDIUM: unique-account-per-user is now an unconditional lead requirement; shared accounts anywhere in scope are a clear finding.",
+          "significance": "medium",
+          "tags": [
+            "requirement-clarified"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-007",
+          "type": "removed",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-3",
+            "new": "AC-3"
+          },
+          "title": "AC-3 Access Enforcement — explicit RBAC mandate removed",
+          "area": "AC — control-level change",
+          "oldText": "Role-Based Access Control (RBAC) shall be implemented.",
+          "newText": "The December 2025 AC-3 text contains no RBAC sentence (zero RBAC mentions in the December 2025 publication; two in December 2024). Access enforcement, approval-before-access, consequence framework, and flow-down requirements remain.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: RBAC is no longer named as the mandatory model — access enforcement is model-agnostic. Organizations using ABAC or hybrid models gain flexibility; existing RBAC implementations remain compliant. Do not remove RBAC controls without confirming your contract language.",
+          "significance": "high",
+          "tags": [
+            "requirement-removed"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-008",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-4",
+            "new": "AC-4"
+          },
+          "title": "AC-4 Information Flow Enforcement — explicit enforcement-of-approved-authorizations requirement added",
+          "area": "AC — control-level change",
+          "oldText": "Contractors and subcontractors, including those using a CSP, shall ensure that they implement information flow enforcement (with examples).",
+          "newText": "Contractor information systems must enforce approved authorizations for controlling the flow of information within the system and between connected systems based on applicable policies and agreements — added ahead of the existing examples. The section also now carries supplemental C-SCRM separation-of-duties guidance for acquisition decisions (denying developers the privilege to promote code, etc.).",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: flow control must trace to approved authorizations (documented policy basis per flow), not just technical restrictions. Data-flow documentation should map each allowed flow to its authorizing policy or agreement.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-009",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-6",
+            "new": "AC-6"
+          },
+          "title": "AC-6 Least Privilege — sensitive-data partitioning extended to PII; workstation restriction added; separate privileged accounts hardened from guidance to requirement",
+          "area": "AC — control-level change",
+          "oldText": "FTI and IRS SBU data shall be physically or logically partitioned... Accounts with administrative privileges shall be prohibited from web browsing... This can be implemented by establishing separate accounts for privileged users. Restrict File Transfer Protocol (FTP) or Telnet.",
+          "newText": "FTI, PII and IRS SBU data must be physically or logically partitioned... Workstations shall be configured to restrict logical access to IRS SBU (new sentence). This shall be implemented by establishing separate accounts for privileged users (\"can\" → \"shall\"). Restrict access to insecure protocols such as FTP or Telnet (broadened category).",
+          "rationale": "PROCEDURE IMPACT — MEDIUM/HIGH: three real changes inside one control — PII added to the partitioning scope, a new workstation-level access restriction, and separate privileged accounts changing from an example (\"can\") to a mandate (\"shall\"). The protocol restriction is now a category (insecure protocols), not just two named ones.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "keyword-change",
+            "scope-expanded"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-010",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-7",
+            "new": "AC-7"
+          },
+          "title": "AC-7 Unsuccessful Login Attempts — lockout requirement consolidated (same values, cleaner rule)",
+          "area": "AC — control-level change",
+          "oldText": "The contractor and subcontractor shall configure their information system to enforce a limit of three consecutive invalid logon attempts by a user. Upon a 3rd unsuccessful logon attempt, in a 120-minute period, the user's account shall be automatically locked. The account is to remain locked for 15 minutes or until unlocked by an administrator or password reset program.",
+          "newText": "The Contractor must configure their information system to lock an account after 3 unsuccessful logon attempts in a 120-minute period. Once an account is locked it must remain locked for 15 minutes or until released by an administrator or password reset program.",
+          "rationale": "PROCEDURE IMPACT — NONE (verify only): thresholds unchanged (3 attempts / 120-minute window / 15-minute lock; CSP rule unchanged). Phrasing consolidated — confirm your documented parameter values still match.",
+          "significance": "low",
+          "tags": [
+            "phrasing"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-011",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-18",
+            "new": "AC-18"
+          },
+          "title": "AC-18 Wireless Access — personally provided wireless at home/alternate work sites explicitly in scope",
+          "area": "AC — control-level change",
+          "oldText": "Wireless requirements addressed contractor systems; personally provided wireless capabilities were not explicitly called out.",
+          "newText": "This includes contractor personnel utilizing personally provided wireless capabilities to access contractor systems remotely from home and alternative work locations (new sentence). \"Only users identified and explicitly authorized\" may configure wireless (\"independently configure\" simplified to \"configure\").",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: home Wi-Fi used to reach contractor systems handling SBU is now explicitly inside the control scope. Remote work and wireless policies should state authentication/encryption expectations for personal wireless use.",
+          "significance": "medium",
+          "tags": [
+            "scope-expanded"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-012",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-22",
+            "new": "AC-22"
+          },
+          "title": "AC-22 Publicly Accessible Content — condensed; \"individuals\" → \"personnel\"",
+          "area": "AC — control-level change",
+          "oldText": "Contractors and subcontractors, including those using a CSP shall designate individuals authorized to post information onto a publicly accessible information system; train authorized individuals; and review the proposed content of information prior to posting (bulleted duties).",
+          "newText": "Contractors, including those using a CSP must ensure that they designate, and train personnel authorized to post information onto a publicly accessible information system as allowed by the IRS or contract (consolidated statement).",
+          "rationale": "PROCEDURE IMPACT — LOW: duties condensed into one statement; keep your pre-posting content review in procedure — the consolidated text folds review into the designate-and-train obligation.",
+          "significance": "low",
+          "tags": [
+            "phrasing",
+            "keyword-change"
           ]
         }
       ]
