@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { DOMAINS, FRAMEWORK_EVIDENCE } from '../data/evidence'
 import { SP80053_EVIDENCE } from '../data/evidence-80053'
+import { exportPBC } from '../utils/documents'
+import { SiteNav } from './SiteNav'
 import { getFramework } from '../data/registry'
 
 function CameraIcon() {
@@ -13,10 +15,11 @@ function CameraIcon() {
 }
 
 function ControlCard({ control, forceOpen }) {
+  // permalink anchor: /evidence#AC-2 opens and scrolls to the control
   const [open, setOpen] = useState(false)
   const isOpen = forceOpen || open
   return (
-    <div className={`border rounded-lg overflow-hidden transition-all ${isOpen ? 'border-blue-200' : 'border-gray-200'}`}>
+    <div id={control.id} className={`scroll-mt-20 border rounded-lg overflow-hidden transition-all ${isOpen ? 'border-blue-200' : 'border-gray-200'}`}>
       <button
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left hover:bg-gray-50/70 transition-colors"
@@ -25,6 +28,17 @@ function ControlCard({ control, forceOpen }) {
           {control.id}
         </code>
         <span className="text-sm font-medium text-gray-800 flex-1 min-w-0 truncate">{control.name}</span>
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={e => { e.stopPropagation(); navigator.clipboard?.writeText(`${window.location.origin}/evidence#${control.id}`) }}
+          className="text-gray-300 hover:text-blue-500 transition-colors flex-shrink-0"
+          title="Copy permalink to this control"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+        </span>
         <svg className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
@@ -51,7 +65,7 @@ function ControlCard({ control, forceOpen }) {
   )
 }
 
-export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
+export function EvidencePage({ onSelectFramework, onHome, onNavigate, initialFramework }) {
   const ids = Object.keys(FRAMEWORK_EVIDENCE)
   const [active, setActive] = useState(
     initialFramework && FRAMEWORK_EVIDENCE[initialFramework] ? initialFramework : 'nist-sp800-53'
@@ -61,6 +75,13 @@ export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
 
   useEffect(() => {
     document.title = 'Compliance Evidence Collection Guide — What to Screenshot | FrameDiff'
+    // permalink support: /evidence#AC-2
+    const hash = window.location.hash.slice(1)
+    if (hash && SP80053_EVIDENCE.some(c => c.id === hash)) {
+      setActive('nist-sp800-53')
+      setQuery(hash)
+      setTimeout(() => document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250)
+    }
     return () => { document.title = 'FrameDiff - Compliance Framework Version Tracker' }
   }, [])
 
@@ -69,11 +90,8 @@ export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
 
   return (
     <div className="h-full overflow-y-auto">
+      <SiteNav active="/evidence" onNavigate={onNavigate} />
       <div className="max-w-3xl mx-auto px-5 sm:px-8 py-10">
-        <button onClick={onHome} className="text-xs text-gray-400 hover:text-blue-600 transition-colors mb-6 inline-flex items-center gap-1">
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-          Home
-        </button>
         <h1 className="text-2xl font-bold text-gray-950 tracking-tight">Evidence collection guide</h1>
         <p className="text-sm text-gray-500 mt-1.5 mb-6 leading-relaxed max-w-2xl">
           What auditors actually want to see, control area by control area — with a concrete example of
@@ -104,12 +122,36 @@ export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
         {fw && (
           <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
             <h2 className="text-sm font-bold text-gray-900">{fw.name}</h2>
-            <button
-              onClick={() => onSelectFramework(active)}
-              className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
-            >
-              View version changes →
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  const isControls = active === 'nist-sp800-53'
+                  exportPBC({
+                    frameworkName: fw.name,
+                    controlLevel: isControls,
+                    entries: isControls
+                      ? SP80053_EVIDENCE.map(c => ({ code: c.id, name: c.name, what: c.what, examples: c.examples }))
+                      : entries.map(e => {
+                          const d = DOMAINS[e.domain]
+                          return { code: e.code, name: e.name, what: d?.what || '', examples: d ? [d.screenshot] : [] }
+                        }),
+                  })
+                }}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-md px-3 py-1.5 transition-colors"
+                title="Printable auditor-style evidence request checklist"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                Evidence request list (PDF)
+              </button>
+              <button
+                onClick={() => onSelectFramework(active)}
+                className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              >
+                Version changes →
+              </button>
+            </div>
           </div>
         )}
 

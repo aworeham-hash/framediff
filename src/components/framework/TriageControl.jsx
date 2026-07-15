@@ -27,7 +27,7 @@ export function TriageControl({ value, onChange, compact = false }) {
   )
 }
 
-export function TriageProgress({ changes, triage, onClear }) {
+export function TriageProgress({ changes, triage, onClear, onExportReport, onExportJson, onImportJson }) {
   const total = changes.length
   const counts = { relevant: 0, na: 0, done: 0 }
   changes.forEach(c => { if (triage[c.id]) counts[triage[c.id]]++ })
@@ -47,8 +47,24 @@ export function TriageProgress({ changes, triage, onClear }) {
             {reviewed > 0 && <> · <span className="text-blue-600 font-medium">{counts.relevant} relevant</span> · <span className="text-emerald-600 font-medium">{counts.done} done</span> · <span className="text-gray-500">{counts.na} n/a</span></>}
           </span>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] text-gray-400">Saved in your browser · included in exports</span>
+        <div className="flex items-center gap-3 flex-wrap">
+          {onExportReport && reviewed > 0 && (
+            <button onClick={onExportReport} className="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+              Export gap report (PDF)
+            </button>
+          )}
+          {onExportJson && reviewed > 0 && (
+            <button onClick={onExportJson} className="text-xs text-gray-400 hover:text-blue-600 transition-colors" title="Download triage state to share with a teammate">
+              Export
+            </button>
+          )}
+          {onImportJson && (
+            <label className="text-xs text-gray-400 hover:text-blue-600 transition-colors cursor-pointer" title="Load a teammate's exported triage state">
+              Import
+              <input type="file" accept=".json" className="hidden" onChange={onImportJson} />
+            </label>
+          )}
+          <span className="text-[10px] text-gray-400">Saved in your browser</span>
           {reviewed > 0 && (
             <button onClick={onClear} className="text-xs text-gray-400 hover:text-red-600 transition-colors">Reset</button>
           )}

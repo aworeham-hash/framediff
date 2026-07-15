@@ -3,6 +3,7 @@ import { getFramework } from '../data/registry'
 import { LogoMark } from './brand/Logo'
 import { DEADLINES } from '../data/deadlines'
 import { AlertSignup } from './AlertSignup'
+import { SiteNav } from './SiteNav'
 
 const GROUP_ACCENT = {
   'NIST': { bg: 'bg-blue-500', light: 'bg-blue-50 text-blue-700 border-blue-100' },
@@ -110,45 +111,7 @@ export function HomePage({ onSelectFramework, onNavigate }) {
   return (
     <div className="h-full overflow-y-auto bg-white">
 
-      {/* Top nav bar */}
-      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 px-4 sm:px-8 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <LogoMark size={36} />
-          <div>
-            <div className="font-bold text-gray-900 text-base tracking-tight leading-none">FrameDiff</div>
-            <div className="hidden sm:block text-[11px] text-gray-400 mt-0.5">The compliance framework changelog</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <button onClick={() => onNavigate && onNavigate('/updates')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
-            Updates & deadlines
-          </button>
-          <button onClick={() => onNavigate && onNavigate('/evidence')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
-            Evidence guide
-          </button>
-          <button onClick={() => onNavigate && onNavigate('/about')} className="hidden sm:inline text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
-            About
-          </button>
-          <a
-            href="#alerts"
-            onClick={e => { e.preventDefault(); document.getElementById('alerts')?.scrollIntoView({ behavior: 'smooth' }) }}
-            className="text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-3.5 py-2 transition-colors"
-          >
-            Get alerts
-          </a>
-          <a
-            href="https://github.com/aworeham-hash/framediff"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-            title="GitHub"
-          >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-            </svg>
-          </a>
-        </div>
-      </div>
+      <SiteNav active="/" onNavigate={onNavigate} />
 
       {/* Hero section */}
       <div className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 px-5 sm:px-8 py-12 sm:py-16">

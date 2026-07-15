@@ -1,6 +1,7 @@
 import { frameworksData } from '../data/registry'
 import { DEADLINES } from '../data/deadlines'
 import { useEffect } from 'react'
+import { SiteNav } from './SiteNav'
 
 const KIND_STYLES = {
   deadline: 'bg-red-50 text-red-700 border-red-200',
@@ -28,7 +29,7 @@ function releaseEntries() {
   return entries.sort((a, b) => b.date.localeCompare(a.date))
 }
 
-export function UpdatesPage({ onSelectFramework, onHome }) {
+export function UpdatesPage({ onSelectFramework, onHome, onNavigate }) {
   useEffect(() => {
     document.title = 'Compliance Framework Updates & Deadlines - FrameDiff'
     return () => { document.title = 'FrameDiff - Compliance Framework Version Tracker' }
@@ -38,11 +39,8 @@ export function UpdatesPage({ onSelectFramework, onHome }) {
 
   return (
     <div className="h-full overflow-y-auto">
+      <SiteNav active="/updates" onNavigate={onNavigate} />
       <div className="max-w-3xl mx-auto px-5 sm:px-8 py-10">
-        <button onClick={onHome} className="text-xs text-gray-400 hover:text-blue-600 transition-colors mb-6 inline-flex items-center gap-1">
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-          Home
-        </button>
         <h1 className="text-2xl font-bold text-gray-950 tracking-tight">Updates & deadlines</h1>
         <p className="text-sm text-gray-500 mt-1.5 mb-8">
           Upcoming compliance dates and recent framework releases, in one place. Sources verified July 2026.

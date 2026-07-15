@@ -1,6 +1,28 @@
 import { useState } from 'react'
 import { TriageControl } from './TriageControl'
 
+function correctionUrl(change) {
+  const cid = change.controlId ? (change.controlId.new || change.controlId.old || '') : ''
+  const title = encodeURIComponent(`Data correction: ${cid ? cid + ' — ' : ''}${(change.title || '').slice(0, 80)}`)
+  const body = encodeURIComponent(`**Change ID:** ${change.id}\n**What is inaccurate?**\n\n\n**Correct information (with source link):**\n`)
+  return `https://github.com/aworeham-hash/framediff/issues/new?title=${title}&body=${body}&labels=data-correction`
+}
+
+function SuggestCorrection({ change }) {
+  return (
+    <a
+      href={correctionUrl(change)}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={e => e.stopPropagation()}
+      className="text-[10px] text-gray-300 hover:text-blue-500 transition-colors"
+      title="Spotted an inaccuracy? Open a correction request on GitHub"
+    >
+      Suggest correction
+    </a>
+  )
+}
+
 function TypeBadge({ type }) {
   const styles = {
     added:        'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -92,6 +114,7 @@ function ChangeItemCard({ change, forceExpanded, triageValue, onTriageChange }) 
               ))}
             </div>
           )}
+          <div className="pt-1 text-right"><SuggestCorrection change={change} /></div>
         </div>
       )}
     </div>
@@ -170,6 +193,8 @@ function ChangeItemDocument({ change, fromVersion, toVersion, triageValue, onTri
           <span className="text-sm text-gray-600 leading-relaxed">{change.rationale}</span>
         </div>
       )}
+
+      <div className="px-5 py-1.5 border-t border-gray-50 bg-white text-right"><SuggestCorrection change={change} /></div>
 
       {/* Via-transition label for chained views */}
       {viaLabel && (

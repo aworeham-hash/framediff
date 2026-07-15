@@ -11,6 +11,7 @@ import { ChangeList } from './ChangeList'
 import { MetadataOnlyBanner } from './MetadataOnlyBanner'
 import { ComingSoonPage } from './ComingSoonPage'
 import { ExportButtons } from './ExportButtons'
+import { exportGapReport } from '../../utils/documents'
 import { AlertSignup } from '../AlertSignup'
 import { FilterTabs } from '../ui/FilterTabs'
 import { SearchBar } from '../ui/SearchBar'
@@ -30,7 +31,7 @@ export function FrameworkPage({ frameworkId }) {
   )
   const [filter, setFilter]           = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const { triage, setTriage, clearTriage } = useTriage(frameworkId)
+  const { triage, setTriage, clearTriage, replaceTriage } = useTriage(frameworkId)
 
   // Reset versions when framework changes
   useEffect(() => {
@@ -196,7 +197,33 @@ export function FrameworkPage({ frameworkId }) {
               </div>
             )}
 
-            <TriageProgress changes={allChanges} triage={triage} onClear={clearTriage} />
+            <TriageProgress
+              changes={allChanges}
+              triage={triage}
+              onClear={clearTriage}
+              onExportReport={() => exportGapReport({ framework, fromVersion, toVersion, changes: allChanges, triage })}
+              onExportJson={() => {
+                const blob = new Blob([JSON.stringify({ framework: frameworkId, exported: new Date().toISOString(), triage }, null, 2)], { type: 'application/json' })
+                const a = document.createElement('a')
+                a.href = URL.createObjectURL(blob)
+                a.download = `framediff-triage-${frameworkId}.json`
+                a.click()
+                URL.revokeObjectURL(a.href)
+              }}
+              onImportJson={(e) => {
+                const file = e.target.files?.[0]
+                if (!file) return
+                const reader = new FileReader()
+                reader.onload = () => {
+                  try {
+                    const data = JSON.parse(reader.result)
+                    if (data && typeof data.triage === 'object') replaceTriage(data.triage)
+                  } catch { /* invalid file — ignore */ }
+                }
+                reader.readAsText(file)
+                e.target.value = ''
+              }}
+            />
 
             <ChangeList
               changes={filteredChanges}

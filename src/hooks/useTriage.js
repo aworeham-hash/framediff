@@ -28,5 +28,10 @@ export function useTriage(frameworkId) {
     try { localStorage.removeItem(storageKey(frameworkId)) } catch { /* noop */ }
   }, [frameworkId])
 
-  return { triage, setTriage, clearTriage }
+  const replaceTriage = useCallback((next) => {
+    setMap(next)
+    try { localStorage.setItem(storageKey(frameworkId), JSON.stringify(next)) } catch { /* noop */ }
+  }, [frameworkId])
+
+  return { triage, setTriage, clearTriage, replaceTriage }
 }

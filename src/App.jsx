@@ -8,6 +8,8 @@ import { PrivacyPage } from './components/legal/PrivacyPage'
 import { NotFoundPage } from './components/NotFoundPage'
 import { UpdatesPage } from './components/UpdatesPage'
 import { EvidencePage } from './components/EvidencePage'
+import { MappingPage } from './components/MappingPage'
+import { ScopingPage } from './components/ScopingPage'
 import { CommandPalette } from './components/ui/CommandPalette'
 import { LogoMark } from './components/brand/Logo'
 import { frameworksData } from './data/registry'
@@ -29,6 +31,8 @@ function parseRoute() {
   if (path === '/privacy') return { page: 'privacy' }
   if (path === '/updates') return { page: 'updates' }
   if (path === '/evidence') return { page: 'evidence' }
+  if (path === '/mapping') return { page: 'mapping' }
+  if (path === '/scoping') return { page: 'scoping' }
 
   const id = path.slice(1)
   if (frameworksData[id]) return { page: 'framework', frameworkId: id }
@@ -98,9 +102,13 @@ export default function App() {
   ) : route.page === 'privacy' ? (
     <PrivacyPage onHome={handleHome} />
   ) : route.page === 'updates' ? (
-    <UpdatesPage onSelectFramework={handleSelectFramework} onHome={handleHome} />
+    <UpdatesPage onSelectFramework={handleSelectFramework} onHome={handleHome} onNavigate={navigate} />
   ) : route.page === 'evidence' ? (
-    <EvidencePage onSelectFramework={handleSelectFramework} onHome={handleHome} />
+    <EvidencePage onSelectFramework={handleSelectFramework} onHome={handleHome} onNavigate={navigate} />
+  ) : route.page === 'mapping' ? (
+    <MappingPage onSelectFramework={handleSelectFramework} onNavigate={navigate} />
+  ) : route.page === 'scoping' ? (
+    <ScopingPage onSelectFramework={handleSelectFramework} onNavigate={navigate} />
   ) : route.page === 'notfound' ? (
     <NotFoundPage onHome={handleHome} onSelectFramework={handleSelectFramework} />
   ) : route.page === 'framework' ? (

@@ -100,6 +100,18 @@ const routes = [
     priority: '0.9',
   },
   {
+    path: '/mapping',
+    title: 'Compliance Framework Crosswalk \u2014 NIST 800-53, ISO 27001, SOC 2, PCI DSS, HIPAA Mapping | FrameDiff',
+    description: 'Cross-framework control mapping: pick a control theme (MFA, logging, backups, vendor risk) and see the corresponding families and requirements in NIST 800-53, 800-171, CMMC, ISO 27001, SOC 2, PCI DSS, HIPAA, NYDFS 500, and more.',
+    priority: '0.9',
+  },
+  {
+    path: '/scoping',
+    title: 'Which Compliance Frameworks Apply to You? Free Scoping Wizard | FrameDiff',
+    description: 'Answer 9 yes/no questions and find out which security frameworks apply to your organization \u2014 CMMC, NIST 800-171, PCI DSS, HIPAA, SOC 2, ISO 27001, NYDFS 500, SOX \u2014 with the reason each applies and upcoming deadlines.',
+    priority: '0.8',
+  },
+  {
     path: '/privacy',
     title: 'Privacy Policy — FrameDiff',
     description: 'Privacy policy for FrameDiff. We collect almost nothing and sell nothing.',
@@ -178,6 +190,8 @@ function renderRoute(route) {
   let body = ''
   if (route.path === '/') body = renderHomeBody()
   else if (route.path === '/evidence') body = renderEvidenceBody()
+  else if (route.path === '/mapping') body = renderMappingBody()
+  else if (route.path === '/scoping') body = renderScopingBody()
   else if (route.framework) body = renderFrameworkBody(route.framework, route.stats)
   if (body) {
     html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`)
@@ -277,6 +291,47 @@ function renderEvidenceBody() {
     parts.push('</dl>')
     if (fw) parts.push(`<p><a href="/${fid}">See what changed in recent ${esc(fw.shortName || fw.name)} versions</a></p>`)
   }
+  parts.push(staticFooter())
+  return parts.join('\n')
+}
+
+function renderMappingBody() {
+  const parts = []
+  parts.push(`<header><p><a href="/">FrameDiff \u2014 the changelog for compliance frameworks</a></p></header>`)
+  parts.push('<h1>Compliance framework crosswalk: where each control theme lives in every framework</h1>')
+  parts.push('<p>Family/requirement-level mapping across NIST SP 800-53, SP 800-171, CMMC, NIST CSF, ISO 27001, SOC 2, PCI DSS, HIPAA, NYDFS Part 500, SOX ITGC, IRS 4812, and DISA STIGs. For official control-level mappings see the NIST OLIR program and CPRT.</p>')
+  for (const [key, d] of Object.entries(DOMAINS)) {
+    parts.push(`<h2>${esc(d.name)}</h2><p>${esc(d.what)}</p><ul>`)
+    for (const [fid, entries] of Object.entries(FRAMEWORK_EVIDENCE)) {
+      const m = entries.filter(e => e.domain === key)
+      if (!m.length) continue
+      const fw = frameworks[fid]
+      parts.push(`<li><strong>${esc(fw ? fw.shortName || fw.name : fid)}:</strong> ${m.map(x => `${esc(x.code)} (${esc(x.name)})`).join(', ')}</li>`)
+    }
+    parts.push('</ul>')
+  }
+  parts.push(staticFooter())
+  return parts.join('\n')
+}
+
+function renderScopingBody() {
+  const parts = []
+  parts.push(`<header><p><a href="/">FrameDiff \u2014 the changelog for compliance frameworks</a></p></header>`)
+  parts.push('<h1>Which compliance frameworks apply to your organization?</h1>')
+  parts.push('<p>A first-pass applicability guide. Answer these questions in the interactive wizard to build your map:</p><ul>')
+  const qs = [
+    ['DoD contracts or FCI/CUI handling', 'CMMC (32 CFR 170) and NIST SP 800-171 via DFARS 252.204-7012'],
+    ['CUI from any federal agency', 'NIST SP 800-171'],
+    ['Federal systems or cloud services for agencies', 'NIST SP 800-53 baselines; DISA STIGs for DoD configurations'],
+    ['Payment card data', 'PCI DSS v4.0.1'],
+    ['Protected Health Information', 'HIPAA Security Rule (watch the proposed 2025 update)'],
+    ['NY DFS-licensed financial services', 'NYDFS 23 NYCRR Part 500 Second Amendment'],
+    ['US public company', 'SOX 404 / PCAOB standards including QC 1000 (effective Dec 15, 2026)'],
+    ['Enterprise customers requesting attestations', 'SOC 2 (2017 TSC + 2022 points of focus) and ISO/IEC 27001:2022'],
+    ['Federal Tax Information as an IRS contractor', 'IRS Publication 4812 Rev. 12-2025'],
+  ]
+  for (const [q, a] of qs) parts.push(`<li><strong>${esc(q)}?</strong> \u2192 ${esc(a)}</li>`)
+  parts.push('</ul><p>NIST CSF 2.0 is recommended for every organization as the voluntary organizing framework.</p>')
   parts.push(staticFooter())
   return parts.join('\n')
 }
