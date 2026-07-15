@@ -160,6 +160,17 @@ export function FrameworkPage({ frameworkId }) {
               onFilterChange={setFilter}
             />
 
+            {(() => {
+              const sm = transition.summary || {}
+              const official = ['added','removed','modified','restructured','renamed'].reduce((t, k) => t + (typeof sm[k] === 'number' ? sm[k] : 0), 0)
+              return official > allChanges.length ? (
+                <p className="text-xs text-gray-400 -mt-3">
+                  Counts above reflect the official publisher totals for this transition; the{' '}
+                  <span className="font-semibold text-gray-500">{allChanges.length} most significant changes</span> are documented in detail below.
+                </p>
+              ) : null
+            })()}
+
             {transition.summary?.highlights?.length > 0 && (
               <Highlights highlights={transition.summary.highlights} />
             )}

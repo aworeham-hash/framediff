@@ -87,6 +87,16 @@ export const DOMAINS = {
     what: 'Evidence that security is built into development and purchasing, not bolted on.',
     screenshot: 'Your CI pipeline showing SAST/dependency scanning as a required, passing step on a real merge, plus security requirements language in a recent vendor contract or RFP.',
   },
+  maintenance: {
+    name: 'System Maintenance',
+    what: 'Evidence that maintenance is approved, performed by authorized people, and that remote/vendor maintenance is controlled and logged.',
+    screenshot: 'A closed maintenance ticket showing approval before work and verification after, plus the vendor remote-access session log (time-boxed account with MFA) for one nonlocal maintenance event.',
+  },
+  privacy: {
+    name: 'Privacy & PII Transparency',
+    what: 'Evidence that PII processing has documented purposes and authority, notices are current, and consent is captured where relied upon.',
+    screenshot: 'The record of processing activities entry for an in-scope system, plus the published privacy notice with its last-updated date and the consent screen shown at the point of collection.',
+  },
 }
 
 // Per-framework mapping: control area code + name → evidence domain
@@ -123,6 +133,9 @@ export const FRAMEWORK_EVIDENCE = {
     { code: 'SI', name: 'System & Information Integrity', domain: 'vuln' },
     { code: 'SR', name: 'Supply Chain Risk Management', domain: 'vendor' },
     { code: 'PL', name: 'Planning', domain: 'governance' },
+    { code: 'MA', name: 'Maintenance', domain: 'maintenance' },
+    { code: 'PM', name: 'Program Management', domain: 'governance' },
+    { code: 'PT', name: 'PII Processing and Transparency', domain: 'privacy' },
   ],
   'nist-sp800-171': [
     { code: '03.01', name: 'Access Control', domain: 'access' },
@@ -131,12 +144,14 @@ export const FRAMEWORK_EVIDENCE = {
     { code: '03.04', name: 'Configuration Management', domain: 'config' },
     { code: '03.05', name: 'Identification and Authentication', domain: 'mfa' },
     { code: '03.06', name: 'Incident Response', domain: 'incident' },
+    { code: '03.07', name: 'Maintenance', domain: 'maintenance' },
     { code: '03.08', name: 'Media Protection', domain: 'media' },
     { code: '03.09', name: 'Personnel Security', domain: 'personnel' },
     { code: '03.10', name: 'Physical Protection', domain: 'physical' },
     { code: '03.11', name: 'Risk Assessment', domain: 'vuln' },
     { code: '03.12', name: 'Security Assessment & Monitoring', domain: 'assessment' },
     { code: '03.13', name: 'System & Communications Protection', domain: 'data' },
+    { code: '03.14', name: 'System & Information Integrity', domain: 'vuln' },
     { code: '03.15', name: 'Planning', domain: 'governance' },
     { code: '03.16', name: 'System & Services Acquisition', domain: 'sdlc' },
     { code: '03.17', name: 'Supply Chain Risk Management', domain: 'vendor' },
@@ -154,6 +169,8 @@ export const FRAMEWORK_EVIDENCE = {
     { code: 'RA', name: 'Risk Assessment', domain: 'vuln' },
     { code: 'CA', name: 'Security Assessment', domain: 'assessment' },
     { code: 'SC', name: 'System & Communications Protection', domain: 'data' },
+    { code: 'SI', name: 'System & Information Integrity', domain: 'vuln' },
+    { code: 'MA', name: 'Maintenance', domain: 'maintenance' },
     { code: 'AT', name: 'Awareness & Training', domain: 'training' },
   ],
   'pci-dss': [
@@ -246,6 +263,8 @@ export const FRAMEWORK_EVIDENCE = {
     { code: 'AT', name: 'Training (incl. UNAX briefings)', domain: 'training' },
     { code: 'SR', name: 'Supply Chain (C-SCRM)', domain: 'vendor' },
     { code: 'SC', name: 'System & Communications Protection', domain: 'data' },
+    { code: 'MA', name: 'Maintenance', domain: 'maintenance' },
+    { code: 'RA', name: 'Risk Assessment', domain: 'vuln' },
   ],
   'stigs': [
     { code: 'Baseline', name: 'STIG Compliance Scanning', domain: 'config' },

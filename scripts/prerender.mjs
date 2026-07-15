@@ -410,4 +410,18 @@ ${rssItems}
 `
 writeFileSync(join(dist, 'feed.xml'), rss)
 
-console.log(`Prerendered ${generated} routes + sitemap.xml + feed.xml`)
+
+// ---- compliance-deadlines.ics (subscribe in Outlook/Google Calendar) --------
+const ICS_EVENTS = [
+  { date: '20261215', title: 'PCAOB QC 1000 takes effect', desc: 'All registered audit firms must have a QC system designed under QC 1000. Source: pcaobus.org' },
+  { date: '20270701', title: 'HIPAA Security Rule final rule expected (OMB agenda)', desc: 'Expected final action on the Security Rule NPRM. Timing may change - proposals are not yet enforceable. Source: hhs.gov' },
+]
+const icsBody = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FrameDiff//Compliance Deadlines//EN', 'X-WR-CALNAME:Compliance Deadlines (FrameDiff)']
+for (const e of ICS_EVENTS) {
+  icsBody.push('BEGIN:VEVENT', `UID:${e.date}-framediff`, `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`,
+    `DTSTART;VALUE=DATE:${e.date}`, `SUMMARY:${e.title}`, `DESCRIPTION:${e.desc} - details at ${SITE}/updates`, 'END:VEVENT')
+}
+icsBody.push('END:VCALENDAR')
+writeFileSync(join(dist, 'compliance-deadlines.ics'), icsBody.join('\r\n'))
+
+console.log(`Prerendered ${generated} routes + sitemap.xml + feed.xml + ics`)

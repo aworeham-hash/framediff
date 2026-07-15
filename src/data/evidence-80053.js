@@ -478,12 +478,14 @@ export const SP80053_EVIDENCE = [
       "Spares inventory or vendor SLA dashboard." ] },
   { id: "MA-7", name: "Field Maintenance", what: "Off-site maintenance is restricted to approved facilities.",
     examples: [
-      "Policy restricting field maintenance plus an approved-facility authorization record." ] },
+      "Policy restricting field maintenance plus an approved-facility authorization record.",
+      "The RMA/repair authorization ticket showing the approved facility used." ] },
 
   // ══ MP: Media Protection ════════════════════════════════════════════
   { id: "MP-1", name: "Policy and Procedures", what: "An approved media protection policy.",
     examples: [
-      "The media policy with approval/review dates covering marking→disposal." ] },
+      "The media policy with approval/review dates covering marking→disposal.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "MP-2", name: "Media Access", what: "Only authorized people can access sensitive media.",
     examples: [
       "Locked media safe/cabinet with its access list.",
@@ -511,12 +513,14 @@ export const SP80053_EVIDENCE = [
       "EDR device-control events showing blocked unauthorized USB." ] },
   { id: "MP-8", name: "Media Downgrading", what: "Media is downgraded before release where classification requires.",
     examples: [
-      "The downgrading procedure and a completed downgrade record, where applicable." ] },
+      "The downgrading procedure and a completed downgrade record, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
 
   // ══ PE: Physical and Environmental Protection ═══════════════════════
   { id: "PE-1", name: "Policy and Procedures", what: "An approved physical security policy.",
     examples: [
-      "The physical security policy with approval/review dates." ] },
+      "The physical security policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "PE-2", name: "Physical Access Authorizations", what: "Access lists for controlled areas are authorized and current.",
     examples: [
       "The badge-system authorized list for the server room with issue dates.",
@@ -549,14 +553,16 @@ export const SP80053_EVIDENCE = [
       "UPS/PDU placement in secured space." ] },
   { id: "PE-10", name: "Emergency Shutoff", what: "Emergency power shutoff exists and is protected.",
     examples: [
-      "EPO button location/labeling photo near the computing area, protected by cover." ] },
+      "EPO button location/labeling photo near the computing area, protected by cover.",
+      "The data center walkthrough checklist item verifying EPO accessibility and cover." ] },
   { id: "PE-11", name: "Emergency Power", what: "UPS/generator supports orderly shutdown or continuity.",
     examples: [
       "UPS runtime spec and the latest test record.",
       "Generator maintenance/test log entry." ] },
   { id: "PE-12", name: "Emergency Lighting", what: "Emergency lighting works.",
     examples: [
-      "Emergency lighting test/inspection record." ] },
+      "Emergency lighting test/inspection record.",
+      "Facility inspection report including emergency lighting functional test." ] },
   { id: "PE-13", name: "Fire Protection", what: "Fire detection/suppression is present and inspected.",
     examples: [
       "Suppression system inspection certificate with date.",
@@ -579,27 +585,34 @@ export const SP80053_EVIDENCE = [
       "Home-office security checklist acknowledgment records." ] },
   { id: "PE-18", name: "Location of System Components", what: "Components are positioned to reduce risk.",
     examples: [
-      "Rack/room layout showing equipment away from hazards (windows, water lines)." ] },
+      "Rack/room layout showing equipment away from hazards (windows, water lines).",
+      "A facility risk note documenting component placement decisions." ] },
   { id: "PE-19", name: "Information Leakage", what: "Emanation risk is addressed where applicable.",
     examples: [
-      "Documented assessment of emanation risk (usually not applicable, with rationale)." ] },
+      "Documented assessment of emanation risk (usually not applicable, with rationale).",
+      "The SSP control entry documenting the emanation-risk determination." ] },
   { id: "PE-20", name: "Asset Monitoring and Tracking", what: "Assets are tracked between locations where employed.",
     examples: [
-      "Asset tag scanning log or GPS tracking record for transported equipment." ] },
+      "Asset tag scanning log or GPS tracking record for transported equipment.",
+      "Shipment tracking record for transported assets with custody notes." ] },
   { id: "PE-21", name: "Electromagnetic Pulse Protection", what: "EMP protection where mission requires.",
     examples: [
-      "EMP protection measures documentation for the critical facility, where applicable." ] },
+      "EMP protection measures documentation for the critical facility, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "PE-22", name: "Component Marking", what: "Components are marked with handling caveats where required.",
     examples: [
-      "Marked hardware photo consistent with the marking standard, where applicable." ] },
+      "Marked hardware photo consistent with the marking standard, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "PE-23", name: "Facility Location", what: "Facility siting considered hazards.",
     examples: [
-      "Site risk assessment section covering flood/seismic/adjacency risks." ] },
+      "Site risk assessment section covering flood/seismic/adjacency risks.",
+      "The lease/site-selection memo noting hazard considerations." ] },
 
   // ══ PL: Planning ════════════════════════════════════════════════════
   { id: "PL-1", name: "Policy and Procedures", what: "An approved planning policy.",
     examples: [
-      "The planning policy with approval/review dates." ] },
+      "The planning policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "PL-2", name: "System Security and Privacy Plans", what: "A current SSP describes boundaries and control implementations.",
     examples: [
       "SSP cover and revision table showing the annual update.",
@@ -610,129 +623,164 @@ export const SP80053_EVIDENCE = [
       "Onboarding workflow step showing AUP acceptance before account activation." ] },
   { id: "PL-7", name: "Concept of Operations", what: "A CONOPS describes intended security operation.",
     examples: [
-      "The CONOPS document with revision history." ] },
+      "The CONOPS document with revision history.",
+      "The operations overview section of the SSP serving as the CONOPS." ] },
   { id: "PL-8", name: "Security and Privacy Architectures", what: "A security architecture description exists and is current.",
     examples: [
       "The architecture diagram with trust boundaries, dated and version-controlled.",
       "Architecture decision records for security-relevant choices." ] },
   { id: "PL-9", name: "Central Management", what: "Centrally-managed controls are identified and operated centrally.",
     examples: [
-      "MDM/EDR/SSO consoles demonstrating central management, referenced as such in the SSP." ] },
+      "MDM/EDR/SSO consoles demonstrating central management, referenced as such in the SSP.",
+      "The SSP inheritance table listing centrally-provided common controls." ] },
   { id: "PL-10", name: "Baseline Selection", what: "A control baseline was selected from categorization.",
     examples: [
-      "The categorization + baseline selection memo (e.g., Moderate baseline) with approval." ] },
+      "The categorization + baseline selection memo (e.g., Moderate baseline) with approval.",
+      "The GRC record showing the baseline selection with approver." ] },
   { id: "PL-11", name: "Baseline Tailoring", what: "Tailoring decisions are documented and justified.",
     examples: [
-      "The tailoring workbook showing added/removed controls with rationale and approver." ] },
+      "The tailoring workbook showing added/removed controls with rationale and approver.",
+      "The control-applicability matrix showing scoping decisions per control." ] },
 
   // ══ PM: Program Management ══════════════════════════════════════════
   { id: "PM-1", name: "Information Security Program Plan", what: "An org-wide program plan exists and is current.",
     examples: [
-      "The program plan with approval/review dates." ] },
+      "The program plan with approval/review dates.",
+      "Confluence/SharePoint page for the document showing version history, owner, and last-reviewed date." ] },
   { id: "PM-2", name: "Information Security Program Leadership Role", what: "A senior security officer is appointed.",
     examples: [
-      "Org chart or appointment memo naming the CISO/security lead." ] },
+      "Org chart or appointment memo naming the CISO/security lead.",
+      "The CISO role charter or job description showing authorities and reporting line." ] },
   { id: "PM-3", name: "Information Security and Privacy Resources", what: "Security is resourced in planning/budget.",
     examples: [
-      "Budget line items for security tooling/headcount (redacted amounts acceptable)." ] },
+      "Budget line items for security tooling/headcount (redacted amounts acceptable).",
+      "The security roadmap slide from the annual planning deck showing funded initiatives." ] },
   { id: "PM-4", name: "Plan of Action and Milestones Process", what: "An org-level POA&M process operates.",
     examples: [
-      "The consolidated POA&M tracker with owner/milestone columns in use." ] },
+      "The consolidated POA&M tracker with owner/milestone columns in use.",
+      "GRC tool findings dashboard showing org-wide open/closed remediation items with owners." ] },
   { id: "PM-5", name: "System Inventory", what: "An inventory of organizational systems exists.",
     examples: [
-      "The system inventory list with owners and boundaries, current within the cycle." ] },
+      "The system inventory list with owners and boundaries, current within the cycle.",
+      "CMDB or GRC asset register export showing systems with owners and criticality tiers." ] },
   { id: "PM-6", name: "Measures of Performance", what: "Security performance is measured and reported.",
     examples: [
-      "The monthly KPI dashboard/deck page presented to leadership (patch SLA, phishing rate, MFA coverage)." ] },
+      "The monthly KPI dashboard/deck page presented to leadership (patch SLA, phishing rate, MFA coverage).",
+      "The metrics definition page showing how each KPI is calculated and its target." ] },
   { id: "PM-7", name: "Enterprise Architecture", what: "Security integrates with enterprise architecture.",
     examples: [
-      "EA documentation showing security requirements embedded." ] },
+      "EA documentation showing security requirements embedded.",
+      "An architecture review board record showing security participation in an EA decision." ] },
   { id: "PM-8", name: "Critical Infrastructure Plan", what: "CIP obligations addressed where applicable.",
     examples: [
-      "The critical infrastructure protection plan section, where applicable." ] },
+      "The critical infrastructure protection plan section, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "PM-9", name: "Risk Management Strategy", what: "An approved risk strategy with tolerance exists.",
     examples: [
-      "The risk management strategy with risk appetite statement and review evidence." ] },
+      "The risk management strategy with risk appetite statement and review evidence.",
+      "Board or risk committee minutes showing the risk strategy/appetite approved." ] },
   { id: "PM-10", name: "Authorization Process", what: "A defined authorization process with roles.",
     examples: [
-      "The authorization procedure naming authorizing officials and the decision record template." ] },
+      "The authorization procedure naming authorizing officials and the decision record template.",
+      "A completed authorization record in the GRC tool showing approver and expiration." ] },
   { id: "PM-11", name: "Mission and Business Process Definition", what: "Protection needs tie to business processes.",
     examples: [
-      "The BIA or process-to-system mapping with protection requirements." ] },
+      "The BIA or process-to-system mapping with protection requirements.",
+      "The business capability map with data sensitivity annotations per process." ] },
   { id: "PM-12", name: "Insider Threat Program", what: "An insider threat capability exists.",
     examples: [
       "The insider threat program charter.",
       "A sanitized insider-risk case record or UEBA alert triage." ] },
   { id: "PM-13", name: "Security and Privacy Workforce", what: "Workforce development for security roles.",
     examples: [
-      "Role qualification matrix or certification tracking for the security team." ] },
+      "Role qualification matrix or certification tracking for the security team.",
+      "Training/certification budget or completion dashboard for the security team." ] },
   { id: "PM-14", name: "Testing, Training, and Monitoring", what: "T/T/M activities are planned and executed org-wide.",
     examples: [
-      "The consolidated annual schedule (assessments, exercises, training) with completion status." ] },
+      "The consolidated annual schedule (assessments, exercises, training) with completion status.",
+      "GRC tool control-test calendar showing scheduled tests with completion status." ] },
   { id: "PM-15", name: "Security and Privacy Groups and Associations", what: "Ongoing contact with security communities.",
     examples: [
-      "ISAC membership confirmation or advisory list subscriptions." ] },
+      "ISAC membership confirmation or advisory list subscriptions.",
+      "Email digest or portal subscription showing active ISAC/advisory membership." ] },
   { id: "PM-16", name: "Threat Awareness Program", what: "Threat intel is gathered and shared internally.",
     examples: [
       "A recent internal threat briefing/product.",
       "Threat intel platform feed configuration." ] },
   { id: "PM-17", name: "Protecting CUI on External Systems", what: "Policy governs CUI on external systems.",
     examples: [
-      "Policy plus flow-down contract language for providers handling CUI." ] },
+      "Policy plus flow-down contract language for providers handling CUI.",
+      "A contract excerpt showing CUI protection requirements flowed to a provider." ] },
   { id: "PM-18", name: "Privacy Program Plan", what: "A privacy program plan exists.",
     examples: [
-      "The privacy program plan with approval/review dates." ] },
+      "The privacy program plan with approval/review dates.",
+      "Confluence/SharePoint page for the document showing version history, owner, and last-reviewed date." ] },
   { id: "PM-19", name: "Privacy Program Leadership Role", what: "A senior privacy official is appointed.",
     examples: [
-      "Appointment memo/org chart naming the privacy officer/DPO." ] },
+      "Appointment memo/org chart naming the privacy officer/DPO.",
+      "The DPO/privacy officer appointment letter or org chart entry." ] },
   { id: "PM-20", name: "Dissemination of Privacy Program Information", what: "Privacy program info is publicly available.",
     examples: [
-      "The public privacy page with policies and contact method, current." ] },
+      "The public privacy page with policies and contact method, current.",
+      "Website footer showing the privacy policy link present on all public pages." ] },
   { id: "PM-21", name: "Accounting of Disclosures", what: "PII disclosures are logged.",
     examples: [
-      "The disclosure register with recipient/purpose/date entries." ] },
+      "The disclosure register with recipient/purpose/date entries.",
+      "A single disclosure-log entry showing recipient, purpose, authority, and date." ] },
   { id: "PM-22", name: "Personally Identifiable Information Quality Management", what: "PII accuracy is managed.",
     examples: [
-      "The data-correction workflow with a completed example." ] },
+      "The data-correction workflow with a completed example.",
+      "A completed data-subject correction ticket with before/after values (redacted)." ] },
   { id: "PM-23", name: "Data Governance Body", what: "A data governance body operates.",
     examples: [
-      "The governance body charter and recent meeting minutes." ] },
+      "The governance body charter and recent meeting minutes.",
+      "The data governance meeting calendar showing recurring cadence with attendance." ] },
   { id: "PM-24", name: "Data Integrity Board", what: "Matching programs overseen where applicable.",
     examples: [
-      "Data integrity board records, where applicable." ] },
+      "Data integrity board records, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "PM-25", name: "Minimization of PII Used in Testing, Training, and Research", what: "Production PII is not used raw in lower environments.",
     examples: [
       "Masking/synthetic-data pipeline configuration for test data.",
       "A masked dataset sample from the test environment." ] },
   { id: "PM-26", name: "Complaint Management", what: "Privacy complaints are received and resolved.",
     examples: [
-      "The complaint intake channel and register with response timestamps." ] },
+      "The complaint intake channel and register with response timestamps.",
+      "A closed privacy complaint ticket showing response within the defined SLA." ] },
   { id: "PM-27", name: "Privacy Reporting", what: "Periodic privacy reporting occurs.",
     examples: [
-      "The periodic privacy report to leadership/regulator." ] },
+      "The periodic privacy report to leadership/regulator.",
+      "The annual privacy report table of contents with issuance date." ] },
   { id: "PM-28", name: "Risk Framing", what: "Risk assumptions/constraints/tolerance are documented.",
     examples: [
-      "The risk framing document feeding assessments." ] },
+      "The risk framing document feeding assessments.",
+      "The risk assessment template showing the framing assumptions section in use." ] },
   { id: "PM-29", name: "Risk Management Program Leadership Roles", what: "Risk leadership roles are assigned.",
     examples: [
-      "Appointment of the risk executive function." ] },
+      "Appointment of the risk executive function.",
+      "The risk committee charter naming the risk executive and membership." ] },
   { id: "PM-30", name: "Supply Chain Risk Management Strategy", what: "An org-wide SCRM strategy exists.",
     examples: [
-      "The SCRM strategy with approval and review evidence." ] },
+      "The SCRM strategy with approval and review evidence.",
+      "Confluence/SharePoint page for the document showing version history, owner, and last-reviewed date." ] },
   { id: "PM-31", name: "Continuous Monitoring Strategy", what: "An org continuous monitoring strategy exists.",
     examples: [
-      "The strategy document plus the metrics reporting cadence evidence." ] },
+      "The strategy document plus the metrics reporting cadence evidence.",
+      "The continuous monitoring metrics dashboard reviewed at the defined cadence." ] },
   { id: "PM-32", name: "Purposing", what: "Systems are used for authorized purposes.",
     examples: [
-      "System purpose statements in the inventory/SSP." ] },
+      "System purpose statements in the inventory/SSP.",
+      "A system inventory entry showing the documented purpose field completed." ] },
 
   // ══ PS: Personnel Security ══════════════════════════════════════════
   { id: "PS-1", name: "Policy and Procedures", what: "An approved personnel security policy.",
     examples: [
-      "The personnel security policy with approval/review dates." ] },
+      "The personnel security policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "PS-2", name: "Position Risk Designation", what: "Positions carry risk designations.",
     examples: [
-      "The position designation matrix (role → sensitivity) with review evidence." ] },
+      "The position designation matrix (role → sensitivity) with review evidence.",
+      "HR system screenshot showing the risk designation field populated for a role." ] },
   { id: "PS-3", name: "Personnel Screening", what: "People are screened before access, per designation.",
     examples: [
       "A redacted background check completion record dated before the start/access date.",
@@ -756,18 +804,22 @@ export const SP80053_EVIDENCE = [
       "Contractor onboarding checklist mirroring employee requirements." ] },
   { id: "PS-8", name: "Personnel Sanctions", what: "A sanctions process exists and is used.",
     examples: [
-      "The disciplinary process in policy plus a sanitized record showing enforcement." ] },
+      "The disciplinary process in policy plus a sanitized record showing enforcement.",
+      "The employee handbook section on security violations with acknowledgment records." ] },
   { id: "PS-9", name: "Position Descriptions", what: "Security responsibilities are in position descriptions.",
     examples: [
-      "A job description for an in-scope role showing security responsibilities." ] },
+      "A job description for an in-scope role showing security responsibilities.",
+      "The role-based responsibility matrix (RACI) including security duties." ] },
 
   // ══ PT: PII Processing and Transparency ═════════════════════════════
   { id: "PT-1", name: "Policy and Procedures", what: "An approved PII processing policy.",
     examples: [
-      "The privacy/PII policy with approval/review dates." ] },
+      "The privacy/PII policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "PT-2", name: "Authority to Process PII", what: "Each processing activity has a documented authority/basis.",
     examples: [
-      "The lawful-basis register mapping processing activities to authority." ] },
+      "The lawful-basis register mapping processing activities to authority.",
+      "Privacy platform (OneTrust) processing-activity record showing the legal basis field." ] },
   { id: "PT-3", name: "Personally Identifiable Information Processing Purposes", what: "Purposes are documented and processing is limited to them.",
     examples: [
       "The purpose register (RoPA purposes column) mapped to systems.",
@@ -782,18 +834,22 @@ export const SP80053_EVIDENCE = [
       "The collection form/screen linking the notice at the point of capture." ] },
   { id: "PT-6", name: "System of Records Notice", what: "SORNs published for applicable federal systems.",
     examples: [
-      "The published SORN citation, where applicable." ] },
+      "The published SORN citation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "PT-7", name: "Specific Categories of PII", what: "Sensitive PII categories have extra handling.",
     examples: [
-      "The SSN minimization plan or sensitive-category handling rules with an enforcement example." ] },
+      "The SSN minimization plan or sensitive-category handling rules with an enforcement example.",
+      "DLP rule configuration specifically matching SSNs/sensitive categories with block action." ] },
   { id: "PT-8", name: "Computer Matching Requirements", what: "Matching agreements where applicable.",
     examples: [
-      "The matching agreement documentation, where applicable." ] },
+      "The matching agreement documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
 
   // ══ RA: Risk Assessment ═════════════════════════════════════════════
   { id: "RA-1", name: "Policy and Procedures", what: "An approved risk assessment policy and methodology.",
     examples: [
-      "The risk policy with approval/review dates and the scoring methodology." ] },
+      "The risk policy with approval/review dates and the scoring methodology.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "RA-2", name: "Security Categorization", what: "The system is categorized and the decision documented.",
     examples: [
       "The FIPS 199 categorization (or internal tiering) memo with approver.",
@@ -809,16 +865,20 @@ export const SP80053_EVIDENCE = [
       "A before/after scan pair for one remediated critical finding." ] },
   { id: "RA-6", name: "Technical Surveillance Countermeasures Survey", what: "TSCM where employed.",
     examples: [
-      "TSCM survey record for the high-risk facility, where applicable." ] },
+      "TSCM survey record for the high-risk facility, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "RA-7", name: "Risk Response", what: "Risks receive documented responses.",
     examples: [
-      "Risk register entries showing response decisions (accept/mitigate/transfer) with approver and date." ] },
+      "Risk register entries showing response decisions (accept/mitigate/transfer) with approver and date.",
+      "GRC risk module showing a risk with its treatment decision, owner, and due date." ] },
   { id: "RA-8", name: "Privacy Impact Assessments", what: "PIAs are completed for applicable systems.",
     examples: [
-      "The completed PIA/DPIA with date and approver for an in-scope system." ] },
+      "The completed PIA/DPIA with date and approver for an in-scope system.",
+      "Privacy platform PIA workflow showing the completed assessment stages." ] },
   { id: "RA-9", name: "Criticality Analysis", what: "Critical components/functions are identified.",
     examples: [
-      "The criticality analysis identifying crown-jewel components, feeding the BIA." ] },
+      "The criticality analysis identifying crown-jewel components, feeding the BIA.",
+      "The BIA worksheet identifying critical assets with dependency mapping." ] },
   { id: "RA-10", name: "Threat Hunting", what: "Proactive hunts are performed where employed.",
     examples: [
       "A completed hunt record: hypothesis, queries used, findings, and actions.",
@@ -827,10 +887,12 @@ export const SP80053_EVIDENCE = [
   // ══ SA: System and Services Acquisition ═════════════════════════════
   { id: "SA-1", name: "Policy and Procedures", what: "An approved acquisition security policy.",
     examples: [
-      "The acquisition/SDLC security policy with approval/review dates." ] },
+      "The acquisition/SDLC security policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "SA-2", name: "Allocation of Resources", what: "Security is planned and funded in acquisitions.",
     examples: [
-      "Project/budget documentation with security line items for the system." ] },
+      "Project/budget documentation with security line items for the system.",
+      "Jira epic for the system showing security tasks resourced in the delivery plan." ] },
   { id: "SA-3", name: "System Development Life Cycle", what: "A defined SDLC integrates security at each phase.",
     examples: [
       "The SDLC standard showing security gates, plus a project artifact passing a gate (design review sign-off).",
@@ -866,23 +928,28 @@ export const SP80053_EVIDENCE = [
       "Toolchain inventory showing approved build tools and their versions." ] },
   { id: "SA-16", name: "Developer-Provided Training", what: "Developer training for security functions where acquired.",
     examples: [
-      "Vendor-provided training materials/records for the acquired system." ] },
+      "Vendor-provided training materials/records for the acquired system.",
+      "The vendor training portal access grant or session attendance list." ] },
   { id: "SA-17", name: "Developer Security and Privacy Architecture and Design", what: "Developer provides security architecture where required.",
     examples: [
-      "The vendor security architecture/design document for the acquired system." ] },
+      "The vendor security architecture/design document for the acquired system.",
+      "The architecture section of the vendor security package (redacted) with your review note." ] },
   { id: "SA-20", name: "Customized Development of Critical Components", what: "Critical components custom-developed where justified.",
     examples: [
-      "The decision record justifying custom development for a critical component." ] },
+      "The decision record justifying custom development for a critical component.",
+      "Procurement record showing the build-vs-buy analysis for the critical component." ] },
   { id: "SA-21", name: "Developer Screening", what: "Developer personnel are screened where required.",
     examples: [
-      "Contract clause requiring developer screening plus vendor attestation." ] },
+      "Contract clause requiring developer screening plus vendor attestation.",
+      "Vendor onboarding checklist entry confirming personnel screening attestation received." ] },
   { id: "SA-22", name: "Unsupported System Components", what: "No unsupported/EOL components, or documented exceptions.",
     examples: [
       "Inventory/EOL report (endpoint or dependency) showing zero unsupported items in scope.",
       "The exception record for a remaining EOL system with compensating controls and end date." ] },
   { id: "SA-23", name: "Specialization", what: "Extra assurance applied to critical components.",
     examples: [
-      "Documentation of enhanced assurance measures for identified critical components." ] },
+      "Documentation of enhanced assurance measures for identified critical components.",
+      "The enhanced-assurance test plan (e.g., independent code review) for the component." ] },
   { id: "SA-24", name: "Design for Cyber Resiliency", what: "Resiliency is designed in for critical functions (new in Release 5.2.0).",
     examples: [
       "Architecture documentation showing redundancy/degradation/recovery design decisions.",
@@ -891,7 +958,8 @@ export const SP80053_EVIDENCE = [
   // ══ SC: System and Communications Protection ════════════════════════
   { id: "SC-1", name: "Policy and Procedures", what: "An approved SC policy.",
     examples: [
-      "The system/communications protection policy with approval/review dates." ] },
+      "The system/communications protection policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "SC-2", name: "Separation of System and User Functionality", what: "Admin functions are separated from user-facing services.",
     examples: [
       "Separate management interface/URL restricted by network or identity (admin portal behind VPN/PIM).",
@@ -925,10 +993,12 @@ export const SP80053_EVIDENCE = [
       "Internal service mesh mTLS setting (Istio PeerAuthentication STRICT)." ] },
   { id: "SC-10", name: "Network Disconnect", what: "Idle network sessions terminate.",
     examples: [
-      "VPN/remote session idle timeout setting plus a disconnect log entry." ] },
+      "VPN/remote session idle timeout setting plus a disconnect log entry.",
+      "Firewall session-table timeout configuration for idle connections." ] },
   { id: "SC-11", name: "Trusted Path", what: "Trusted communication path for sensitive interactions where required.",
     examples: [
-      "Secure attention sequence (Ctrl+Alt+Del policy) enabled, or hardware-backed auth prompt documentation." ] },
+      "Secure attention sequence (Ctrl+Alt+Del policy) enabled, or hardware-backed auth prompt documentation.",
+      "Windows logon screen requiring Ctrl+Alt+Del (policy setting screenshot)." ] },
   { id: "SC-12", name: "Cryptographic Key Establishment and Management", what: "Keys are generated, stored, rotated, and destroyed under control.",
     examples: [
       "AWS KMS/Azure Key Vault key list showing rotation enabled and restricted key-admin roles.",
@@ -944,7 +1014,8 @@ export const SP80053_EVIDENCE = [
       "MDM policy restricting camera/mic access by unapproved apps." ] },
   { id: "SC-16", name: "Transmission of Security and Privacy Attributes", what: "Labels travel with data between systems where employed.",
     examples: [
-      "Purview label inheritance across services, or tagged message attributes in the integration configuration." ] },
+      "Purview label inheritance across services, or tagged message attributes in the integration configuration.",
+      "Message-queue configuration showing classification attributes carried in headers." ] },
   { id: "SC-17", name: "Public Key Infrastructure Certificates", what: "Certificates are issued under policy and tracked.",
     examples: [
       "The certificate inventory with expiry monitoring/alerts.",
@@ -955,29 +1026,36 @@ export const SP80053_EVIDENCE = [
       "Email gateway blocking active content, with a blocked sample." ] },
   { id: "SC-20", name: "Secure Name/Address Resolution Service (Authoritative Source)", what: "Authoritative DNS is signed.",
     examples: [
-      "DNSSEC signing status for your zones (registrar/Route 53 DNSSEC page)." ] },
+      "DNSSEC signing status for your zones (registrar/Route 53 DNSSEC page).",
+      "dig +dnssec query output showing RRSIG records for your zone." ] },
   { id: "SC-21", name: "Secure Name/Address Resolution Service (Recursive or Caching Resolver)", what: "Resolvers validate DNSSEC.",
     examples: [
-      "Resolver configuration (BIND dnssec-validation auto, or protective DNS service) shown enabled." ] },
+      "Resolver configuration (BIND dnssec-validation auto, or protective DNS service) shown enabled.",
+      "Protective DNS service (Cisco Umbrella/Quad9) configuration for the fleet." ] },
   { id: "SC-22", name: "Architecture and Provisioning for Name/Address Resolution Service", what: "DNS is redundant and role-separated.",
     examples: [
-      "Internal/external DNS split architecture diagram with redundant servers." ] },
+      "Internal/external DNS split architecture diagram with redundant servers.",
+      "DNS server inventory showing separated internal/external roles across redundant hosts." ] },
   { id: "SC-23", name: "Session Authenticity", what: "Sessions resist hijacking/replay.",
     examples: [
       "Secure/HttpOnly/SameSite cookie flags shown in browser dev tools for the app.",
       "Session token rotation on privilege change in the framework configuration." ] },
   { id: "SC-24", name: "Fail in Known State", what: "Failures leave a defined safe state.",
     examples: [
-      "Failure-mode documentation/tests showing fail-closed behavior for the security component." ] },
+      "Failure-mode documentation/tests showing fail-closed behavior for the security component.",
+      "The WAF/firewall fail-closed setting page (block on engine failure)." ] },
   { id: "SC-25", name: "Thin Nodes", what: "Minimal-functionality endpoints where employed.",
     examples: [
-      "Thin/zero client deployment documentation, where applicable." ] },
+      "Thin/zero client deployment documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-26", name: "Decoys", what: "Honeypots where employed.",
     examples: [
-      "Deception platform/honeypot deployment with an example alert, where applicable." ] },
+      "Deception platform/honeypot deployment with an example alert, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-27", name: "Platform-Independent Applications", what: "Portable applications where employed.",
     examples: [
-      "Documentation of platform-independent choices, where applicable." ] },
+      "Documentation of platform-independent choices, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-28", name: "Protection of Information at Rest", what: "At-rest data is encrypted with managed keys.",
     examples: [
       "S3 default encryption / EBS encryption-by-default page for in-scope accounts.",
@@ -985,77 +1063,98 @@ export const SP80053_EVIDENCE = [
       "BitLocker/FileVault fleet compliance report from MDM." ] },
   { id: "SC-29", name: "Heterogeneity", what: "Component diversity where employed.",
     examples: [
-      "Documentation of deliberate diversity (multi-vendor DNS), where applicable." ] },
+      "Documentation of deliberate diversity (multi-vendor DNS), where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-30", name: "Concealment and Misdirection", what: "Where employed.",
     examples: [
-      "Concealment technique documentation, where applicable." ] },
+      "Concealment technique documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-31", name: "Covert Channel Analysis", what: "For high-assurance systems.",
     examples: [
-      "Covert channel analysis documentation, where required." ] },
+      "Covert channel analysis documentation, where required.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-32", name: "System Partitioning", what: "The system is partitioned into isolated components.",
     examples: [
-      "Segmentation diagram with enforcement points (VLANs/subnets/namespaces) and the matching firewall policy." ] },
+      "Segmentation diagram with enforcement points (VLANs/subnets/namespaces) and the matching firewall policy.",
+      "Kubernetes namespace isolation with NetworkPolicy manifests for the partitions." ] },
   { id: "SC-34", name: "Non-Modifiable Executable Programs", what: "Immutable execution where employed.",
     examples: [
-      "Read-only root filesystem/immutable image configuration, where applicable." ] },
+      "Read-only root filesystem/immutable image configuration, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-35", name: "External Malicious Code Identification", what: "Honeyclients where employed.",
     examples: [
-      "External malicious-code identification capability records, where applicable." ] },
+      "External malicious-code identification capability records, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-36", name: "Distributed Processing and Storage", what: "Distribution across locations for resilience.",
     examples: [
-      "Multi-AZ/region deployment configuration for critical services." ] },
+      "Multi-AZ/region deployment configuration for critical services.",
+      "S3 cross-region replication or database multi-region cluster status page." ] },
   { id: "SC-37", name: "Out-of-Band Channels", what: "Sensitive items delivered out-of-band where required.",
     examples: [
-      "Credential delivery via separate channel documented in procedure with an example." ] },
+      "Credential delivery via separate channel documented in procedure with an example.",
+      "The procedure showing MFA reset codes delivered by phone while credentials go by email." ] },
   { id: "SC-38", name: "Operations Security", what: "OPSEC protects operational information.",
     examples: [
-      "Policy restricting public disclosure of system details plus an example review of external postings." ] },
+      "Policy restricting public disclosure of system details plus an example review of external postings.",
+      "Job posting/marketing review checklist ensuring system details are not disclosed." ] },
   { id: "SC-39", name: "Process Isolation", what: "Processes run in isolated address spaces.",
     examples: [
       "Platform isolation cited in the SSP (standard OS/container isolation).",
       "Container runtime security settings (no privileged containers policy)." ] },
   { id: "SC-40", name: "Wireless Link Protection", what: "Wireless links protected against signal attacks where employed.",
     examples: [
-      "Point-to-point wireless link encryption configuration, where applicable." ] },
+      "Point-to-point wireless link encryption configuration, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-41", name: "Port and I/O Device Access", what: "Unused physical ports/devices disabled where required.",
     examples: [
       "USB/device control policy from endpoint management with status.",
       "Disabled console/unused switch ports configuration." ] },
   { id: "SC-42", name: "Sensor Capability and Data", what: "Device sensors are restricted.",
     examples: [
-      "MDM policy restricting camera/mic/location by context with the policy screen." ] },
+      "MDM policy restricting camera/mic/location by context with the policy screen.",
+      "Conference room device admin page showing microphone mute defaults." ] },
   { id: "SC-43", name: "Usage Restrictions", what: "Usage restrictions for risky components.",
     examples: [
-      "Documented allowed/disallowed uses for the component class with enforcement reference." ] },
+      "Documented allowed/disallowed uses for the component class with enforcement reference.",
+      "MDM configuration profile restricting the risky component class with justification." ] },
   { id: "SC-44", name: "Detonation Chambers", what: "Suspicious content detonates in sandboxes where employed.",
     examples: [
-      "Email attachment sandboxing (Defender Safe Attachments) policy page with a detonation verdict example." ] },
+      "Email attachment sandboxing (Defender Safe Attachments) policy page with a detonation verdict example.",
+      "URL detonation (Safe Links) policy page with a rewritten-link example." ] },
   { id: "SC-45", name: "System Time Synchronization", what: "System clocks synchronize to authoritative time.",
     examples: [
-      "NTP hierarchy configuration and a sample of synced systems (see AU-8 evidence)." ] },
+      "NTP hierarchy configuration and a sample of synced systems (see AU-8 evidence).",
+      "w32tm /query /status output showing stratum and source on a domain member." ] },
   { id: "SC-46", name: "Cross Domain Policy Enforcement", what: "Cross-domain transfers enforced where domains differ.",
     examples: [
-      "Cross-domain solution configuration/policy, where applicable." ] },
+      "Cross-domain solution configuration/policy, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-47", name: "Alternate Communications Paths", what: "Alternate paths for command and control of operations.",
     examples: [
-      "Documented alternate communications path with test evidence." ] },
+      "Documented alternate communications path with test evidence.",
+      "The DR communications plan section listing the alternate path with its test date." ] },
   { id: "SC-48", name: "Sensor Relocation", what: "Where employed.",
     examples: [
-      "Sensor placement decision records, where applicable." ] },
+      "Sensor placement decision records, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-49", name: "Hardware-Enforced Separation and Policy Enforcement", what: "Where employed.",
     examples: [
-      "Hardware separation mechanism documentation, where applicable." ] },
+      "Hardware separation mechanism documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-50", name: "Software-Enforced Separation and Policy Enforcement", what: "Where employed.",
     examples: [
-      "Software separation mechanism documentation, where applicable." ] },
+      "Software separation mechanism documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SC-51", name: "Hardware-Based Protection", what: "Hardware roots of trust in use.",
     examples: [
-      "TPM present/Secure Boot enabled report from Intune/endpoint management across the fleet." ] },
+      "TPM present/Secure Boot enabled report from Intune/endpoint management across the fleet.",
+      "BitLocker + TPM report from Intune showing hardware-backed key protection." ] },
 
   // ══ SI: System and Information Integrity ════════════════════════════
   { id: "SI-1", name: "Policy and Procedures", what: "An approved system integrity policy.",
     examples: [
-      "The SI policy with approval/review dates." ] },
+      "The SI policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "SI-2", name: "Flaw Remediation", what: "Flaws are identified and patched within SLA.",
     examples: [
       "Patch compliance dashboard (Intune/WSUS/Automox) for in-scope systems against the SLA policy.",
@@ -1102,47 +1201,58 @@ export const SP80053_EVIDENCE = [
       "Automated deletion job logs for expired data." ] },
   { id: "SI-13", name: "Predictable Failure Prevention", what: "Components with known MTTF are managed.",
     examples: [
-      "Hardware refresh schedule or failover provisions for components with predictable failure, where applicable." ] },
+      "Hardware refresh schedule or failover provisions for components with predictable failure, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SI-14", name: "Non-Persistence", what: "Ephemeral components where employed.",
     examples: [
-      "Immutable/ephemeral infrastructure policy (instances rebuilt on each deploy) shown in pipeline config." ] },
+      "Immutable/ephemeral infrastructure policy (instances rebuilt on each deploy) shown in pipeline config.",
+      "Auto-scaling group configuration showing instances replaced rather than patched in place." ] },
   { id: "SI-15", name: "Information Output Filtering", what: "Outputs are validated where employed.",
     examples: [
-      "Output encoding/filtering configuration with tests, where applicable." ] },
+      "Output encoding/filtering configuration with tests, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SI-16", name: "Memory Protection", what: "Memory protections are enabled.",
     examples: [
       "Endpoint policy report showing DEP/ASLR/exploit protection enabled across the fleet.",
       "Exploit Guard/attack surface reduction rules page in enforce mode." ] },
   { id: "SI-17", name: "Fail-Safe Procedures", what: "Defined fail-safe procedures for failure conditions.",
     examples: [
-      "The documented fail-safe procedure for the defined condition with test evidence." ] },
+      "The documented fail-safe procedure for the defined condition with test evidence.",
+      "The runbook fail-safe section with the last tabletop walk-through date." ] },
   { id: "SI-18", name: "Personally Identifiable Information Quality Operations", what: "PII is kept accurate; corrections work.",
     examples: [
-      "The data-correction workflow with a completed correction example." ] },
+      "The data-correction workflow with a completed correction example.",
+      "Customer-facing profile page showing self-service data correction capability." ] },
   { id: "SI-19", name: "De-Identification", what: "Datasets are de-identified where required.",
     examples: [
       "The masking configuration and a de-identified output sample.",
       "The re-identification risk assessment for the released dataset." ] },
   { id: "SI-20", name: "Tainting", what: "Where employed.",
     examples: [
-      "Data tainting/beacon documentation, where applicable." ] },
+      "Data tainting/beacon documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SI-21", name: "Information Refresh", what: "Where employed.",
     examples: [
-      "Scheduled information refresh configuration, where applicable." ] },
+      "Scheduled information refresh configuration, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SI-22", name: "Information Diversity", what: "Where employed.",
     examples: [
-      "Alternative information source documentation, where applicable." ] },
+      "Alternative information source documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SI-23", name: "Information Fragmentation", what: "Where employed.",
     examples: [
-      "Information fragmentation documentation, where applicable." ] },
+      "Information fragmentation documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
 
   // ══ SR: Supply Chain Risk Management ════════════════════════════════
   { id: "SR-1", name: "Policy and Procedures", what: "An approved SCRM policy.",
     examples: [
-      "The SCRM policy with approval/review dates." ] },
+      "The SCRM policy with approval/review dates.",
+      "GRC platform (Drata/Vanta/Hyperproof) policy module showing the approved policy with its review workflow state and next review date." ] },
   { id: "SR-2", name: "Supply Chain Risk Management Plan", what: "A SCRM plan exists and is reviewed.",
     examples: [
-      "The SCRM plan with revision history and review evidence." ] },
+      "The SCRM plan with revision history and review evidence.",
+      "Confluence/SharePoint page for the document showing version history, owner, and last-reviewed date." ] },
   { id: "SR-3", name: "Supply Chain Controls and Processes", what: "Supply chain protections operate in procurement.",
     examples: [
       "The procurement workflow showing the security review gate before vendor onboarding.",
@@ -1153,29 +1263,34 @@ export const SP80053_EVIDENCE = [
       "Hardware origin documentation from the authorized reseller." ] },
   { id: "SR-5", name: "Acquisition Strategies, Tools, and Methods", what: "Acquisition strategies reduce supply chain risk.",
     examples: [
-      "The approved supplier list policy or diversification strategy documentation." ] },
+      "The approved supplier list policy or diversification strategy documentation.",
+      "Procurement policy page requiring purchases from authorized channels for critical items." ] },
   { id: "SR-6", name: "Supplier Assessments and Reviews", what: "Suppliers are assessed and re-reviewed.",
     examples: [
       "A completed critical-vendor assessment with date/reviewer plus the reassessment schedule.",
       "The vendor register showing last-review dates across suppliers." ] },
   { id: "SR-7", name: "Supply Chain Operations Security", what: "OPSEC for supply chain information.",
     examples: [
-      "OPSEC protections for supply chain data documentation, where applicable." ] },
+      "OPSEC protections for supply chain data documentation, where applicable.",
+      "The SSP or control-applicability record documenting your determination — implemented with justification, or not applicable with a written rationale (a documented N/A is itself the expected evidence for most organizations)." ] },
   { id: "SR-8", name: "Notification Agreements", what: "Suppliers must notify you of incidents.",
     examples: [
       "The breach/incident notification clause in an executed vendor contract.",
       "The standard contract exhibit requiring notification within N hours." ] },
   { id: "SR-9", name: "Tamper Resistance and Detection", what: "Tampering is resisted/detected in the supply chain.",
     examples: [
-      "Tamper-evident packaging procedure with an inspection photo/record." ] },
+      "Tamper-evident packaging procedure with an inspection photo/record.",
+      "Receiving-dock photo/checklist showing seal verification on delivered equipment." ] },
   { id: "SR-10", name: "Inspection of Systems or Components", what: "Received components are inspected.",
     examples: [
-      "The acceptance/inspection checklist completed for received hardware." ] },
+      "The acceptance/inspection checklist completed for received hardware.",
+      "A completed acceptance-inspection form for a received critical component." ] },
   { id: "SR-11", name: "Component Authenticity", what: "Counterfeits are prevented/detected.",
     examples: [
       "Authorized-reseller purchasing policy plus verification records for critical components.",
       "Counterfeit reporting procedure documentation." ] },
   { id: "SR-12", name: "Component Disposal", what: "Components are disposed of securely.",
     examples: [
-      "Certified destruction/return records for disposed components (see also MP-6)." ] },
+      "Certified destruction/return records for disposed components (see also MP-6).",
+      "The asset-disposal ticket linking the component to its destruction certificate." ] },
 ]

@@ -46,7 +46,17 @@ export function UpdatesPage({ onSelectFramework, onHome, onNavigate }) {
           Upcoming compliance dates and recent framework releases, in one place. Sources verified July 2026.
         </p>
 
-        <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Upcoming dates</h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Upcoming dates</h2>
+          <a
+            href="/compliance-deadlines.ics"
+            download
+            className="text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            title="Add hard deadlines to Outlook or Google Calendar"
+          >
+            Add to calendar (.ics)
+          </a>
+        </div>
         <div className="space-y-2 mb-10">
           {DEADLINES.map(d => (
             <button
