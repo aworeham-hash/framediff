@@ -1110,16 +1110,17 @@
       "summary": {
         "added": 1,
         "removed": 2,
-        "modified": 13,
-        "restructured": 0,
+        "modified": 53,
+        "restructured": 2,
         "highlights": [
-          "CONTROL-LEVEL DIFF: every AC-family control compared word-by-word between the December 2024 and December 2025 texts — keyword, phrasing, and requirement changes denoted per control with procedure-impact flags",
-          "AC-2 tightened hard: all user accounts disabled after 60 days inactivity (was 120), high-risk users disabled within ONE HOUR (was one day), expired accounts within 3 business days (was undefined)",
-          "AC-3: the explicit \"Role-Based Access Control (RBAC) shall be implemented\" mandate was REMOVED — access enforcement is now model-agnostic",
-          "AC-6: partitioning scope extended to PII, new workstation restriction sentence, and separate privileged accounts hardened from \"can be implemented\" to \"shall be implemented\"",
-          "Publication-wide keyword change: \"shall\" → \"must\" and subcontractors now covered via flow-down clauses instead of direct naming",
-          "AI section expanded into a full policy regime (ChatGPT/Gemini/Claude named and prohibited) and NEW FedRAMP Moderate/High mandate for FTI in the cloud",
-          "Coverage note: control-level comparison verified for the AC family and general sections; remaining families (AT through SR) pending a complete copy of the December 2025 publication"
+          "COMPLETE CONTROL-LEVEL DIFF: all 195 control sections compared word-by-word between the December 2024 and December 2025 publication texts — keyword, phrasing, and requirement changes denoted per control with procedure-impact flags",
+          "Offboarding tightened hard: PS-4 now requires non-privileged user access disabled within 1 HOUR of termination (privileged: immediate; CSP: 24 hours), and AC-2 disables all accounts after 60 days inactivity with 1-hour disablement for high-risk users",
+          "New technical mandates: TLS 1.2 required / 1.3 preferred (SC-13, SC-23), audit logs shipped weekly to a physically separate system with cryptographic integrity protection (AU-9), FedRAMP Moderate/High required for FTI cloud backups (CP-9), SHA-2-based Kerberos encryption types (IA-7)",
+          "New governance regimes: open-source software restrictions — pre-deployment security assessment, support plan, license vetting, no public release of IRS-contract code (CM-10); continuous software-installation monitoring replaces annual review (CM-11); SCRM team required (SR-2)",
+          "Requirements REMOVED or relaxed: mandatory SCAP 1.2 validated tooling dropped from CM-6 and RA-5, AC-3's explicit RBAC mandate deleted, AC-5 Separation of Duties merged into AC-4, contingency training deadline relaxed 10 → 30 days (CP-3)",
+          "Definition change with wide reach: a reportable breach now triggers on SBU exposure, not just PII (IR-4/IR-2) — and RA-2 allows the IRS to categorize contracts as High instead of the former Moderate ceiling",
+          "Media sanitization overhauled (MP-6): NIST SP 800-88 Rev 2, NSA/DHS/DoD-evaluated tools only, BIOS clear/reset before disposal, degaussing declared inadequate for SSDs/flash/optical",
+          "Publication-wide: 'shall' → 'must' throughout, and 'contractors and subcontractors' → 'Contractors' with subcontractor coverage via flow-down clauses"
         ]
       },
       "changes": [
@@ -1246,7 +1247,7 @@
           "title": "AC-2 Account Management — high-risk user disablement: one day → one hour",
           "area": "AC — control-level change",
           "oldText": "Accounts of users identified as posing a high-risk shall have their accounts disabled within one day of discovery of the risk.",
-          "newText": "The Contractor must disable any account within one hour if the user poses a serious security or privacy risk, either by planning to misuse access or by being vulnerable to compromise.",
+          "newText": "The Contractor must disable any account within one hour if the user poses a serious security or privacy risk, either by planning to misuse access or by being vulnerable to exploitation by adversaries.",
           "rationale": "PROCEDURE IMPACT — HIGH: a 24x tightening of the response window. Incident response and HR-security coordination procedures must support one-hour account disablement, which effectively requires an on-call path and pre-authorized disable authority.",
           "significance": "high",
           "tags": [
@@ -1419,6 +1420,799 @@
           "tags": [
             "phrasing",
             "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-013",
+          "type": "restructured",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-5",
+            "new": "AC-4"
+          },
+          "title": "AC-5 Separation of Duties removed as a standalone control — text merged into AC-4",
+          "area": "AC — control-level change",
+          "oldText": "13.5 AC-5 Separation of Duties: Contractors and subcontractors, including those using a CSP, shall ensure that they establish appropriate division of responsibilities and separation of duties as needed to prevent harmful activity without collusion, so that no individual shall have all necessary authority and system access to disrupt or corrupt a security process.",
+          "newText": "AC-5 no longer appears as its own section. The identical separation-of-duties requirement (including the C-SCRM guidance about denying developers the privilege to promote their own code to production) now appears at the end of AC-4 Information Flow Enforcement.",
+          "rationale": "STRUCTURAL: the requirement itself is unchanged, but any procedure, SSP section, or control matrix that cites 'IRS 4812 AC-5' must be re-mapped to AC-4.",
+          "significance": "medium",
+          "tags": [
+            "restructured",
+            "control-removed",
+            "content-relocated"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-014",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AC-8",
+            "new": "AC-8"
+          },
+          "title": "AC-8 System Use Notification — sanctions bullet added to required banner content",
+          "area": "AC — control-level change",
+          "oldText": "The system use notification shall state: the use of the system is restricted to authorized users; unauthorized access is prohibited and subject to disciplinary actions.",
+          "newText": "New required bullet added to the system use notification: '• Sanctions and penalties for system misuse.'",
+          "rationale": "PROCEDURE IMPACT — LOW: logon banners must be updated to state sanctions and penalties for misuse, and the revised banner re-approved by legal counsel or designated individual.",
+          "significance": "low",
+          "tags": [
+            "requirement-added",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-015",
+          "type": "restructured",
+          "category": "control-level",
+          "controlId": {
+            "old": "PE-17",
+            "new": "CP-7"
+          },
+          "title": "Telework eligibility regime moved from PE-17 (Alternate Work Site) to CP-7 (Alternate Processing Site)",
+          "area": "CP / PE — control-level change",
+          "oldText": "PE-17 Alternate Work Site contained the full telework block: written IRS COR/BU approval before teleworking, annual telework training (contractor-provided or via opm.gov), signed telework agreement with location address and supervisor signature, approved-location-only work, and immediate incident reporting.",
+          "newText": "The same telework block now lives under CP-7 Alternate Processing Site, applying to 'alternate processing sites such as approved telework locations'. The reference to OPM's telework training site was dropped — training 'can be provided by the contractor'. PE-17 retains only the FTI-processing restrictions and the required features of an approved telework location.",
+          "rationale": "STRUCTURAL: telework procedures and SSP mappings citing PE-17 must be re-pointed to CP-7. Substantive requirements are unchanged except the OPM training source is no longer referenced.",
+          "significance": "medium",
+          "tags": [
+            "restructured",
+            "content-relocated"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-016",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CM-10",
+            "new": "CM-10"
+          },
+          "title": "CM-10 Software Usage Restrictions — NEW open-source software restrictions",
+          "area": "CM — control-level change",
+          "oldText": "Contractors and subcontractors, including those using CSP's shall use software and associated documentation in accordance with contract/order/agreement and copyright laws. The contractor, subcontractor, or CSP shall track the quantity of software licenses.",
+          "newText": "Adds: 'Contractors including those using CSP's must establish the following restrictions on the use of open-source software: a. A security assessment is conducted prior to deploying. b. A software support plan is developed. c. The Open-Source Software license permits modification for internal use without being obligated to distribute the source code to the public. d. Updates to Open-Source Software including code fixes and enhancements, developed for the IRS contract must not be released to the public.'",
+          "rationale": "PROCEDURE IMPACT — HIGH: an entirely new open-source governance requirement. Contractors need a pre-deployment OSS security-assessment step, an OSS support plan, license vetting (no copyleft obligations forcing public distribution), and a prohibition on upstreaming IRS-contract code changes.",
+          "significance": "high",
+          "tags": [
+            "requirement-added",
+            "new-topic"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-017",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CM-11",
+            "new": "CM-11"
+          },
+          "title": "CM-11 User-Installed Software — annual compliance monitoring replaced by continuous monitoring with defined enforcement methods",
+          "area": "CM — control-level change",
+          "oldText": "Contractors shall establish and enforce a policy governing the installation of software by users and shall develop and manage a process to apply all software changes to the environment. Compliance with the policy shall be monitored annually.",
+          "newText": "Contractors must enforce software installation policies through: i. Procedural methods (e.g., periodic examination of user accounts); ii. Automated methods (e.g., configuration settings implemented on organizational systems); and iii. Continuously monitor policy compliance. Organizations must identify permitted and prohibited actions regarding software installation. Permitted installations now explicitly include updates and security patches to existing software.",
+          "rationale": "PROCEDURE IMPACT — HIGH: 'monitored annually' became 'continuously monitor', and enforcement must combine procedural and automated methods. An annual attestation process no longer satisfies the control.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-018",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CM-6",
+            "new": "CM-6"
+          },
+          "title": "CM-6 Configuration Settings — mandatory SCAP 1.2 validated tooling requirement REMOVED",
+          "area": "CM — control-level change",
+          "oldText": "Contractors and subcontractors, including those using CSP's shall use SCAP 1.2 or later approved tools when monitoring security configurations. ... The Contractor or Subcontractor shall ensure that checklists for configuration settings are SCAP validated.",
+          "newText": "Both SCAP mandates are deleted. Compliance scanning language now refers generically to 'vulnerability scanning products' usable with SCAP-expressed checklists.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM (relaxation): SCAP-validated tooling is no longer mandatory for configuration monitoring. Contractors locked into SCAP-validated products for compliance reasons gain tool flexibility; procedures citing the SCAP validation requirement should be updated.",
+          "significance": "high",
+          "tags": [
+            "requirement-removed",
+            "tooling-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-019",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CM-8",
+            "new": "CM-8"
+          },
+          "title": "CM-8 System Component Inventory — software whitelist/blacklist added to required inventory",
+          "area": "CM — control-level change",
+          "oldText": "Contractors shall develop and maintain an inventory of all hardware, software, removable media, and all components of the information system that supports the IRS contract.",
+          "newText": "Contractors must develop and maintain an inventory of all hardware, software, removable media, components, 'and a software whitelist/blacklist' for the information system that supports the IRS contract.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: a maintained software allow/deny list is now an explicit inventory artifact, implying application-control tooling or at minimum a documented authorized-software list.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-020",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CM-2",
+            "new": "CM-2"
+          },
+          "title": "CM-2 Baseline Configuration — rollback retention made specific: 'at least one previous version'",
+          "area": "CM — control-level change",
+          "oldText": "The contractor, subcontractor, or CSP shall retain older versions of baseline configurations as deemed necessary to support rollback.",
+          "newText": "The Contractor or CSP must retain at least one previous version of the baseline configuration to support rollback. Test/development baselines are now managed separately from the 'production' (was 'operational') baseline.",
+          "rationale": "Keyword change: discretionary retention ('as deemed necessary') became a measurable minimum (one prior version).",
+          "significance": "low",
+          "tags": [
+            "requirement-tightened",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-021",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CP-3",
+            "new": "CP-3"
+          },
+          "title": "CP-3 Contingency Training — deadline relaxed: 10 days → 30 days of assuming a contingency role",
+          "area": "CP — control-level change",
+          "oldText": "Contractors and subcontractors, including those using CSP's shall train personnel in their contingency roles and responsibilities within 10 days of assuming a contingency role or responsibility.",
+          "newText": "Contractors, including those using CSP's must train personnel in their contingency roles and responsibilities within 30 days of assuming a contingency role or responsibility. Training content must be 'reviewed and updated' annually.",
+          "rationale": "PROCEDURE IMPACT — LOW (relaxation): onboarding-training procedures keyed to a 10-day deadline can be updated to the new 30-day window.",
+          "significance": "medium",
+          "tags": [
+            "requirement-relaxed",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-022",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CP-9",
+            "new": "CP-9"
+          },
+          "title": "CP-9 System Backup — CSP backup frequencies simplified to weekly, CSP restore testing doubled to semiannual, NEW FedRAMP requirement for FTI cloud backups",
+          "area": "CP — control-level change",
+          "oldText": "CSP backup frequencies: User-level: daily incremental, weekly full. System-level: daily incremental, weekly full. Information system configuration: daily incremental, weekly full. Backup information shall be tested to verify reliability and integrity at least annually.",
+          "newText": "CSP backup frequencies are now 'Weekly' for user-level, system-level, and configuration backups (daily incrementals no longer specified). CSP backup testing moves from annually to 'at least semiannually'. NEW: 'If a contractor stores FTI backup data in the cloud, the storage environment must be FedRAMP Authorized at the Moderate or High impact level.'",
+          "rationale": "PROCEDURE IMPACT — HIGH: backup schedules, restore-test calendars, and cloud backup hosting must be revisited. FTI backups may only reside in FedRAMP Moderate/High authorized environments — this can force a storage migration.",
+          "significance": "high",
+          "tags": [
+            "requirement-added",
+            "timeframe-change",
+            "fedramp"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-023",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CP-2",
+            "new": "CP-2"
+          },
+          "title": "CP-2 Contingency Plan — explicit annual review/update requirement added",
+          "area": "CP — control-level change",
+          "oldText": "The plans shall document the activities associated with restoring key business functions, information systems, and applications after a disruption or failure.",
+          "newText": "Adds the sentence: 'The Contingency Plan must be reviewed/updated at least annually.' RTO/RPO must now be 'defined' (was 'identified').",
+          "rationale": "Keyword/requirement change: an annual CP review cadence is now stated at the plan level, not just for the OEP.",
+          "significance": "low",
+          "tags": [
+            "requirement-added",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-024",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IA-3",
+            "new": "IA-3"
+          },
+          "title": "IA-3 Device Identification and Authentication — scope broadened to local, remote, or network connections",
+          "area": "IA — control-level change",
+          "oldText": "Contractors shall ensure that information systems uniquely identify and authenticate all devices before allowing a connection to the contractor's network.",
+          "newText": "Contractor information systems must uniquely identify and authenticate devices before establishing 'a local, remote or network connection'.",
+          "rationale": "Keyword change: device authentication now applies to any connection type, not just joining the contractor network.",
+          "significance": "medium",
+          "tags": [
+            "scope-broadened",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-025",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IA-5",
+            "new": "IA-5"
+          },
+          "title": "IA-5 Authenticator Management — PIN rules changed: 'not be stored with the device' added",
+          "area": "IA — control-level change",
+          "oldText": "PIN requirements: minimum length of 8 digits, be complex (e.g., 73961548), no repeating digits, no sequential digits, and not be shared.",
+          "newText": "PIN requirements: minimum length of 8 digits, no repeating digits, no sequential digits, 'Not be stored with the device', and not be shared. (The standalone 'be complex' bullet was dropped; the CSP password block was repositioned but its values — 60-day change, 14-character complex minimum, 24-generation reuse ban — are unchanged.)",
+          "rationale": "PROCEDURE IMPACT — LOW: PIN handling guidance must add the no-storage-with-device rule (e.g., no PIN on a sticky note with a token or written on a device).",
+          "significance": "medium",
+          "tags": [
+            "requirement-added",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-026",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IA-7",
+            "new": "IA-7"
+          },
+          "title": "IA-7 Cryptographic Module Authentication — allowable Kerberos encryption types expanded",
+          "area": "IA — control-level change",
+          "oldText": "When contractors and subcontractors are employing cryptographic modules for Kerberos authentication, AES128_HMAC_SHA1 and AES256_HMAC_SHA1 are the only allowable encryption types.",
+          "newText": "When contractors are employing cryptographic algorithms for Kerberos authentication, AES (128, 192, 256-bit in CBC, CTS, or GCM modes), SHA-2 family (SHA-224, SHA-256, SHA-384, SHA-512), and HMAC with SHA-2 are the only allowable types. Terminology also shifts from cryptographic 'modules' to 'algorithms'.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: Kerberos configurations pinned to the two legacy SHA-1-based AES types should move to SHA-2-based types; domain-controller and krb5 configuration baselines need review.",
+          "significance": "high",
+          "tags": [
+            "requirement-changed",
+            "crypto-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-027",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IR-4",
+            "new": "IR-4"
+          },
+          "title": "IR-4 Incident Handling — breach definition broadened from PII to SBU; incident/breach definitions consolidated into IR-4",
+          "area": "IR — control-level change",
+          "oldText": "A data breach is the loss of control, compromise, unauthorized disclosure, unauthorized acquisition, or any similar occurrence where a person other than an authorized user accesses or potentially accesses PII, or an authorized user accesses PII for other than authorized purpose. (Definition sat in the IR chapter intro.)",
+          "newText": "The same definition now reads 'accesses or potentially accesses SBU' — any Sensitive But Unclassified data, not just PII — and the full incident/breach definition block (including Table 3 incident types) moved from the chapter intro into IR-4 itself. Incidents involving 'SBU/PII' are breaches.",
+          "rationale": "PROCEDURE IMPACT — HIGH: the class of events that must be treated as a breach expands from PII exposure to any SBU exposure. Incident-response runbooks, breach determination checklists, and reporting thresholds must be updated to the broader trigger.",
+          "significance": "high",
+          "tags": [
+            "scope-broadened",
+            "definition-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-028",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IR-2",
+            "new": "IR-2"
+          },
+          "title": "IR-2 Incident Response Training — content review cycle added; breach language broadened to SBU/PII",
+          "area": "IR — control-level change",
+          "oldText": "Employees shall be trained on IR and reporting requirements upon acquiring system access and annually thereafter. Incidents that involve PII are considered a breach.",
+          "newText": "Adds: 'Incident response training content must be reviewed and updated every three years and following significant changes.' Breach language now reads 'SBU/PII'. Test results now go to the COR (the separate 'CO and' recipient was dropped).",
+          "rationale": "Requirement addition: a documented three-year training-content review cycle is now required.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added",
+            "scope-broadened"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-029",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IR-3",
+            "new": "IR-3"
+          },
+          "title": "IR-3 Incident Response Testing — reference updated to NIST SP 800-61 Revision 3",
+          "area": "IR — control-level change",
+          "oldText": "Contractors shall review NIST SP 800-61 Revision 2, Computer Security Incident Handling Guide.",
+          "newText": "Contractors must review NIST SP 800-61 Revision 3, Computer Security Incident Handling Guide.",
+          "rationale": "Reference update: SP 800-61r3 (2025) restructures incident response around the CSF 2.0 functions; IR documentation citing r2 should be refreshed.",
+          "significance": "low",
+          "tags": [
+            "reference-update"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-030",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "IR-6",
+            "new": "IR-6"
+          },
+          "title": "IR-6 Incident Reporting — CSIRC email added, supply chain incidents added to immediate-report list",
+          "area": "IR — control-level change",
+          "oldText": "Security and Privacy incidents related to IRS processing, SBU data, or contractor information systems shall be reported immediately upon discovery to the IRS Computer Security Incident Response Center at (240) 613-3606. COR completes the reporting form at https://www.csirc.web.irs.gov/reporting/.",
+          "newText": "'Security, Privacy and supply chain incidents' must be reported immediately; CSIRC is now reachable at (240) 613-3606 or CSIRC@irs.gov; the COR reporting form URL changed to https://www.csirc.web.irs.gov/incident/ (the 'CISRC' typo was also corrected to CSIRC).",
+          "rationale": "PROCEDURE IMPACT — LOW: incident-reporting contact sheets and runbooks need the new email address, corrected URL, and the supply-chain incident category.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added",
+            "contact-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-031",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "MA-2",
+            "new": "MA-2"
+          },
+          "title": "MA-2 Controlled Maintenance — maintenance window must be identified in policy",
+          "area": "MA — control-level change",
+          "oldText": "The contractor and subcontractor shall approve and monitor all MA activities, whether the equipment is serviced on-site, remotely, or removed to another location.",
+          "newText": "Adds: 'Maintenance policy shall identify a maintenance window to obtain maintenance support for information system components in the event of a failure.'",
+          "rationale": "Requirement addition: maintenance policies must now define failure-response maintenance windows.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-032",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "MA-3",
+            "new": "MA-3"
+          },
+          "title": "MA-3 Maintenance Tools — tools must be scanned (not just checked) before use; annual inventory review retained and made explicit",
+          "area": "MA — control-level change",
+          "oldText": "Contractors shall develop and maintain an inventory of allowed MA tools (software, hardware, and firmware). MA tools shall be checked for malicious code before use or installation. The contractor shall review approved system MA tools annually.",
+          "newText": "Contractors must 'establish, maintain, update and review annually' an inventory of approved software, hardware, remote and firmware maintenance tools. 'Before installation or use, all maintenance tools must be scanned for malicious code and inspected for improper or unauthorized modifications.' Storage-capable tools must still be sanitized before removal.",
+          "rationale": "Keyword changes: 'checked' → 'scanned' (implies AV tooling, not manual review); remote maintenance tools explicitly included in the inventory.",
+          "significance": "medium",
+          "tags": [
+            "requirement-tightened",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-033",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "MA-4",
+            "new": "MA-4"
+          },
+          "title": "MA-4 Non-Local Maintenance — 'zero trust technology' replaces generic remote paths",
+          "area": "MA — control-level change",
+          "oldText": "...an individual who is communicating through a network, using a broadband communication link, VPN, or other communication path to remotely access the contractor's IT assets.",
+          "newText": "...an individual who is communicating through a network using a VPN or zero trust technology to remotely access the contractor's IT assets.",
+          "rationale": "Keyword change: first appearance of zero trust in this control; open-ended 'other communication path' removed, narrowing acceptable remote-maintenance channels to VPN or zero-trust access.",
+          "significance": "medium",
+          "tags": [
+            "keyword-change",
+            "requirement-tightened"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-034",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "MA-6",
+            "new": "MA-6"
+          },
+          "title": "MA-6 Timely Maintenance — spare parts now tied to RTO/RPO in the Contingency/DR Plan",
+          "area": "MA — control-level change",
+          "oldText": "Contractor shall define a list of any required spare parts and components to support MA and continued operation of the information system, and identify timeframes required for correcting failures.",
+          "newText": "The Contractor or CSP must define maintenance support and/or spare parts required for key information technology components 'to meet the recovery time objective/recovery point objective (RTO/RPO) timelines defined in the Contingency Plan/Disaster Recovery Plan.'",
+          "rationale": "Requirement change: spare-parts planning must now trace to the documented RTO/RPO rather than self-defined timeframes.",
+          "significance": "medium",
+          "tags": [
+            "requirement-tightened"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-035",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "MP-1",
+            "new": "MP-1"
+          },
+          "title": "MP-1 Media Protection Policy — media inventory must be maintained and provided to the IRS on request",
+          "area": "MP — control-level change",
+          "oldText": "MP policies and procedures shall describe requirements to restrict access to digital media. (No explicit media inventory requirement within MP-1; the data-segregation sentence sat in the MP chapter intro.)",
+          "newText": "Adds: 'An inventory must be maintained and provided to the IRS, upon request, that identifies all media used to store, maintain, or process IRS SBU data. Media that is used to store, maintain, or process IRS SBU must not be commingled with non-IRS data.' The logical/physical segregation sentence moved into MP-1.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: an on-demand, IRS-deliverable media inventory is now required; media tracking must be formalized.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-036",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "MP-6",
+            "new": "MP-6"
+          },
+          "title": "MP-6 Media Sanitization — SP 800-88 Rev 2, NSA/DHS/DoD-approved tools, BIOS sanitization, degaussing limits",
+          "area": "MP — control-level change",
+          "oldText": "Sanitize in accordance with NIST SP 800-88, Revision 1, Guidelines for Media Sanitization. (No approved-tools mandate, no BIOS requirement, degaussing listed as a destruction technique without media-type caveats.)",
+          "newText": "Sanitize per NIST SP 800-88 Revision 2. NEW: 'Contractors and CSP's must use sanitization tools and products evaluated and approved by either NSA, DHS, or Department of Defense (DoD).' NEW: before disposal, systems must have sensitive data cleared/purged from BIOS and BIOS reset to manufacturer defaults. NEW: 'Degaussing is adequate for sanitizing magnetic media, but it is not adequate for SSDs, flash drives, or optical disks — in those cases, you must use other methods like cryptographic erase or physical destruction.'",
+          "rationale": "PROCEDURE IMPACT — HIGH: sanitization SOPs must adopt 800-88r2, restrict tooling to NSA/DHS/DoD-evaluated products, add a BIOS clear/reset step to decommissioning checklists, and stop relying on degaussing for solid-state and optical media.",
+          "significance": "high",
+          "tags": [
+            "requirement-added",
+            "reference-update",
+            "tooling-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-037",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SI-12",
+            "new": "SI-12"
+          },
+          "title": "SI-12 Information Management and Disposal — media sanitization reference updated to SP 800-88 Revision 2",
+          "area": "SI — control-level change",
+          "oldText": "NIST Special Publication 800-88, Revision 1: Guidelines for Media Sanitization, specifies methods to Clear, Purge, and Destroy various media and IRS SBU.",
+          "newText": "NIST Special Publication 800-88, Revision 2: Guidelines for Media Sanitization, specifies methods to Clear, Purge, and Destroy various media and IRS SBU.",
+          "rationale": "Reference update, consistent with the same change in MP-6.",
+          "significance": "low",
+          "tags": [
+            "reference-update"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-038",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "PS-4",
+            "new": "PS-4"
+          },
+          "title": "PS-4 Personnel Termination — NEW 1-hour disablement for non-privileged users; CSP window changed to 24 hours",
+          "area": "PS — control-level change",
+          "oldText": "Upon termination of any user who has elevated privileges, access must be immediately revoked. Contractors using a CSP shall ensure that they disable system access within the same day of employee termination.",
+          "newText": "Privileged access: still immediately revoked. NEW: 'For non-privileged users the contractor must disable system access within 1 hour of termination.' CSP wording becomes 'disable system access that is no longer required within 24 hours.'",
+          "rationale": "PROCEDURE IMPACT — HIGH: offboarding for ALL users — not just privileged — must now execute within one hour, which effectively requires automated identity-lifecycle deprovisioning or an always-available manual path.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-039",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "PS-8",
+            "new": "PS-8"
+          },
+          "title": "PS-8 Personnel Sanctions — COR notification deadline set at 1 business day",
+          "area": "PS — control-level change",
+          "oldText": "The contractor shall notify the COR when a formal employee sanctions process is initiated.",
+          "newText": "The Contractor must notify the COR 'within 1 business day' when a formal employee sanctions process is initiated.",
+          "rationale": "Timeframe added where none was defined.",
+          "significance": "medium",
+          "tags": [
+            "timeframe-change",
+            "requirement-tightened"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-040",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "RA-2",
+            "new": "RA-2"
+          },
+          "title": "RA-2 Security Categorization — High categorization now possible at IRS discretion",
+          "area": "RA — control-level change",
+          "oldText": "Contracts containing SBU data for tax administration purposes shall be assigned a security categorization of Moderate.",
+          "newText": "Contracts containing SBU data for tax administration purposes must be assigned a security categorization of Moderate, 'unless the IRS determines they should be categorized as High.' (PS-2 mirrors this: moderate risk 'or high if the IRS deems appropriate'.)",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: contractors can no longer assume a Moderate ceiling; a High categorization brings a larger control baseline and screening requirements.",
+          "significance": "medium",
+          "tags": [
+            "scope-broadened",
+            "requirement-changed"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-041",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "RA-5",
+            "new": "RA-5"
+          },
+          "title": "RA-5 Vulnerability Scanning — SCAP mandate removed, Critical 15-day CSP tier added, retention extended to contract duration",
+          "area": "RA — control-level change",
+          "oldText": "Scanning tools shall be SCAP Version 1.2 or later validated. Scan reports shall be retained for no less than three months. CSP remediation: High-risk within 30 days, Medium-risk within 90 days. NIDS/HIDS network scanning language present. Monthly SCAP scan results sent at direction of IRS Cybersecurity.",
+          "newText": "The SCAP-validated-tooling sentence is gone (tools must still express vulnerabilities in CVE/CVSS). CSP remediation gains a new top tier: 'Critical - vulnerabilities must be mitigated within 15 days', High within 30, Medium within 90. Scan output 'must be retained for the duration of the contract' (was 3 months) and the CSV 'must be the original information exported by the vulnerability scanning tool'. Monthly results now go at the direction of the CSA Team (was IRS Cybersecurity). False-positive determination hardened from 'the remediating organization should identify' to 'the Contractor must identify'. The NIDS/HIDS sentence and the automated scan-trend-comparison requirement were removed.",
+          "rationale": "PROCEDURE IMPACT — HIGH: CSP-hosted systems need a 15-day critical-fix SLA; scan-result retention policies must change from 90 days to contract lifetime; export processes must preserve original tool output.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "requirement-removed",
+            "timeframe-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-042",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AU-9",
+            "new": "AU-9"
+          },
+          "title": "AU-9 Protection of Audit Information — off-system weekly log storage and cryptographic integrity protection required",
+          "area": "AU — control-level change",
+          "oldText": "To ensure separation of duties, management of the audit logs shall be a different individual other than the SA. A privileged group shall be established to access audit information and support systems.",
+          "newText": "Replaced by: 'Audit records must be stored at least weekly in a repository that is part of a physically different system or system component than the system or component being audited. Cryptographic mechanisms must be implemented to protect the integrity of audit information and audit tools.'",
+          "rationale": "PROCEDURE IMPACT — HIGH: logging architecture must ship audit records to a physically separate repository at least weekly (e.g., SIEM/log server) and add cryptographic integrity protection (signing/hashing). The people-based separation-of-duties wording is gone in favor of technical controls.",
+          "significance": "high",
+          "tags": [
+            "requirement-added",
+            "requirement-changed"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-043",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "AU-2",
+            "new": "AU-2"
+          },
+          "title": "AU-2 Event Logging — call-recording search capability consolidated here; 'customer' → 'taxpayer'",
+          "area": "AU — control-level change",
+          "oldText": "Call recording application systems must have the ability to capture and retain call recording meta-data. Audit records shall be sufficient to enable re-creation of information system related events. (Search capability was stated under AU-6.)",
+          "newText": "Contractors shall configure call recording systems to capture and retain meta-data 'and have the capability to search the meta-data for the purposes of play-back, quality assurance, and a record of file access.' Meta-data must track the identity of the 'taxpayer' (was 'customer'). The re-creation sentence was removed.",
+          "rationale": "Consolidation plus keyword changes; the search requirement moved from AU-6 into AU-2.",
+          "significance": "low",
+          "tags": [
+            "content-relocated",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-044",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CA-5",
+            "new": "CA-5"
+          },
+          "title": "CA-5 POA&M — trigger changed from CSA final report to CSA initial report",
+          "area": "CA — control-level change",
+          "oldText": "When a CSA final report is issued to the COR, the contractor shall create and provide an initial POA&M.",
+          "newText": "When a CSA initial report is issued to the COR, the contractor must create and provide an initial POA&M within 30 business days.",
+          "rationale": "Keyword change with schedule effect: POA&M development now starts at the initial assessment report rather than the final one — earlier in the assessment cycle.",
+          "significance": "medium",
+          "tags": [
+            "timeframe-change",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-045",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CA-6",
+            "new": "CA-6"
+          },
+          "title": "CA-6 Authorization — authorization package contents revised",
+          "area": "CA — control-level change",
+          "oldText": "Final authorization packages: System Security Plan (SSP), Privacy Program Plan, Security Assessment Report (SAR), PCLIA, Active POA&Ms, Memorandum of Understanding (MOU), Auditing Plan, Security Authorization Decision Document. The SSP shall contain (internally or as appendices): SRA, Interconnection Agreement, Contingency Plan, Security Configuration Documentation, CM Plan, IR Plan, Continuous Monitoring Plan, Implemented Security Controls.",
+          "newText": "Final authorization packages: Security and Privacy Plans, Security and Privacy Assessment Reports, PCLIA, Active POA&Ms, Executive Summary, Auditing Plan, and Authorization Decision Document. The MOU deliverable and the itemized list of required SSP appendices were removed.",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: authorization package checklists must be revised — MOU out, Executive Summary in, and the prescriptive SSP-appendix list no longer applies.",
+          "significance": "medium",
+          "tags": [
+            "requirement-changed",
+            "requirement-removed"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-046",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "CA-8",
+            "new": "CA-8"
+          },
+          "title": "CA-8 Penetration Testing — independent team required; production-entry trigger added",
+          "area": "CA — control-level change",
+          "oldText": "The contractor shall conduct external penetration testing on information systems at a minimum every three years. An independent penetration agent or team shall be employed to conduct penetration tests of the CSP information system.",
+          "newText": "The Contractor must conduct penetration testing 'using an independent team when an information system is put into production and at a minimum every three years thereafter.' CSP systems: independent penetration agent or team at least annually.",
+          "rationale": "PROCEDURE IMPACT — HIGH: the independence requirement now applies to contractor systems (not only CSPs), and go-live of a new system triggers a penetration test.",
+          "significance": "high",
+          "tags": [
+            "requirement-tightened",
+            "scope-broadened"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-047",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SC-13",
+            "new": "SC-13"
+          },
+          "title": "SC-13 Cryptographic Protection — NEW TLS 1.2/1.3 mandate per NIST SP 800-52 Rev 2",
+          "area": "SC — control-level change",
+          "oldText": "IRS SBU data processed, stored, or transmitted shall be protected using FIPS 140-2 or later validated encryption. (No TLS version requirement stated in this control.)",
+          "newText": "Adds: 'Contractor and CSP information systems must be configured to use TLS 1.2 and support TLS 1.3; if interoperability permits, TLS 1.3 is preferred. TLS must be implemented in accordance with NIST SP 800-52 Rev 2.' SC-23 Session Authenticity similarly now requires 'implementing TLS 1.2 or later'.",
+          "rationale": "PROCEDURE IMPACT — HIGH: system baselines must disable pre-1.2 TLS, enable 1.3 where possible, and align cipher configuration with SP 800-52r2.",
+          "significance": "high",
+          "tags": [
+            "requirement-added",
+            "crypto-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-048",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SC-28",
+            "new": "SC-28"
+          },
+          "title": "SC-28 Protection of Information at Rest — encryption scope 'portable media' → 'all digital media'",
+          "area": "SC — control-level change",
+          "oldText": "All portable media shall be encrypted, including laptops, USB storage devices, backup media.",
+          "newText": "All digital media must employ FIPS 140-2 or later validated encryption modules, including laptops, USB storage devices, backup media.",
+          "rationale": "Keyword/scope change: at-rest encryption with validated modules now covers all digital media, not only portable media.",
+          "significance": "medium",
+          "tags": [
+            "scope-broadened",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-049",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SA-9",
+            "new": "SA-9"
+          },
+          "title": "SA-9 External System Services — providers must employ 'IRS Publication 4812 baseline' controls",
+          "area": "SA — control-level change",
+          "oldText": "Require providers of external information system services to comply with information security and privacy requirements and employ adequate security and privacy controls.",
+          "newText": "Require providers of external information system services to comply with IRS security and privacy requirements and employ 'IRS Publication 4812 baseline security and privacy controls.'",
+          "rationale": "Keyword tightening: vendor flow-down must now reference the 4812 baseline explicitly rather than a generic adequacy standard.",
+          "significance": "medium",
+          "tags": [
+            "requirement-tightened",
+            "keyword-change"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-050",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SA-11",
+            "new": "SA-11"
+          },
+          "title": "SA-11 Developer Testing — static/dynamic testing required throughout the life cycle",
+          "area": "SA — control-level change",
+          "oldText": "Perform system testing and evaluation that includes one or more of: design, implementation representation (source code/hardware schematics). Produce evidence of the execution of the security and privacy assessment plan and the results of the security testing and evaluation.",
+          "newText": "Perform system testing and evaluation '(including static and/or dynamic) throughout its life cycle'; document the results of the security testing/evaluation 'and flaw remediation processes'. (The verifiable flaw-remediation-process bullet already existed in 2024 and is unchanged.)",
+          "rationale": "Requirement addition for development done for the IRS: static and/or dynamic testing (SAST/DAST) is now explicitly required across the SDLC, not just at a single evaluation point.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-051",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SI-3",
+            "new": "SI-3"
+          },
+          "title": "SI-3 Malicious Code Protection — VDI added to coverage; explicit daily-update wording replaced",
+          "area": "SI — control-level change",
+          "oldText": "Virus protection software shall be installed on all workstations, servers, and mobile computing devices, and shall be configured to perform automated updates daily. Contractors provisioned with GFEs shall not access, view, or download personal email.",
+          "newText": "Malicious code protection software must be installed on all workstations, servers, 'virtual desktop infrastructure (VDI)', and mobile computing devices, and must include 'automated signature and engine updates' with centralized management (the explicit 'daily' update frequency no longer appears). The GFE personal-email prohibition sentence was removed from this control (broader GFE email restrictions remain).",
+          "rationale": "Keyword changes: VDI joins the mandatory-coverage list; update cadence is now 'automated' without a stated daily minimum.",
+          "significance": "medium",
+          "tags": [
+            "scope-broadened",
+            "keyword-change",
+            "requirement-removed"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-052",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "SR-2",
+            "new": "SR-2"
+          },
+          "title": "SR-2 Supply Chain Risk Management Plan — SCRM team required",
+          "area": "SR — control-level change",
+          "oldText": "Contractors shall establish and implement a SCRM plan and review/update it annually.",
+          "newText": "Adds: 'A supply chain risk management team must be established to lead and support SCRM activities.' SR-3 likewise adds: 'The Contractor must document the selected and implemented supply chain processes and controls in the supply chain risk management plan.'",
+          "rationale": "PROCEDURE IMPACT — MEDIUM: SCRM can no longer be a document-only exercise — a named team with a lead-and-support role is required, and control selections must be documented in the plan.",
+          "significance": "medium",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-053",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "PT-7",
+            "new": "PT-7"
+          },
+          "title": "PT-7 Social Security Numbers — Form 14132 applicability check added",
+          "area": "PT — control-level change",
+          "oldText": "Contractors shall take steps to eliminate unnecessary uses of SSNs.",
+          "newText": "Contractors must take steps to eliminate unnecessary uses of SSNs 'and contact privacy about the applicability of Form 14132.'",
+          "rationale": "New procedural step referencing the IRS SSN-use justification form.",
+          "significance": "low",
+          "tags": [
+            "requirement-added"
+          ]
+        },
+        {
+          "id": "change-irs4812-ctl-054",
+          "type": "modified",
+          "category": "control-level",
+          "controlId": {
+            "old": "33.0",
+            "new": "33.0"
+          },
+          "title": "Section 33.0 Privacy — three-page IRM 10.5.1 section listing removed",
+          "area": "Section-level change",
+          "oldText": "Section 33.0 enumerated roughly 120 individual IRM 10.5.1 subsections (10.5.1.1 through 10.5.1-1 Glossary) that apply to contractors.",
+          "newText": "Section 33.0 keeps the IRM 10.5.1 applicability statement and link (irs.gov/irm/part10/irm_10-005-001) but drops the itemized subsection list.",
+          "rationale": "Editorial condensation — the obligation ('publicly available sections of IRM 10.5.1 apply to the contractor') is unchanged.",
+          "significance": "low",
+          "tags": [
+            "editorial"
           ]
         }
       ]
