@@ -10,11 +10,12 @@ const TABS = [
 
 // Prominent site-wide tab navigation used on the homepage and section pages.
 export function SiteNav({ active, onNavigate, showLogo = true }) {
+  const compact = active === '/' // homepage hero carries the big brand; keep nav slim
   return (
     <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
-        <div className="flex items-center justify-between py-3">
-          {showLogo && (
+        <div className={`flex items-center justify-between ${compact ? 'py-2' : 'py-3'}`}>
+          {showLogo && !compact && (
             <button onClick={() => onNavigate && onNavigate('/')} className="flex items-center gap-3 flex-shrink-0">
               <LogoMark size={34} />
               <div className="text-left">
@@ -22,6 +23,12 @@ export function SiteNav({ active, onNavigate, showLogo = true }) {
                 <div className="hidden sm:block text-[11px] text-gray-400 mt-0.5">The compliance framework changelog</div>
               </div>
             </button>
+          )}
+          {compact && (
+            <div className="flex items-center gap-2">
+              <LogoMark size={24} />
+              <span className="font-bold text-gray-900 text-sm tracking-tight">FrameDiff</span>
+            </div>
           )}
           <a
             href="#alerts"

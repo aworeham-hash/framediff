@@ -114,29 +114,45 @@ export function HomePage({ onSelectFramework, onNavigate }) {
       <SiteNav active="/" onNavigate={onNavigate} />
 
       {/* Hero section */}
-      <div className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 px-5 sm:px-8 py-12 sm:py-16">
-        <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full border border-blue-100 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-            Free for GRC teams, auditors, and security professionals
+      <div className="relative overflow-hidden border-b border-gray-100 bg-gradient-to-b from-slate-50 via-white to-white px-5 sm:px-8 pt-14 sm:pt-20 pb-12 sm:pb-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="flex justify-center mb-6">
+            <LogoMark size={84} />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-950 tracking-tight leading-tight mb-5">
-            The changelog for<br />compliance frameworks.
-          </h1>
-          <p className="text-gray-500 text-lg leading-relaxed max-w-xl mb-8">
-            See exactly which controls were added, removed, or modified between framework versions
-            — with the rationale behind each update. No more hunting through 300-page PDFs.
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-950">FrameDiff</h1>
+          <p className="mt-3 text-lg sm:text-xl font-medium text-gray-700">
+            The changelog for compliance frameworks.
           </p>
+          <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed max-w-xl mx-auto">
+            See exactly which controls were added, removed, or modified between framework versions —
+            and exactly what evidence auditors expect for every control. Free for GRC teams, auditors,
+            and security professionals.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="#frameworks"
+              onClick={e => { e.preventDefault(); document.getElementById('frameworks')?.scrollIntoView({ behavior: 'smooth' }) }}
+              className="w-full sm:w-auto text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3 transition-colors shadow-sm"
+            >
+              Browse framework changes
+            </a>
+            <button
+              onClick={() => onNavigate && onNavigate('/evidence')}
+              className="w-full sm:w-auto text-sm font-semibold text-gray-700 bg-white border border-gray-300 hover:border-blue-400 hover:text-blue-700 rounded-lg px-6 py-3 transition-colors"
+            >
+              Open the evidence guide
+            </button>
+          </div>
 
           {/* Stats row */}
-          <div className="flex flex-wrap gap-6">
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-lg mx-auto">
             {[
-              { value: String(available.length), label: 'frameworks live' },
-              { value: String(totalChanges) + '+', label: 'tracked changes' },
-              { value: allFrameworks.length + ' in', label: 'total roadmap' },
-              { value: '100%', label: 'free to use' },
+              { value: String(available.length), label: 'frameworks tracked' },
+              { value: String(totalChanges) + '+', label: 'documented changes' },
+              { value: '651', label: 'evidence examples' },
+              { value: '100%', label: 'free, no login' },
             ].map(stat => (
-              <div key={stat.label}>
+              <div key={stat.label} className="text-center">
                 <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                 <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
               </div>
@@ -175,8 +191,9 @@ export function HomePage({ onSelectFramework, onNavigate }) {
       </div>
 
       {/* How it works strip */}
-      <div className="border-b border-gray-100 bg-white px-5 sm:px-8 py-8">
+      <div className="border-b border-gray-100 bg-white px-5 sm:px-8 py-10">
         <div className="max-w-3xl mx-auto">
+          <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest text-center mb-6">How it works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
             {[
               {
@@ -208,7 +225,7 @@ export function HomePage({ onSelectFramework, onNavigate }) {
       </div>
 
       {/* Frameworks list */}
-      <div className="max-w-3xl mx-auto px-5 sm:px-8 py-10">
+      <div id="frameworks" className="scroll-mt-24 max-w-3xl mx-auto px-5 sm:px-8 py-10">
         <div className="space-y-8">
           {FRAMEWORK_GROUPS.map(group => {
             const accent = GROUP_ACCENT[group.name] || { bg: 'bg-gray-400', light: 'bg-gray-50 text-gray-600' }
