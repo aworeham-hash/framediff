@@ -10,6 +10,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DOMAINS, FRAMEWORK_EVIDENCE } from '../src/data/evidence.js'
+import { SP80053_EVIDENCE } from '../src/data/evidence-80053.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -95,7 +96,7 @@ const routes = [
   {
     path: '/evidence',
     title: 'Compliance Evidence Collection Guide \u2014 What to Screenshot for Each Control | FrameDiff',
-    description: 'Audit evidence examples for SOC 2, NIST 800-171, CMMC, PCI DSS, ISO 27001, HIPAA, NYDFS 500 and more: what auditors want to see per control family, with concrete screenshot examples for access reviews, MFA, logging, backups, and vendor risk.',
+    description: 'Audit evidence examples for every NIST 800-53 Rev 5 base control (AC-1 through SR-12), plus SOC 2, 800-171, CMMC, PCI DSS, ISO 27001, HIPAA and NYDFS 500 control families: what auditors want to see, with concrete screenshot examples.',
     priority: '0.9',
   },
   {
@@ -255,6 +256,13 @@ function renderEvidenceBody() {
   parts.push(`<header><p><a href="/">FrameDiff \u2014 the changelog for compliance frameworks</a></p></header>`)
   parts.push('<h1>Compliance evidence collection guide: what to screenshot for each control</h1>')
   parts.push('<p>What auditors actually want to see, control area by control area, with a concrete example of a screenshot that works as audit evidence. Capture screenshots with the date visible, include the system name, and note the scope alongside each one. Examples are illustrative \u2014 your auditor determines sufficiency.</p>')
+  parts.push('<h2>NIST SP 800-53 Rev 5: evidence for every base control</h2>')
+  parts.push(`<p>Control-level evidence examples for all ${SP80053_EVIDENCE.length} SP 800-53 Rev 5 base controls. Enhancements (e.g., AC-6(1)) inherit the base control's guidance scoped to the enhancement's condition.</p>`)
+  parts.push('<dl>')
+  for (const c of SP80053_EVIDENCE) {
+    parts.push(`<dt>${esc(c.id)} \u2014 ${esc(c.name)}</dt><dd>${esc(c.ev)}</dd>`)
+  }
+  parts.push('</dl>')
   for (const [fid, entries] of Object.entries(FRAMEWORK_EVIDENCE)) {
     const fw = frameworks[fid]
     parts.push(`<h2>${esc(fw ? fw.name : fid)} evidence examples</h2>`)

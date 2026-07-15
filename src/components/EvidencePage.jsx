@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { DOMAINS, FRAMEWORK_EVIDENCE } from '../data/evidence'
+import { SP80053_EVIDENCE } from '../data/evidence-80053'
 import { getFramework } from '../data/registry'
 
 function CameraIcon() {
@@ -16,6 +17,7 @@ export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
   const [active, setActive] = useState(
     initialFramework && FRAMEWORK_EVIDENCE[initialFramework] ? initialFramework : 'soc2'
   )
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     document.title = 'Compliance Evidence Collection Guide — What to Screenshot | FrameDiff'
@@ -68,6 +70,46 @@ export function EvidencePage({ onSelectFramework, onHome, initialFramework }) {
             >
               View version changes →
             </button>
+          </div>
+        )}
+
+        {active === 'nist-sp800-53' && (
+          <div className="mb-6 space-y-3">
+            <div className="rounded-lg border border-blue-100 bg-blue-50/50 px-4 py-3">
+              <p className="text-xs text-blue-900 leading-relaxed">
+                <strong>Control-level guidance:</strong> evidence examples for all {SP80053_EVIDENCE.length} SP 800-53
+                Rev 5 base controls across 20 families. Control enhancements — e.g. AC-6(1), AC-6(2) — inherit
+                the base control's guidance scoped to the enhancement's specific condition.
+              </p>
+            </div>
+            <input
+              type="search"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="Filter controls — try AC-6, encryption, backup…"
+              className="w-full text-sm border border-gray-200 rounded-lg px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <div className="space-y-2">
+              {SP80053_EVIDENCE
+                .filter(c => {
+                  if (!query) return true
+                  const q = query.toLowerCase()
+                  return c.id.toLowerCase().includes(q) || c.name.toLowerCase().includes(q) || c.ev.toLowerCase().includes(q)
+                })
+                .map(c => (
+                  <div key={c.id} className="border border-gray-200 rounded-lg px-4 py-3">
+                    <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
+                      <code className="text-xs font-bold text-gray-800 font-mono bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded">{c.id}</code>
+                      <span className="text-sm font-semibold text-gray-800">{c.name}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 text-blue-500 flex-shrink-0"><CameraIcon /></span>
+                      <p className="text-sm text-gray-600 leading-relaxed">{c.ev}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest pt-4">Family-level summary</h3>
           </div>
         )}
 
